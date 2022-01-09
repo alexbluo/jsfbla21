@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
+import AttractionPreview from "../components/AttractionPreview"
 
 export default function AttractionsView() {
-  const [data, setData] = useState(null, (newData) => data = newData);
+  const [attractionsToPreview, setAttractionsToPreview] = useState(null);
+  let previews;
 
   useEffect(() => {
     fetch("api/attractions")
-      .then((res) => res.json())
-      .then((data) => JSON.stringify(data))
-      .then((data) => setData(data));
+      .then((docs) => setAttractionsToPreview(docs))
   }, []);
+
+  // attractionsToPreview.forEach(doc => {
+  //   console.log(doc)
+  //   previews.push(
+  //     <AttractionPreview details={doc} />
+  //   )
+  // });
 
   return (
     <div>
-      <p>Attractions: searchy search here {data}</p>
+      <p>Attractions: searchy search here</p>
+      <div>{previews}</div>
       <Facets />
     </div>
   );
