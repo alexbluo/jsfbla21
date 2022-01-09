@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
-import AttractionPreview from "../components/AttractionPreview"
+import AttractionPreview from "../components/AttractionPreview";
 
 export default function AttractionsView() {
-  const [attractionsToPreview, setAttractionsToPreview] = useState(null);
-  let previews;
+  const [previews, setPreviews] = useState(null);
+  // let previews;
 
   useEffect(() => {
     fetch("api/attractions")
-      .then((docs) => setAttractionsToPreview(docs))
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error status: ${res.status}`);
+        }
+        console.log(res)
+      })
+      // .then((data) => console.log(data));
   }, []);
 
   // attractionsToPreview.forEach(doc => {

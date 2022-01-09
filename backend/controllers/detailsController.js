@@ -1,7 +1,8 @@
 const detailsModel = require("../models/detailsModel")
 
 function getAll(req, res) {
-  res.send(detailsModel.getAll())
+  detailsModel.getAll((data) => console.log(data))
+  detailsModel.getAll((data) => res.send(data))
 }
 
 function getOne(req, res) {

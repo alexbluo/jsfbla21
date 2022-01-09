@@ -6,28 +6,27 @@ const client = new MongoClient(process.env.URI, {
   useUnifiedTopology: true,
 });
 
-function getAll() {
-  let data = [];
-
+function getAll(callback) {
   client.connect(async (err) => {
+    let data = [];
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
       .find()
-      .forEach((doc) => console.log(doc));
-    client.close();
+      .forEach((doc) => data.push(doc));
+    // console.log(data) // appears like normal
+    await client.close();
+    callback(data);
   });
-  return data;
+  // console.log(data) // poof bc doesnt wait for operations inside client.connect
 }
 
 function getOne(id) {
   let data;
   client.connect(async (err) => {
     const db = client.db("attractionsDB");
-    data = await db
-      .collection("attractions")
-      .find({ attraction_id: id })
-      .json();
+    await db.collection("attractions").findOne({ attraction_id: id });
+    // test on server if ids are actually unique with normal find()
     client.close();
   });
   return data;
