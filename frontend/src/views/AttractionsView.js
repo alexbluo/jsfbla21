@@ -12,9 +12,9 @@ export default function AttractionsView() {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
         }
-        console.log(res)
+        return res.json()
       })
-      // .then((data) => console.log(data));
+      .then((data) => console.log(data));
   }, []);
 
   // attractionsToPreview.forEach(doc => {

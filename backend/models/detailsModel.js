@@ -1,24 +1,22 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
-const client = new MongoClient(process.env.URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// const client = new MongoClient(process.env.URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 function getAll(callback) {
-  client.connect(async (err) => {
+  MongoClient.connect(process.env.URI, async (err, client) => {
     let data = [];
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
       .find()
       .forEach((doc) => data.push(doc));
-    // console.log(data) // appears like normal
-    await client.close();
+    client.close();
     callback(data);
   });
-  // console.log(data) // poof bc doesnt wait for operations inside client.connect
 }
 
 function getOne(id) {
