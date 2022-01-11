@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
-import AttractionPreview from "../components/AttractionPreview";
+import Preview from "../components/Preview";
 
 export default function AttractionsView() {
-  const [previews, setPreviews] = useState(null);
-  // let previews;
+  const [previews, setPreviews] = useState(null, function setPreviews(data) {});
 
   useEffect(() => {
     fetch("api/attractions")
@@ -12,17 +11,38 @@ export default function AttractionsView() {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
         }
-        return res.json()
+        return res.json();
       })
-      .then((data) => console.log(data));
+      .then((data) => {
+        let previewElements = [];
+        for (const key in data) {
+          if (Object.hasOwnProperty.call(data, key)) {
+            const doc = data[key];
+            const previewElement = <Preview details={doc} />;
+            previewElements.push(previewElement);
+          }
+        }
+        setPreviews(previewElements);
+      })
   }, []);
-
-  // attractionsToPreview.forEach(doc => {
-  //   console.log(doc)
-  //   previews.push(
-  //     <AttractionPreview details={doc} />
-  //   )
-  // });
+  for (const key in previews) {
+    if (Object.hasOwnProperty.call(previews, key)) {
+      const preview = previews[key];
+      console.log(preview)
+    }
+  }
+  // const convertPreviewsToElements = () => {
+  // let previewElements = [];
+  // for (const key in previews) {
+  //   if (Object.hasOwnProperty.call(previews, key)) {
+  //     const doc = previews[key];
+  //     const previewElement = <Preview details={doc} />;
+  //     previewElements.push(previewElement);
+  //   }
+  // }
+  // return previewElements;
+  // };
+  // setPreviews(convertPreviewsToElements());
 
   return (
     <div>
