@@ -3,7 +3,8 @@ import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 
 export default function AttractionsView() {
-  const [previews, setPreviews] = useState(null, function setPreviews(data) {});
+  const [previews, setPreviews] = useState(null);
+  const [lazyIndex, setLazyIndex] = useState(null)
 
   useEffect(() => {
     fetch("api/attractions")
@@ -14,35 +15,19 @@ export default function AttractionsView() {
         return res.json();
       })
       .then((data) => {
-        let previewElements = [];
-        for (const key in data) {
-          if (Object.hasOwnProperty.call(data, key)) {
-            const doc = data[key];
-            const previewElement = <Preview details={doc} />;
-            previewElements.push(previewElement);
-          }
-        }
-        setPreviews(previewElements);
-      })
+        setPreviews(renderPreviewsElements(data))
+      });
   }, []);
-  for (const key in previews) {
-    if (Object.hasOwnProperty.call(previews, key)) {
-      const preview = previews[key];
-      console.log(preview)
+
+  function renderPreviewsElements(data) {
+    let previewElements = [];
+    for (const key in data) {
+      const doc = data[key];
+      const previewElement = <Preview data={doc} key={doc.attraction_id} />;
+      previewElements.push(previewElement);
     }
+    return previewElements;
   }
-  // const convertPreviewsToElements = () => {
-  // let previewElements = [];
-  // for (const key in previews) {
-  //   if (Object.hasOwnProperty.call(previews, key)) {
-  //     const doc = previews[key];
-  //     const previewElement = <Preview details={doc} />;
-  //     previewElements.push(previewElement);
-  //   }
-  // }
-  // return previewElements;
-  // };
-  // setPreviews(convertPreviewsToElements());
 
   return (
     <div>

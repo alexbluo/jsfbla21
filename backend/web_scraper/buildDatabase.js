@@ -2,16 +2,53 @@ const MongoClient = require("mongodb").MongoClient;
 const scrape = require("./initScrape");
 require("dotenv").config();
 
-const client = new MongoClient(process.env.URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 // runs the scraper and inserts all scraped data into a mongodb Atlas database named 'attractionsDB'
-client.connect(async (err) => {
+MongoClient.connect(process.env.URI, async (err, client) => {
   const db = client.db("attractionsDB");
   const documents = await scrape();
   await db.collection("attractions").insertMany(documents.attractions);
   await db.collection("facets").insertOne(documents.facets);
+  await db
+    .collection("attractions")
+    .createIndex({ "facets.type": 1, "facets.val": 1 });
+  await db.collection("attractions").createIndex({ "attraction_id": 1 });
+  // indexes and cleaning done from mongosh
   client.close();
 });
+
+// DEV: Aggregation pipeline to remove duplicates, if rerun is needed run from mongosh after completion
+// db.attractions
+//   .aggregate(
+//     [
+//       {
+//         $match: {
+//           attraction_id: { $ne: "" }, // discard selection criteria
+//         },
+//       },
+//       {
+//         $group: {
+//           _id: { attraction_id: "$attraction_id" }, // can be grouped on multiple properties
+//           dups: { $addToSet: "$_id" },
+//           count: { $sum: 1 },
+//         },
+//       },
+//       {
+//         $match: {
+//           count: { $gt: 1 }, // Duplicates considered as count greater than one
+//         },
+//       },
+//     ],
+//     { allowDiskUse: true } // For faster processing if set is larger
+//   ) // You can display result until this and check duplicates
+//   .forEach((doc) => {
+//     doc.dups.shift(); // First element skipped for deleting
+//     doc.dups.forEach((dupId) => {
+//       duplicates.push(dupId); // Getting all duplicate ids
+//     });
+//   });
+
+// // If you want to Check all "_id" which you are deleting else print statement not needed
+// printjson(duplicates);
+
+// // Remove all duplicates in one go
+// db.attractions.remove({ _id: { $in: duplicates } });

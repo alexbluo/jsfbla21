@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export default function DetailsView() {
   const [details, setDetails] = useState(null);
-  const id = useParams();
+  const id = useParams().id;
   useEffect(() => {
     fetch(`/api/attractions/${id}`).then((doc) => setDetails(doc));
   }, []);

@@ -14,18 +14,17 @@ function getAll(callback) {
   });
 }
 
-function getOne(id) {
+function getOne(id, callback) {
   MongoClient.connect(process.env.URI, async (err, client) => {
-    let data = [];
+    let data;
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
       .findOne({ attraction_id: id })
-      .then((doc) => data.push(doc));
+      .then((doc) => data = doc);
     client.close();
     callback(data);
   });
-  return data;
 }
 
 module.exports = {
