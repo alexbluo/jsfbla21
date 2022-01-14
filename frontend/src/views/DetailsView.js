@@ -5,13 +5,13 @@ export default function DetailsView() {
   const [details, setDetails] = useState(null);
   const id = useParams().id;
   useEffect(() => {
-    fetch(`/api/attractions/${id}`).then((doc) => setDetails(doc));
+    fetch(`/api/attractions/${id}`).then((res) => res.json()).then((data) => setDetails(data));
   }, []);
-
+  
   // then use data to fill in components and return;
   return (
     <p>
-      Attraction: {id}, {details}
+      Attraction: {id}, {JSON.stringify(details)}
     </p>
   );
 }

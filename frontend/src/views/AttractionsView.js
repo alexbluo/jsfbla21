@@ -10,6 +10,7 @@ export default function AttractionsView() {
     fetch("api/attractions")
       .then((res) => {
         if (!res.ok) {
+          console.log('u not ok')
           throw new Error(`HTTP error status: ${res.status}`);
         }
         return res.json();

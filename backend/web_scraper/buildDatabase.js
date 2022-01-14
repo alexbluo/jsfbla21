@@ -12,7 +12,7 @@ MongoClient.connect(process.env.URI, async (err, client) => {
     .collection("attractions")
     .createIndex({ "facets.type": 1, "facets.val": 1 });
   await db.collection("attractions").createIndex({ "attraction_id": 1 });
-  // indexes and cleaning done from mongosh
+  // duplicates removed through mongosh: see below
   client.close();
 });
 

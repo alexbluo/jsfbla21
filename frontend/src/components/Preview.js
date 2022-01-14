@@ -6,7 +6,7 @@ export default function Preview(props) {
   return (
     <div>
       <Link to={`/attractions/${data.attraction_id}`}>
-        <img src={data.attraction_image} alt="No Image Available for This Site"></img>
+        <img src={data.attraction_image} />
       </Link>
       {/* ::after props.details.facets.city or something like that*/}
     </div>

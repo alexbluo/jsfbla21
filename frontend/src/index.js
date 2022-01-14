@@ -20,7 +20,7 @@ ReactDOM.render(
     <Routes>
       <Route exact path="/" element={<LandingView />} />
       <Route exact path="/attractions" element={<AttractionsView />} />
-      <Route exact path="/attractions/:attraction_id" element={<DetailsView />} />
+      <Route exact path="/attractions/:id" element={<DetailsView />} />
       <Route exact path="/qna" element={<QnAView />} />
       <Route exact path="/help" element={<HelpView />} />
       <Route path="*" element={<Error404View />} />
