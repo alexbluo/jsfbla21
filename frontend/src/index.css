@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  /* grid-template-rows: repeat(); */
+  /* grid-template-columns: repeat; */
+  grid-template-areas: "dd pvc1 pvc2"
+}
+
+.dropdown {
+  grid-area: dd;
+}
+
+.dropdown-contents {
+  
+}
+
+.dropdown:focus-within .dropdown-contents {
+  display: block;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
+import "../index.css"
 
 export default function AttractionsView() {
   const [previews, setPreviews] = useState(null);
@@ -10,7 +11,6 @@ export default function AttractionsView() {
     fetch("api/attractions")
       .then((res) => {
         if (!res.ok) {
-          console.log('u not ok')
           throw new Error(`HTTP error status: ${res.status}`);
         }
         return res.json();
@@ -33,8 +33,10 @@ export default function AttractionsView() {
   return (
     <div>
       <p>Attractions: searchy search here</p>
-      <div>{previews}</div>
-      <Facets />
+      <div className="grid">
+        {previews}
+        <Facets />
+      </div>
     </div>
   );
 }
