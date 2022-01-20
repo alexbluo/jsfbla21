@@ -10,12 +10,12 @@ export default function Preview(props) {
     <div>
       <Link to={`/attractions/${data.attraction_id}`}>
         {data.attraction_image ? (
-          <img className="test" src={data.attraction_image} />
+          <img src={data.attraction_image} />
         ) : (
           <h3>No Image Available</h3>
         )}
       </Link>
-      {/* ::after {data.facets.city} */}
+      <label>{data.facets.city}</label>
     </div>
   );
 }

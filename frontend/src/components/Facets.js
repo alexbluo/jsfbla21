@@ -12,19 +12,19 @@ function FacetDropdown(props) {
   // dont actually handle like above, probably have to use state and get more data?
   // somehow control what actual content is displayed here
   // prob move to separate file and make controller/model perform actions on certain db fields using
-  useEffect(() => {
-    if (props.category === "Region") {
-      for (const region of regions) {
+  // useEffect(() => {
+  //   if (props.category === "Region") {
+  //     for (const region of regions) {
+        
+  //     }
+  //   } else if (props.category === "City") {
 
-      }
-    } else if (props.category === "City") {
+  //   } else if (props.category === "Type") {
 
-    } else if (props.category === "Type") {
-
-    } else if (props.category === "Amenities") {
+  //   } else if (props.category === "Amenities") {
       
-    }
-  }, [])
+  //   }
+  // }, [])
   return (
     <div>
       <p>{props.category}</p>
