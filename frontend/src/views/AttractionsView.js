@@ -24,24 +24,28 @@ export default function AttractionsView() {
   }, []);
 
   function handleLazyLoadClick() {
-    setPreviews(renderPreviewsElements(previewsList[0]));
     setloadIndex(loadIndex + 1);
-    // setPreviews([...previews, renderPreviewsElements(loadIndex)]);
+    setPreviews([...previews, renderPreviewsElements(previewsList[loadIndex])]);
+    console.log(previews)
   }
 
   function splitData(data) {
     let splitData = [];
+    let size = 8;
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-    for (let i = 0; i < data.length; i++) {
-      if (i % 8 === 0) {
-        splitData.push(data.slice(i));
-      }
+    for (let i = 0; i < data.length; i += size) {
+      splitData.push(data.slice(i, i + size));
     }
+    console.log(splitData)
     return splitData;
   }
 
   function renderPreviewsElements(data) {
     let previewElements = [];
+    // data.forEach(doc => {
+    //   const previewElement = <Preview data={doc} key={doc.attraction_id} />;
+    //   previewElements.push(previewElement);
+    // });
     for (const key in data) {
       const doc = data[key];
       const previewElement = <Preview data={doc} key={doc.attraction_id} />;
