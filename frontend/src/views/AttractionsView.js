@@ -6,7 +6,7 @@ import "../index.css";
 export default function AttractionsView() {
   const [previewsList, setPreviewsList] = useState(null);
   const [previews, setPreviews] = useState(null);
-  const [lazyIndex, setLazyIndex] = useState(0);
+  const [loadIndex, setloadIndex] = useState(0);
   // prob need to keep track of facets state here as well
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export default function AttractionsView() {
 
   function handleLazyLoadClick() {
     setPreviews(renderPreviewsElements(previewsList[0]));
-    setLazyIndex(lazyIndex + 1);
-    // setPreviews([...previews, renderPreviewsElements(lazyIndex)]);
+    setloadIndex(loadIndex + 1);
+    // setPreviews([...previews, renderPreviewsElements(loadIndex)]);
   }
 
   function splitData(data) {
