@@ -5,8 +5,8 @@ import "../index.css";
 
 export default function AttractionsView() {
   const [previewsList, setPreviewsList] = useState(null);
-  const [previews, setPreviews] = useState(null);
-  const [loadIndex, setloadIndex] = useState(0);
+  const [previews, setPreviews] = useState([]);
+  const [loadIndex, setloadIndex] = useState(1);
   // prob need to keep track of facets state here as well
 
   useEffect(() => {
@@ -17,37 +17,43 @@ export default function AttractionsView() {
         }
         return res.json();
       })
+      .then((data) => splitData(data))
       .then((data) => {
-        setPreviewsList(splitData(data));
-        setPreviews(renderPreviewsElements(previewsList[0]));
+        setPreviewsList(data);
+        setPreviews(renderPreviewsElements(data[0]));
       });
   }, []);
 
-  function handleLazyLoadClick() {
+  // this might not work.
+  function handleLoadClick() {
     setloadIndex(loadIndex + 1);
-    setPreviews([...previews, renderPreviewsElements(previewsList[loadIndex])]);
-    console.log(previews)
+    // again, something is up with set functions
+    console.log(loadIndex);
+    setPreviews((prev) => [
+      ...prev,
+      ...renderPreviewsElements(previewsList[loadIndex]),
+    ]);
+    console.log(previews);
   }
 
+  // this works.
   function splitData(data) {
     let splitData = [];
     let size = 8;
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
     for (let i = 0; i < data.length; i += size) {
       splitData.push(data.slice(i, i + size));
     }
-    console.log(splitData)
     return splitData;
   }
 
+  // this could be better
   function renderPreviewsElements(data) {
+    if (data == null) return [<p>nothing matched</p>]; 
+
     let previewElements = [];
-    // data.forEach(doc => {
-    //   const previewElement = <Preview data={doc} key={doc.attraction_id} />;
-    //   previewElements.push(previewElement);
-    // });
-    for (const key in data) {
-      const doc = data[key];
+    for (const doc of data) {
+      // could separate into columns using index here but i dont like that
+      // const doc = data[key];
       const previewElement = <Preview data={doc} key={doc.attraction_id} />;
       previewElements.push(previewElement);
     }
@@ -60,7 +66,8 @@ export default function AttractionsView() {
       <div className="grid">
         <div className="previewsContainer">{previews}</div>
 
-        <button onClick={handleLazyLoadClick}>LOAD MORE</button>
+        {/* handle when theres no more to load, should be simple*/}
+        {<button onClick={handleLoadClick}>LOAD MORE</button>}
         <Facets />
       </div>
     </div>

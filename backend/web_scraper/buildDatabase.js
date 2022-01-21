@@ -2,7 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 const scrape = require("./initScrape");
 require("dotenv").config();
 
-// runs the scraper and inserts all scraped data into a mongodb Atlas database named 'attractionsDB'
+// runs the scraper and inserts all scraped data into a MongoDB database hosted on Atlas
 MongoClient.connect(process.env.URI, async (err, client) => {
   const db = client.db("attractionsDB");
   const documents = await scrape();

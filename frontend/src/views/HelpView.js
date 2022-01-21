@@ -1,5 +1,11 @@
 import React from "react";
+import NavBar from "../components/NavBar";
 
 export default function HelpView() {
-  return <p>please send help</p>;
+  return (
+    <div>
+      <NavBar />
+      <p>please send help</p>
+    </div>
+  );
 }
