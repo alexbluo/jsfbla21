@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
+import NavBar from "../components/NavBar";
 import "../index.css";
 
 export default function AttractionsView() {
@@ -27,8 +28,6 @@ export default function AttractionsView() {
   // this might not work.
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
-    // again, something is up with set functions
-    console.log(loadIndex);
     setPreviews((prev) => [
       ...prev,
       ...renderPreviewsElements(previewsList[loadIndex]),
@@ -61,10 +60,11 @@ export default function AttractionsView() {
   }
 
   return (
-    <div>
-      <p>Attractions: searchy search here</p>
+    <div className="container">
+      <NavBar />
+      <h1>Attractions: searchy search here</h1>
       <div className="grid">
-        <div className="previewsContainer">{previews}</div>
+        <div className="Preview">{previews}</div>
 
         {/* handle when theres no more to load, should be simple*/}
         {<button onClick={handleLoadClick}>LOAD MORE</button>}

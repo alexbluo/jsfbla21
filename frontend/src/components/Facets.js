@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import "../index.css";
 
 // rough idea
-function Checkbox() {
+function Checkbox(props) {
   // [isChecked, setIsChecked] = useState(false);
-  return <input type="checkbox" />;
+  return (
+    <label>
+
+      <input type="checkbox" />
+    </label>
+  );
 }
 
-function FacetDropdown(props) {
+function Dropdown(props) {
   const regions = ["Capital Region", "Central Maryland", "Eastern Shore", "Southern Maryland", "Western Maryland"];
   // dont actually handle like above, probably have to use state and get more data?
   // somehow control what actual content is displayed here
@@ -34,12 +39,14 @@ function FacetDropdown(props) {
 }
 
 export default function Facets() {
+  // use closure to pass state to view?
+
   return (
     <div className="dropdown">
-      <FacetDropdown category="Region" />
-      <FacetDropdown category="City" />
-      <FacetDropdown category="Type" />
-      <FacetDropdown category="Amenities" />
+      <Dropdown category="Region" />
+      <Dropdown category="City" />
+      <Dropdown category="Type" />
+      <Dropdown category="Amenities" />
     </div>
   );
 }

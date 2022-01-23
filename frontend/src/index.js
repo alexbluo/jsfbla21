@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LandingView, AttractionsView, DetailsView, HelpView, Error404View, QnAView } from "./views/viewExports";
+import { LandingView, AttractionsView, DetailsView, HelpView, Error404View, MapView } from "./views/viewExports";
 
 // REACT
 // https://www.robinwieruch.de/react-folder-structure/
@@ -22,7 +22,7 @@ ReactDOM.render(
       <Route exact path="/attractions" element={<AttractionsView />} />
       {/* <Route path="/attractions?facets=" element={<AttractionsView />} /> figure out query params */}
       <Route exact path="/attractions/:id" element={<DetailsView />} />
-      <Route exact path="/qna" element={<QnAView />} />
+      <Route exact path="/map" element={<MapView />} />
       <Route exact path="/help" element={<HelpView />} />
       <Route path="*" element={<Error404View />} />
     </Routes>

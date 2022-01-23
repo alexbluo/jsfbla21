@@ -1,11 +1,12 @@
 import React from "react";
 import NavBar from "../components/NavBar";
+import "../index.css"
 
 export default function HelpView() {
   return (
-    <div>
+    <div className="container">
       <NavBar />
-      <p>please send help</p>
+      <h1>please send help</h1>
     </div>
   );
 }

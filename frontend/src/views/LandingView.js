@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../index.css"
 
 export default function LandingView() {
@@ -9,13 +9,12 @@ export default function LandingView() {
       <Link to="/attractions">
         <button>Attractions</button>
       </Link>
+      <Link to="/map">
+        <button>Map</button>
+      </Link>
       <Link to="/help">
         <button>Help</button>
       </Link>
-      <Link to="/qna">
-        <button>QnA</button>
-      </Link>
-      <Outlet />
     </div>
   );
 }
