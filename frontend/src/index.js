@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LandingView, AttractionsView, DetailsView, HelpView, Error404View, MapView } from "./views/viewExports";
+import {
+  LandingPage,
+  AttractionsPage,
+  DetailsPage,
+  HelpPage,
+  Error404Page,
+  MapPage,
+} from "./pages/pageExports";
 
 // REACT
 // https://www.robinwieruch.de/react-folder-structure/
@@ -18,13 +25,13 @@ import { LandingView, AttractionsView, DetailsView, HelpView, Error404View, MapV
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route exact path="/" element={<LandingView />} />
-      <Route exact path="/attractions" element={<AttractionsView />} />
+      <Route exact path="/" element={<LandingPage />} />
+      <Route exact path="/attractions" element={<AttractionsPage />} />
       {/* <Route path="/attractions?facets=" element={<AttractionsView />} /> figure out query params */}
-      <Route exact path="/attractions/:id" element={<DetailsView />} />
-      <Route exact path="/map" element={<MapView />} />
-      <Route exact path="/help" element={<HelpView />} />
-      <Route path="*" element={<Error404View />} />
+      <Route exact path="/attractions/:id" element={<DetailsPage />} />
+      <Route exact path="/map" element={<MapPage />} />
+      <Route exact path="/help" element={<HelpPage />} />
+      <Route path="*" element={<Error404Page />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

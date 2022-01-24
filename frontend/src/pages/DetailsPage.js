@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function DetailsView() {
+export default function DetailsPage() {
   const [details, setDetails] = useState(null);
   const id = useParams().id;
-  
+
   useEffect(() => {
     fetch(`/api/attractions/${id}`)
       .then((res) => res.json())

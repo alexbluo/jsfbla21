@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import "../index.css"
 
-export default function HelpView() {
+export default function HelpPage() {
   return (
     <div className="container">
       <NavBar />

@@ -24,6 +24,7 @@ function Dropdown(props) {
     "Southern Maryland",
     "Western Maryland",
   ];
+  
   const [labels, setLabels] = useState([]);
   const [isOpened, setIsOpened] = useState(false);
 

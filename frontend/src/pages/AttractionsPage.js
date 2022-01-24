@@ -4,7 +4,7 @@ import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
 import "../index.css";
 
-export default function AttractionsView() {
+export default function AttractionsPage() {
   const [previewsList, setPreviewsList] = useState(null);
   const [previews, setPreviews] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
@@ -47,7 +47,7 @@ export default function AttractionsView() {
 
   // this could be better
   function renderPreviewsElements(data) {
-    if (data == null) return [<p>nothing matched</p>]; 
+    if (data == null) return [<p>nothing matched</p>];
 
     let previewElements = [];
     for (const doc of data) {
