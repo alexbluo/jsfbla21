@@ -16,12 +16,10 @@ function getAll(callback) {
 
 function getOne(id, callback) {
   MongoClient.connect(process.env.URI, async (err, client) => {
-    let data;
     const db = client.db("attractionsDB");
-    await db
+    const data = await db
       .collection("attractions")
       .findOne({ attraction_id: id })
-      .then((doc) => data = doc);
     client.close();
     callback(data);
   });

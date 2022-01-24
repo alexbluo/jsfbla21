@@ -5,35 +5,44 @@ import "../index.css";
 function Checkbox(props) {
   // [isChecked, setIsChecked] = useState(false);
   return (
-    <label>
 
-      <input type="checkbox" />
-    </label>
+      <li>
+        <label>
+          {props.label}
+          <input type="checkbox" />
+        </label>
+      </li>
+      
   );
 }
 
 function Dropdown(props) {
-  const regions = ["Capital Region", "Central Maryland", "Eastern Shore", "Southern Maryland", "Western Maryland"];
-  // dont actually handle like above, probably have to use state and get more data?
-  // somehow control what actual content is displayed here
-  // prob move to separate file and make controller/model perform actions on certain db fields using
-  // useEffect(() => {
-  //   if (props.category === "Region") {
-  //     for (const region of regions) {
-        
-  //     }
-  //   } else if (props.category === "City") {
+  const regions = [
+    "Capital Region",
+    "Central Maryland",
+    "Eastern Shore",
+    "Southern Maryland",
+    "Western Maryland",
+  ];
+  const [labels, setLabels] = useState([]);
+  const [isOpened, setIsOpened] = useState(false);
 
-  //   } else if (props.category === "Type") {
+  useEffect(() => {
+    if (props.category === "Region") {
+      setLabels(regions);
+    } else if (props.category === "City") {
+      // labels = fetch("api/facets/city")
+    } else if (props.category === "Type") {
+      // labels = fetch("api/facets/type")
+    } else if (props.category === "Amenities") {
+      // labels = fetch("api/facets/amenities")
+    }
+  }, []);
 
-  //   } else if (props.category === "Amenities") {
-      
-  //   }
-  // }, [])
   return (
     <div>
-      <p>{props.category}</p>
-      <Checkbox />
+      {props.category}
+      <ul>{labels.map((label) => (<Checkbox label={label} />))}</ul>
     </div>
   );
 }
@@ -41,8 +50,10 @@ function Dropdown(props) {
 export default function Facets() {
   // use closure to pass state to view?
 
+  // function updateFilters() {}
+
   return (
-    <div className="dropdown">
+    <div className="Facets">
       <Dropdown category="Region" />
       <Dropdown category="City" />
       <Dropdown category="Type" />

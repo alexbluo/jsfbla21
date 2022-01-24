@@ -30,7 +30,7 @@ ul {
   white-space: nowrap;
 }
 
-li {
+.NavBar li {
   display: inline;
 }
 
@@ -50,6 +50,7 @@ li {
 }
 
 .dropdown-contents {
+  display: none;
 }
 
 .dropdown:focus-within .dropdown-contents {
