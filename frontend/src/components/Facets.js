@@ -5,14 +5,12 @@ import "../index.css";
 function Checkbox(props) {
   // [isChecked, setIsChecked] = useState(false);
   return (
-
-      <li>
-        <label>
-          {props.label}
-          <input type="checkbox" />
-        </label>
-      </li>
-      
+    <li>
+      <label>
+        {props.label}
+        <input type="checkbox" />
+      </label>
+    </li>
   );
 }
 
@@ -24,7 +22,7 @@ function Dropdown(props) {
     "Southern Maryland",
     "Western Maryland",
   ];
-  
+
   const [labels, setLabels] = useState([]);
   const [isOpened, setIsOpened] = useState(false);
 
@@ -32,18 +30,28 @@ function Dropdown(props) {
     if (props.category === "Region") {
       setLabels(regions);
     } else if (props.category === "City") {
-      // labels = fetch("api/facets/city")
+      fetch("api/facets/cities")
+        .then((data) => data.json())
+        .then((data) => setLabels(data.cities));
     } else if (props.category === "Type") {
-      // labels = fetch("api/facets/type")
+      fetch("api/facets/types")
+        .then((data) => data.json())
+        .then((data) => setLabels(data.types));
     } else if (props.category === "Amenities") {
-      // labels = fetch("api/facets/amenities")
+      fetch("api/facets/amenities")
+        .then((data) => data.json())
+        .then((data) => setLabels(data.amenities));
     }
   }, []);
 
   return (
     <div>
       {props.category}
-      <ul>{labels.map((label) => (<Checkbox label={label} />))}</ul>
+      <ul>
+        {labels.map((label, index) => (
+          <Checkbox label={label} key={index} />
+        ))}
+      </ul>
     </div>
   );
 }

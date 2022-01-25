@@ -1,16 +1,25 @@
 const express = require("express");
 const app = express();
-const detailsModel = require("./models/detailsModel");
+const { getAll, getOne } = require("./models/attractionsModel");
+const { getCities, getTypes, getAmenities } = require("./models/facetsModel")
 
 app.get("/api/attractions", (req, res) =>
-  detailsModel.getAll((data) => res.send(data))
+  getAll((data) => res.send(data))
 );
 app.get("/api/attractions/:id", (req, res) =>
-  detailsModel.getOne(req.params.id, (data) => res.send(data))
+  getOne(req.params.id, (data) => res.send(data))
 );
 
-app.get("/api/facets/city", (req, res) =>
-  detailsModel.getCities((data) => res.send(data))
+app.get("/api/facets/cities", (req, res) =>
+  getCities((data) => res.send(data))
+);
+
+app.get("/api/facets/types", (req, res) =>
+  getTypes((data) => res.send(data))
+);
+
+app.get("/api/facets/amenities", (req, res) =>
+  getAmenities((data) => res.send(data))
 );
 
 const port = process.env.PORT || 5000;
