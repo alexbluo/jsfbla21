@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../index.css";
+import dropdownIcon from "../images/dropdownIcon.png"
 
-// rough idea
 function Checkbox(props) {
-  // [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const label = props.label;
+
   return (
     <li>
       <label>
-        {props.label}
         <input type="checkbox" />
+        {props.label}
       </label>
     </li>
   );
@@ -44,13 +46,26 @@ function Dropdown(props) {
     }
   }, []);
 
+  function handleOpenClick() {
+    setIsOpened(!isOpened);
+  }
+
   return (
     <div>
-      {props.category}
-      <ul>
-        {labels.map((label, index) => (
-          <Checkbox label={label} key={index} />
-        ))}
+      <label>
+        {props.category}
+        <input
+          type="image"
+          src={dropdownIcon}
+          onClick={handleOpenClick}
+          className="Dropdown__icon"
+        />
+      </label>
+
+      <ul className="Dropdown__contents">
+        {isOpened
+          ? labels.map((label, index) => <Checkbox label={label} key={index} />)
+          : null}
       </ul>
     </div>
   );

@@ -62,13 +62,13 @@ export default function AttractionsPage() {
   return (
     <div className="container">
       <NavBar />
-      <h1>Attractions: searchy search here</h1>
+      <h1>Attractions</h1>
       <div className="grid">
         <div className="Preview">{previews}</div>
 
         {/* handle when theres no more to load, should be simple*/}
-        {<button onClick={handleLoadClick}>LOAD MORE</button>}
-        <Facets />
+        {<button id="AttractionsPage__button" onClick={handleLoadClick}>LOAD MORE</button>}
+        <Facets className="Dropdown__container" />
       </div>
     </div>
   );

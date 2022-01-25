@@ -1,11 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Raleway:wght@100&display=swap');
+
+:root {
+  --flag-red: rgb(157, 34, 53);
+  --flag-white: rgb(255, 255, 255);
+  --flag-black: rgb(0, 0, 0);
+  --flag-gold: rgb(234, 170, 0);
+}
 
 body {
   padding-top: 40px;
+  font-family: "Open Sans";
+  background-color: var(--flag-black);
+  color: white;
 }
 
 h1 {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
+  margin: 2rem;
+  color: var(--flag-gold);
 }
 
 .grid {
@@ -45,21 +57,51 @@ ul {
   margin: 12px;
 }
 
-.dropdown {
+.Dropdown {
+  margin-left: 10rem;
+}
+
+.Dropdown__contents {
+  margin-left: 1px;
+}
+
+.Dropdown__icon {
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  filter: invert(100%);
+}
+
+.Dropdown_title {
+}
+
+.Facets {
   grid-area: dd;
+  margin-left: 2rem;
 }
 
-.dropdown-contents {
-  display: none;
+#AttractionsPage__button {
+  width: 8rem;
+  height: 2rem;
+  color: var(--flag-white );
+  font-family: "Open Sans";
+  font-weight: bold;
+  background-color: var(--flag-red);
+  border-radius: 6px;
+  border: 2px solid var(--flag-gold);
 }
 
-.dropdown:focus-within .dropdown-contents {
-  display: block;
+/* #AttractionsPage__button:hover {
+  background-color: rgb(122, 11, 28);
+} */
+
+#AttractionsPage__button:active {
+  background-color: rgb(122, 11, 28);
 }
 
 .NavBar {
   position: fixed;
-  background-color: black;
+  background-color: var(--flag-red);
   top: 0;
   right: 0;
   left: 0;
@@ -67,7 +109,8 @@ ul {
 
 .NavBar__right {
   position: relative;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: "Montserrat";
   float: right;
   right: 20px;
 }
@@ -77,7 +120,7 @@ ul {
 }
 
 .NavBar__link {
-  color: yellow;
+  color: var(--flag-white);
 }
 
 .NavBar__link:link {
@@ -87,7 +130,7 @@ ul {
 .NavBar__link:hover {
   transition: 200ms;
   transition-timing-function: ease-in;
-  color: red;
+  color: var(--flag-gold);
 }
 
 /* width */
