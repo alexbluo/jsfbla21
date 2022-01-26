@@ -8,10 +8,10 @@ export default function AttractionsPage() {
   const [previewsList, setPreviewsList] = useState(null);
   const [previews, setPreviews] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
-  // prob need to keep track of facets state here as well
+  const [queryParams, setQueryParams] = useState("");
 
   useEffect(() => {
-    fetch("api/attractions")
+    fetch(`api/attractions?${queryParams}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
@@ -23,9 +23,8 @@ export default function AttractionsPage() {
         setPreviewsList(data);
         setPreviews(renderPreviewsElements(data[0]));
       });
-  }, []);
+  }, [queryParams]);
 
-  // this might not work.
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
     setPreviews((prev) => [
@@ -35,7 +34,6 @@ export default function AttractionsPage() {
     console.log(previews);
   }
 
-  // this works.
   function splitData(data) {
     let splitData = [];
     let size = 8;
@@ -45,7 +43,6 @@ export default function AttractionsPage() {
     return splitData;
   }
 
-  // this could be better
   function renderPreviewsElements(data) {
     if (data == null) return [<p>nothing matched</p>];
 
@@ -60,7 +57,7 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="container">
+    <div>
       <NavBar />
       <h1>Attractions</h1>
       <div className="grid">

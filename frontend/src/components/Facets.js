@@ -7,7 +7,7 @@ function Checkbox(props) {
   const label = props.label;
 
   return (
-    <li>
+    <li className="Checkbox">
       <label>
         <input type="checkbox" />
         {props.label}
@@ -17,6 +17,8 @@ function Checkbox(props) {
 }
 
 function Dropdown(props) {
+  const [labels, setLabels] = useState(null);  // change from state to regular const or prob some weird hook
+  const [isOpened, setIsOpened] = useState(false);
   const regions = [
     "Capital Region",
     "Central Maryland",
@@ -24,9 +26,6 @@ function Dropdown(props) {
     "Southern Maryland",
     "Western Maryland",
   ];
-
-  const [labels, setLabels] = useState([]);
-  const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
     if (props.category === "Region") {

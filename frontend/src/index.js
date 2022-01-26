@@ -27,7 +27,6 @@ ReactDOM.render(
     <Routes>
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/attractions" element={<AttractionsPage />} />
-      {/* <Route path="/attractions?facets=" element={<AttractionsView />} /> figure out query params */}
       <Route exact path="/attractions/:id" element={<DetailsPage />} />
       <Route exact path="/map" element={<MapPage />} />
       <Route exact path="/help" element={<HelpPage />} />
