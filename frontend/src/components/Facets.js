@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../index.css";
+import "../css/index.css";
 import dropdownIcon from "../images/dropdownIcon.png"
 
 function Checkbox(props) {

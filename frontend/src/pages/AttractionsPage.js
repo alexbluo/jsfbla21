@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
-import "../index.css";
+import "../css/index.css";
+
+// ERRORS:
+// click before loaded (if res.loading or something like that)
+// around index 150: GET 503 https://www.visitmaryland.org/sites/default/files/styles/listing_slideshow_md/public/listing_images/profile/2933/0-8936-destination-2933.jpg?itok=RE1Ja262
+// whatever load error when maxed - around index 150: Each child in a list should have a unique "key" prop.
+// "Indicate whether to send a cookie in a cross-site request by specifying its SameSite attribute"
 
 export default function AttractionsPage() {
   const [previewsList, setPreviewsList] = useState(null);
@@ -40,17 +46,25 @@ export default function AttractionsPage() {
     for (let i = 0; i < data.length; i += size) {
       splitData.push(data.slice(i, i + size));
     }
+    // await splitData.array.forEach(element => {
+
+    // });
     return splitData;
   }
 
   function renderPreviewsElements(data) {
-    if (data == null) return [<p>nothing matched</p>];
+    if (data == null) return [<p>Nothing Matched</p>];
 
     let previewElements = [];
-    for (const doc of data) {
-      // could separate into columns using index here but i dont like that
-      // const doc = data[key];
-      const previewElement = <Preview data={doc} key={doc.attraction_id} />;
+    for (const idx in data) {
+      const doc = data[idx];
+      const previewElement = (
+        <Preview
+          data={doc}
+          col_id={idx % 2 === 0 ? 1 : 2}
+          key={doc.attraction_id}
+        />
+      );
       previewElements.push(previewElement);
     }
     return previewElements;
@@ -64,7 +78,11 @@ export default function AttractionsPage() {
         <div className="Preview">{previews}</div>
 
         {/* handle when theres no more to load, should be simple*/}
-        {<button id="AttractionsPage__button" onClick={handleLoadClick}>LOAD MORE</button>}
+        {
+          <button id="AttractionsPage__button" onClick={handleLoadClick}>
+            LOAD MORE
+          </button>
+        }
         <Facets className="Dropdown__container" />
       </div>
     </div>

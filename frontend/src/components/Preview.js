@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../index.css"
+import "../css/index.css"
 
 export default function Preview(props) {
   const data = props.data;
@@ -12,7 +12,7 @@ export default function Preview(props) {
         {data.attraction_image ? (
           <img src={data.attraction_image} />
         ) : (
-          <h3>No Image Available</h3>
+          <p>No Image Available</p>
         )}
       </Link>
       <label>{data.facets.city}</label>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../index.css"
+import "../css/index.css"
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="LandingPage">
       <h1>Maryland Attractions Searcher</h1>
       <Link to="/attractions">
         <button>Attractions</button>

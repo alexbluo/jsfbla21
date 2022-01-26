@@ -42,6 +42,10 @@ ul {
   white-space: nowrap;
 }
 
+.LandingPage {
+  text-align: center;
+}
+
 .NavBar li {
   display: inline;
 }
