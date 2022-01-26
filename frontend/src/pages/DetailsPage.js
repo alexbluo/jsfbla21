@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../css/DetailsPage.css"
 
 export default function DetailsPage() {
   const [details, setDetails] = useState(null);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
-import "../css/index.css";
+import "../css/AttractionsPage.css"
 
 // ERRORS:
 // click before loaded (if res.loading or something like that)
@@ -36,8 +36,13 @@ export default function AttractionsPage() {
     setPreviews((prev) => [
       ...prev,
       ...renderPreviewsElements(previewsList[loadIndex]),
+      loadIndex + 1 < previewsList.length ? (
+        <button id="AttractionsPage__button" onClick={handleLoadClick}>
+          LOAD MORE
+        </button>
+      ) : null,
     ]);
-    console.log(previews);
+    console.log(previewsList.length);
   }
 
   function splitData(data) {
@@ -46,14 +51,11 @@ export default function AttractionsPage() {
     for (let i = 0; i < data.length; i += size) {
       splitData.push(data.slice(i, i + size));
     }
-    // await splitData.array.forEach(element => {
-
-    // });
     return splitData;
   }
 
   function renderPreviewsElements(data) {
-    if (data == null) return [<p>Nothing Matched</p>];
+    if (data == null) return [<div>Nothing Matched</div>];
 
     let previewElements = [];
     for (const idx in data) {
@@ -75,13 +77,13 @@ export default function AttractionsPage() {
       <NavBar />
       <h1>Attractions</h1>
       <div className="grid">
-        <div className="Preview">{previews}</div>
+        <div>{previews}</div>
 
         {/* handle when theres no more to load, should be simple*/}
         {
-          <button id="AttractionsPage__button" onClick={handleLoadClick}>
-            LOAD MORE
-          </button>
+          // <button id="AttractionsPage__button" onClick={handleLoadClick}>
+          //   LOAD MORE
+          // </button>
         }
         <Facets className="Dropdown__container" />
       </div>

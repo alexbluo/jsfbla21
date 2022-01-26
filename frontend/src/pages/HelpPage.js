@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import "../css/index.css"
+import "../css/HelpPage.css"
 
 export default function HelpPage() {
   return (

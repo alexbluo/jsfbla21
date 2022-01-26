@@ -1,0 +1,43 @@
+.Facets {
+  grid-area: dd;
+  margin-left: 2rem;
+}
+
+/* Dropdown */
+/* --------------------------------------- */
+
+.Dropdown {
+  margin-left: 10rem;
+}
+
+.Dropdown__contents {
+  margin-left: 2rem;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.Dropdown__icon {
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  filter: invert(100%);
+}
+
+.Dropdown_title {
+}
+
+/* Checkbox */
+/* --------------------------------------- */
+
+.Checkbox {
+  font-size: 18px;
+}
+
+.Checkbox input[type=checkbox] {
+  width: 1em;
+  height: 1em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: .5em;
+}

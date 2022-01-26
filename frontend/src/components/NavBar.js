@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/index.css";
-// dont need anymore, just keeping for future reference
-// import help from "../help/logo.svg"
+import "../css/NavBar.css"
 
 export default function NavBar() {
   return (

@@ -1,0 +1,10 @@
+.Preview {
+  grid-area: pvc1;
+}
+
+.Preview img {
+  /* object-fit: cover; */
+  width: 256px;
+  max-height: 256px;
+  margin: 12px;
+}

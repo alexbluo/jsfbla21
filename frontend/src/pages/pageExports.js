@@ -1,3 +1,6 @@
+// import css here so webpack bundles
+// should just edit webpack config instead but too lazy to rn
+import "../css/index.css"
 export { default as DetailsPage } from "./DetailsPage";
 export { default as AttractionsPage } from "./AttractionsPage";
 export { default as HelpPage } from "./HelpPage";
