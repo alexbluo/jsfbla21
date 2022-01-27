@@ -1,5 +1,5 @@
 .Preview {
-  grid-area: pvc1;
+  color: var(--flag-gold);
 }
 
 .Preview img {
@@ -7,4 +7,24 @@
   width: 256px;
   max-height: 256px;
   margin: 12px;
+  grid-area: col2;
+}
+
+.Preview img:hover {
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 0.777s ease;
+  -moz-transition: all 0.777s ease;
+  -o-transition: all 0.777s ease;
+  -ms-transition: all 0.777s ease;
+  transition: all 0.777s ease;
+  filter: brightness(70%);
+  /* z-index: 0; */
+}
+
+.col1 {
+  grid-area: pvc1;
+}
+
+.col2 {
+  grid-area: pvc2;
 }

@@ -8,15 +8,16 @@ export default function Preview(props) {
 
   return (
     <div className="Preview">
-      <Link to={`/attractions/${data.attraction_id}`}>
-        {data.attraction_image ? (
-          <img
-            src={data.attraction_image} /*className={`col${props.col_id}`}*/
-          />
-        ) : (
-          <p>No Image Available</p>
-        )}
-      </Link>
+      <div className={`col${props.col_id}`}>
+        <Link to={`/attractions/${data.attraction_id}`}>
+          {data.attraction_image ? (
+            <img src={data.attraction_image} />
+          ) : (
+            <p>No Image Available</p>
+          )}
+        </Link>
+      </div>
+      
       <label>{data.facets.find((obj) => obj.type === "city").val}</label>
       <br />
       <label>{data.attraction_name}</label>
