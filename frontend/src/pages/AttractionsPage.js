@@ -72,15 +72,14 @@ export default function AttractionsPage() {
       <NavBar />
       <h1>Attractions</h1>
       <div className="grid">
-        <div>{previews}</div>
+        <Facets className="Dropdown__container" />
+        {previews}
 
         {/* handle when theres no more to load, should be simple*/}
-        {
-          <button id="AttractionsPage__button" onClick={handleLoadClick}>
-            LOAD MORE
-          </button>
-        }
-        <Facets className="Dropdown__container" />
+        <button id="AttractionsPage__button" onClick={handleLoadClick}>
+          LOAD MORE
+        </button>
+        
       </div>
     </div>
   );

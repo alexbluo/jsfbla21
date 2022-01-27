@@ -8,7 +8,7 @@ export default function Preview(props) {
 
   return (
     <div className="Preview">
-      <div className={`col${props.col_id}`}>
+      <div className={`Preview__col${props.col_id}`}>
         <Link to={`/attractions/${data.attraction_id}`}>
           {data.attraction_image ? (
             <img src={data.attraction_image} />
@@ -17,10 +17,15 @@ export default function Preview(props) {
           )}
         </Link>
       </div>
-      
-      <label>{data.facets.find((obj) => obj.type === "city").val}</label>
-      <br />
-      <label>{data.attraction_name}</label>
+      <div className="Preview__description">
+        <label className="Preview__city">
+          {data.facets.find((obj) => obj.type === "city").val}
+        </label>
+        <br />
+        <label>
+          {data.attraction_name}
+        </label>
+      </div>
     </div>
   );
 }

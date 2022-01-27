@@ -6,25 +6,31 @@
   /* object-fit: cover; */
   width: 256px;
   max-height: 256px;
-  margin: 12px;
-  grid-area: col2;
+  margin-bottom: 8px;
 }
 
 .Preview img:hover {
-  -webkit-filter: brightness(70%);
+  -webkit-filter: brightness(60%);
   -webkit-transition: all 0.777s ease;
   -moz-transition: all 0.777s ease;
   -o-transition: all 0.777s ease;
   -ms-transition: all 0.777s ease;
   transition: all 0.777s ease;
-  filter: brightness(70%);
-  /* z-index: 0; */
+  filter: brightness(60%);
 }
 
-.col1 {
+.Preview__col1 {
   grid-area: pvc1;
 }
 
-.col2 {
+.Preview__col2 {
   grid-area: pvc2;
+}
+
+.Preview__description {
+}
+
+.Preview__city {
+  color: var(--flag-black);
+  margin-bottom: 8px;
 }

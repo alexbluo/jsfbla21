@@ -51,7 +51,7 @@ function Dropdown(props) {
 
   return (
     <div>
-      <label>
+      <h2 className="Dropdown__title">
         {props.category}
         <input
           type="image"
@@ -59,7 +59,7 @@ function Dropdown(props) {
           onClick={handleOpenClick}
           className="Dropdown__icon"
         />
-      </label>
+      </h2>
 
       <ul className="Dropdown__contents">
         {isOpened

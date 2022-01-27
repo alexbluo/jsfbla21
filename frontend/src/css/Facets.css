@@ -1,6 +1,6 @@
 .Facets {
   grid-area: dd;
-  margin-left: 2rem;
+  margin-left: 4rem;
 }
 
 /* Dropdown */
@@ -20,10 +20,11 @@
   width: 10px;
   height: 10px;
   margin-left: 8px;
-  filter: invert(100%);
 }
 
-.Dropdown_title {
+.Dropdown__title {
+  color: var(--flag-gold);
+  font-size: 20px;
 }
 
 /* Checkbox */
