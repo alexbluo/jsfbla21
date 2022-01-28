@@ -10,6 +10,7 @@
 
 #AttractionsPage__button:hover {
   background-color: rgb(145, 14, 33);
+  cursor: pointer;
 }
 
 #AttractionsPage__button:active {

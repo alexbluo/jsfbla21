@@ -30,7 +30,7 @@ h1 {
   display: grid;
   gap: 64px;
   grid-template-areas: "dd pvc1 pvc2";
-  grid-auto-columns: 512px 1fr 1fr;
+  grid-auto-columns: 1fr 1fr 1fr;
 }
 
 ul {

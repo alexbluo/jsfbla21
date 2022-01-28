@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import "../css/Facets.css"
-import dropdownIcon from "../images/dropdownIcon.png"
+import "../css/Facets.css";
+import dropdownIcon from "../images/dropdownIcon.png";
 
 function Checkbox(props) {
-  const [isChecked, setIsChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const label = props.label;
 
   return (
     <li className="Checkbox">
       <label>
-        <input type="checkbox" />
-        {props.label}
+        <input type="checkbox" onInput={() => setChecked(!checked)} />
+        {label}
       </label>
     </li>
   );
 }
 
 function Dropdown(props) {
-  const [labels, setLabels] = useState(null);  // change from state to regular const or prob some weird hook
+  const [labels, setLabels] = useState(null); // change from state to regular const or prob some weird hook
   const [isOpened, setIsOpened] = useState(false);
   const regions = [
     "Capital Region",

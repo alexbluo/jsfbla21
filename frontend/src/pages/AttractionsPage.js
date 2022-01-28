@@ -17,7 +17,7 @@ export default function AttractionsPage() {
   const [queryParams, setQueryParams] = useState("");
 
   useEffect(() => {
-    fetch(`api/attractions?${queryParams}`)
+    fetch(`api/attractions?test=1${queryParams}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
