@@ -17,8 +17,10 @@ function Checkbox(props) {
 }
 
 function Dropdown(props) {
-  const [labels, setLabels] = useState(null); // change from state to regular const or prob some weird hook
-  const [isOpened, setIsOpened] = useState(false);
+  const [labels, setLabels] = useState(null);  // change from state to regular const or prob some weird hook
+  const [isOpened, setIsOpened] = useState(false);  // useState to conditionally render or set to display: none and change?
+                                                    // so many ways to do the second one that idek what is best
+                                                                                               
   const regions = [
     "Capital Region",
     "Central Maryland",
@@ -27,6 +29,7 @@ function Dropdown(props) {
     "Western Maryland",
   ];
 
+  // maybe use different hook here idrk
   useEffect(() => {
     if (props.category === "Region") {
       setLabels(regions);
@@ -45,10 +48,6 @@ function Dropdown(props) {
     }
   }, []);
 
-  function handleOpenClick() {
-    setIsOpened(!isOpened);
-  }
-
   return (
     <div>
       <h2 className="Dropdown__title">
@@ -56,11 +55,11 @@ function Dropdown(props) {
         <input
           type="image"
           src={dropdownIcon}
-          onClick={handleOpenClick}
+          alt=""
+          onClick={() => setIsOpened(!isOpened)}
           className="Dropdown__icon"
         />
       </h2>
-
       <ul className="Dropdown__contents">
         {isOpened
           ? labels.map((label, index) => <Checkbox label={label} key={index} />)

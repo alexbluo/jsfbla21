@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../css/Preview.css";
 import noImage from "../images/noImage.png";
 
-export default function Preview(props) {
+export default function Preview(props /* replace with { key names }*/) {
   const data = props.data;
   // only pass in certain props later then refactor, keeping full data for dev now
 
@@ -17,6 +17,7 @@ export default function Preview(props) {
                 ? noImage
                 : data.attraction_image
             }
+            alt=""
           />
         </Link>
         <label className="Preview__city">
