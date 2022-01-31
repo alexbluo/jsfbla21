@@ -31,6 +31,7 @@ export default function AttractionsPage() {
       });
   }, [queryParams]);
 
+  // need to handle when at max index
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
     setPreviews((prev) => [
@@ -50,15 +51,13 @@ export default function AttractionsPage() {
   }
 
   function renderPreviewsElements(data) {
-    if (data == null) return [<div>Nothing Matched</div>];
+    if (data == null) return [<div>Nothing Matched!</div>];
 
     let previewElements = [];
-    for (const idx in data) {
-      const doc = data[idx];
+    for (const doc of data) {
       const previewElement = (
         <Preview
           data={doc}
-          col_id={idx % 2 === 0 ? 1 : 2}
           key={doc.attraction_id}
         />
       );
@@ -68,18 +67,17 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="AttractionsPage">
+    <div className="AttractionsPage container">
       <NavBar />
       <h1>Attractions</h1>
+      <Facets className="Dropdown__container" />
       <div className="grid">
-        <Facets className="Dropdown__container" />
         {previews}
 
         {/* handle when theres no more to load, should be simple*/}
         <button id="AttractionsPage__button" onClick={handleLoadClick}>
           LOAD MORE
         </button>
-        
       </div>
     </div>
   );

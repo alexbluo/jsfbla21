@@ -3,11 +3,9 @@
 }
 
 .Preview img {
-  /* object-fit: cover; */
   width: 100%;
-  height: 100%;
-  margin-bottom: 8px;
-  object-fit: cover;
+  height: 289.87px; /* hard coded because No Image is a bit taller, not worth finding alternative (time) */
+  margin-bottom: 0.5rem;
 }
 
 .Preview img:hover {
@@ -20,14 +18,6 @@
   filter: brightness(60%);
 }
 
-.Preview__col1 {
-  grid-area: pvc1;
-}
-
-.Preview__col2 {
-  grid-area: pvc2;
-}
-
 .Preview__city {
-  color: var(--flag-black);
+  color: var(--flag-red);
 }

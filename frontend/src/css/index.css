@@ -17,20 +17,23 @@ body {
 h1 {
   font-family: "Raleway", sans-serif;
   font-size: 36px;
-  margin: 2rem;
+  margin-top: 4rem;
   color: var(--flag-black);
 }
 
-/* .container {
-  position: relative;
-  height: 100vh;
-} */
+.container {
+  margin-left: 7%;
+  width: 86%;
+}
 
 .grid {
   display: grid;
-  gap: 64px;
-  grid-template-areas: "dd pvc1 pvc2";
-  grid-auto-columns: 1fr 1fr 1fr;
+  float: right;
+  width: 77%;
+  gap: 4rem;
+  grid-template-areas: "what is even happening";
+  grid-auto-columns: 1fr 1fr 1fr 1fr;
+  /* grid-auto-rows: 20rem; */
 }
 
 ul {
