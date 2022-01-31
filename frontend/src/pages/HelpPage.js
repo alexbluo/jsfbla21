@@ -4,7 +4,7 @@ import "../css/HelpPage.css"
 
 export default function HelpPage() {
   return (
-    <div className="container">
+    <div className="HelpPage container"> 
       <NavBar />
       <h1>please send help</h1>
     </div>

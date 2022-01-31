@@ -4,7 +4,8 @@
 
 .Preview img {
   width: 100%;
-  height: 289.87px; /* hard coded because No Image is a bit taller, not worth finding alternative (time) */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   margin-bottom: 0.5rem;
 }
 

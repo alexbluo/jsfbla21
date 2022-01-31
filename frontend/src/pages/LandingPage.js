@@ -4,7 +4,7 @@ import "../css/LandingPage.css"
 
 export default function LandingPage() {
   return (
-    <div className="LandingPage">
+    <div className="LandingPage container">
       <h1>Maryland Attractions Searcher</h1>
       <Link to="/attractions">
         <button>Attractions</button>

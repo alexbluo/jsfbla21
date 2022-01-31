@@ -1,4 +1,9 @@
 #AttractionsPage__button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  
   width: 8rem;
   height: 2rem;
   color: var(--flag-white );

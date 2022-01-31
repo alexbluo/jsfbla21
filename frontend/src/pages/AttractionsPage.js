@@ -17,7 +17,7 @@ export default function AttractionsPage() {
   const [queryParams, setQueryParams] = useState("");
 
   useEffect(() => {
-    fetch(`api/attractions?test=1${queryParams}`)
+    fetch(`api/attractions?${queryParams}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
@@ -26,6 +26,7 @@ export default function AttractionsPage() {
       })
       .then((data) => splitData(data))
       .then((data) => {
+        // if (data = null) setPreviews
         setPreviewsList(data);
         setPreviews(renderPreviewsElements(data[0]));
       });
@@ -51,8 +52,6 @@ export default function AttractionsPage() {
   }
 
   function renderPreviewsElements(data) {
-    if (data == null) return [<div>Nothing Matched!</div>];
-
     let previewElements = [];
     for (const doc of data) {
       const previewElement = (
@@ -71,10 +70,12 @@ export default function AttractionsPage() {
       <NavBar />
       <h1>Attractions</h1>
       <Facets className="Dropdown__container" />
-      <div className="grid">
-        {previews}
+      <div className="grid-container">
+        <div className="grid">
+          {previews}
 
-        {/* handle when theres no more to load, should be simple*/}
+          {/* handle when theres no more to load, should be simple*/}
+        </div>
         <button id="AttractionsPage__button" onClick={handleLoadClick}>
           LOAD MORE
         </button>
