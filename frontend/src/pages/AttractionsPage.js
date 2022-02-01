@@ -4,12 +4,6 @@ import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
 import "../css/AttractionsPage.css";
 
-// ERRORS:
-// click before loaded (if res.loading or something like that)
-// whatever load error when maxed - around index 150: Each child in a list should have a unique "key" prop.
-// "Indicate whether to send a cookie in a cross-site request by specifying its SameSite attribute" (exactly 56 appear with each load)
-// dropdown images go over navbar LOL
-
 export default function AttractionsPage() {
   const [previewsList, setPreviewsList] = useState(null);
   const [previews, setPreviews] = useState([]);
@@ -26,20 +20,23 @@ export default function AttractionsPage() {
       })
       .then((data) => splitData(data))
       .then((data) => {
-        // if (data = null) setPreviews
-        setPreviewsList(data);
-        setPreviews(renderPreviewsElements(data[0]));
+        if (data == null) {
+          setPreviewsList(null);
+          setPreviews(<p>Nothing Matched!</p>);
+        } else {
+          setPreviewsList(data);
+          setPreviews(renderPreviewsElements(data[0]));
+        }
       });
   }, [queryParams]);
 
-  // need to handle when at max index
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
     setPreviews((prev) => [
       ...prev,
       ...renderPreviewsElements(previewsList[loadIndex]),
     ]);
-    console.log(previewsList.length);
+    console.log(loadIndex);
   }
 
   function splitData(data) {
@@ -54,15 +51,18 @@ export default function AttractionsPage() {
   function renderPreviewsElements(data) {
     let previewElements = [];
     for (const doc of data) {
-      const previewElement = (
-        <Preview
-          data={doc}
-          key={doc.attraction_id}
-        />
-      );
+      const previewElement = <Preview data={doc} key={doc.attraction_id} />;
       previewElements.push(previewElement);
     }
     return previewElements;
+  }
+
+  function showLoadMoreButton() {
+    return previewsList != null && previewsList.length > 8 && loadIndex < previewsList.length ? (
+      <button id="AttractionsPage__button" onClick={handleLoadClick}>
+        LOAD MORE
+      </button>
+    ) : null;
   }
 
   return (
@@ -71,14 +71,8 @@ export default function AttractionsPage() {
       <h1>Attractions</h1>
       <Facets className="Dropdown__container" />
       <div className="grid-container">
-        <div className="grid">
-          {previews}
-
-          {/* handle when theres no more to load, should be simple*/}
-        </div>
-        <button id="AttractionsPage__button" onClick={handleLoadClick}>
-          LOAD MORE
-        </button>
+        <div className="grid">{previews}</div>
+        {showLoadMoreButton()}
       </div>
     </div>
   );
