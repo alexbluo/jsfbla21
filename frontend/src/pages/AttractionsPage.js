@@ -5,8 +5,8 @@ import NavBar from "../components/NavBar";
 import "../css/AttractionsPage.css";
 
 export default function AttractionsPage() {
-  const [previewsList, setPreviewsList] = useState(null);
-  const [previews, setPreviews] = useState([]);
+  const [previewList, setPreviewList] = useState(null);
+  const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(150);
   const [queryParams, setQueryParams] = useState("");
 
@@ -21,20 +21,20 @@ export default function AttractionsPage() {
       .then((data) => splitData(data))
       .then((data) => {
         if (data == null) {
-          setPreviewsList(null);
-          setPreviews(<p>Nothing Matched!</p>);
+          setPreviewList(null);
+          setPreviewElements(<p>Nothing Matched!</p>);
         } else {
-          setPreviewsList(data);
-          setPreviews(renderPreviewsElements(data[0]));
+          setPreviewList(data);
+          setPreviewElements(renderPreviewElements(data[0]));
         }
       });
   }, [queryParams]);
 
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
-    setPreviews((prev) => [
+    setPreviewElements((prev) => [
       ...prev,
-      ...renderPreviewsElements(previewsList[loadIndex]),
+      ...renderPreviewElements(previewList[loadIndex]),
     ]);
     console.log(loadIndex);
   }
@@ -48,7 +48,7 @@ export default function AttractionsPage() {
     return splitData;
   }
 
-  function renderPreviewsElements(data) {
+  function renderPreviewElements(data) {
     let previewElements = [];
     for (const doc of data) {
       const previewElement = <Preview data={doc} key={doc.attraction_id} />;
@@ -58,7 +58,7 @@ export default function AttractionsPage() {
   }
 
   function showLoadMoreButton() {
-    return previewsList != null && previewsList.length > 8 && loadIndex < previewsList.length ? (
+    return previewList != null && previewList.length > 8 && loadIndex < previewList.length ? (
       <button id="AttractionsPage__button" onClick={handleLoadClick}>
         LOAD MORE
       </button>
@@ -71,7 +71,7 @@ export default function AttractionsPage() {
       <h1>Attractions</h1>
       <Facets className="Dropdown__container" />
       <div className="grid-container">
-        <div className="grid">{previews}</div>
+        <div className="grid">{previewElements}</div>
         {showLoadMoreButton()}
       </div>
     </div>
