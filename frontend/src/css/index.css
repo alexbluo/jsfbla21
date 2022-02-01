@@ -37,7 +37,7 @@ h1 {
   display: grid;
   gap: 4rem;
   grid-template-areas: "send help";
-  grid-auto-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr 1fr;
 }
 
 ul {

@@ -1,7 +1,17 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
-function getAll(callback) {
+exports.matchAll = (callback) => {
+  MongoClient.connect(process.env.URI, async (err, client) => {
+    let data = [];
+    const db = client.db("attractionsDB");
+    
+    client.close();
+    callback(data);
+  });
+}
+
+exports.getAll = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     let data = [];
     const db = client.db("attractionsDB");
@@ -14,7 +24,7 @@ function getAll(callback) {
   });
 }
 
-function getOne(id, callback) {
+exports.getOne = (id, callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     const db = client.db("attractionsDB");
     const data = await db
@@ -24,10 +34,3 @@ function getOne(id, callback) {
     callback(data);
   });
 }
-
-
-
-module.exports = {
-  getAll,
-  getOne,
-};

@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
-function getCities(callback) {
+exports.getCities = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
@@ -15,7 +15,7 @@ function getCities(callback) {
   });
 }
 
-function getTypes(callback) {
+exports.getTypes = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
@@ -32,7 +32,7 @@ function getTypes(callback) {
   });
 }
 
-function getAmenities(callback) {
+exports.getAmenities = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
@@ -45,9 +45,3 @@ function getAmenities(callback) {
     callback(amenities);
   });
 }
-
-module.exports = {
-  getCities,
-  getTypes,
-  getAmenities,
-};
