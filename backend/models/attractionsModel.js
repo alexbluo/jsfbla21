@@ -1,11 +1,11 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
-exports.matchAll = (callback) => {
+exports.matchAll = (query, callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     let data = [];
     const db = client.db("attractionsDB");
-    
+
     client.close();
     callback(data);
   });

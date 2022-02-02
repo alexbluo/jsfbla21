@@ -1,5 +1,9 @@
-import "../css/Map.css"
+import "../css/Map.css";
 
 export default function Map(props) {
-  return <h1>map</h1>;
+  return (
+    <div className="container">
+      <h1>map</h1>
+    </div>
+  );
 }

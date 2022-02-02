@@ -1,37 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import Checkbox from "./Checkbox";
+import { FacetContext } from "../pages/AttractionsPage";
 import "../css/Dropdown.css";
 import dropdownIcon from "../images/dropdownIcon.png";
 
+async function fetchFacets(category) {
+  if (category === "regions") {
+    return {
+      regions: {
+        "Capital Region": false,
+        "Central Maryland": false,
+        "Eastern Shore": false,
+        "Southern Maryland": false,
+        "Western Maryland": false,
+      },
+    };
+  } else {
+    fetch(`/api/facets/${category}`)
+      .then((data) => data.json())
+      .then((data) =>);
+  }
+}
+
 export default function Dropdown(props) {
   const [labels, setLabels] = useState(null); // change from state to regular const or prob some weird hook
-  const [isOpened, setIsOpened] = useState(false); // useState to conditionally render or set to display: none and change?
-  // so many ways to do the second one that idek what is best
-
-  const regions = [
-    "Capital Region",
-    "Central Maryland",
-    "Eastern Shore",
-    "Southern Maryland",
-    "Western Maryland",
-  ];
+  const [isOpened, setIsOpened] = useState(false);
+  const { facets, setFacets } = useContext(FacetContext);
 
   // maybe use different hook here so doesnt refetch on every render idrk prob not worth the time
   useEffect(() => {
-    if (props.category === "Region") {
-      setLabels(regions);
-    } else if (props.category === "City") {
+    if (props.category === "regions") {
+      setFacets({ ...facets, ...fetchFacets(props.category) });
+    } else if (props.category === "cities") {
       fetch("api/facets/cities")
         .then((data) => data.json())
-        .then((data) => setLabels(data.cities));
-    } else if (props.category === "Type") {
+        .then((data) => setFacets({ ...facets, ...data.cities }))
+        .then((data) => console.log(data));
+    } else if (props.category === "types") {
       fetch("api/facets/types")
         .then((data) => data.json())
         .then((data) => setLabels(data.types));
-    } else if (props.category === "Amenities") {
+    } else if (props.category === "amenities") {
       fetch("api/facets/amenities")
         .then((data) => data.json())
-        .then((data) => setLabels(data.amenities));
+        .then((data) => setLabels(data[props.category]));
     }
   }, []);
 

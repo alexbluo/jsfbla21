@@ -2,7 +2,7 @@ const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
   if (checkQuery(req.query)) {
-    attractionsModel.matchAll((data) => res.send(data))
+    attractionsModel.matchAll(req.query, (data) => res.send(data))
   } else {
     attractionsModel.getAll((data) => res.send(data));
   }
