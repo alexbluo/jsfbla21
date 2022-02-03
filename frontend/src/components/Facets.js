@@ -1,13 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Dropdown from "./Dropdown";
 import { FacetContext } from "../pages/AttractionsPage";
 import "../css/Facets.css";
 
 export default function Facets() {
-  // use closure to pass state to view?
-  // look at react lifting state up guide
-  // function updateFilters() {}
-  // const { facets, setFacets } = useContext(FacetContext);
+  const { facets, setFacets } = useContext(FacetContext);
+
+  useEffect(() => {
+    fetchFacets("regions");
+    console.log(facets);
+    fetchFacets("cities");
+    console.log(facets);
+
+    fetchFacets("types");
+    console.log(facets);
+
+    fetchFacets("amenities");
+    console.log(facets);
+  }, []);
+
+  function fetchFacets(category) {
+    fetch(`/api/facets/${category}`)
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        let facetsCopy = facets;
+        facetsCopy[category] = data[category].reduce(
+          (acc, curr) => ((acc[curr] = false), acc),
+          {}
+        );
+        setFacets(facetsCopy);
+      });
+  }
 
   return (
     <div className="Facets">
@@ -15,6 +39,7 @@ export default function Facets() {
       <Dropdown category="cities" />
       <Dropdown category="types" />
       <Dropdown category="amenities" />
+      <button onClick={() => console.log(facets)}></button>
     </div>
   );
 }

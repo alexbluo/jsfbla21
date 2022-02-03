@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const facetsController = require("../controllers/facetsController")
+const facetsController = require("../controllers/facetsController");
+
+router.get("/regions", facetsController.getRegions);
 
 router.get("/cities", facetsController.getCities);
 

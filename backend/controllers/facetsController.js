@@ -1,5 +1,17 @@
 const facetsModel = require("../models/facetsModel");
 
+exports.getRegions = (req, res) => {
+  res.send({
+    regions: [
+      "Capital Region",
+      "Central Maryland",
+      "Eastern Shore",
+      "Southern Maryland",
+      "Western Maryland",
+    ],
+  });
+}
+
 exports.getCities = (req, res) => {
   facetsModel.getCities((data) => res.send(data));
 };

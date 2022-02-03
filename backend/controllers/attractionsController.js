@@ -14,7 +14,7 @@ exports.getOne = (req, res) => {
 };
 
 function checkQuery(query) {
-  const validValueSet = new Set(["region", "city", "type", "amenities"]);
+  const validValueSet = new Set(["regions", "cities", "types", "amenities"]);
   const values = Object.values(query);
   return values.some(value => validValueSet.has(value));
 }
