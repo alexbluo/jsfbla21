@@ -8,22 +8,15 @@ export default function Facets() {
 
   useEffect(() => {
     fetchFacets("regions");
-    console.log(facets);
     fetchFacets("cities");
-    console.log(facets);
-
     fetchFacets("types");
-    console.log(facets);
-
     fetchFacets("amenities");
-    console.log(facets);
   }, []);
 
   function fetchFacets(category) {
     fetch(`/api/facets/${category}`)
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
         let facetsCopy = facets;
         facetsCopy[category] = data[category].reduce(
           (acc, curr) => ((acc[curr] = false), acc),
@@ -39,7 +32,6 @@ export default function Facets() {
       <Dropdown category="cities" />
       <Dropdown category="types" />
       <Dropdown category="amenities" />
-      <button onClick={() => console.log(facets)}></button>
     </div>
   );
 }
