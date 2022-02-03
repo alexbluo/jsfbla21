@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
 import Checkbox from "./Checkbox";
-import { FacetContext } from "../pages/AttractionsPage";
+import { FacetsContext } from "./Facets";
 import "../css/Dropdown.css";
 import dropdownIcon from "../images/dropdownIcon.png";
 
 export default function Dropdown(props) {
   const [isOpened, setIsOpened] = useState(false);
-  const { facets, setFacets } = useContext(FacetContext);
+  const { facets, setFacets } = useContext(FacetsContext);
 
   return (
     <div>

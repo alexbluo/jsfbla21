@@ -1,10 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import Dropdown from "./Dropdown";
-import { FacetContext } from "../pages/AttractionsPage";
 import "../css/Facets.css";
 
+export const FacetsContext = React.createContext({
+  facets: {},
+  setFacets: () => {},
+});
+
 export default function Facets() {
-  const { facets, setFacets } = useContext(FacetContext);
+  const [facets, setFacets] = useState({});
+  const value = { facets, setFacets };
 
   useEffect(() => {
     fetchFacets("regions");
@@ -28,10 +33,12 @@ export default function Facets() {
 
   return (
     <div className="Facets">
-      <Dropdown category="regions" />
-      <Dropdown category="cities" />
-      <Dropdown category="types" />
-      <Dropdown category="amenities" />
+      <FacetsContext.Provider value={value}>
+        <Dropdown category="regions" />
+        <Dropdown category="cities" />
+        <Dropdown category="types" />
+        <Dropdown category="amenities" />
+      </FacetsContext.Provider>
       <button onClick={() => console.log(facets)}></button>
     </div>
   );

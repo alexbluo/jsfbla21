@@ -4,21 +4,24 @@ import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
 import "../css/AttractionsPage.css";
 
-export const FacetContext = React.createContext({
-  facets: {},
-  setFacets: () => {},
-})
+export const QueryParamContext = React.createContext({
+  queryParam: "",
+  setQueryParam: () => {},
+});
 
 export default function AttractionsPage() {
   const [previewList, setPreviewList] = useState(null);
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(150);
-  const [queryParams, setQueryParams] = useState("");
-  const [facets, setFacets] = useState({});
-  const value = { facets, setFacets };
+
+  const [queryParam, setQueryParam] = useState("");
+  const value = { queryParam, setQueryParam };
+
+  // useEffect(() => {
+  // }, [facets])
 
   useEffect(() => {
-    fetch(`api/attractions?${queryParams}`)
+    fetch(`api/attractions?${queryParam}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
@@ -35,7 +38,7 @@ export default function AttractionsPage() {
           setPreviewElements(renderPreviewElements(data[0]));
         }
       });
-  }, [queryParams]);
+  }, [queryParam]);
 
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
@@ -80,9 +83,9 @@ export default function AttractionsPage() {
     <div className="AttractionsPage container">
       <NavBar />
       <h1>Attractions</h1>
-      <FacetContext.Provider value={value}>
+      <QueryParamContext.Provider value={value}>
         <Facets className="Dropdown__container" />
-      </FacetContext.Provider>
+      </QueryParamContext.Provider>
       <div className="grid-container">
         <div className="grid">{previewElements}</div>
         {showLoadMoreButton()}
