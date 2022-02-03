@@ -22,8 +22,9 @@ export default function Dropdown(props) {
       </h2>
       <ul className="Dropdown__contents">
         {isOpened
-          ? Object.keys(facets[props.category])
-            .map((field, index) => <Checkbox field={field} key={index} />)
+          ? Object.keys(facets[props.category]).map((field, index) => (
+              <Checkbox category={props.category} field={field} key={index} />
+            ))
           : null}
       </ul>
     </div>

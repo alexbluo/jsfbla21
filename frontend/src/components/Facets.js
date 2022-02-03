@@ -32,6 +32,7 @@ export default function Facets() {
       <Dropdown category="cities" />
       <Dropdown category="types" />
       <Dropdown category="amenities" />
+      <button onClick={() => console.log(facets)}></button>
     </div>
   );
 }
