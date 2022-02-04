@@ -12,10 +12,10 @@ export default function Facets() {
   const value = { facets, setFacets };
 
   useEffect(() => {
-    fetchFacets("regions");
-    fetchFacets("cities");
-    fetchFacets("types");
-    fetchFacets("amenities");
+    fetchFacets("region");
+    fetchFacets("city");  
+    fetchFacets("category");
+    fetchFacets("amenity");
   }, []);
 
   function fetchFacets(category) {
@@ -34,12 +34,11 @@ export default function Facets() {
   return (
     <div className="Facets">
       <FacetsContext.Provider value={value}>
-        <Dropdown category="regions" />
-        <Dropdown category="cities" />
-        <Dropdown category="types" />
-        <Dropdown category="amenities" />
+        <Dropdown category="region" />
+        <Dropdown category="city" />
+        <Dropdown category="category" />
+        <Dropdown category="amenity" />
       </FacetsContext.Provider>
-      <button onClick={() => console.log(facets)}>log facets</button>
     </div>
   );
 }

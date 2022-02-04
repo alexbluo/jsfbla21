@@ -13,6 +13,11 @@ exports.getOne = (req, res) => {
   attractionsModel.getOne(req.params.id, (data) => res.send(data));
 };
 
+/**
+ * Checks if the query parameters are valid and can be searched for
+ * @param { string } query 
+ * @returns true if the query parameters can be searched for
+ */
 function checkQuery(query) {
   const validValueSet = new Set(["regions", "cities", "types", "amenities"]);
   const values = Object.values(query);

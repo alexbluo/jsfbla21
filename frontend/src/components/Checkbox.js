@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import Facets, { FacetsContext } from "./Facets";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import "../css/Checkbox.css";
@@ -10,7 +10,7 @@ export default function Checkbox(props) {
 
   useEffect(() => {
     const param = `${encodeSpaces(props.field)}=${props.category}`;
-    console.log(param)
+    
     if (facets[props.category][props.field]) {
       setQueryParam(queryParam + "&" + param);
     } else {

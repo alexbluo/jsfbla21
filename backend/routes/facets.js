@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const facetsController = require("../controllers/facetsController");
 
-router.get("/regions", facetsController.getRegions);
+router.get("/region", facetsController.getRegions);
 
-router.get("/cities", facetsController.getCities);
+router.get("/city", facetsController.getCities);
 
-router.get("/types", facetsController.getTypes);
+router.get("/category", facetsController.getCategories);
 
-router.get("/amenities", facetsController.getAmenities);
+router.get("/amenity", facetsController.getAmenities);
 
 module.exports = router;

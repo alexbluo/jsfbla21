@@ -8,27 +8,27 @@ exports.getCities = (callback) => {
       .collection("facets")
       .find()
       .next();
-    const cities = { cities: facets.cities };
+    const cities = { city: facets.cities };
 
     client.close();
     callback(cities);
   });
 }
 
-exports.getTypes = (callback) => {
+exports.getCategories = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
       .collection("attractions")
       .distinct("facets");
-    const types = {
-      types: facets
+    const categories = {
+      category: facets
         .filter((obj) => obj.type === "category")
         .map((obj) => obj.val),
     };
 
     client.close();
-    callback(types);
+    callback(categories);
   });
 }
 
@@ -39,7 +39,7 @@ exports.getAmenities = (callback) => {
       .collection("facets")
       .find()
       .next();
-    const amenities = { amenities: facets.amenities };
+    const amenities = { amenity: facets.amenities };
 
     client.close();
     callback(amenities);
