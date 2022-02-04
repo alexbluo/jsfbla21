@@ -12,7 +12,7 @@ export const QueryParamContext = React.createContext({
 export default function AttractionsPage() {
   const [previewList, setPreviewList] = useState(null);
   const [previewElements, setPreviewElements] = useState([]);
-  const [loadIndex, setloadIndex] = useState(150);
+  const [loadIndex, setloadIndex] = useState(1);
 
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };

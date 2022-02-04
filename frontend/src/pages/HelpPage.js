@@ -5,6 +5,7 @@ import "../css/HelpPage.css"
 export default function HelpPage() {
   return (
     <div className="HelpPage container"> 
+      {/* regions, city, and type show results that satisfy at least one checked facet, amenities show results that satisfy all checked facets */}
       <NavBar />
       <h1>please send help</h1>
     </div>

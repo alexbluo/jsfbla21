@@ -8,14 +8,24 @@ exports.matchAll = (query, callback) => {
     await db
       .collection("attractions")
       .find({
-        facets: {
-          $all: [
-            { $elemMatch: { type: "region", val: "Central Maryland" } },
-            { $elemMatch: { type: "category", val: "Attraction" } },
-          ],
-        },
+        $and: [
+          {
+            $or: [
+              { facets: { type: "city", val: "Annapolis" } },
+              { facets: { type: "city", val: "Columbia" } },
+            ],
+          },
+          {
+            $or: [
+              { facets: { type: "category", val: "Attraction" } },
+              { facets: { type: "category", val: "Visual Arts" } },
+            ],
+          },
+        ],
       })
       .forEach((doc) => data.push(doc));
+    console.log(data);
+
     client.close();
     callback(data);
   });
