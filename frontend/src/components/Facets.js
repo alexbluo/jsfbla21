@@ -13,7 +13,7 @@ export default function Facets() {
 
   useEffect(() => {
     fetchFacets("region");
-    fetchFacets("city");  
+    fetchFacets("city");
     fetchFacets("category");
     fetchFacets("amenity");
   }, []);

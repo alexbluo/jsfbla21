@@ -7,7 +7,14 @@ exports.matchAll = (query, callback) => {
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
-      .find()
+      .find({
+        facets: {
+          $all: [
+            { $elemMatch: { type: "region", val: "Central Maryland" } },
+            { $elemMatch: { type: "category", val: "Attraction" } },
+          ],
+        },
+      })
       .forEach((doc) => data.push(doc));
     client.close();
     callback(data);

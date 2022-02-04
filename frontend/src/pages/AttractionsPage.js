@@ -17,9 +17,6 @@ export default function AttractionsPage() {
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
 
-  // useEffect(() => {
-  // }, [facets])
-
   useEffect(() => {
     fetch(`api/attractions?${queryParam}`)
       .then((res) => {

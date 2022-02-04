@@ -19,7 +19,7 @@ exports.getOne = (req, res) => {
  * @returns true if the query parameters can be searched for
  */
 function checkQuery(query) {
-  const validValueSet = new Set(["regions", "cities", "types", "amenities"]);
+  const validValueSet = new Set(["region", "city", "category", "amenity"]);
   const values = Object.values(query);
   return values.some(value => validValueSet.has(value));
 }
