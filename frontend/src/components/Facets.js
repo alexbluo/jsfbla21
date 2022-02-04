@@ -39,7 +39,7 @@ export default function Facets() {
         <Dropdown category="types" />
         <Dropdown category="amenities" />
       </FacetsContext.Provider>
-      <button onClick={() => console.log(facets)}></button>
+      <button onClick={() => console.log(facets)}>log facets</button>
     </div>
   );
 }

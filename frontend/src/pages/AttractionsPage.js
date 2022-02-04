@@ -86,6 +86,7 @@ export default function AttractionsPage() {
       <QueryParamContext.Provider value={value}>
         <Facets className="Dropdown__container" />
       </QueryParamContext.Provider>
+      <button onClick={() => console.log(queryParam)}>log queryParam</button>
       <div className="grid-container">
         <div className="grid">{previewElements}</div>
         {showLoadMoreButton()}

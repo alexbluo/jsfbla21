@@ -6,7 +6,7 @@ exports.getOrMatchAll = (req, res) => {
   } else {
     attractionsModel.getAll((data) => res.send(data));
   }
-  // console.log(req.query)
+  console.log(req.query)  
 };
 
 exports.getOne = (req, res) => {
