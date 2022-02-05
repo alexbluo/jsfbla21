@@ -6,7 +6,6 @@ exports.getOrMatchAll = (req, res) => {
   } else {
     attractionsModel.getAll((data) => res.send(data));
   }
-  console.log(req.query)  
 };
 
 exports.getOne = (req, res) => {
@@ -20,6 +19,6 @@ exports.getOne = (req, res) => {
  */
 function checkQuery(query) {
   const validValueSet = new Set(["region", "city", "category", "amenity"]);
-  const values = Object.values(query);
-  return values.some(value => validValueSet.has(value));
+  const queryValues = Object.values(query);
+  return queryValues.some(queryValue => validValueSet.has(queryValue));
 }

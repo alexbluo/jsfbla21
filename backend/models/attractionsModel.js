@@ -1,30 +1,46 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
+function parseQuery(query) {
+  let parsedQueries = {};
+
+  for (const [key, value] of Object.entries(query)) {
+    const matchString = { type: value, val: key };
+
+    if (parsedQueries.hasOwnProperty(value)) {
+      parsedQueries[value].push(matchString);
+    } else {
+      parsedQueries[value] = [matchString];
+    }
+  }
+
+  return parsedQueries;
+}
+
+function formatFinalQuery(parsedQuery) {
+  let finalQuery = { facets: { $all: [] } };
+
+  for (const [key, value] of Object.entries(parsedQuery)) {
+    if (key === "amenity") {
+      for (const field of value) {
+        finalQuery.facets.$all.push({ $elemMatch: field });
+      }
+      continue;
+    }
+    finalQuery.facets.$all.push({ $elemMatch: { $or: value } });
+  }
+
+  return finalQuery;
+}
+
 exports.matchAll = (query, callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
     let data = [];
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
-      .find({
-        facets: {
-          $all: [
-            { $elemMatch: { type: "category", val: "Attraction" } },
-            { $elemMatch: { type: "region", val: "Weste Maryland" } },
-            {
-              $elemMatch: {
-                $or: [
-                  { type: "city", val: "Annapolis" },
-                  // { type: "city", val: "Ellicott City" },
-                ],
-              },
-            },
-          ],
-        },
-      })
+      .find(formatFinalQuery(parseQuery(query)))
       .forEach((doc) => data.push(doc));
-      console.log(data)
     client.close();
     callback(data);
   });

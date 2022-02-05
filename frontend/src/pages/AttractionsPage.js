@@ -32,7 +32,6 @@ export default function AttractionsPage() {
           setPreviewList(null);
           setPreviewElements(<p>Nothing Matched!</p>);
         } else {
-          console.log("just making sur")
           setPreviewList(data);
           setPreviewElements(renderPreviewElements(data[0]));
         }

@@ -5,7 +5,7 @@ const scrapeHome = require("./scrapeHome");
 /**
  * Initializes the scraper and navigates through https://www.visitmaryland.org/things-to-do/attractions, 
  * scraping data from the home page and all attraction information pages
- * @returns the documents to be inserted into mongodb
+ * @returns an array documents to be inserted into MongoDB
  */
 async function scrape() {
   const browser = await puppeteer.launch({ headless: false });
