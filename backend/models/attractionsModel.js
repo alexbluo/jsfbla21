@@ -24,7 +24,6 @@ exports.matchAll = (query, callback) => {
         ],
       })
       .forEach((doc) => data.push(doc));
-    console.log(data);
 
     client.close();
     callback(data);

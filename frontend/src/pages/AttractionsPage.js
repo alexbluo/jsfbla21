@@ -10,7 +10,7 @@ export const QueryParamContext = React.createContext({
 });
 
 export default function AttractionsPage() {
-  const [previewList, setPreviewList] = useState(null);
+  const [previewList, setPreviewList] = useState([]);
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
 
@@ -27,7 +27,8 @@ export default function AttractionsPage() {
       })
       .then((data) => splitData(data))
       .then((data) => {
-        if (data == null) {
+        setloadIndex(1);
+        if (data == []) {
           setPreviewList(null);
           setPreviewElements(<p>Nothing Matched!</p>);
         } else {
@@ -43,7 +44,6 @@ export default function AttractionsPage() {
       ...prev,
       ...renderPreviewElements(previewList[loadIndex]),
     ]);
-    console.log(loadIndex);
   }
 
   function splitData(data) {
@@ -65,11 +65,13 @@ export default function AttractionsPage() {
   }
 
   /**
-   * Determines whether a load more button for previews should be rendered 
+   * Determines whether a load more button for previews should be rendered
    * @returns a load more button if the conditions are satisfied and nothing if they are not
    */
   function showLoadMoreButton() {
-    return previewList != null && previewList.length > 8 && loadIndex < previewList.length ? (
+    return previewList != null &&
+      previewList.length > 1 &&
+      loadIndex < previewList.length ? (
       <button id="AttractionsPage__button" onClick={handleLoadClick}>
         LOAD MORE
       </button>
