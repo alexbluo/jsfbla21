@@ -28,10 +28,11 @@ export default function AttractionsPage() {
       .then((data) => splitData(data))
       .then((data) => {
         setloadIndex(1);
-        if (data == []) {
+        if (data.length === 0) {
           setPreviewList(null);
           setPreviewElements(<p>Nothing Matched!</p>);
         } else {
+          console.log("just making sur")
           setPreviewList(data);
           setPreviewElements(renderPreviewElements(data[0]));
         }
@@ -48,7 +49,7 @@ export default function AttractionsPage() {
 
   function splitData(data) {
     let splitData = [];
-    let size = 8;
+    const size = 8;
     for (let i = 0; i < data.length; i += size) {
       splitData.push(data.slice(i, i + size));
     }
