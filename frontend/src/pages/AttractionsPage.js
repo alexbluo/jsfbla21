@@ -69,9 +69,7 @@ export default function AttractionsPage() {
    * @returns a load more button if the conditions are satisfied and nothing if they are not
    */
   function showLoadMoreButton() {
-    return previewList != null &&
-      previewList.length > 1 &&
-      loadIndex < previewList.length ? (
+    return previewList.length > 1 && loadIndex < previewList.length ? (
       <button id="AttractionsPage__button" onClick={handleLoadClick}>
         LOAD MORE
       </button>

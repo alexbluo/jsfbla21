@@ -1,6 +1,10 @@
 import React from "react";
-import "../css/Error404Page.css"
+import "../css/Error404Page.css";
 
 export default function Error404Page() {
-  return <p>nothing here goofy</p>;
+  return (
+    <div className="container">
+      <p>Error 404: nothing here goofy</p>
+    </div>
+  );
 }

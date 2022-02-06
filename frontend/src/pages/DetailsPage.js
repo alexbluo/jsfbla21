@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../css/DetailsPage.css"
+import NavBar from "../components/NavBar";
+import "../css/DetailsPage.css";
 
 export default function DetailsPage() {
-  const [details, setDetails] = useState(null);
+  const [data, setData] = useState(null);
   const id = useParams().id;
 
+  // fetches on every render, maybe use usecallback or usememo?
   useEffect(() => {
     fetch(`/api/attractions/${id}`)
       .then((res) => res.json())
-      .then((data) => setDetails(data));
-  }, []);
+      .then((data) => setData(data));
+  }, [id]);
 
-  // then use data to fill in components and return;
   return (
-    <p>
-      Attraction: {id}, {JSON.stringify(details)}
-    </p>
+    <div className="DetailsPage container">
+      <NavBar />
+      {data ? (
+        <div>
+          <h1>{data.attraction_name}</h1>
+          {data.attraction_image.includes("data") ? null : (
+            <img id="DetailsPage__attraction-image" src={data.attraction_image} alt="" />
+          )}
+        </div>
+      ) : null}
+    </div>
   );
 }

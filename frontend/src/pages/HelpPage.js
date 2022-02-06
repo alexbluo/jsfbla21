@@ -7,7 +7,7 @@ export default function HelpPage() {
     <div className="HelpPage container"> 
       {/* regions, city, and type show results that satisfy at least one checked facet, amenities show results that satisfy all checked facets */}
       <NavBar />
-      <h1>please send help</h1>
+      <h1>Help</h1>
     </div>
   );
 }

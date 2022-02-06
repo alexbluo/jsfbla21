@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useState, useContext, } from "react";
 import Checkbox from "./Checkbox";
 import { FacetsContext } from "./Facets";
 import "../css/Dropdown.css";

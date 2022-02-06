@@ -1,3 +1,4 @@
+import GoogleMapReact from "google-map-react";
 import "../css/Map.css";
 
 export default function Map(props) {

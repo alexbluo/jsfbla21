@@ -1,6 +1,13 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
+
+/**
+ * Parses the req.query object by reversing the keys with values 
+ * and separating each entry into a new object
+ * @param { Object } query - the req.query object
+ * @returns the parsed query object
+ */
 function parseQuery(query) {
   let parsedQueries = {};
 
@@ -17,20 +24,25 @@ function parseQuery(query) {
   return parsedQueries;
 }
 
-function formatFinalQuery(parsedQuery) {
-  let finalQuery = { facets: { $all: [] } };
+/**
+ * Turns the parsed query object into a filter to be used in Collection.find
+ * @param { Object } parsedQuery - the parsed query object
+ * @returns { Filter<Document> } the final formatted filter
+ */
+function formatFinalFilter(parsedQuery) {
+  let finalFilter = { facets: { $all: [] } };
 
   for (const [key, value] of Object.entries(parsedQuery)) {
     if (key === "amenity") {
       for (const field of value) {
-        finalQuery.facets.$all.push({ $elemMatch: field });
+        finalFilter.facets.$all.push({ $elemMatch: field });
       }
       continue;
     }
-    finalQuery.facets.$all.push({ $elemMatch: { $or: value } });
+    finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
   }
 
-  return finalQuery;
+  return finalFilter;
 }
 
 exports.matchAll = (query, callback) => {
@@ -39,7 +51,7 @@ exports.matchAll = (query, callback) => {
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
-      .find(formatFinalQuery(parseQuery(query)))
+      .find(formatFinalFilter(parseQuery(query)))
       .forEach((doc) => data.push(doc));
     client.close();
     callback(data);
