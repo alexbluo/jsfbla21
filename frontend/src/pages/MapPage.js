@@ -13,15 +13,17 @@ navigator.geolocation.getCurrentPosition((position) => {
 });
 
 export default function MapPage() {
-  const [searchRadius, setSearchRadius] = useState(20); // searchRadius is in km
+  const [sliderValue, setSliderValue] = useState(20) // in km, not passed to map
+  const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to map
 
   useEffect(() => {
     console.log(searchRadius);
-
+    console.log(sliderValue);
   }, [searchRadius])
 
   function handleSliderChange(value) {
-    setSearchRadius(value); // convert kilometers to meters
+    setSliderValue(value); 
+    setSearchRadius(value * 1000);
   }
 
   return (
@@ -32,17 +34,26 @@ export default function MapPage() {
       <Slider
         min={0}
         max={125}
-        value={searchRadius}
+        dots
+        step={5}
+        value={sliderValue}
         onChange={handleSliderChange}
         railStyle={{
           backgroundColor: "yellow",
-          height: 3,
+          height: 2,
+        }}
+        trackStyle={{
+          backgroundColor: "yellow",
+          height: 4,
+        }}
+        dotStyle={{
+          borderColor: "yellow",
+          backgroundColor: "black"
         }}
         handleStyle={{
-          height: 14,
-          width: 14,
-          marginLeft: -7,
-          marginTop: -7,
+          height: 12,
+          width: 12,
+          // marginTop: -4,
           borderRadius: "50%",
           backgroundColor: "black",
           border: 0,
