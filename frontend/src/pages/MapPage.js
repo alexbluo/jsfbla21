@@ -4,7 +4,7 @@ import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 import "../css/MapPage.css";
 
-const center = {};
+const center = { lat: undefined, lng: undefined };
 
 navigator.geolocation.getCurrentPosition((position) => {
   center.lat = position.coords.latitude;
