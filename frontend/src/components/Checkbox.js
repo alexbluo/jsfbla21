@@ -11,7 +11,7 @@ export default function Checkbox(props) {
   useEffect(() => {
     const param = `${encodeSpaces(props.field)}=${props.category}`;
     
-    if (facets[props.category][props.field]) {
+    if (checked) {
       setQueryParam(queryParam + "&" + param);
     } else {
       setQueryParam(queryParam.replace(param, ""));

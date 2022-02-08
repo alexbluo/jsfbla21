@@ -1,10 +1,21 @@
+import React, { useState } from "react";
+import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
 import "../css/Map.css";
 
 export default function Map(props) {
+  
   return (
-    <div className="container">
-      <h1>map</h1>
+    <div className="Map">
+      {Object.keys(props.center).length === 0 ? null : (
+        <div className="GoogleMapReact">
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+            defaultCenter={props.center}
+            defaultZoom={10}
+          ></GoogleMapReact>
+        </div>
+      )}
     </div>
   );
 }

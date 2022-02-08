@@ -29,7 +29,7 @@ export default function AttractionsPage() {
       .then((data) => {
         setloadIndex(1);
         if (data.length === 0) {
-          setPreviewList(null);
+          setPreviewList([]);
           setPreviewElements(<p>Nothing Matched!</p>);
         } else {
           setPreviewList(data);
