@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Slider, { Range } from "rc-slider";
+import Slider, { SliderTooltip, createSliderWithTooltip } from "rc-slider";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 import "../css/MapPage.css";
@@ -13,16 +13,16 @@ navigator.geolocation.getCurrentPosition((position) => {
 });
 
 export default function MapPage() {
-  const [sliderValue, setSliderValue] = useState(20) // in km, not passed to map
+  const [sliderValue, setSliderValue] = useState(20); // in km, not passed to map
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to map
 
   useEffect(() => {
     console.log(searchRadius);
     console.log(sliderValue);
-  }, [searchRadius])
-
+  }, [searchRadius]);
+  
   function handleSliderChange(value) {
-    setSliderValue(value); 
+    setSliderValue(value);
     setSearchRadius(value * 1000);
   }
 
@@ -31,34 +31,34 @@ export default function MapPage() {
       <NavBar />
       <h1>Map</h1>
       <Map center={center} searchRadius={searchRadius} />
-      <Slider
-        min={0}
-        max={125}
-        dots
-        step={5}
-        value={sliderValue}
-        onChange={handleSliderChange}
-        railStyle={{
-          backgroundColor: "yellow",
-          height: 2,
-        }}
-        trackStyle={{
-          backgroundColor: "yellow",
-          height: 4,
-        }}
-        dotStyle={{
-          borderColor: "yellow",
-          backgroundColor: "black"
-        }}
-        handleStyle={{
-          height: 12,
-          width: 12,
-          // marginTop: -4,
-          borderRadius: "50%",
-          backgroundColor: "black",
-          border: 0,
-        }}
-      />
+        <Slider
+          min={0}
+          max={125}
+          dots
+          step={5}
+          value={sliderValue}
+          onChange={handleSliderChange}
+          railStyle={{
+            backgroundColor: "yellow",
+            height: 2,
+          }}
+          trackStyle={{
+            backgroundColor: "yellow",
+            height: 4,
+          }}
+          dotStyle={{
+            borderColor: "yellow",
+            backgroundColor: "black",
+          }}
+          handleStyle={{
+            height: 12,
+            width: 12,
+            // marginTop: -4,
+            borderRadius: "50%",
+            backgroundColor: "black",
+            border: 0,
+          }}
+        />
     </div>
   );
 }
