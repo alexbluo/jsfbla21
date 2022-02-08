@@ -36,6 +36,9 @@ export default function AttractionsPage() {
           setPreviewElements(renderPreviewElements(data[0]));
         }
       });
+      return () => {
+        // not sure how this even works but it fixes the memory leak error
+      }
   }, [queryParam]);
 
   function handleLoadClick() {

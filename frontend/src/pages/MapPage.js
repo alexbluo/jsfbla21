@@ -12,7 +12,7 @@ navigator.geolocation.getCurrentPosition((position) => {
 });
 
 export default function MapPage() {
-  const [searchRadius, setSearchRadius] = useState(20); // searchRadius is in miles
+  const [searchRadius, setSearchRadius] = useState(2000); // searchRadius is in meters
 
   useEffect(() => {
     console.log(searchRadius);
@@ -20,7 +20,7 @@ export default function MapPage() {
   }, [searchRadius])
 
   function handleSliderChange(value) {
-    setSearchRadius(value);
+    setSearchRadius(value); // convert kilometers to meters
   }
 
   return (
@@ -31,19 +31,19 @@ export default function MapPage() {
       <Slider
         min={0}
         max={125}
-        defaultValue={100}
         value={searchRadius}
         onChange={handleSliderChange}
         railStyle={{
-          backgroundColor: "grey",
-          height: 2,
+          backgroundColor: "yelow",
+          height: 3,
         }}
         handleStyle={{
-          height: 28,
-          width: 28,
-          marginLeft: -14,
-          marginTop: -14,
-          backgroundColor: "blue",
+          height: 14,
+          width: 14,
+          marginLeft: -7,
+          marginTop: -7,
+          borderRadius: "50%",
+          backgroundColor: "black",
           border: 0,
         }}
       />
