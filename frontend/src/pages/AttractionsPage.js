@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
@@ -10,6 +10,7 @@ export const QueryParamContext = React.createContext({
 });
 
 export default function AttractionsPage() {
+  const _isMounted = useRef(true);
   const [previewList, setPreviewList] = useState([]);
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
@@ -25,20 +26,25 @@ export default function AttractionsPage() {
         }
         return res.json();
       })
-      .then((data) => splitData(data))
+      .then((data) => splitData(data)) // splits the data into separate arrays for loading
       .then((data) => {
-        setloadIndex(1);
-        if (data.length === 0) {
-          setPreviewList([]);
-          setPreviewElements(<p>Nothing Matched!</p>);
-        } else {
-          setPreviewList(data);
-          setPreviewElements(renderPreviewElements(data[0]));
+        // checks if page is still mounted so state can be updated
+        if (_isMounted.current) {
+          setloadIndex(1);
+          // data returned from backend will be [] if no attractions match the filters
+          if (data.length === 0) {
+            setPreviewList([]);
+            setPreviewElements(<p>Nothing Matched!</p>);
+          } else {
+            setPreviewList(data);
+            setPreviewElements(renderPreviewElements(data[0]));
+          }
         }
       });
-      return () => {
-        // not sure how this even works but it fixes the memory leak error
-      }
+    return () => {
+      // set _isMounted to false on unmount so state doesn't change above
+      _isMounted.current = false;
+    };
   }, [queryParam]);
 
   function handleLoadClick() {
