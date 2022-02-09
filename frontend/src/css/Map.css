@@ -2,3 +2,33 @@
   width: 100%;
   aspect-ratio: 1 / 1;
 }
+
+.Map__search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 2rem;
+}
+
+.Map__search input {
+  width: 2.5rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  margin-right: 0.25rem;
+  padding: 0.5rem;
+}
+
+.Map__search label {
+  font-size: 14px;
+  margin-right: 0.75rem;;
+}
+
+.Map__Slider {
+  position: relative;
+  max-width: 90%;
+  float: right;
+}
