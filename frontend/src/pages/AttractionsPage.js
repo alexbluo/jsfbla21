@@ -15,19 +15,18 @@ export default function AttractionsPage() {
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
 
-  const [queryParam, setQueryParam] = useState("?"); // initialize to ?
+  const [queryParam, setQueryParam] = useState("?");
   const value = { queryParam, setQueryParam };
 
   useEffect(() => {
     return () => {
       // set _isMounted to false on unmount so state doesn't keep updating
       _isMounted.current = false;
-      console.log(_isMounted);
     };
   }, []);
-  
+
   useEffect(() => {
-    fetch(`api/attractions${queryParam}`)
+    fetch(`/api/attractions${queryParam}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);

@@ -23,7 +23,7 @@ export default function MapPage() {
 
   function handleInput(event) {
     let value = event.target.value;
-    if (value > 125) value = 125;
+    if (value > 500) value = 500;
     if (value < 0) value = 0;
     setSliderValue(value);
     setSearchRadius(value * 1000);
@@ -39,7 +39,7 @@ export default function MapPage() {
           <input
             type="number"
             min={0}
-            max={125}
+            max={500}
             value={sliderValue}
             onInput={handleInput}
           />
@@ -48,7 +48,7 @@ export default function MapPage() {
         <Slider
           className="MapPage__Slider"
           min={0}
-          max={125}
+          max={500}
           value={sliderValue}
           onChange={handleSliderChange}
           railStyle={{

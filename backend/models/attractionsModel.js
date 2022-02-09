@@ -49,13 +49,14 @@ exports.getNear = (query, callback) => {
           $near: {
             $geometry: {
               type: "Point",
-              coordinates: [query.lng, query.lat],
+              coordinates: [parseFloat(query.lng), parseFloat(query.lat)],
             },
-            $maxDistance: query.searchRadius,
+            $maxDistance: parseInt(query.searchRadius),
           },
         },
       })
       .forEach((doc) => data.push(doc));
+      console.log(data.length)
     client.close();
     callback(data);
   });
