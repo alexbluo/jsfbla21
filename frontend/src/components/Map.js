@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
 import "../css/Map.css";
 
 export default function Map(props) {
+  const [markerData, setMarkerData] = useState([]);
+  const [markerElements, setMarkerElements] = useState([]);
+
+  useEffect(() => {
+    console.log(props.searchRadius)
+  }, [props.searchRadius])
 
   return (
     <div className="Map">

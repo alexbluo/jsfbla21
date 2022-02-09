@@ -17,11 +17,17 @@ export default function MapPage() {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to map
 
   useEffect(() => {
-    console.log(searchRadius);
-    console.log(sliderValue);
   }, [searchRadius]);
-  
+
   function handleSliderChange(value) {
+    setSliderValue(value);
+    setSearchRadius(value * 1000);
+  }
+
+  function handleInput(event) {
+    let value = event.target.value;
+    if (value > 125) value = 125;
+    if (value < 0) value = 0;
     setSliderValue(value);
     setSearchRadius(value * 1000);
   }
@@ -31,34 +37,44 @@ export default function MapPage() {
       <NavBar />
       <h1>Map</h1>
       <Map center={center} searchRadius={searchRadius} />
+      <div className="MapPage__search">
+        <label>
+          <input
+            type="number"
+            min={0}
+            max={125}
+            value={sliderValue}
+            onInput={handleInput}
+          />
+          km
+        </label>
         <Slider
+          className="MapPage__Slider"
           min={0}
           max={125}
-          dots
-          step={5}
           value={sliderValue}
           onChange={handleSliderChange}
           railStyle={{
-            backgroundColor: "yellow",
+            backgroundColor: "var(--flag-gold)",
             height: 2,
           }}
           trackStyle={{
-            backgroundColor: "yellow",
+            backgroundColor: "var(--flag-black)",
+            marginTop: -1,
+            marginLeft: 1,
+            width: 90,
             height: 4,
           }}
-          dotStyle={{
-            borderColor: "yellow",
-            backgroundColor: "black",
-          }}
           handleStyle={{
-            height: 12,
-            width: 12,
-            // marginTop: -4,
+            height: 14,
+            width: 14,
+            marginTop: -6,
             borderRadius: "50%",
-            backgroundColor: "black",
-            border: 0,
+            borderColor: "var(--flag-black)",
+            backgroundColor: "var(--flag-gold)",
           }}
         />
+      </div>
     </div>
   );
 }
