@@ -15,7 +15,7 @@ export default function AttractionsPage() {
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
 
-  const [queryParam, setQueryParam] = useState("");
+  const [queryParam, setQueryParam] = useState(""); // initialize to ?
   const value = { queryParam, setQueryParam };
 
   useEffect(() => {

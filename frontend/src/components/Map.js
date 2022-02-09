@@ -8,8 +8,17 @@ export default function Map(props) {
   const [markerElements, setMarkerElements] = useState([]);
 
   useEffect(() => {
-    console.log(props.searchRadius)
-  }, [props.searchRadius])
+    const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${props.searchRadius}`;
+    fetch(`/api/attractions/near${queryParam}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error status: ${res.status}`);
+        }
+        console.log(res)
+        return res.json();
+      }) // check res.ok?
+      .then((data) => console.log(data));
+  });
 
   return (
     <div className="Map">

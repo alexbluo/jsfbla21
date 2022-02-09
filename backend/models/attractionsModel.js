@@ -3,7 +3,7 @@ require("dotenv").config();
 
 exports.matchAll = (query, callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
-    let data = [];
+    const data = [];
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
@@ -16,7 +16,7 @@ exports.matchAll = (query, callback) => {
 
 exports.getAll = (callback) => {
   MongoClient.connect(process.env.URI, async (err, client) => {
-    let data = [];
+    const data = [];
     const db = client.db("attractionsDB");
     await db
       .collection("attractions")
@@ -33,6 +33,29 @@ exports.getOne = (id, callback) => {
     const data = await db
       .collection("attractions")
       .findOne({ attraction_id: id });
+    client.close();
+    callback(data);
+  });
+};
+
+exports.getNear = (query, callback) => {
+  MongoClient.connect(process.env.URI, async (err, client) => {
+    const data = [];
+    const db = client.db("attractionsDB");
+    await db
+      .collection("attractions")
+      .find({
+        coordinates: {
+          $near: {
+            $geometry: {
+              type: "Point",
+              coordinates: [query.lng, query.lat],
+            },
+            $maxDistance: query.searchRadius,
+          },
+        },
+      })
+      .forEach((doc) => data.push(doc));
     client.close();
     callback(data);
   });

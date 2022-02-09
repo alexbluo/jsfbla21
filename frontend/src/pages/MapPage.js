@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Slider, { SliderTooltip, createSliderWithTooltip } from "rc-slider";
+import React, { useState } from "react";
+import Slider from "rc-slider";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 import "../css/MapPage.css";
@@ -15,9 +15,6 @@ navigator.geolocation.getCurrentPosition((position) => {
 export default function MapPage() {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to map
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to map
-
-  useEffect(() => {
-  }, [searchRadius]);
 
   function handleSliderChange(value) {
     setSliderValue(value);
