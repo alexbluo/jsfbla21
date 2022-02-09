@@ -15,11 +15,19 @@ export default function AttractionsPage() {
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
 
-  const [queryParam, setQueryParam] = useState(""); // initialize to ?
+  const [queryParam, setQueryParam] = useState("?"); // initialize to ?
   const value = { queryParam, setQueryParam };
 
   useEffect(() => {
-    fetch(`api/attractions?${queryParam}`)
+    return () => {
+      // set _isMounted to false on unmount so state doesn't keep updating
+      _isMounted.current = false;
+      console.log(_isMounted);
+    };
+  }, []);
+  
+  useEffect(() => {
+    fetch(`api/attractions${queryParam}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error status: ${res.status}`);
@@ -30,6 +38,7 @@ export default function AttractionsPage() {
       .then((data) => {
         // checks if page is still mounted so state can be updated
         if (_isMounted.current) {
+          // this single line breaks filtering
           setloadIndex(1);
           // data returned from backend will be [] if no attractions match the filters
           if (data.length === 0) {
@@ -41,10 +50,6 @@ export default function AttractionsPage() {
           }
         }
       });
-    return () => {
-      // set _isMounted to false on unmount so state doesn't change above
-      _isMounted.current = false;
-    };
   }, [queryParam]);
 
   function handleLoadClick() {
