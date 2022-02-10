@@ -19,7 +19,7 @@ export default function Map(props) {
         }
         return res.json();
       })
-      .then((data) => console.log(data));
+      .then((data) => setMarkerData(data));
   }, [searchRadius]);
 
   function updateSearchRadius() {
@@ -36,7 +36,7 @@ export default function Map(props) {
     if (value < 0) value = 0;
     setSliderValue(value);
   }
-
+  console.log(`lat: ${props.center.lat}, lng: ${props.center.lng}`)
   return (
     <div className="Map">
       <div className="GoogleMapReact">
@@ -44,7 +44,9 @@ export default function Map(props) {
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
           defaultCenter={props.center}
           defaultZoom={11}
-        ></GoogleMapReact>
+        >
+          <Marker lat={props.center.lat} lng={props.center.lng} />
+        </GoogleMapReact>
       </div>
       <div className="Map__search">
         <label>

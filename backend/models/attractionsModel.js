@@ -56,7 +56,6 @@ exports.getNear = (query, callback) => {
         },
       })
       .forEach((doc) => data.push(doc));
-      console.log(data.length)
     client.close();
     callback(data);
   });

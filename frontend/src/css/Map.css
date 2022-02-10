@@ -29,6 +29,6 @@
 
 .Map__Slider {
   position: relative;
-  max-width: 90%;
-  float: right;
+  width: 60%;
+  margin-left: auto;
 }

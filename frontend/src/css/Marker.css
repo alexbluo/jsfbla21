@@ -1,0 +1,13 @@
+.Marker {
+  color: var(--flag-black);
+  width: 1rem;
+  aspect-ratio: 1 / 1;
+  background-color: var(--flag-gold);
+  border: 2px solid var(--flag-black);
+  border-radius: 50%;
+}
+
+.Marker--center {
+  background-color: var(--flag-white);
+  border-color: var(--flag-red);
+}
