@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const facetsRouter = require("./routes/facets")
+const facetsRouter = require("./routes/facets");
 const attractionsRouter = require("./routes/attractions");
 
 app.use("/api/attractions", attractionsRouter);

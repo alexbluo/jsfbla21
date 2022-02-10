@@ -9,7 +9,7 @@ export default function Map(props) {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [markerElements, setMarkerElements] = useState([]);
-
+  console.log(markerData)
   useEffect(() => {
     const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${searchRadius}`;
     fetch(`/api/attractions/near${queryParam}`)
@@ -36,7 +36,8 @@ export default function Map(props) {
     if (value < 0) value = 0;
     setSliderValue(value);
   }
-  console.log(`lat: ${props.center.lat}, lng: ${props.center.lng}`)
+
+  console.log(`lat: ${props.center.lat}, lng: ${props.center.lng}`);
   return (
     <div className="Map">
       <div className="GoogleMapReact">
@@ -45,7 +46,11 @@ export default function Map(props) {
           defaultCenter={props.center}
           defaultZoom={11}
         >
-          <Marker lat={props.center.lat} lng={props.center.lng} />
+          <Marker
+            // className="Marker Marker--center"
+            lat={props.center.lat}
+            lng={props.center.lng}
+          />
         </GoogleMapReact>
       </div>
       <div className="Map__search">
@@ -56,6 +61,7 @@ export default function Map(props) {
             max={500}
             value={sliderValue}
             onInput={handleInput}
+            onBlur={updateSearchRadius}
           />
           km
         </label>
