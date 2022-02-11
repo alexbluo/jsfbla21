@@ -39,7 +39,7 @@ export default function Map(props) {
   }
 
   function handleMarkerClick() {
-    console.log(sliderValue);
+
   }
 
   return (
@@ -57,8 +57,10 @@ export default function Map(props) {
               lng={doc.coordinates[0]}
               onClick={handleMarkerClick} // closure passed to child
               name={doc.attraction_name}
-              city={findFacet(doc, "city")}
               address={doc.address}
+              city={findFacet(doc, "city")}
+              state={doc.state}
+              zip={doc.zip}
               key={doc.attraction_id}
             />
           ))}

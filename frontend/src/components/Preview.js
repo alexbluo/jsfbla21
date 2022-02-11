@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/Preview.css";
-import findFacet from "../utils/findFacet"
+import findFacet from "../utils/findFacet";
 import noImage from "../images/noImage.png";
 
 export default function Preview(props /* replace with { key names }*/) {
@@ -20,11 +20,11 @@ export default function Preview(props /* replace with { key names }*/) {
           alt=""
         />
       </Link>
-      <label className="Preview__city">
-        {findFacet(data, "city")}
-      </label>
+      <label className="Preview__city">{findFacet(data, "city")}</label>
       <br />
-      <label>{data.attraction_name}</label>
+      <label>
+        <b>{data.attraction_name}</b>
+      </label>
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.Popup {
+  position: fixed;
+  width: 50%;
+  height: 30%;
+  background-color: var(--flag-white);
+  box-shadow: 0 0 0 2000px rgba(0,0,0,.3);
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
+  pointer-events: none;
+}

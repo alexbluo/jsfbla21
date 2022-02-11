@@ -17,7 +17,7 @@ export default function Facets() {
     fetchFacets("category");
     fetchFacets("amenity");
   }, []);
-
+  
   function fetchFacets(category) {
     fetch(`/api/facets/${category}`)
       .then((data) => data.json())

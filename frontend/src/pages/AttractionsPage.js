@@ -35,9 +35,8 @@ export default function AttractionsPage() {
       })
       .then((data) => splitData(data)) // splits the data into separate arrays for loading
       .then((data) => {
-        // checks if page is still mounted so state can be updated
+        // checks if page is still mounted and state can be updated
         if (_isMounted.current) {
-          // this single line breaks filtering
           setloadIndex(1);
           // data returned from backend will be [] if no attractions match the filters
           if (data.length === 0) {
