@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
+import Marker from "./Marker";
 import "../css/Map.css";
+import findFacet from "../utils/findFacet";
 
 export default function Map(props) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
-  const [markerElements, setMarkerElements] = useState([]);
-  console.log(markerData)
+
   useEffect(() => {
     const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${searchRadius}`;
     fetch(`/api/attractions/near${queryParam}`)
@@ -35,9 +35,13 @@ export default function Map(props) {
     if (value > 500) value = 500;
     if (value < 0) value = 0;
     setSliderValue(value);
+    setSearchRadius(value * 1000);
   }
 
-  console.log(`lat: ${props.center.lat}, lng: ${props.center.lng}`);
+  function handleMarkerClick() {
+    console.log(sliderValue);
+  }
+
   return (
     <div className="Map">
       <div className="GoogleMapReact">
@@ -46,11 +50,18 @@ export default function Map(props) {
           defaultCenter={props.center}
           defaultZoom={11}
         >
-          <Marker
-            // className="Marker Marker--center"
-            lat={props.center.lat}
-            lng={props.center.lng}
-          />
+          <Marker lat={props.center.lat} lng={props.center.lng} isCenter />
+          {markerData.map((doc) => (
+            <Marker
+              lat={doc.coordinates[1]}
+              lng={doc.coordinates[0]}
+              onClick={handleMarkerClick} // closure passed to child
+              name={doc.attraction_name}
+              city={findFacet(doc, "city")}
+              address={doc.address}
+              key={doc.attraction_id}
+            />
+          ))}
         </GoogleMapReact>
       </div>
       <div className="Map__search">
@@ -61,7 +72,6 @@ export default function Map(props) {
             max={500}
             value={sliderValue}
             onInput={handleInput}
-            onBlur={updateSearchRadius}
           />
           km
         </label>

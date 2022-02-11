@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/Preview.css";
+import findFacet from "../utils/findFacet"
 import noImage from "../images/noImage.png";
 
 export default function Preview(props /* replace with { key names }*/) {
@@ -20,7 +21,7 @@ export default function Preview(props /* replace with { key names }*/) {
         />
       </Link>
       <label className="Preview__city">
-        {data.facets.find((obj) => obj.type === "city").val}
+        {findFacet(data, "city")}
       </label>
       <br />
       <label>{data.attraction_name}</label>

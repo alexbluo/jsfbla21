@@ -16,7 +16,6 @@ exports.getOne = (req, res) => {
 };
 
 exports.getNear = (req, res) => {
-  console.log(req.query);
   attractionsModel.getNear(req.query, (data) => res.send(data));
 };
 
