@@ -1,9 +1,28 @@
 .Popup {
-  position: fixed;
+  position: absolute;
   width: 50%;
-  height: 30%;
+  height: 25%;
+  top: 50%;
+  left: 50%;
+  font-size: 16px;
+  padding: 2rem;
+  transform: translate(-50%, -50%);
   background-color: var(--flag-white);
   box-shadow: 0 0 0 2000px rgba(0,0,0,.3);
   box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
-  pointer-events: none;
+}
+
+.Popup__title {
+  font-size: 30px;
+  margin: 0;
+}
+
+.Popup__close-button {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 1rem;
+  right: 1rem;
+  border: 2px solid black;
+  border-radius: 50%;
 }

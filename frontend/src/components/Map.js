@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
+import Popup from "./Popup";
 import "../css/Map.css";
 import findFacet from "../utils/findFacet";
 
@@ -9,6 +10,7 @@ export default function Map(props) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
   useEffect(() => {
     const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${searchRadius}`;
@@ -22,14 +24,6 @@ export default function Map(props) {
       .then((data) => setMarkerData(data));
   }, [searchRadius]);
 
-  function updateSearchRadius() {
-    setSearchRadius(sliderValue * 1000);
-  }
-
-  function handleSliderChange(value) {
-    setSliderValue(value);
-  }
-
   function handleInput(event) {
     let value = event.target.value;
     if (value > 500) value = 500;
@@ -38,12 +32,8 @@ export default function Map(props) {
     setSearchRadius(value * 1000);
   }
 
-  function handleMarkerClick() {
-
-  }
-
   return (
-    <div className="Map">
+    <div>
       <div className="GoogleMapReact">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
@@ -55,7 +45,7 @@ export default function Map(props) {
             <Marker
               lat={doc.coordinates[1]}
               lng={doc.coordinates[0]}
-              onClick={handleMarkerClick} // closure passed to child
+              onClick={() => setSelectedMarker(doc)} // ultimately passes this marker's data to Popup
               name={doc.attraction_name}
               address={doc.address}
               city={findFacet(doc, "city")}
@@ -65,6 +55,9 @@ export default function Map(props) {
             />
           ))}
         </GoogleMapReact>
+        {selectedMarker ? (
+          <Popup data={selectedMarker} onCloseClick={() => setSelectedMarker(null)} />
+        ) : null}
       </div>
       <div className="Map__search">
         <label>
@@ -82,8 +75,8 @@ export default function Map(props) {
           min={0}
           max={500}
           value={sliderValue}
-          onChange={handleSliderChange}
-          onAfterChange={updateSearchRadius}
+          onChange={(value) => setSliderValue(value)}
+          onAfterChange={() => setSearchRadius(sliderValue * 1000)}
           railStyle={{
             backgroundColor: "var(--flag-gold)",
             height: 2,
