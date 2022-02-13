@@ -1,0 +1,15 @@
+.Button {
+  width: 8rem;
+  height: 4rem;
+  font-size: 1rem;
+  color: var(--flag-white);
+  background-color: var(--flag-red);
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.Button:hover {
+  transition-duration: 400ms;
+  filter: brightness(77%);
+  cursor: pointer;
+}

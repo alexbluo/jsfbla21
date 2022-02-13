@@ -6,6 +6,7 @@
   left: 50%;
   font-size: 16px;
   padding: 2rem;
+  border-radius: 2rem;
   transform: translate(-50%, -50%);
   background-color: var(--flag-white);
   box-shadow: 0 0 0 2000px rgba(0,0,0,.3);
@@ -45,3 +46,35 @@
 .Popup__close-button:active {
   filter: brightness(77%);
 }
+
+.Popup__contents-container {
+  display: grid;
+  height: 90%;
+  width: 100%;
+  grid-template-areas: "im im tx tx"
+                       "bt bt tx tx";
+  grid-auto-columns: 16% 16% 28% 28%;
+  column-gap: 4%;
+}
+
+.Popup__image {
+  position: relative;
+  grid-area: im;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: fill;
+}
+
+.Popup__button {
+  grid-area: bt;
+}
+
+.Popup__text {
+  grid-area: tx;
+}
+
+.Popup__address {
+  margin: 0;
+  color: var(--flag-red);
+}
+
