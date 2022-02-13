@@ -11,3 +11,15 @@
   background-color: var(--flag-white);
   border-color: var(--flag-red);
 }
+
+.Marker:hover {
+  background-color: var(--flag-black);
+  border-color: var(--flag-gold);
+  color: var(--flag-gold);
+  cursor: pointer;
+  transition-duration: 400ms;
+}
+
+.Marker:active {
+  filter: brightness(77%);
+}
