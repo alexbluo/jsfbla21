@@ -1,0 +1,11 @@
+.HelpPage__faq-container {
+  margin-left: 4rem;
+}
+
+.HelpPage__contact-button-container {
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

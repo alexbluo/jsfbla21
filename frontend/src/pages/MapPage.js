@@ -12,7 +12,6 @@ navigator.geolocation.getCurrentPosition((position) => {
 });
 
 export default function MapPage() {
-
   return (
     <div className="container">
       <NavBar />

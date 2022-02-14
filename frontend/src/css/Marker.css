@@ -5,6 +5,7 @@
   background-color: var(--flag-gold);
   border: 2px solid var(--flag-black);
   border-radius: 50%;
+  display: inline-block;
 }
 
 .Marker--center {
