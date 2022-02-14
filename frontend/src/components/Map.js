@@ -33,7 +33,7 @@ export default function Map(props) {
   }
 
   return (
-    <div>
+    <div className="Map">
       <div className="GoogleMapReact">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}

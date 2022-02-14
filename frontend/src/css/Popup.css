@@ -1,7 +1,7 @@
 .Popup {
   position: absolute;
   width: 50%;
-  height: 25%;
+  height: 30%;
   top: 50%;
   left: 50%;
   font-size: 16px;
@@ -49,11 +49,11 @@
 
 .Popup__contents-container {
   display: grid;
-  height: 90%;
+  height: 80%;
   width: 100%;
-  grid-template-areas: "im im tx tx"
-                       "bt bt tx tx";
-  grid-auto-columns: 16% 16% 28% 28%;
+  grid-template-areas: "im tx"
+                       "bt tx";
+  grid-auto-columns: 32% 64%;
   column-gap: 4%;
 }
 
