@@ -7,4 +7,4 @@ app.use("/api/attractions", attractionsRouter);
 app.use("/api/facets", facetsRouter);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`LISTENING ON PORT ${port}`));
+app.listen(port, () => console.log(`LISTENING ON PORT ${port}`)); // listen on proxy

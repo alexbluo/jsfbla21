@@ -1,3 +1,23 @@
-#DetailsPage__attractions-image {
-  
+.DetailsPage__grid-container {
+  display: grid;
+  grid-template-areas: "dc bt ai"
+                       "am lc rg";
+  grid-auto-columns: 1fr 1fr 1fr;
+}
+
+.DetailsPage__description {
+  grid-area: dc;
+  background-color: var(--flag-black);
+}
+
+.DetailsPage__buttons {
+  grid-area: bt;
+  background-color: var(--flag-gold);
+}
+
+.DetailsPage__attraction-image {
+  grid-area: ai;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: fill;
 }

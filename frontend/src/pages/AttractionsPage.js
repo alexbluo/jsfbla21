@@ -33,23 +33,25 @@ export default function AttractionsPage() {
         }
         return res.json();
       })
-      .then((data) => splitData(data)) // splits the data into separate arrays for loading
+      .then((data) => splitData(data)) // split the data into separate arrays for loading
       .then((data) => {
-        // checks if page is still mounted and state can be updated
+        // check if page is still mounted and state can be updated
         if (_isMounted.current) {
           setloadIndex(1);
           // data returned from backend will be [] if no attractions match the filters
           if (data.length === 0) {
-            setPreviewList([]);
             setPreviewElements(<p>Nothing Matched!</p>);
           } else {
-            setPreviewList(data);
             setPreviewElements(renderPreviewElements(data[0]));
           }
+          setPreviewList(data);
         }
       });
   }, [queryParam]);
 
+  /**
+   * Shows the next set of attractions when the load more button is clicked
+   */
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
     setPreviewElements((prev) => [
@@ -58,6 +60,11 @@ export default function AttractionsPage() {
     ]);
   }
 
+  /**
+   * 
+   * @param { Object[] } data 
+   * @returns 
+   */
   function splitData(data) {
     let splitData = [];
     const size = 8;
