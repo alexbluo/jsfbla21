@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import Marker from "../components/Marker";
-import Button from "../components/Button";
+import ButtonLink from "../components/ButtonLink";
 import "../css/HelpPage.css";
 
 export default function HelpPage() {
@@ -53,7 +53,7 @@ export default function HelpPage() {
           yourself.
         </p>
         <div className="HelpPage__contact-button-container">
-          <Button link="mailto:alexluo92823@gmail.com" text="Contact Me" />
+          <ButtonLink link="mailto:alexluo92823@gmail.com">Contact Me</ButtonLink>
         </div>
       </div>
     </div>

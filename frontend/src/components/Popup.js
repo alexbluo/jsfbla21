@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet";
-import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 import "../css/Popup.css";
 
 export default function Popup(props) {
@@ -16,16 +16,14 @@ export default function Popup(props) {
       <div className="Popup__contents-container">
         <img src={data.attraction_image} className="Popup__image" />
 
-        <Button
+        <ButtonLink
           className="Popup__button"
-          text="Website"
           link={data.website_link}
-        ></Button>
-        <Button
+        >Website</ButtonLink>
+        <ButtonLink
           className="Popup__button"
-          text="Directions"
           link={data.directions_link}
-        ></Button>
+        >Directions</ButtonLink>
         <div className="Popup__text">
           <p className="Popup__address">
             {data.address}, <br /> {findFacet(data, "city")}, {data.state}{" "}

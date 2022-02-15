@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ButtonLink from "../components/ButtonLink";
 import NavBar from "../components/NavBar";
 import "../css/DetailsPage.css";
 
@@ -22,6 +23,8 @@ export default function DetailsPage() {
           <h1>{data.attraction_name}</h1>
           <div className="DetailsPage__grid-container">
             <div className="DetailsPage__description"></div>
+            <div className="DetailsPage__buttons">
+            </div>
             {data.attraction_image.includes("data") ? null : (
               <img
                 className="DetailsPage__attraction-image"
