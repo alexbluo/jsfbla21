@@ -15,18 +15,17 @@ export default function Popup(props) {
       <p className="Popup__title">{data.attraction_name}</p>
       <div className="Popup__contents-container">
         <img src={data.attraction_image} className="Popup__image" />
-
-        <ButtonLink
-          className="Popup__button"
-          link={data.website_link}
-        >Website</ButtonLink>
-        <ButtonLink
-          className="Popup__button"
-          link={data.directions_link}
-        >Directions</ButtonLink>
+        <ButtonLink className="Popup__button" link={data.website_link}>
+          Website
+        </ButtonLink>
+        <ButtonLink className="Popup__button" link={data.directions_link}>
+          Directions
+        </ButtonLink>
         <div className="Popup__text">
           <p className="Popup__address">
-            {data.address}, <br /> {findFacet(data, "city")}, {data.state}{" "}
+            {data.address}
+            <br />
+            {findFacet(data, "city")}, {data.state}&nbsp;
             {data.zip}
           </p>
           <p>{data.description}</p>

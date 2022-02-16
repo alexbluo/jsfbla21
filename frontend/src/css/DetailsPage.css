@@ -1,23 +1,49 @@
 .DetailsPage__grid-container {
   display: grid;
-  grid-template-areas: "dc bt ai"
-                       "am lc rg";
+  grid-template-areas: "dsc btn img"
+                       "amn lct rgn";
   grid-auto-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr 1fr;
 }
 
 .DetailsPage__description {
-  grid-area: dc;
-  background-color: var(--flag-black);
+  grid-area: dsc;
+  background-color: var(--flag-gold);
+  padding-top: 4%;
+  padding-left: 8%;
 }
 
 .DetailsPage__buttons {
-  grid-area: bt;
-  background-color: var(--flag-gold);
+  grid-area: btn;
+  padding-top: 4%;
+  padding-left: 8%;
+}
+
+.DetailsPage__buttons--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: var(--flag-white);
 }
 
 .DetailsPage__attraction-image {
-  grid-area: ai;
+  grid-area: img;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
+  /* height: 100%; */
   object-fit: fill;
+}
+
+.DetailsPage__amenities {
+  grid-area: amn;
+  color: var(--flag-red);
+  padding-top: 4%;
+  padding-left: 8%;
+}
+
+.DetailsPage__location {
+  grid-area: lct;
+  background-color: var(--flag-gold);
+  padding-top: 4%;
+  padding-left: 8%;
 }
