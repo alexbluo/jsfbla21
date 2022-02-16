@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import NavBar from "../components/NavBar";
-import "../css/DetailsPage.css";
-import findFacet from "../utils/findFacet";
 import noImage from "../images/noImage.png";
+import findFacet from "../utils/findFacet";
+import "../css/DetailsPage.css";
 
 export default function DetailsPage() {
   const [data, setData] = useState(null);
@@ -16,10 +16,18 @@ export default function DetailsPage() {
       .then((data) => setData(data));
   }, [id]);
 
+  /**
+   * Formats the amenities array into html that can be dangerously set
+   * @returns the dangerouslySetInnerHTML object
+   */
   function createAmenitiesMarkup() {
-    const amenities = data.amenities.join("<br />"); // format into html
+    const amenities =
+      '<ul class="DetailsPage__amenities-list"><li>' +
+      data.amenities.join("</li><li>") +
+      "</li></ul>";
     return { __html: amenities };
   }
+
   return (
     <div className="DetailsPage container">
       <NavBar />
@@ -31,9 +39,10 @@ export default function DetailsPage() {
               <h2>Description</h2>
               {data.description}
             </div>
+
             <div className="DetailsPage__buttons">
               <h2>Website & Contact</h2>
-              <div className="DetailsPage__buttons--grid">
+              <div className="DetailsPage__buttons-grid">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
@@ -51,15 +60,16 @@ export default function DetailsPage() {
                     {data.phone_number}
                   </ButtonLink>
                 )}
-                {data.fax &&
+                {data.fax && (
                   <ButtonLink link={`tel:${data.fax}`} detail>
                     Fax
                     <br />
                     {data.fax}
                   </ButtonLink>
-                }
+                )}
               </div>
             </div>
+
             <img
               className="DetailsPage__attraction-image"
               src={
@@ -69,6 +79,7 @@ export default function DetailsPage() {
               }
               alt=""
             />
+
             <div className="DetailsPage__amenities">
               <h2>Amenities</h2>
               {data.amenities ? (
@@ -84,6 +95,19 @@ export default function DetailsPage() {
               <br />
               {findFacet(data, "city")}, {data.state}&nbsp;
               {data.zip}
+              <br />
+              <a
+                className="DetailsPage__directions-link"
+                href={data.directions_link}
+              >
+                Directions
+              </a>
+            </div>
+
+            <div className="DetailsPage__region">
+              <h2>Region</h2>
+              {findFacet(data, "region") && findFacet(data, "region")}
+              {data.region_image && <img src={data.region_image} alt="" />}
             </div>
           </div>
         </div>

@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import findFacet from "../utils/findFacet";
 import ButtonLink from "./ButtonLink";
-import "../css/Popup.css";
 import noImage from "../images/noImage.png";
+import findFacet from "../utils/findFacet";
+import "../css/Popup.css";
 
 export default function Popup(props) {
   const data = props.data;
@@ -16,12 +15,13 @@ export default function Popup(props) {
       <p className="Popup__title">{data.attraction_name}</p>
       <div className="Popup__contents-container">
         <img
+          className="Popup__image"
           src={
             data.attraction_image.includes("data")
               ? noImage
               : data.attraction_image
           }
-          className="Popup__image"
+          alt=""
         />
         {data.website_link && (
           <ButtonLink className="Popup__button" link={data.website_link}>

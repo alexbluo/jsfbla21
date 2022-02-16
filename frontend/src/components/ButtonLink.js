@@ -3,7 +3,7 @@ import "../css/ButtonLink.css";
 
 export default function ButtonLink(props) {
   return (
-    <a href={props.link}>
+    <a className="bl-container" href={props.link}>
       <button
         className={`ButtonLink ${
           props.detail ? "ButtonLink--style-details" : null

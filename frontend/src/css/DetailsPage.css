@@ -24,19 +24,20 @@
   padding-bottom: 4%;
 }
 
-.DetailsPage__buttons--grid {
+.DetailsPage__buttons-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  /* height: auto; */
   background-color: var(--flag-white);
-}
+  align-items: center;
+  text-align: center;
+} 
 
 .DetailsPage__attraction-image {
   grid-area: img;
   width: 100%;
   aspect-ratio: 1 / 1;
-  /* height: 100%; */
+  /* height: 100%; need to set grid item with equal to height for this to work */
   object-fit: fill;
 }
 
@@ -49,9 +50,40 @@
   padding-bottom: 4%;
 }
 
+.DetailsPage__amenities-list {
+  max-height: 1%;
+  overflow-y: auto;
+}
+
 .DetailsPage__location {
   grid-area: lct;
   background-color: var(--flag-gold);
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.DetailsPage__directions-link {
+  color: var(--flag-white);
+  text-decoration-thickness: .2rem;
+  text-decoration-color: var(--flag-red);
+  text-underline-offset: .2rem;
+} 
+
+.DetailsPage__directions-link:visited {
+  color: var(--flag-white);
+}
+
+.DetailsPage__directions-link:hover {
+  color: var(--flag-red);
+  transition-duration: 400ms;
+  transition-timing-function: ease-in;
+}
+
+.DetailsPage__region {
+  grid-area: rgn;
+  color: var(--flag-red);
   padding-left: 8%;
   padding-right: 8%;
   padding-top: 4%;

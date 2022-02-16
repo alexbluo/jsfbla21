@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
-import Facets, { FacetsContext } from "./Facets";
+import React, { useContext, useEffect } from "react";
+import { FacetsContext } from "./Facets";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import "../css/Checkbox.css";
 
