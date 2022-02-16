@@ -21,10 +21,9 @@ export default function DetailsPage() {
    * @returns the dangerouslySetInnerHTML object
    */
   function createAmenitiesMarkup() {
-    const amenities =
-      '<ul class="DetailsPage__amenities-list"><li>' +
-      data.amenities.join("</li><li>") +
-      "</li></ul>";
+    const amenities = `<ul class="DetailsPage__amenities-list"><li>${data.amenities.join(
+      "</li><li>"
+    )}</li></ul>`;
     return { __html: amenities };
   }
 

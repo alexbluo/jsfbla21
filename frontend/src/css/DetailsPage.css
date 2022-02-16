@@ -37,7 +37,6 @@
   grid-area: img;
   width: 100%;
   aspect-ratio: 1 / 1;
-  /* height: 100%; need to set grid item with equal to height for this to work */
   object-fit: fill;
 }
 
