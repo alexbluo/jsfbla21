@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet";
 import ButtonLink from "./ButtonLink";
 import "../css/Popup.css";
+import noImage from "../images/noImage.png";
 
 export default function Popup(props) {
   const data = props.data;
@@ -14,10 +15,19 @@ export default function Popup(props) {
       </button>
       <p className="Popup__title">{data.attraction_name}</p>
       <div className="Popup__contents-container">
-        <img src={data.attraction_image} className="Popup__image" />
-        <ButtonLink className="Popup__button" link={data.website_link}>
-          Website
-        </ButtonLink>
+        <img
+          src={
+            data.attraction_image.includes("data")
+              ? noImage
+              : data.attraction_image
+          }
+          className="Popup__image"
+        />
+        {data.website_link && (
+          <ButtonLink className="Popup__button" link={data.website_link}>
+            Website
+          </ButtonLink>
+        )}
         <ButtonLink className="Popup__button" link={data.directions_link}>
           Directions
         </ButtonLink>

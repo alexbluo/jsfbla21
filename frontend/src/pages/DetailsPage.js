@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import NavBar from "../components/NavBar";
 import "../css/DetailsPage.css";
+import findFacet from "../utils/findFacet";
 import noImage from "../images/noImage.png";
 
 export default function DetailsPage() {
@@ -22,7 +23,7 @@ export default function DetailsPage() {
   return (
     <div className="DetailsPage container">
       <NavBar />
-      {data ? (
+      {data && (
         <div>
           <h1>{data.attraction_name}</h1>
           <div className="DetailsPage__grid-container">
@@ -33,53 +34,60 @@ export default function DetailsPage() {
             <div className="DetailsPage__buttons">
               <h2>Website & Contact</h2>
               <div className="DetailsPage__buttons--grid">
-                {data.website_link ? (
+                {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
                   </ButtonLink>
-                ) : null}
-                {data.mailto_link ? (
+                )}
+                {data.mailto_link && (
                   <ButtonLink link={data.mailto_link} detail>
                     Email
                   </ButtonLink>
-                ) : null}
-                {data.phone_number ? (
+                )}
+                {data.phone_number && (
                   <ButtonLink link={`tel:${data.phone_number}`} detail>
                     Phone
                     <br />
                     {data.phone_number}
                   </ButtonLink>
-                ) : null}
-                {data.fax ? (
+                )}
+                {data.fax &&
                   <ButtonLink link={`tel:${data.fax}`} detail>
                     Fax
                     <br />
                     {data.fax}
                   </ButtonLink>
-                ) : null}
+                }
               </div>
             </div>
-            {data.attraction_image.includes("data") ? (
-              noImage
-            ) : (
-              <img
-                className="DetailsPage__attraction-image"
-                src={data.attraction_image}
-                alt=""
-              />
-            )}
-            {data.amenities ? (
-              <div className="DetailsPage__amenities">
-                <h2>Amenities</h2>  
+            <img
+              className="DetailsPage__attraction-image"
+              src={
+                data.attraction_image.includes("data")
+                  ? noImage
+                  : data.attraction_image
+              }
+              alt=""
+            />
+            <div className="DetailsPage__amenities">
+              <h2>Amenities</h2>
+              {data.amenities ? (
                 <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
-              </div>
-            ) : (
-              <p>No Amenities Listed</p>
-            )}
-            <div className="DetailsPage__location"></div>
+              ) : (
+                <p>No amenities listed</p>
+              )}
+            </div>
+
+            <div className="DetailsPage__location">
+              <h2>Location</h2>
+              {data.address}
+              <br />
+              {findFacet(data, "city")}, {data.state}&nbsp;
+              {data.zip}
+            </div>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

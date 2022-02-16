@@ -9,27 +9,33 @@
 .DetailsPage__description {
   grid-area: dsc;
   background-color: var(--flag-gold);
-  padding-top: 4%;
   padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 
 .DetailsPage__buttons {
   grid-area: btn;
-  padding-top: 4%;
+  color: var(--flag-red);
   padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 
 .DetailsPage__buttons--grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  /* height: auto; */
   background-color: var(--flag-white);
 }
 
 .DetailsPage__attraction-image {
   grid-area: img;
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   /* height: 100%; */
   object-fit: fill;
 }
@@ -37,13 +43,17 @@
 .DetailsPage__amenities {
   grid-area: amn;
   color: var(--flag-red);
-  padding-top: 4%;
   padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 
 .DetailsPage__location {
   grid-area: lct;
   background-color: var(--flag-gold);
-  padding-top: 4%;
   padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }

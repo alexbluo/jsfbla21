@@ -88,11 +88,11 @@ export default function AttractionsPage() {
    * @returns a load more button if the conditions are satisfied and nothing if they are not
    */
   function showLoadMoreButton() {
-    return previewData.length > 1 && loadIndex < previewData.length ? (
+    return previewData.length > 1 && loadIndex < previewData.length && (
       <button id="AttractionsPage__button" onClick={handleLoadClick}>
         LOAD MORE
       </button>
-    ) : null;
+    );
   }
 
   return (
