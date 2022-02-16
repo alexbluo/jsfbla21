@@ -51,7 +51,12 @@
 }
 
 .DetailsPage__amenities-list {
-  max-height: 1%;
+  position: absolute;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 70%;
   overflow-y: auto;
 }
 
