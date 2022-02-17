@@ -3,7 +3,7 @@ const attractionsModel = require("../models/attractionsModel");
 exports.getOrMatchAll = (req, res) => {
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
-      formatFinalFilter(parseQuery(req.query)),
+      formatFinalFilter(parseQuery(req.query)), // turn the query object into a filter compatible with MongoDB
       (data) => res.send(data)
     );
   } else {
@@ -21,7 +21,7 @@ exports.getNear = (req, res) => {
 
 /**
  * Checks if the query parameters are valid and can be searched for
- * @param { string } query
+ * @param { Object.<string, string> } query - the req.query object
  * @returns true if the query parameters can be searched for
  */
 function checkQuery(query) {
@@ -33,8 +33,8 @@ function checkQuery(query) {
 /**
  * Parses the req.query object by reversing the keys with values
  * and separating each entry into a new object
- * @param { Object } query - the req.query object
- * @returns the parsed query object
+ * @param { Request.query } query - the req.query object
+ * @returns { Object.<string, string> } the parsed query object
  */
 function parseQuery(query) {
   let parsedQueries = {};
@@ -53,12 +53,12 @@ function parseQuery(query) {
 }
 
 /**
- * Turns the parsed query object into a filter to be used in Collection.find
- * @param { Object } parsedQuery - the parsed query object
+ * Turns the parsed query object into a filter ready to be passed to Collection.find()
+ * @param { Object.<string, string> } parsedQuery - the parsed query object
  * @returns { Filter<Document> } the final formatted filter
  */
 function formatFinalFilter(parsedQuery) {
-  let finalFilter = { facets: { $all: [] } };
+  const finalFilter = { facets: { $all: [] } };
 
   for (const [key, value] of Object.entries(parsedQuery)) {
     if (key === "amenity") {
@@ -68,6 +68,7 @@ function formatFinalFilter(parsedQuery) {
       }
       continue;
     }
+    // otherwise push an elemMatch for the value
     finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
   }
 

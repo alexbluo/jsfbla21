@@ -36,7 +36,6 @@ export default function HelpPage() {
           the far out regions of Maryland, but most users will likely max out
           around 250km.
         </p>
-        <h3></h3>
         <h3>Where is the data collected from?</h3>
         <p>
           All data was scraped from&nbsp;

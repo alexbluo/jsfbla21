@@ -62,7 +62,7 @@ export default function AttractionsPage() {
 
   /**
    * 
-   * @param { Object[] } data 
+   * @param { Array } data 
    * @returns 
    */
   function splitData(data) {
@@ -74,6 +74,11 @@ export default function AttractionsPage() {
     return splitData;
   }
 
+  /**
+   * 
+   * @param { Array } data 
+   * @returns 
+   */
   function renderPreviewElements(data) {
     let previewElements = [];
     for (const doc of data) {

@@ -105,7 +105,7 @@ export default function DetailsPage() {
 
             <div className="DetailsPage__region">
               <h2>Region</h2>
-              {findFacet(data, "region") && findFacet(data, "region")}
+              <h3>{findFacet(data, "region") && findFacet(data, "region")}</h3>
               {data.region_image && <img src={data.region_image} alt="" />}
             </div>
           </div>
