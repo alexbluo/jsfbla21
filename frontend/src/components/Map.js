@@ -11,10 +11,11 @@ export default function Map(props) {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  // add ismounted stuff from earlier
 
   useEffect(() => {
+    let isMounted = true;
     const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${searchRadius}`;
+
     fetch(`/api/attractions/near${queryParam}`)
       .then((res) => {
         if (!res.ok) {
@@ -22,7 +23,15 @@ export default function Map(props) {
         }
         return res.json();
       })
-      .then((data) => setMarkerData(data));
+      .then((data) => {
+        if (isMounted) {
+          setMarkerData(data);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [searchRadius]);
 
   function handleInput(event) {
@@ -57,7 +66,10 @@ export default function Map(props) {
           ))}
         </GoogleMapReact>
         {selectedMarker ? (
-          <Popup data={selectedMarker} onCloseClick={() => setSelectedMarker(null)} />
+          <Popup
+            data={selectedMarker}
+            onCloseClick={() => setSelectedMarker(null)}
+          />
         ) : null}
       </div>
       <div className="Map__search">

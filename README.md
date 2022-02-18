@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Maryland Tourist Attractions Searcher
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -69,6 +69,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Sourcing
+### Tech Stack
 
-- noImage: https://depositphotos.com/vector-images/no-image-available.html
+This project uses the MERN stack, which is MongoDB, Express, React, Node, and a REST API. I also used some additional tools such as create-react-app, which utilizes webpack and websockets.
+
+### Future Plans
+
+Below is a list of features and technologies which are on track to be implemented, in order of precedence:
+
+- Tailwind CSS
+- Fulltext search
+- Easy clearing of checked fields
+- Redesign of map page UI and popup system
+  - Replace current library for Google Maps API with one that supports both React and InfoWindows
+  - Display information of the side instead of in popups
+- Add maps to attraction detail pages
+- Update to internal checkbox system
+- Docker because it sounds fun
+- Deploy with Heroku at the end
+- Redo internal page system
+- Style landing page
+- Responsive layouts
+- Performance improvements
+
+### Sourcing
+
+- Attractions Data: https://www.visitmaryland.org/things-to-do/attractions
+- No Image: https://depositphotos.com/vector-images/no-image-available.html

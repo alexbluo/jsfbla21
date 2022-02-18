@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
@@ -10,7 +10,6 @@ export const QueryParamContext = React.createContext({
 });
 
 export default function AttractionsPage() {
-  const _isMounted = useRef(true);
   const [previewData, setPreviewList] = useState([]);
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
@@ -19,13 +18,7 @@ export default function AttractionsPage() {
   const value = { queryParam, setQueryParam };
 
   useEffect(() => {
-    return () => {
-      // set _isMounted to false on unmount so state doesn't keep updating
-      _isMounted.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
+    let isMounted = true;
     fetch(`/api/attractions${queryParam}`)
       .then((res) => {
         if (!res.ok) {
@@ -36,7 +29,7 @@ export default function AttractionsPage() {
       .then((data) => splitData(data)) // split the data into separate arrays for loading
       .then((data) => {
         // check if page is still mounted and state can be updated
-        if (_isMounted.current) {
+        if (isMounted) {
           setloadIndex(1);
           // data returned from backend will be [] if no attractions match the filters
           if (data.length === 0) {
@@ -47,6 +40,10 @@ export default function AttractionsPage() {
           setPreviewList(data);
         }
       });
+
+      return () => {
+        isMounted = false;
+      }
   }, [queryParam]);
 
   /**
@@ -61,9 +58,9 @@ export default function AttractionsPage() {
   }
 
   /**
-   * 
-   * @param { Array } data 
-   * @returns 
+   *
+   * @param { Array } data
+   * @returns
    */
   function splitData(data) {
     let splitData = [];
@@ -75,9 +72,9 @@ export default function AttractionsPage() {
   }
 
   /**
-   * 
-   * @param { Array } data 
-   * @returns 
+   *
+   * @param { Array } data
+   * @returns
    */
   function renderPreviewElements(data) {
     let previewElements = [];
@@ -93,10 +90,13 @@ export default function AttractionsPage() {
    * @returns a load more button if the conditions are satisfied and nothing if they are not
    */
   function showLoadMoreButton() {
-    return previewData.length > 1 && loadIndex < previewData.length && (
-      <button id="AttractionsPage__button" onClick={handleLoadClick}>
-        LOAD MORE
-      </button>
+    return (
+      previewData.length > 1 &&
+      loadIndex < previewData.length && (
+        <button id="AttractionsPage__button" onClick={handleLoadClick}>
+          LOAD MORE
+        </button>
+      )
     );
   }
 
