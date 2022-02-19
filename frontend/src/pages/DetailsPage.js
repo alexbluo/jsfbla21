@@ -11,9 +11,17 @@ export default function DetailsPage() {
   const id = useParams().id;
 
   useEffect(() => {
+    let isMounted = true;
+
     fetch(`/api/attractions/${id}`)
       .then((res) => res.json())
-      .then((data) => setData(data));
+      .then((data) => {
+        if (isMounted) setData(data);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   /**

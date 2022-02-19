@@ -6,7 +6,7 @@ import Popup from "./Popup";
 import findFacet from "../utils/findFacet";
 import "../css/Map.css";
 
-export default function Map(props) {
+export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
@@ -14,7 +14,7 @@ export default function Map(props) {
 
   useEffect(() => {
     let isMounted = true;
-    const queryParam = `?lng=${props.center.lng}&lat=${props.center.lat}&searchRadius=${searchRadius}`;
+    const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
 
     fetch(`/api/attractions/near${queryParam}`)
       .then((res) => {
@@ -47,10 +47,10 @@ export default function Map(props) {
       <div className="GoogleMapReact">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-          defaultCenter={props.center}
+          defaultCenter={center}
           defaultZoom={11}
         >
-          <Marker lat={props.center.lat} lng={props.center.lng} isCenter />
+          <Marker lat={center.lat} lng={center.lng} isCenter />
           {markerData.map((doc) => (
             <Marker
               lat={doc.coordinates[1]}
