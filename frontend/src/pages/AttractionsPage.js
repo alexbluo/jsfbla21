@@ -35,15 +35,15 @@ export default function AttractionsPage() {
           if (data.length === 0) {
             setPreviewElements(<p>Nothing Matched!</p>);
           } else {
-            setPreviewElements(renderPreviewElements(data[0]));
+          setPreviewElements(renderPreviewElements(data[0]));
           }
           setPreviewList(data);
         }
       });
 
-      return () => {
-        isMounted = false;
-      }
+    return () => {
+      isMounted = false;
+    };
   }, [queryParam]);
 
   /**

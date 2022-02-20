@@ -32,7 +32,7 @@ export default function HelpPage() {
           Why are new attractions not appearing on the map after x distance?
         </h3>
         <p>
-          The max distance was set to 500km in order to accomodate for users in
+          The max distance was set to 500km in order to accommodate for users in
           the far out regions of Maryland, but most users will likely max out
           around 250km.
         </p>
@@ -52,7 +52,9 @@ export default function HelpPage() {
           yourself.
         </p>
         <div className="HelpPage__contact-button-container">
-          <ButtonLink link="mailto:alexluo92823@gmail.com">Contact Me</ButtonLink>
+          <ButtonLink link="mailto:alexluo92823@gmail.com">
+            Contact Me
+          </ButtonLink>
         </div>
       </div>
     </div>
