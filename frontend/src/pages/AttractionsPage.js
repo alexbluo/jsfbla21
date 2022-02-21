@@ -85,24 +85,9 @@ export default function AttractionsPage() {
     return previewElements;
   }
 
-  /**
-   * Determines whether a load more button for previews should be rendered
-   * @returns a load more button if the conditions are satisfied and nothing if they are not
-   */
-  function showLoadMoreButton() {
-    return (
-      previewData.length > 1 &&
-      loadIndex < previewData.length && (
-        <button id="AttractionsPage__button" onClick={handleLoadClick}>
-          LOAD MORE
-        </button>
-      )
-    );
-  }
-
   return (
     <div className="AttractionsPage container">
-      <h2 className="text-3xl font-bold underline">TESTING</h2>
+      <h2 className="font-bold underline">TESTING</h2>
       <NavBar />
       <h1>Attractions</h1>
       <QueryParamContext.Provider value={value}>
@@ -110,7 +95,11 @@ export default function AttractionsPage() {
       </QueryParamContext.Provider>
       <div className="grid-container">
         <div className="grid">{previewElements}</div>
-        {showLoadMoreButton()}
+        {previewData.length > 1 && loadIndex < previewData.length && (
+          <button id="AttractionsPage__button" onClick={handleLoadClick}>
+            LOAD MORE
+          </button>
+        )}
       </div>
     </div>
   );
