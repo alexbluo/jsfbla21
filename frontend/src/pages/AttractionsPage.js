@@ -35,7 +35,7 @@ export default function AttractionsPage() {
           if (data.length === 0) {
             setPreviewElements(<p>Nothing Matched!</p>);
           } else {
-          setPreviewElements(renderPreviewElements(data[0]));
+            setPreviewElements(renderPreviewElements(data[0]));
           }
           setPreviewList(data);
         }
@@ -102,6 +102,7 @@ export default function AttractionsPage() {
 
   return (
     <div className="AttractionsPage container">
+      <h2 className="text-3xl font-bold underline">TESTING</h2>
       <NavBar />
       <h1>Attractions</h1>
       <QueryParamContext.Provider value={value}>

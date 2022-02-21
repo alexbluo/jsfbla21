@@ -9,6 +9,7 @@ import {
   Error404Page,
   MapPage,
 } from "./pages/pageExports";
+import "./index.css"
 
 // REACT
 // https://www.robinwieruch.de/react-folder-structure/
