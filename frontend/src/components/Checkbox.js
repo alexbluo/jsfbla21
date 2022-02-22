@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { FacetsContext } from "./Facets";
 import { QueryParamContext } from "../pages/AttractionsPage";
+import encodeSpaces from "../utils/encodeSpaces"
 import "../css/Checkbox.css";
 
 export default function Checkbox(props) {
@@ -17,10 +18,6 @@ export default function Checkbox(props) {
       setQueryParam(queryParam.replace(param, ""));
     }
   }, [checked]);
-
-  function encodeSpaces(param) {
-    return param.split(" ").join("+");
-  }
 
   function handleCheckedChange() {
     let facetsCopy = { ...facets };

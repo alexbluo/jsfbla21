@@ -4,6 +4,7 @@ import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
 import "../css/AttractionsPage.css";
 
+// query param string to be passed up from child checkboxes
 export const QueryParamContext = React.createContext({
   queryParam: "",
   setQueryParam: () => {},
@@ -47,7 +48,7 @@ export default function AttractionsPage() {
   }, [queryParam]);
 
   /**
-   * Shows the next set of attractions when the load more button is clicked
+   * Shows the next set of attractions when the load more button is clicked.
    */
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
@@ -58,9 +59,9 @@ export default function AttractionsPage() {
   }
 
   /**
-   *
-   * @param { Array } data
-   * @returns
+   * Splits the data into separated arrays so that the load more button can function.
+   * @param { Array } data - the fetched data in its form right after request is finished
+   * @returns an array of split arrays storing data for each attraction.
    */
   function splitData(data) {
     let splitData = [];
@@ -72,9 +73,9 @@ export default function AttractionsPage() {
   }
 
   /**
-   *
-   * @param { Array } data
-   * @returns
+   * Tranforms preview data into elements.
+   * @param { Array } data - a chunk of data to be rendered
+   * @returns HTML preview elements
    */
   function renderPreviewElements(data) {
     let previewElements = [];
@@ -87,7 +88,6 @@ export default function AttractionsPage() {
 
   return (
     <div className="AttractionsPage container">
-      <h2 className="font-bold underline">TESTING</h2>
       <NavBar />
       <h1>Attractions</h1>
       <QueryParamContext.Provider value={value}>

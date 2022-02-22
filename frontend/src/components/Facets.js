@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import "../css/Facets.css";
 
@@ -16,20 +16,21 @@ export default function Facets() {
     fetchFacets("city");
     fetchFacets("category");
     fetchFacets("amenity");
-  }, [fetchFacets]);
-  
-  function fetchFacets(category) {
-    fetch(`/api/facets/${category}`)
-      .then((data) => data.json())
-      .then((data) => {
-        let facetsCopy = facets;
-        facetsCopy[category] = data[category].reduce(
-          (acc, curr) => ((acc[curr] = false), acc),
-          {}
-        );
-        setFacets(facetsCopy);
-      });
-  }
+
+    function fetchFacets(category) {
+      fetch(`/api/facets/${category}`)
+        .then((data) => data.json())
+        .then((data) => {
+          let facetsCopy = facets;
+          facetsCopy[category] = data[category].reduce(
+            // eslint-disable-next-line no-sequences
+            (acc, curr) => ((acc[curr] = false), acc),
+            {}
+          );
+          setFacets(facetsCopy);
+        });
+    }
+  }, [facets]);
 
   return (
     <div className="Facets">
