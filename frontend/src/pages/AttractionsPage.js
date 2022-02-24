@@ -87,9 +87,9 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="container px-[8%]">
+    <div className="container px-[8%] py-8">
       <NavBar />
-      <h1 className="text-4xl">Attractions</h1>
+      <h1 className="text-4xl mb-4">Attractions</h1>
       <QueryParamContext.Provider value={value}>
         <Facets />
       </QueryParamContext.Provider>

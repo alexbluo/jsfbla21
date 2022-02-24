@@ -6,11 +6,11 @@ import "../css/HelpPage.css";
 
 export default function HelpPage() {
   return (
-    <div className="container px-[8%]">
+    <div className="container px-[8%] py-8">
       <NavBar />
-      <h1>Help</h1>
-      <div className="HelpPage__faq-container">
-        <h2>FAQ</h2>
+      <h1 className="text-4xl mb-4">Help</h1>
+      <h2>FAQ</h2>
+      <div className="">
         <h3>
           Why are new attractions not appearing when I enter more filters?
         </h3>

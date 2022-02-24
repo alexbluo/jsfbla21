@@ -36,11 +36,11 @@ export default function DetailsPage() {
   }
 
   return (
-    <div className="DetailsPage container">
+    <div className="container px-[8%] py-8">
       <NavBar />
       {data && (
         <div>
-          <h1>{data.attraction_name}</h1>
+          <h1 className="text-4xl mb-4">{data.attraction_name}</h1>
           <div className="DetailsPage__grid-container">
             <div className="DetailsPage__description">
               <h2>Description</h2>
