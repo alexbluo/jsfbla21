@@ -12,7 +12,7 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node, and a 
   CSS properties are arranged in the following order:
     position
     display
-    block
+    box
     color
     text
     misc.

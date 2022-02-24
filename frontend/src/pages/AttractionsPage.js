@@ -11,7 +11,7 @@ export const QueryParamContext = React.createContext({
 });
 
 export default function AttractionsPage() {
-  const [previewData, setPreviewList] = useState([]);
+  const [previewData, setPreviewData] = useState(null);
   const [previewElements, setPreviewElements] = useState([]);
   const [loadIndex, setloadIndex] = useState(1);
 
@@ -27,18 +27,11 @@ export default function AttractionsPage() {
         }
         return res.json();
       })
-      .then((data) => splitData(data)) // split the data into separate arrays for loading
       .then((data) => {
         // check if page is still mounted and state can be updated
         if (isMounted) {
           setloadIndex(1);
-          // data returned from backend will be [] if no attractions match the filters
-          if (data.length === 0) {
-            setPreviewElements(<p>Nothing Matched!</p>);
-          } else {
-            setPreviewElements(renderPreviewElements(data[0]));
-          }
-          setPreviewList(data);
+          setPreviewData(data);
         }
       });
 
@@ -49,13 +42,10 @@ export default function AttractionsPage() {
 
   /**
    * Shows the next set of attractions when the load more button is clicked.
+   * TODO: https://stackoverflow.com/questions/30253287/lazy-loading-using-nodejs-and-mongodb-as-backend-data
    */
   function handleLoadClick() {
     setloadIndex(loadIndex + 1);
-    setPreviewElements((prev) => [
-      ...prev,
-      ...renderPreviewElements(previewData[loadIndex]),
-    ]);
   }
 
   /**
@@ -72,34 +62,50 @@ export default function AttractionsPage() {
     return splitData;
   }
 
-  /**
-   * Tranforms preview data into elements.
-   * @param { Array } data - a chunk of data to be rendered
-   * @returns HTML preview elements
-   */
-  function renderPreviewElements(data) {
-    let previewElements = [];
-    for (const doc of data) {
-      const previewElement = <Preview data={doc} key={doc.attraction_id} />;
-      previewElements.push(previewElement);
+  function showPreviews() {
+    console.log(!!previewData);
+    if (previewData) {
+      if (previewData.length === 0)
+        return <p className="self-center">Nothing Matched!</p>;
+      return (
+        <div className="grid grid-cols-2">
+          {previewData.map((doc) => (
+            <Preview data={doc} key={doc.attraction_id} />
+          ))}
+        </div>
+      );
     }
-    return previewElements;
+    return null;
+  }
+
+  /**
+   * TODO: revise conditions after lazy loading is implemented, load more button will like show even at max until then
+   * @returns a load more button if all conditions are met, otherwise nothing is returned
+   */
+  function showLoadMoreButton() {
+    return (
+      previewData &&
+      previewData.length > 1 &&
+      loadIndex < previewData.length && (
+        <button className="self-center w-[16%]" onClick={handleLoadClick}>
+          Load More
+        </button>
+      )
+    );
   }
 
   return (
     <div className="container px-[8%] py-8">
       <NavBar />
       <h1 className="text-4xl mb-4">Attractions</h1>
-      <QueryParamContext.Provider value={value}>
-        <Facets />
-      </QueryParamContext.Provider>
-      <div className="">
-        <div className="">{previewElements}</div>
-        {previewData.length > 1 && loadIndex < previewData.length && (
-          <button className="" onClick={handleLoadClick}>
-            Load More
-          </button>
-        )}
+      <div className="flex justify-between">
+        <QueryParamContext.Provider value={value}>
+          <Facets />
+        </QueryParamContext.Provider>
+        <div className="relative flex flex-col justify-center w-[69%]">
+          {showPreviews()}
+          {showLoadMoreButton()}
+        </div>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ export default function Facets() {
   }, [facets]);
 
   return (
-    <div className="Facets">
+    <div className="inline-block w-[27%]">
       <FacetsContext.Provider value={value}>
         <Dropdown category="region" />
         <Dropdown category="city" />
