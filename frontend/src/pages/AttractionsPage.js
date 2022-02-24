@@ -87,17 +87,17 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="AttractionsPage container">
+    <div className="container px-[8%]">
       <NavBar />
-      <h1>Attractions</h1>
+      <h1 className="text-4xl">Attractions</h1>
       <QueryParamContext.Provider value={value}>
-        <Facets className="Dropdown__container" />
+        <Facets />
       </QueryParamContext.Provider>
-      <div className="grid-container">
-        <div className="grid">{previewElements}</div>
+      <div className="">
+        <div className="">{previewElements}</div>
         {previewData.length > 1 && loadIndex < previewData.length && (
-          <button id="AttractionsPage__button" onClick={handleLoadClick}>
-            LOAD MORE
+          <button className="" onClick={handleLoadClick}>
+            Load More
           </button>
         )}
       </div>

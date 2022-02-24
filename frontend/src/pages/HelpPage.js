@@ -6,7 +6,7 @@ import "../css/HelpPage.css";
 
 export default function HelpPage() {
   return (
-    <div className="HelpPage container">
+    <div className="container px-[8%]">
       <NavBar />
       <h1>Help</h1>
       <div className="HelpPage__faq-container">

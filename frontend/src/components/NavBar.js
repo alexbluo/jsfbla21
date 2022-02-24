@@ -1,29 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import NavBarLink from "./NavBarLink";
 import "../css/NavBar.css";
 
 export default function NavBar() {
   return (
-    <nav className="NavBar">
-      <div className="NavBar__right">
-        <ul>
-          <li className="NavBar__item">
-            <NavLink className="NavBar__link" to="/attractions">
-              Attractions
-            </NavLink>
-          </li>
-          <li className="NavBar__item">
-            <NavLink className="NavBar__link" to="/map">
-              Map
-            </NavLink>
-          </li>
-          <li className="NavBar__item">
-            <NavLink className="NavBar__link" to="/help">
-              Help
-            </NavLink>
-          </li>
-        </ul>
-      </div>
+    <nav className="fixed left-0 top-0 z-10 flex flex-row-reverse h-12 w-full bg-red">
+      <ul className="flex self-center">
+        <NavBarLink path="/attractions">Attractions</NavBarLink>
+        <NavBarLink path="/map">Map</NavBarLink>
+        <NavBarLink path="/help">Help</NavBarLink>
+      </ul>
     </nav>
   );
 }

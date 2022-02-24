@@ -21,10 +21,10 @@ h1 {
   color: var(--flag-black);
 }
 
-.container {
+/* .container {
   margin-left: 7%;
   width: 86%;
-}
+} */
 
 .grid-container {
   position: relative;
@@ -38,11 +38,6 @@ h1 {
   gap: 4rem;
   grid-template-areas: "send help";
   grid-auto-columns: 1fr 1fr;
-}
-
-ul {
-  list-style: none;
-  white-space: nowrap;
 }
 
 /* width */
