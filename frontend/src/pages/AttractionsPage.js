@@ -31,14 +31,8 @@ export default function AttractionsPage() {
       .then((data) => {
         // check if page is still mounted and state can be updated
         if (isMounted) {
-          // check if previewData is null, which only occurs on initial render
-          setPreviewData([...previewData, ...data])
-          // if (previewData) {
-          //   // if previewData is not null then previous previewData can be and updated
-          //   setPreviewData([...previewData, data]);
-          // } else {
-          //   setPreviewData(data);
-          // }
+          // update preview data with both new previous data
+          setPreviewData((previous) => [...previous, ...data])
         }
       });
 
@@ -48,7 +42,7 @@ export default function AttractionsPage() {
   }, [pageNumber, queryParam]);
 
   // useEffect(() => {
-  //   setPreviewData(null);
+  //   setPreviewData([]);
   //   setPageNumber(0);
   // }, [queryParam]);
 
@@ -62,8 +56,7 @@ export default function AttractionsPage() {
 
   function renderPreviews() {
     return (
-      previewData &&
-      (previewData.length === 0 ? (
+      previewData.length === 0 ? (
         <p className="self-center">Nothing Matched!</p>
       ) : (
         <div className="grid grid-cols-2">
@@ -71,7 +64,7 @@ export default function AttractionsPage() {
             return <Preview data={doc} key={doc.attraction_id} />;
           })}
         </div>
-      ))
+      )
     );
   }
 
