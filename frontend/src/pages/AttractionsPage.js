@@ -32,7 +32,7 @@ export default function AttractionsPage() {
         // check if page is still mounted and state can be updated
         if (isMounted) {
           // check if previewData is null, which only occurs on initial render
-          setPreviewData(data)
+          setPreviewData([...previewData, ...data])
           // if (previewData) {
           //   // if previewData is not null then previous previewData can be and updated
           //   setPreviewData([...previewData, data]);
@@ -47,10 +47,10 @@ export default function AttractionsPage() {
     };
   }, [pageNumber, queryParam]);
 
-  useEffect(() => {
-    setPreviewData(null);
-    setPageNumber(0);
-  }, [queryParam]);
+  // useEffect(() => {
+  //   setPreviewData(null);
+  //   setPageNumber(0);
+  // }, [queryParam]);
 
   /**
    * Shows the next set of attractions when the load more button is clicked.

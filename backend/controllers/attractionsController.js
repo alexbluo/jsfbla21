@@ -4,7 +4,8 @@ exports.getOrMatchAll = (req, res) => {
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
       req.query.page,
-      formatFinalFilter(parseQuery(req.query)), // turn the query object into a filter compatible with MongoDB
+      // turn the query object into a filter compatible with MongoDB
+      formatFinalFilter(parseQuery(req.query)),
       (data) => res.send(data)
     );
   } else {
@@ -45,9 +46,11 @@ function parseQuery(query) {
     const parsedEntry = { type: value, val: key }; // format of parsed entry to pass to filter
 
     if (parsedQueries.hasOwnProperty(value)) {
-      parsedQueries[value].push(parsedEntry); // push the object to an array to group with similar categories
+      // push the object to an array in order to group with similar categories
+      parsedQueries[value].push(parsedEntry);
     } else {
-      parsedQueries[value] = [parsedEntry]; // otherwise create a new array
+      // otherwise create a new array
+      parsedQueries[value] = [parsedEntry];
     }
   }
 

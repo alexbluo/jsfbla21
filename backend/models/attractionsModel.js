@@ -11,10 +11,9 @@ exports.matchAll = (pageNumber, query, callback) => {
       .collection("attractions")
       .find(query)
       .sort({ attraction_name: 1 })
-      .skip(pageNumber > 0 ? (pageNumber - 1) * nPerPage : 0)
+      .skip(pageNumber * nPerPage)
       .limit(nPerPage)
       .forEach((doc) => data.push(doc));
-    if (data.length === 0) data = null;
     client.close();
     callback(data);
   });
@@ -31,7 +30,6 @@ exports.getAll = (pageNumber, callback) => {
       .skip(pageNumber * nPerPage)
       .limit(nPerPage)
       .forEach((doc) => data.push(doc));
-    if (data.length === 0) data = null;
     client.close();
     callback(data);
   });
