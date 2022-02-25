@@ -3,11 +3,13 @@ const attractionsModel = require("../models/attractionsModel");
 exports.getOrMatchAll = (req, res) => {
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
+      req.query.page,
       formatFinalFilter(parseQuery(req.query)), // turn the query object into a filter compatible with MongoDB
       (data) => res.send(data)
     );
   } else {
-    attractionsModel.getAll((data) => res.send(data));
+    console.log(req.query); 
+    attractionsModel.getAll(req.query.page, (data) => res.send(data));
   }
 };
 
@@ -31,21 +33,21 @@ function checkQuery(query) {
 }
 
 /**
- * Parses the req.query object by reversing the keys with values
- * and separating each entry into a new object
+ * Parses the req.query object by reversing the keys with values and separating each entry into a new object
  * @param { Request.query } query - the req.query object
- * @returns { Object.<string, string> } the parsed query object
+ * @returns { Object.<string, Array<Object.<string, string>>> } the parsed query object, grouped by category
  */
 function parseQuery(query) {
   let parsedQueries = {};
 
   for (const [key, value] of Object.entries(query)) {
-    const matchString = { type: value, val: key };
+    if (key == "page") continue; // dont format key value pair for pagination
+    const parsedEntry = { type: value, val: key }; // format of parsed entry to pass to filter
 
     if (parsedQueries.hasOwnProperty(value)) {
-      parsedQueries[value].push(matchString);
+      parsedQueries[value].push(parsedEntry); // push the object to an array to group with similar categories
     } else {
-      parsedQueries[value] = [matchString];
+      parsedQueries[value] = [parsedEntry]; // otherwise create a new array
     }
   }
 

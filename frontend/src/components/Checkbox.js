@@ -13,7 +13,7 @@ export default function Checkbox(props) {
     const param = `${encodeSpaces(props.field)}=${props.category}`;
     
     if (checked) {
-      setQueryParam(queryParam + "&" + param);
+      setQueryParam(`${queryParam}&${param}`);
     } else {
       setQueryParam(queryParam.replace(param, ""));
     }
