@@ -31,7 +31,7 @@ export default function AttractionsPage() {
       .then((data) => {
         // check if page is still mounted and state can be updated
         if (isMounted) {
-          // update preview data with both new previous data
+          // update preview data with both new and previous data
           setPreviewData((previous) => [...previous, ...data])
         }
       });
