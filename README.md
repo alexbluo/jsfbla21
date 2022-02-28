@@ -1,25 +1,29 @@
 # Maryland Tourist Attractions Searcher
 Created by Alex Luo for FBLA Coding & Programming 2021-2022
 
-### Overview
-### Tech Stack
+## Overview
+This is a website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters through a familiar faceted or fulltext search and view detailed information on results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
 
-This project uses the MERN stack, which is MongoDB, Express, React, Node, and a REST API. I also used some additional tools such as create-react-app, which utilizes webpack and websockets.
+## Tech Stack
 
-### Conventions:
-  File architecture is similar to MVC, with views/templates replaced by pages, which are really just entry-point React components
+This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and a REST API. Other notable technologies used include: 
+- Vite (build tool)
+- TailwindCSS (CSS framework)
+- Atlas (cloud database hosting)
+- Heroku (deployment)
+- Puppeteer (web scraping)
+- Axios (fetching)
+- Yarn (package management)
+- Git/GitHub (version control)
 
-  CSS properties are arranged in the following order:
-    position
-    display
-    box
-    color
-    text
-    misc.
-  
+## Conventions:
 
+File architecture is similar to MVC, with views/templates replaced by pages, which are really just entry-point React components.
 
-### Future Plans
+CSS properties are arranged in the following order: 
+position => display => box => color => text => misc.
+
+## Future Plans
 
 Below is a list of features and technologies which are on track to be implemented, in order of precedence:
 
@@ -27,17 +31,17 @@ Below is a list of features and technologies which are on track to be implemente
 - Fulltext search
 - Easy clearing of checked fields
 - Redesign of map page UI and popup system
-  - Replace current library for Google Maps API with one that supports both React and InfoWindows
+  - Replace the current library for Google Maps API with one that supports both React and InfoWindows
   - Reduce map size and display information on the side instead of in popups
 - Add maps to attraction detail pages
 - Update to internal checkbox system
+- Deploy with Heroku
 - Docker because it sounds fun
-- Deploy with Heroku at the end
 - Style landing page
 - Responsive layouts
 - Performance improvements
 
-### Sourcing
+## Sourcing
 
 - Attractions Data: https://www.visitmaryland.org/things-to-do/attractions
 - No Image: https://depositphotos.com/vector-images/no-image-available.html
