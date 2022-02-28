@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
 import Popup from "./Popup";
-import findFacet from "../utils/findFacet";
+import findFacet from "../utils/findFacet.js";
 import "../css/Map.css";
 
 export default function Map({ center }) {
@@ -11,7 +11,7 @@ export default function Map({ center }) {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-
+  
   useEffect(() => {
     let isMounted = true;
     const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
@@ -46,7 +46,7 @@ export default function Map({ center }) {
     <div className="Map">
       <div className="GoogleMapReact">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+          bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY }}
           defaultCenter={center}
           defaultZoom={11}
         >

@@ -2,7 +2,6 @@ import React from "react";
 import ButtonLink from "./ButtonLink";
 import noImage from "../images/noImage.png";
 import findFacet from "../utils/findFacet";
-import "../css/Popup.css";
 
 export default function Popup(props) {
   const data = props.data;

@@ -1,6 +1,5 @@
 import React from "react";
 import NavBarLink from "./NavBarLink";
-import "../css/NavBar.css";
 
 export default function NavBar() {
   return (

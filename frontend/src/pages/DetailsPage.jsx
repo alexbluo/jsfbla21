@@ -4,7 +4,6 @@ import ButtonLink from "../components/ButtonLink";
 import NavBar from "../components/NavBar";
 import noImage from "../images/noImage.png";
 import findFacet from "../utils/findFacet";
-import "../css/DetailsPage.css";
 
 export default function DetailsPage() {
   const [data, setData] = useState(null);

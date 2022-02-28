@@ -2,7 +2,6 @@ import React, { useState, useContext, } from "react";
 import Checkbox from "./Checkbox";
 import { FacetsContext } from "./Facets";
 import dropdownIcon from "../images/dropdownIcon.png";
-import "../css/Dropdown.css";
 
 export default function Dropdown(props) {
   const [isOpened, setIsOpened] = useState(false);

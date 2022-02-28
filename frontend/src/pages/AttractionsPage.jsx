@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
-import "../css/AttractionsPage.css";
 
 // query param string to be passed up from child checkboxes
 export const QueryParamContext = React.createContext({

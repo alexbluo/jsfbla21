@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { FacetsContext } from "./Facets";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import encodeSpaces from "../utils/encodeSpaces"
-import "../css/Checkbox.css";
 
 export default function Checkbox(props) {
   const { facets, setFacets } = useContext(FacetsContext);

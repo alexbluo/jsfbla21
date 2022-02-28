@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
-import "../css/Facets.css";
 
 export const FacetsContext = React.createContext({
   facets: {},

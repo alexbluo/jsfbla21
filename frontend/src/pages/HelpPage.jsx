@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Marker from "../components/Marker";
 import ButtonLink from "../components/ButtonLink";
-import "../css/HelpPage.css";
 
 export default function HelpPage() {
   return (

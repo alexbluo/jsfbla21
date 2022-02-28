@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Marker.css";
+import "../css/Marker.css"
 
 export default function Marker(props) {
   return (
