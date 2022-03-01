@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
@@ -11,23 +12,15 @@ export default function Map({ center }) {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  
-  useEffect(() => {
+
+  useEffect(async () => {
     let isMounted = true;
     const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
 
-    fetch(`/api/attractions/near${queryParam}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (isMounted) {
-          setMarkerData(data);
-        }
-      });
+    const res = await axios.get(`/api/attractions/near${queryParam}`);
+    if (isMounted) {
+      setMarkerData(res.data);
+    }
 
     return () => {
       isMounted = false;

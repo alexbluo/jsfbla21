@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Dropdown from "./Dropdown";
 
 export const FacetsContext = React.createContext({
@@ -15,19 +16,16 @@ export default function Facets() {
     fetchFacets("city");
     fetchFacets("category");
     fetchFacets("amenity");
-
-    function fetchFacets(category) {
-      fetch(`/api/facets/${category}`)
-        .then((data) => data.json())
-        .then((data) => {
-          let facetsCopy = facets;
-          facetsCopy[category] = data[category].reduce(
-            // eslint-disable-next-line no-sequences
-            (acc, curr) => ((acc[curr] = false), acc),
-            {}
-          );
-          setFacets(facetsCopy);
-        });
+    
+    async function fetchFacets(category) {
+      const res = await axios.get(`/api/facets/${category}`);
+      const facetsCopy = facets;
+      // convert the data value from an array to an object and update facets
+      facetsCopy[category] = res.data[category].reduce(
+        (acc, curr) => ((acc[curr] = false), acc),
+        {}
+      );
+      setFacets(facetsCopy); // maybe use 
     }
   }, [facets]);
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
@@ -16,24 +17,18 @@ export default function AttractionsPage() {
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
 
-  useEffect(() => {
+  useEffect(async () => {
     let isMounted = true;
     console.log(pageNumber);
 
-    fetch(`/api/attractions?page=${pageNumber}${queryParam}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        // check if page is still mounted and state can be updated
-        if (isMounted) {
-          // update preview data with both new and previous data
-          setPreviewData((previous) => [...previous, ...data])
-        }
-      });
+    const res = await axios.get(
+      `/api/attractions?page=${pageNumber}${queryParam}`
+    );
+    // check if page is still mounted and state can be updated
+    if (isMounted) {
+      // update preview data with both new and previous data
+      setPreviewData((previous) => [...previous, ...res.data]);
+    }
 
     return () => {
       isMounted = false;
@@ -54,16 +49,14 @@ export default function AttractionsPage() {
   }
 
   function renderPreviews() {
-    return (
-      previewData.length === 0 ? (
-        <p className="self-center">Nothing Matched!</p>
-      ) : (
-        <div className="grid grid-cols-2">
-          {previewData.map((doc) => {
-            return <Preview data={doc} key={doc.attraction_id} />;
-          })}
-        </div>
-      )
+    return previewData.length === 0 ? (
+      <p className="self-center">Nothing Matched!</p>
+    ) : (
+      <div className="grid grid-cols-2">
+        {previewData.map((doc) => {
+          return <Preview data={doc} key={doc.attraction_id} />;
+        })}
+      </div>
     );
   }
 

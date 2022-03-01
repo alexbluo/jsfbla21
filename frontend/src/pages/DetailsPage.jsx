@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import NavBar from "../components/NavBar";
@@ -9,14 +10,11 @@ export default function DetailsPage() {
   const [data, setData] = useState(null);
   const id = useParams().id;
 
-  useEffect(() => {
+  useEffect(async () => {
     let isMounted = true;
-
-    fetch(`/api/attractions/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (isMounted) setData(data);
-      });
+    const res = await axios.get(`/api/attractions/${id}`);
+    
+    if (isMounted) setData(res.data);
 
     return () => {
       isMounted = false;
