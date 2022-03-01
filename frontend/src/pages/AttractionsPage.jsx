@@ -17,10 +17,15 @@ export default function AttractionsPage() {
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
 
+  useEffect(() => {
+    setPreviewData([]);
+    setPageNumber(0);
+  }, [queryParam]);
+  
   useEffect(async () => {
     let isMounted = true;
     console.log(pageNumber);
-
+    
     const res = await axios.get(
       `/api/attractions?page=${pageNumber}${queryParam}`
     );
@@ -34,11 +39,6 @@ export default function AttractionsPage() {
       isMounted = false;
     };
   }, [pageNumber, queryParam]);
-
-  // useEffect(() => {
-  //   setPreviewData([]);
-  //   setPageNumber(0);
-  // }, [queryParam]);
 
   /**
    * Shows the next set of attractions when the load more button is clicked.

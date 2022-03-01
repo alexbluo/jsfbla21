@@ -25,7 +25,7 @@ export default function Facets() {
         (acc, curr) => ((acc[curr] = false), acc),
         {}
       );
-      setFacets(facetsCopy); // maybe use 
+      setFacets(facetsCopy); // maybe use... smthn else
     }
   }, [facets]);
 
