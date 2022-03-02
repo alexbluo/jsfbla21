@@ -1,42 +1,43 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Dropdown from "./Dropdown";
-
-export const FacetsContext = React.createContext({
-  facets: {},
-  setFacets: () => {},
-});
+import Checkbox from "./Checkbox";
 
 export default function Facets() {
   const [facets, setFacets] = useState({});
-  const value = { facets, setFacets };
+  const [loading, setLoading] = useState(true);
+  const categories = ["region", "city", "category", "amenity"];
 
-  useEffect(() => {
-    fetchFacets("region");
-    fetchFacets("city");
-    fetchFacets("category");
-    fetchFacets("amenity");
-    
+  useEffect(async () => {
+    for (const category of categories) {
+      fetchFacets(category);
+    }
+
     async function fetchFacets(category) {
       const res = await axios.get(`/api/facets/${category}`);
-      const facetsCopy = facets;
-      // convert the data value from an array to an object and update facets
-      facetsCopy[category] = res.data[category].reduce(
-        (acc, curr) => ((acc[curr] = false), acc),
-        {}
-      );
-      setFacets(facetsCopy); // maybe use... smthn else
+      setFacets((previous) => ({ ...previous, ...res.data }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const facetCategories = Object.keys(facets);
+    // check if all facet categories have completed fetching
+    if (categories.every((category) => facetCategories.includes(category))) {
+      setLoading(false);
     }
   }, [facets]);
 
-  return (
-    <div className="inline-block w-[27%]">
-      <FacetsContext.Provider value={value}>
-        <Dropdown category="region" />
-        <Dropdown category="city" />
-        <Dropdown category="category" />
-        <Dropdown category="amenity" />
-      </FacetsContext.Provider>
-    </div>
-  );
+  function renderDropdown() {
+    return (
+      !loading &&
+      Object.entries(facets).map(([key, value], index) => (
+        <Dropdown category={key} key={index}>
+          {value.map((field, index) => (
+            <Checkbox category={key} field={field} key={index} />
+          ))}
+        </Dropdown>
+      ))
+    );
+  }
+  return <div className="inline-block w-[27%]">{renderDropdown()}</div>;
 }

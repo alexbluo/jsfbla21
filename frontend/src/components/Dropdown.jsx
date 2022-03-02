@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
 import Checkbox from "./Checkbox";
-import { FacetsContext } from "./Facets";
 import dropdownIcon from "../images/dropdownIcon.png";
 
 export default function Dropdown(props) {
   const [isOpened, setIsOpened] = useState(false);
-  const { facets } = useContext(FacetsContext);
 
   return (
     <div>
@@ -24,10 +22,8 @@ export default function Dropdown(props) {
           isOpened ? "block" : "hidden"
         } text-base max-h-48 ml-4 mt-2 p-0 overflow-y-auto`}
       >
-        {facets[props.category] &&
-          Object.keys(facets[props.category]).map((field, index) => (
-            <Checkbox category={props.category} field={field} key={index} />
-          ))}
+        {props.children}
+        {/* checkboxes */}
       </ul>
     </div>
   );

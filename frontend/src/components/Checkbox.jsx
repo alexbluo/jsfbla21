@@ -1,36 +1,26 @@
-import React, { useContext, useEffect } from "react";
-import { FacetsContext } from "./Facets";
+import React, { useContext, useEffect, useState } from "react";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import encodeSpaces from "../utils/encodeSpaces";
 
 export default function Checkbox(props) {
-  const { facets, setFacets } = useContext(FacetsContext);
+  const [checked, setChecked] = useState(false);
   const { queryParam, setQueryParam } = useContext(QueryParamContext);
-  const checked = facets[props.category][props.field];
 
   useEffect(() => {
     const param = `${encodeSpaces(props.field)}=${props.category}`; // could replace with querystring library
-    console.log(param)
     if (checked) {
       setQueryParam(`${queryParam}&${param}`);
-    } else {
+    } else { // maybe try checking if queryparam includes param..?
       setQueryParam(queryParam.replace(param, ""));
     }
   }, [checked]);
-
-  function handleCheckedChange() {
-    let facetsCopy = { ...facets };
-    facetsCopy[props.category][props.field] = !checked;
-    setFacets(facetsCopy);
-  }
 
   return (
     <li className="Checkbox">
       <label>
         <input
           type="checkbox"
-          onChange={handleCheckedChange}
-          checked={checked}
+          onChange={(event) => setChecked(event.target.checked)}
         />
         {props.field}
       </label>
