@@ -11,7 +11,7 @@ export default function Checkbox(props) {
     if (checked) {
       setQueryParam(`${queryParam}&${param}`);
     } else { // maybe try checking if queryparam includes param..?
-      setQueryParam(queryParam.replace(param, ""));
+      setQueryParam(queryParam.replace(`&${param}`, ""));
     }
   }, [checked]);
 

@@ -16,7 +16,7 @@ export default function AttractionsPage() {
 
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
-
+  
   useEffect(async () => {
     let isMounted = true;
     console.log(pageNumber);
@@ -38,12 +38,12 @@ export default function AttractionsPage() {
     return () => {
       isMounted = false;
     };
-  }, [pageNumber]);
-
+  }, [pageNumber, queryParam]);
+  
   useEffect(() => {
+    console.log(queryParam);
     setPageNumber(0);
   }, [queryParam]);
-
   /**
    * Shows the next set of attractions when the load more button is clicked.
    * TODO: https://stackoverflow.com/questions/30253287/lazy-loading-using-nodejs-and-mongodb-as-backend-data
@@ -54,7 +54,7 @@ export default function AttractionsPage() {
 
   function renderPreviews() {
     return previewData.length === 0 ? (
-      <p className="self-center">Nothing Matched!</p>
+      <p>Nothing Matched!</p>
     ) : (
       <div className="grid grid-cols-2">
         {previewData.map((doc) => {
@@ -73,7 +73,7 @@ export default function AttractionsPage() {
       previewData &&
       previewData.length > 1 && (
         <button
-          className="self-center w-[16%] rounded-sm bg-red text-white"
+          className="w-[16%] rounded-sm bg-red text-white"
           onClick={handleLoadClick}
         >
           Load More
@@ -90,8 +90,7 @@ export default function AttractionsPage() {
         <QueryParamContext.Provider value={value}>
           <Facets />
         </QueryParamContext.Provider>
-        <div className="relative flex flex-col justify-center w-[69%]">
-          {/* ^ use items-center? */}
+        <div className="relative flex flex-col items-center w-[69%]">
           {renderPreviews()}
           {renderLoadMoreButton()}
         </div>
