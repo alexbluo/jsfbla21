@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { FacetsContext } from "./Facets";
 import { QueryParamContext } from "../pages/AttractionsPage";
-import encodeSpaces from "../utils/encodeSpaces"
+import encodeSpaces from "../utils/encodeSpaces";
 
 export default function Checkbox(props) {
   const { facets, setFacets } = useContext(FacetsContext);
@@ -9,8 +9,8 @@ export default function Checkbox(props) {
   const checked = facets[props.category][props.field];
 
   useEffect(() => {
-    const param = `${encodeSpaces(props.field)}=${props.category}`;
-    
+    const param = `${encodeSpaces(props.field)}=${props.category}`; // could replace with querystring library
+    console.log(param)
     if (checked) {
       setQueryParam(`${queryParam}&${param}`);
     } else {

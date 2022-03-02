@@ -17,28 +17,32 @@ export default function AttractionsPage() {
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
 
-  useEffect(() => {
-    setPreviewData([]);
-    setPageNumber(0);
-  }, [queryParam]);
-  
   useEffect(async () => {
     let isMounted = true;
     console.log(pageNumber);
-    
+
     const res = await axios.get(
       `/api/attractions?page=${pageNumber}${queryParam}`
     );
     // check if page is still mounted and state can be updated
     if (isMounted) {
-      // update preview data with both new and previous data
-      setPreviewData((previous) => [...previous, ...res.data]);
+      if (pageNumber === 0) {
+        // if page number is zero then don't use previous data
+        setPreviewData(res.data);
+      } else {
+        // update preview data with both new and previous data
+        setPreviewData((previous) => [...previous, ...res.data]);
+      }
     }
 
     return () => {
       isMounted = false;
     };
-  }, [pageNumber, queryParam]);
+  }, [pageNumber]);
+
+  useEffect(() => {
+    setPageNumber(0);
+  }, [queryParam]);
 
   /**
    * Shows the next set of attractions when the load more button is clicked.
