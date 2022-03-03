@@ -23,7 +23,7 @@ export default function Facets() {
     async function fetchFacets(category) {
       const res = await axios.get(`/api/facets/${category}`);
       if (_isMounted.current) {
-        setFacets((previous) => ({ ...previous, ...res.data }));
+        setFacets((prev) => ({ ...prev, ...res.data }));
       }
     }
   }, []);

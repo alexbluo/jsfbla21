@@ -49,7 +49,7 @@ export default function Map({ center }) {
             <Marker
               lat={doc.coordinates[1]}
               lng={doc.coordinates[0]}
-              onClick={() => setSelectedMarker(doc)} // ultimately passes this marker's data to Popup
+              onClick={() => setSelectedMarker(doc)}
               name={doc.attraction_name}
               address={doc.address}
               city={findFacet(doc, "city")}
@@ -59,12 +59,12 @@ export default function Map({ center }) {
             />
           ))}
         </GoogleMapReact>
-        {selectedMarker ? (
+        {selectedMarker && (
           <Popup
             data={selectedMarker}
             onCloseClick={() => setSelectedMarker(null)}
           />
-        ) : null}
+        )}
       </div>
       <div className="Map__search">
         <label>

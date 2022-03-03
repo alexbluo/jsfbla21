@@ -35,7 +35,7 @@ export default function AttractionsPage() {
         setPreviewData(res.data);
       } else {
         // update preview data with both new and previous data
-        setPreviewData((previous) => [...previous, ...res.data]);
+        setPreviewData((prev) => [...prev, ...res.data]);
       }
     }
   }, [pageNumber, queryParam]);
@@ -45,13 +45,6 @@ export default function AttractionsPage() {
       setPageNumber(0);
     }
   }, [queryParam]);
-
-  /**
-   * Shows the next set of attractions when the load more button is clicked.
-   */
-  function handleLoadClick() {
-    setPageNumber(pageNumber + 1);
-  }
 
   function renderPreviews() {
     return previewData.length === 0 ? (
@@ -75,7 +68,7 @@ export default function AttractionsPage() {
       previewData.length > 1 && (
         <button
           className="w-[16%] rounded-sm bg-red text-white"
-          onClick={handleLoadClick}
+          onClick={() => setPageNumber((prev) => (prev + 1))}
         >
           Load More
         </button>
