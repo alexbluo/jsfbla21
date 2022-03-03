@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 
 export default function Facets() {
+  const _isMounted = useRef(true);
   const [facets, setFacets] = useState({});
   const [loading, setLoading] = useState(true);
   const categories = ["region", "city", "category", "amenity"];
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
 
   useEffect(async () => {
     for (const category of categories) {
@@ -15,7 +22,9 @@ export default function Facets() {
 
     async function fetchFacets(category) {
       const res = await axios.get(`/api/facets/${category}`);
-      setFacets((previous) => ({ ...previous, ...res.data }));
+      if (_isMounted.current) {
+        setFacets((previous) => ({ ...previous, ...res.data }));
+      }
     }
   }, []);
 

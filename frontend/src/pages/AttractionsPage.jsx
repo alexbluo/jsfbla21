@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
@@ -11,21 +11,25 @@ export const QueryParamContext = React.createContext({
 });
 
 export default function AttractionsPage() {
+  const _isMounted = useRef(true);
   const [previewData, setPreviewData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
-  
-  useEffect(async () => {
-    let isMounted = true;
-    console.log(pageNumber);
 
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    }
+  }, [])
+
+  useEffect(async () => {
     const res = await axios.get(
       `/api/attractions?page=${pageNumber}${queryParam}`
     );
     // check if page is still mounted and state can be updated
-    if (isMounted) {
+    if (_isMounted.current) {
       if (pageNumber === 0) {
         // if page number is zero then don't use previous data
         setPreviewData(res.data);
@@ -35,18 +39,23 @@ export default function AttractionsPage() {
       }
     }
 
-    return () => {
-      isMounted = false;
-    };
+    // return () => {
+    //   _isMounted.current = false;
+    // };
   }, [pageNumber, queryParam]);
-  
+
   useEffect(() => {
-    console.log(queryParam);
-    setPageNumber(0);
+    if (_isMounted.current) {
+      setPageNumber(0);
+    }
+
+    // return () => {
+    //   _isMounted.current = false;
+    // }
   }, [queryParam]);
+
   /**
    * Shows the next set of attractions when the load more button is clicked.
-   * TODO: https://stackoverflow.com/questions/30253287/lazy-loading-using-nodejs-and-mongodb-as-backend-data
    */
   function handleLoadClick() {
     setPageNumber(pageNumber + 1);
@@ -57,9 +66,9 @@ export default function AttractionsPage() {
       <p>Nothing Matched!</p>
     ) : (
       <div className="grid grid-cols-2">
-        {previewData.map((doc) => {
-          return <Preview data={doc} key={doc.attraction_id} />;
-        })}
+        {previewData.map((doc) => (
+          <Preview data={doc} key={doc.attraction_id} />
+        ))}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
@@ -8,23 +8,24 @@ import findFacet from "../utils/findFacet.js";
 import "../css/Map.css";
 
 export default function Map({ center }) {
+  const _isMounted = useRef(true);
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  useEffect(async () => {
-    let isMounted = true;
-    const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
 
+  useEffect(async () => {
+    const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
     const res = await axios.get(`/api/attractions/near${queryParam}`);
-    if (isMounted) {
+    if (_isMounted.current) {
       setMarkerData(res.data);
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [searchRadius]);
 
   function handleInput(event) {
