@@ -33,7 +33,7 @@ export default function DetailsPage() {
   }
 
   return (
-    <div className="container px-[8%] py-8">
+    <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
       {data && (
         <div>

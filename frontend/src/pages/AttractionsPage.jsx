@@ -28,6 +28,7 @@ export default function AttractionsPage() {
     const res = await axios.get(
       `/api/attractions?page=${pageNumber}${queryParam}`
     );
+    
     // check if page is still mounted and state can be updated
     if (_isMounted.current) {
       if (pageNumber === 0) {
@@ -67,7 +68,7 @@ export default function AttractionsPage() {
       previewData &&
       previewData.length > 1 && (
         <button
-          className="w-[16%] rounded-sm bg-red text-white"
+          className="w-[16%] h-8 mt-8 rounded-md bg-red text-white"
           onClick={() => setPageNumber((prev) => (prev + 1))}
         >
           Load More
@@ -75,9 +76,9 @@ export default function AttractionsPage() {
       )
     );
   }
-
+  // TODO: change all containers to py to pt-8 and pb-16?
   return (
-    <div className="container px-[8%] py-8">
+    <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
       <h1 className="text-4xl mb-4">Attractions</h1>
       <div className="flex justify-between">

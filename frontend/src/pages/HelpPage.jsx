@@ -5,7 +5,7 @@ import ButtonLink from "../components/ButtonLink";
 
 export default function HelpPage() {
   return (
-    <div className="container px-[8%] py-8">
+    <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
       <h1 className="text-4xl mb-4">Help</h1>
       <h2>FAQ</h2>

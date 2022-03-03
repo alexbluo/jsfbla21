@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition((position) => {
 
 export default function MapPage() {
   return (
-    <div className="container px-[8%] py-8">
+    <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
       <h1 className="text-4xl mb-4">Map</h1>
       <Map center={center} />
