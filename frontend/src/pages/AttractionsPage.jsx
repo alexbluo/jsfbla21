@@ -38,20 +38,12 @@ export default function AttractionsPage() {
         setPreviewData((previous) => [...previous, ...res.data]);
       }
     }
-
-    // return () => {
-    //   _isMounted.current = false;
-    // };
   }, [pageNumber, queryParam]);
 
   useEffect(() => {
     if (_isMounted.current) {
       setPageNumber(0);
     }
-
-    // return () => {
-    //   _isMounted.current = false;
-    // }
   }, [queryParam]);
 
   /**
