@@ -2,7 +2,7 @@
 Created by Alex Luo for FBLA Coding & Programming 2021-2022
 
 ## Overview
-This is a website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters through a familiar faceted or fulltext search and view detailed information on results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
+Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information from results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
 
 ## Tech Stack
 
