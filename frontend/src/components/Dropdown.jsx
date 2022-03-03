@@ -7,7 +7,7 @@ export default function Dropdown(props) {
 
   return (
     <div>
-      <h2 className="text-xl text-gold">
+      <h2 className="mb-2 text-xl text-gold">
         {props.category.toUpperCase()}
         <input
           className="w-3 h-3 ml-2"
@@ -20,7 +20,7 @@ export default function Dropdown(props) {
       <ul
         className={`${
           isOpened ? "block" : "hidden"
-        } text-base max-h-48 ml-4 mt-2 p-0 overflow-y-auto`}
+        } text-base max-h-48 ml-4 p-0 overflow-y-auto`}
       >
         {props.children}
         {/* checkboxes */}

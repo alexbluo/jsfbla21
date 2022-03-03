@@ -33,13 +33,6 @@ h1 {
   padding-bottom: 8rem;
 }
 
-.grid {
-  display: grid;
-  gap: 4rem;
-  grid-template-areas: "send help";
-  grid-auto-columns: 1fr 1fr;
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 8px;

@@ -51,7 +51,7 @@ export default function AttractionsPage() {
     return previewData.length === 0 ? (
       <p>Nothing Matched!</p>
     ) : (
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-16">
         {previewData.map((doc) => (
           <Preview data={doc} key={doc.attraction_id} />
         ))}

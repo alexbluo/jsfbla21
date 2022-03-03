@@ -16,9 +16,10 @@ export default function Checkbox(props) {
   }, [checked]);
 
   return (
-    <li className="Checkbox">
+    <li>
       <label>
         <input
+          className="mr-1"
           type="checkbox"
           onChange={(event) => setChecked(event.target.checked)}
         />

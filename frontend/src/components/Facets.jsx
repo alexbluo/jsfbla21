@@ -3,11 +3,12 @@ import axios from "axios";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 
+const categories = ["region", "city", "category", "amenity"];
+
 export default function Facets() {
   const _isMounted = useRef(true);
   const [facets, setFacets] = useState({});
   const [loading, setLoading] = useState(true);
-  const categories = ["region", "city", "category", "amenity"];
 
   useEffect(() => {
     return () => {

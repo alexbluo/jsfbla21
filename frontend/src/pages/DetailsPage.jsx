@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
@@ -7,18 +7,20 @@ import noImage from "../images/noImage.png";
 import findFacet from "../utils/findFacet";
 
 export default function DetailsPage() {
+  const _isMounted = useRef(true);
   const [data, setData] = useState(null);
   const id = useParams().id;
 
-  useEffect(async () => {
-    let isMounted = true;
-    const res = await axios.get(`/api/attractions/${id}`);
-    
-    if (isMounted) setData(res.data);
-
+  useEffect(() => {
     return () => {
-      isMounted = false;
+      _isMounted.current = false;
     };
+  }, []);
+
+  useEffect(async () => {
+    const res = await axios.get(`/api/attractions/${id}`);
+
+    if (_isMounted.current) setData(res.data);
   }, [id]);
 
   /**
@@ -26,7 +28,7 @@ export default function DetailsPage() {
    * @returns the dangerouslySetInnerHTML object
    */
   function createAmenitiesMarkup() {
-    const amenities = `<ul class="DetailsPage__amenities-list"><li>${data.amenities.join(
+    const amenities = `<ul class="absolute max-w-[20%] max-h-[70%] ml-8 overflow-auto"><li>${data.amenities.join(
       "</li><li>"
     )}</li></ul>`;
     return { __html: amenities };
@@ -38,15 +40,15 @@ export default function DetailsPage() {
       {data && (
         <div>
           <h1 className="text-4xl mb-4">{data.attraction_name}</h1>
-          <div className="DetailsPage__grid-container">
-            <div className="DetailsPage__description">
-              <h2>Description</h2>
+          <div className="grid grid-cols-3 grid-rows-2">
+            <div className="px-[8%] py-[4%] bg-gold">
+              <h2 className="text-2xl mb-2">Description</h2>
               {data.description}
             </div>
 
-            <div className="DetailsPage__buttons">
-              <h2>Website & Contact</h2>
-              <div className="DetailsPage__buttons-grid">
+            <div className="px-[8%] py-[4%] text-red">
+              <h2 className="text-2xl mb-2">Website & Contact</h2>
+              <div className="grid grid-cols-2 gap-0 items-center bg-white text-center">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
@@ -75,7 +77,7 @@ export default function DetailsPage() {
             </div>
 
             <img
-              className="DetailsPage__attraction-image"
+              className="w-[100%] aspect-square object-fill"
               src={
                 data.attraction_image.includes("data")
                   ? noImage
@@ -84,8 +86,8 @@ export default function DetailsPage() {
               alt=""
             />
 
-            <div className="DetailsPage__amenities">
-              <h2>Amenities</h2>
+            <div className="px-[8%] py-[4%] text-red">
+              <h2 className="text-2xl mb-2">Amenities</h2>
               {data.amenities ? (
                 <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
               ) : (
@@ -93,24 +95,26 @@ export default function DetailsPage() {
               )}
             </div>
 
-            <div className="DetailsPage__location">
-              <h2>Location</h2>
+            <div className="px-[8%] py-[4%] bg-gold">
+              <h2 className="text-2xl mb-2">Location</h2>
               {data.address}
               <br />
               {findFacet(data, "city")}, {data.state}&nbsp;
               {data.zip}
               <br />
               <a
-                className="DetailsPage__directions-link"
+                className="text-white hover:text-red decoration-red decoration-4 underline underline-offset-4 duration-200 ease-in"
                 href={data.directions_link}
               >
                 Directions
               </a>
             </div>
 
-            <div className="DetailsPage__region">
-              <h2>Region</h2>
-              <h3>{findFacet(data, "region") && findFacet(data, "region")}</h3>
+            <div className="px-[8%] py-[4%] text-red">
+              <h2 className="text-2xl mb-2">Region</h2>
+              <h3 className="text-lg mb-2">
+                {findFacet(data, "region") && findFacet(data, "region")}
+              </h3>
               {data.region_image && <img src={data.region_image} alt="" />}
             </div>
           </div>
