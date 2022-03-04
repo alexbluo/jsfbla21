@@ -6,7 +6,6 @@
   "scripts": {
     "start": " concurrently \"cd backend && yarn start\" \"cd frontend && yarn start\" ",
     "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\" ",
-    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
