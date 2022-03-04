@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import Checkbox from "./Checkbox";
+import React, { useState } from "react";
 import dropdownIcon from "../images/dropdownIcon.png";
 
 export default function Dropdown(props) {
