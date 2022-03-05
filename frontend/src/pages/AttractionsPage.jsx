@@ -76,7 +76,7 @@ export default function AttractionsPage() {
       )
     );
   }
-  // TODO: change all containers to py to pt-8 and pb-16?
+  
   return (
     <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
