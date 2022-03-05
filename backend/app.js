@@ -4,10 +4,10 @@ const path = require("path");
 const facetsRouter = require("./routes/facets");
 const attractionsRouter = require("./routes/attractions");
 
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/dist/index.html"));
+  res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
 });
 
 app.use("/api/attractions", attractionsRouter);
