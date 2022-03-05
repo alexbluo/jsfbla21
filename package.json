@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cd backend && npm run start",
+    "heroku:postbuild": "cd frontend && npm install && npm run build",
     "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\""
   },
   "keywords": [],
