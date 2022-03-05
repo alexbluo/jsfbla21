@@ -4,7 +4,7 @@ require("dotenv").config();
 const nPerPage = 8;
 
 exports.matchAll = (pageNumber, query, callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
     const db = client.db("attractionsDB");
     await db
@@ -20,7 +20,7 @@ exports.matchAll = (pageNumber, query, callback) => {
 };
 
 exports.getAll = (pageNumber, callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
     const db = client.db("attractionsDB");
     await db
@@ -36,7 +36,7 @@ exports.getAll = (pageNumber, callback) => {
 };
 
 exports.getOne = (id, callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const db = client.db("attractionsDB");
     const data = await db
       .collection("attractions")
@@ -47,7 +47,7 @@ exports.getOne = (id, callback) => {
 };
 
 exports.getNear = (query, callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
     const db = client.db("attractionsDB");
     await db

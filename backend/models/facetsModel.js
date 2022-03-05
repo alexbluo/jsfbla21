@@ -2,7 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
 exports.getCities = (callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
       .collection("facets")
@@ -16,7 +16,7 @@ exports.getCities = (callback) => {
 }
 
 exports.getCategories = (callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
       .collection("attractions")
@@ -33,7 +33,7 @@ exports.getCategories = (callback) => {
 }
 
 exports.getAmenities = (callback) => {
-  MongoClient.connect(process.env.URI, async (err, client) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const facets = await client
       .db("attractionsDB")
       .collection("facets")
