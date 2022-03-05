@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "cd backend && node app.js",
+    "start": "node app.js",
     "heroku-postbuild": "cd frontend && yarn --production=false && yarn run build",
     "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\""
   },
