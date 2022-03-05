@@ -1,6 +1,7 @@
 const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
+  // could combine into one model function
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
       req.query.page,
@@ -9,7 +10,7 @@ exports.getOrMatchAll = (req, res) => {
       (data) => res.send(data)
     );
   } else {
-    console.log(req.query); 
+    console.log(req.query);
     attractionsModel.getAll(req.query.page, (data) => res.send(data));
   }
 };
@@ -42,8 +43,10 @@ function parseQuery(query) {
   let parsedQueries = {};
 
   for (const [key, value] of Object.entries(query)) {
-    if (key == "page") continue; // dont format key value pair for pagination
-    const parsedEntry = { type: value, val: key }; // format of parsed entry to pass to filter
+    // dont format page entry
+    if (key == "page") continue; 
+    // format of parsed entry to pass to filter
+    const parsedEntry = { type: value, val: key }; 
 
     if (parsedQueries.hasOwnProperty(value)) {
       // push the object to an array in order to group with similar categories

@@ -12,9 +12,9 @@ export const QueryParamContext = React.createContext({
 
 export default function AttractionsPage() {
   const _isMounted = useRef(true);
-  const [previewData, setPreviewData] = useState([]);
+  const [previewData, setPreviewData] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
-  const [totalPageCount, setTotalPageCount] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
   // TODO: add totalPageCount by taking cursor.count so that load more button goes away at max
   // TODO: fix nothing matched, style landing and help pages, redo map, make cool previews and maybe dropdown as well
 
@@ -37,10 +37,11 @@ export default function AttractionsPage() {
       if (pageNumber === 0) {
         // if page number is zero then don't use previous data
         setPreviewData(res.data.previewData);
-        setTotalPageCount(res.data.totalPageCount)
+        setHasNext(res.data.hasNext);
       } else {
-        // update preview data with both new and previous data
+        // otherwise paginate by updating preview data with both new and previous data
         setPreviewData((prev) => [...prev, ...res.data.previewData]);
+        setHasNext(res.data.hasNext);
       }
     }
   }, [pageNumber, queryParam]);
@@ -52,13 +53,14 @@ export default function AttractionsPage() {
   }, [queryParam]);
 
   function renderPreviews() {
-    return previewData.length === 0 ? (
+    return previewData && previewData.length === 0 ? (
       <p>Nothing Matched!</p>
     ) : (
       <div className="grid grid-cols-2 gap-16">
-        {previewData.map((doc) => (
-          <Preview data={doc} key={doc.attraction_id} />
-        ))}
+        {previewData &&
+          previewData.map((doc) => (
+            <Preview data={doc} key={doc.attraction_id} />
+          ))}
       </div>
     );
   }
@@ -69,8 +71,9 @@ export default function AttractionsPage() {
    */
   function renderLoadMoreButton() {
     return (
-      previewData &&
-      previewData.length > 1 && (
+      // previewData &&
+      // previewData.length > 0 &&
+      hasNext && (
         <button
           className="w-[16%] h-8 mt-8 rounded-md bg-red text-white"
           onClick={() => setPageNumber((prev) => prev + 1)}
