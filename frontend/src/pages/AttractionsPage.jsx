@@ -14,6 +14,9 @@ export default function AttractionsPage() {
   const _isMounted = useRef(true);
   const [previewData, setPreviewData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
+  const [totalPageCount, setTotalPageCount] = useState(0);
+  // TODO: add totalPageCount by taking cursor.count so that load more button goes away at max
+  // TODO: fix nothing matched, style landing and help pages, redo map, make cool previews and maybe dropdown as well
 
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
@@ -21,22 +24,23 @@ export default function AttractionsPage() {
   useEffect(() => {
     return () => {
       _isMounted.current = false;
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(async () => {
     const res = await axios.get(
       `/api/attractions?page=${pageNumber}${queryParam}`
     );
-    
+
     // check if page is still mounted and state can be updated
     if (_isMounted.current) {
       if (pageNumber === 0) {
         // if page number is zero then don't use previous data
-        setPreviewData(res.data);
+        setPreviewData(res.data.previewData);
+        setTotalPageCount(res.data.totalPageCount)
       } else {
         // update preview data with both new and previous data
-        setPreviewData((prev) => [...prev, ...res.data]);
+        setPreviewData((prev) => [...prev, ...res.data.previewData]);
       }
     }
   }, [pageNumber, queryParam]);
@@ -69,14 +73,14 @@ export default function AttractionsPage() {
       previewData.length > 1 && (
         <button
           className="w-[16%] h-8 mt-8 rounded-md bg-red text-white"
-          onClick={() => setPageNumber((prev) => (prev + 1))}
+          onClick={() => setPageNumber((prev) => prev + 1)}
         >
           Load More
         </button>
       )
     );
   }
-  
+
   return (
     <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
