@@ -5,9 +5,9 @@ const facetsRouter = require("./routes/facets");
 const attractionsRouter = require("./routes/attractions");
 
 app.use(express.static(path.join(__dirname, "frontend/build")));
-console.log(path.join(__dirname, "frontend/build"));
+console.log(path.join(__dirname, "/frontend/build/index.html"));
 app.get("*", (req, res) => {
-  res.sendFile(path.join("./frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
 });
 
 app.use("/api/attractions", attractionsRouter);
