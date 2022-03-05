@@ -18,7 +18,7 @@ export default function Facets() {
 
   useEffect(async () => {
     for (const category of categories) {
-      fetchFacets(category);
+      await fetchFacets(category);
     }
 
     async function fetchFacets(category) {

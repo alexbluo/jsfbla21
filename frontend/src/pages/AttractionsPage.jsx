@@ -71,8 +71,6 @@ export default function AttractionsPage() {
    */
   function renderLoadMoreButton() {
     return (
-      // previewData &&
-      // previewData.length > 0 &&
       hasNext && (
         <button
           className="w-[16%] h-8 mt-8 rounded-md bg-red text-white"
