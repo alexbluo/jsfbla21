@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const cors = require("cors");
 const facetsRouter = require("./routes/facets");
 const attractionsRouter = require("./routes/attractions");
 
-app.use(cors());
 app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 app.use("/api/attractions", attractionsRouter);

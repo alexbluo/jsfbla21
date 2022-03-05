@@ -17,6 +17,7 @@
     "build": "vite build",
     "preview": "vite preview --port 3000"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
