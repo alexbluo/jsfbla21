@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "cd backend && node app.js",
-    "heroku-postbuild": "cd frontend && yarn && yarn run build",
+    "heroku-postbuild": "cd frontend && yarn --production=false && yarn run build",
     "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\""
   },
   "keywords": [],
