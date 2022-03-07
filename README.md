@@ -43,5 +43,6 @@ Below is a list of features and technologies which are on track to be implemente
 
 ## Sourcing
 
+- MD Flag GIF: https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA
 - Attractions Data: https://www.visitmaryland.org/things-to-do/attractions
 - No Image: https://depositphotos.com/vector-images/no-image-available.html

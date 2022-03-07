@@ -77,7 +77,7 @@ export default function DetailsPage() {
             </div>
 
             <img
-              className="w-[100%] aspect-square object-fill"
+              className="w-full aspect-square object-fill"
               src={
                 data.attraction_image.includes("data")
                   ? noImage
