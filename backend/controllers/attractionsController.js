@@ -44,9 +44,9 @@ function parseQuery(query) {
 
   for (const [key, value] of Object.entries(query)) {
     // dont format page entry
-    if (key == "page") continue; 
+    if (key == "page") continue;
     // format of parsed entry to pass to filter
-    const parsedEntry = { type: value, val: key }; 
+    const parsedEntry = { type: value, val: key };
 
     if (parsedQueries.hasOwnProperty(value)) {
       // push the object to an array in order to group with similar categories

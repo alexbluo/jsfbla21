@@ -1,3 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Raleway:wght@100&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* dont know where to put stuff soo */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #111;
+}

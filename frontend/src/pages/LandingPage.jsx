@@ -4,18 +4,18 @@ import MDFlagGIF from "../images/MDFlagGIF.gif";
 
 export default function LandingPage() {
   return (
-    <div className="mt-[-40px]">
-      <img className="w-screen h-screen m-0 p-0" src={MDFlagGIF}></img>
-      {/* <h1>Maryland Attractions Searcher</h1>
-    //   <Link to="/attractions">
-    //     <button>Attractions</button>
-    //   </Link>
-    //   <Link to="/map">
-    //     <button>Map</button>
-    //   </Link>
-    //   <Link to="/help">
-    //     <button>Help</button>
-    //   </Link> */}
+    <div className="">
+      <img
+        className="fixed top-0 left-0 object-cover w-screen h-screen -z-10"
+        src={MDFlagGIF}
+      />
+
+      <div className="fixed top-0 left-0 z-10 flex flex-col items-center justify-center w-screen h-screen">
+        <h1 className="text-5xl font-serif">Maryland Attractions Searcher</h1>
+        <Link to="/attractions">
+          <button className="">Enter</button>
+        </Link>
+      </div>
     </div>
   );
 }

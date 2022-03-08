@@ -15,8 +15,6 @@ export default function AttractionsPage() {
   const [previewData, setPreviewData] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [hasNext, setHasNext] = useState(false);
-  // TODO: add totalPageCount by taking cursor.count so that load more button goes away at max
-  // TODO: fix nothing matched, style landing and help pages, redo map, make cool previews and maybe dropdown as well
 
   const [queryParam, setQueryParam] = useState("");
   const value = { queryParam, setQueryParam };
@@ -66,7 +64,6 @@ export default function AttractionsPage() {
   }
 
   /**
-   * TODO: revise conditions after lazy loading is implemented, load more button will like show even at max until then
    * @returns a load more button if all conditions are met, otherwise nothing is returned
    */
   function renderLoadMoreButton() {
@@ -85,7 +82,7 @@ export default function AttractionsPage() {
   return (
     <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
-      <h1 className="text-4xl mb-4">Attractions</h1>
+      <h1 className="mb-4 text-4xl">Attractions</h1>
       <div className="flex justify-between">
         <QueryParamContext.Provider value={value}>
           <Facets />

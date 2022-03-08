@@ -12,7 +12,7 @@ if (process.env.NODE_ENV == "production") {
 app.use("/api/attractions", attractionsRouter);
 app.use("/api/facets", facetsRouter);
 
-// Catches all other requests in case above routes are not 
+// Catches all other requests in case above routes are not
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });

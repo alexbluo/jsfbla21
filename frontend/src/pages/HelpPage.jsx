@@ -7,7 +7,7 @@ export default function HelpPage() {
   return (
     <div className="container px-[8%] pt-8 pb-16">
       <NavBar />
-      <h1 className="text-4xl mb-4">Help</h1>
+      <h1 className="mb-4 text-4xl">Help</h1>
       <h2>FAQ</h2>
       <div className="">
         <h3>

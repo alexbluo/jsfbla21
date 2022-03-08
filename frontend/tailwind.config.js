@@ -2,7 +2,7 @@ module.exports = {
   content: [
     "./src/components/*.{js,jsx,ts,tsx}",
     "./src/pages/*.{js,jsx,ts,tsx}",
-    "./index.html"
+    "./index.html",
   ],
   theme: {
     colors: {
@@ -11,7 +11,11 @@ module.exports = {
       gold: "rgb(234, 170, 0)",
       black: "rgb(0, 0, 0)",
     },
-    extend: {},
+    extend: {
+      animation: {
+        
+      }
+    },
   },
   plugins: [],
 };

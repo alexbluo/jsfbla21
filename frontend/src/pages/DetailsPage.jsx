@@ -39,16 +39,16 @@ export default function DetailsPage() {
       <NavBar />
       {data && (
         <div>
-          <h1 className="text-4xl mb-4">{data.attraction_name}</h1>
+          <h1 className="mb-4 text-4xl">{data.attraction_name}</h1>
           <div className="grid grid-cols-3 grid-rows-2">
             <div className="px-[8%] py-[4%] bg-gold">
-              <h2 className="text-2xl mb-2">Description</h2>
+              <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}
             </div>
 
             <div className="px-[8%] py-[4%] text-red">
-              <h2 className="text-2xl mb-2">Website & Contact</h2>
-              <div className="grid grid-cols-2 gap-0 items-center bg-white text-center">
+              <h2 className="mb-2 text-2xl">Website & Contact</h2>
+              <div className="grid items-center grid-cols-2 gap-0 text-center bg-white">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
@@ -77,7 +77,7 @@ export default function DetailsPage() {
             </div>
 
             <img
-              className="w-full aspect-square object-fill"
+              className="object-fill w-full aspect-square"
               src={
                 data.attraction_image.includes("data")
                   ? noImage
@@ -87,7 +87,7 @@ export default function DetailsPage() {
             />
 
             <div className="px-[8%] py-[4%] text-red">
-              <h2 className="text-2xl mb-2">Amenities</h2>
+              <h2 className="mb-2 text-2xl">Amenities</h2>
               {data.amenities ? (
                 <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
               ) : (
@@ -96,14 +96,14 @@ export default function DetailsPage() {
             </div>
 
             <div className="px-[8%] py-[4%] bg-gold">
-              <h2 className="text-2xl mb-2">Location</h2>
+              <h2 className="mb-2 text-2xl">Location</h2>
               {data.address}
               <br />
               {findFacet(data, "city")}, {data.state}&nbsp;
               {data.zip}
               <br />
               <a
-                className="text-white hover:text-red decoration-red decoration-4 underline underline-offset-4 duration-200 ease-in"
+                className="text-white underline duration-200 ease-in hover:text-red decoration-red decoration-4 underline-offset-4"
                 href={data.directions_link}
               >
                 Directions
@@ -111,8 +111,8 @@ export default function DetailsPage() {
             </div>
 
             <div className="px-[8%] py-[4%] text-red">
-              <h2 className="text-2xl mb-2">Region</h2>
-              <h3 className="text-lg mb-2">
+              <h2 className="mb-2 text-2xl">Region</h2>
+              <h3 className="mb-2 text-lg">
                 {findFacet(data, "region") && findFacet(data, "region")}
               </h3>
               {data.region_image && <img src={data.region_image} alt="" />}

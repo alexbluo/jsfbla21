@@ -34,15 +34,12 @@ Below is a list of features and technologies which are on track to be implemente
   - Replace the current library for Google Maps API with one that supports both React and InfoWindows
   - Reduce map size and display information on the side instead of in popups
 - Add maps to attraction detail pages
-- Update to internal checkbox system
-- Deploy with Heroku
 - Docker because it sounds fun
-- Style landing page
 - Responsive layouts
 - Performance improvements
 
 ## Sourcing
 
 - MD Flag GIF: https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA
-- Attractions Data: https://www.visitmaryland.org/things-to-do/attractions
-- No Image: https://depositphotos.com/vector-images/no-image-available.html
+- Attractions data: https://www.visitmaryland.org/things-to-do/attractions
+- No image: https://depositphotos.com/vector-images/no-image-available.html
