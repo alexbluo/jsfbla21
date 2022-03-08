@@ -13,13 +13,37 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        roboto: ["Roboto", "Poppins", "Open Sans"],
-        poppins: ["Poppins", "Roboto", "Open Sans"],
-        open_sans: ["Open Sans"],
-        monteserrat: ["Monteserrat", "Raleway"],
+        roboto: ["Roboto", "Poppins"],
+        poppins: ["Poppins", "Roboto"],
+        montserrat: ["Montserrat", "Raleway"],
         raleway: ["Raleway", "Monteserrat"],
       },
-      animation: {},
+      animation: {
+        "fade-in-down": "fade-in-down cubic-bezier(0.16, 1, 0.3, 1) 2s",
+        "fade-in-up": "fade-in-up cubic-bezier(0.16, 1, 0.3, 1) 2s",
+      },
+    },
+    keyframes: {
+      "fade-in-down": {
+        "0%": {
+          opacity: "0",
+          transform: "translateY(-100%)",
+        },
+        "100%": {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
+      },
+      "fade-in-up": {
+        "0%": {
+          opacity: "0",
+          transform: "translateY(100%)",
+        },
+        "100%": {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
+      },
     },
   },
   plugins: [],

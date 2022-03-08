@@ -70,7 +70,7 @@ export default function AttractionsPage() {
     return (
       hasNext && (
         <button
-          className="w-[16%] h-8 mt-8 rounded-md bg-red text-white"
+          className="px-4 py-2 mt-8 text-white rounded-md bg-red"
           onClick={() => setPageNumber((prev) => prev + 1)}
         >
           Load More
@@ -80,9 +80,11 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="container px-[8%] pt-8 pb-16">
+    <div
+      className="container px-[8%] pt-[4%] pb-16"
+    >
       <NavBar />
-      <h1 className="mb-4 text-4xl">Attractions</h1>
+      <h1 className="my-4 text-4xl">Attractions</h1>
       <div className="flex justify-between">
         <QueryParamContext.Provider value={value}>
           <Facets />
