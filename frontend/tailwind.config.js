@@ -12,9 +12,14 @@ module.exports = {
       black: "rgb(0, 0, 0)",
     },
     extend: {
-      animation: {
-        
-      }
+      fontFamily: {
+        roboto: ["Roboto", "Poppins", "Open Sans"],
+        poppins: ["Poppins", "Roboto", "Open Sans"],
+        open_sans: ["Open Sans"],
+        monteserrat: ["Monteserrat", "Raleway"],
+        raleway: ["Raleway", "Monteserrat"],
+      },
+      animation: {},
     },
   },
   plugins: [],
