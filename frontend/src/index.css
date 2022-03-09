@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* dont know where to put stuff soo */
+@layer components {
+  .content-body-container {
+    @apply container px-[8%] pt-[4%] pb-16;
+  }
+}
 
 /* width */
 ::-webkit-scrollbar {

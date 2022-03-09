@@ -35,7 +35,7 @@ export default function DetailsPage() {
   }
 
   return (
-    <div className="container px-[8%] pt-8 pb-16">
+    <div className="content-body-container">
       <NavBar />
       {data && (
         <div>

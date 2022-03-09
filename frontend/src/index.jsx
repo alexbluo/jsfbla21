@@ -9,7 +9,7 @@ import {
   Error404Page,
   MapPage,
 } from "./pages/pageExports";
-import "./index.css"
+import "./index.css";
 
 ReactDOM.render(
   <BrowserRouter>

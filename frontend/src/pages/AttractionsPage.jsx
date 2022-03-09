@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useQuery } from "react-query";
 import axios from "axios";
 import Facets from "../components/Facets";
 import Preview from "../components/Preview";
@@ -80,9 +81,9 @@ export default function AttractionsPage() {
   }
 
   return (
-    <div className="container px-[8%] pt-[4%] pb-16">
+    <div className="content-body-container">
       <NavBar />
-      <h1 className="my-4 text-4xl">Attractions</h1>
+      <h1 className="text-4xl">Attractions</h1>
       <div className="flex justify-between">
         <QueryParamContext.Provider value={value}>
           <Facets />

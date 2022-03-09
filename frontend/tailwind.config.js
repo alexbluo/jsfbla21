@@ -1,6 +1,3 @@
-// TODO: add apply for content-body
-// TODO: style/fix map (deleted index.css and now it doesnt work)
-
 module.exports = {
   content: [
     "./src/components/*.{js,jsx,ts,tsx}",

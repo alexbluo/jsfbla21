@@ -5,18 +5,11 @@ import ButtonLink from "../components/ButtonLink";
 
 export default function HelpPage() {
   return (
-    <div className="container px-[8%] pt-8 pb-16">
+    <div className="content-body-container">
       <NavBar />
       <h1 className="mb-4 text-4xl">Help</h1>
       <h2>FAQ</h2>
       <div className="">
-        <h3>
-          Why are new attractions not appearing when I enter more filters?
-        </h3>
-        <p>
-          New attractions will appear towards the bottom in the order which
-          facets are specified.
-        </p>
         <h3>What is the white and red marker on the map?</h3>
         <p>
           The white and red marker is your current location while the black and
@@ -46,9 +39,7 @@ export default function HelpPage() {
         <h3>Where can I find the source code?</h3>
         <p>
           The source code can be found&nbsp;
-          <a href="https://github.com/alexbluo/jsfbla21">here</a>. Unfortunately
-          the website is still in development so it isn't possible to host it
-          yourself.
+          <a href="https://github.com/alexbluo/jsfbla21">here</a>.
         </p>
         <div className="HelpPage__contact-button-container">
           <ButtonLink link="mailto:alexluo92823@gmail.com">
