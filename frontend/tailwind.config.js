@@ -1,3 +1,6 @@
+// TODO: add apply for content-body
+// TODO: style/fix map (deleted index.css and now it doesnt work)
+
 module.exports = {
   content: [
     "./src/components/*.{js,jsx,ts,tsx}",
@@ -10,6 +13,7 @@ module.exports = {
       white: "rgb(255, 255, 255)",
       gold: "rgb(234, 170, 0)",
       black: "rgb(0, 0, 0)",
+      transparent: "transparent",
     },
     extend: {
       fontFamily: {
