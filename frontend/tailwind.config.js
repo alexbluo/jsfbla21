@@ -1,4 +1,5 @@
 module.exports = {
+  mode: "jit",
   content: [
     "./src/components/*.{js,jsx,ts,tsx}",
     "./src/pages/*.{js,jsx,ts,tsx}",
@@ -28,7 +29,7 @@ module.exports = {
       "fade-in-down": {
         "0%": {
           opacity: "0",
-          transform: "translateY(-100%)",
+          transform: "translateY(-250%)",
         },
         "100%": {
           opacity: "1",
@@ -38,7 +39,7 @@ module.exports = {
       "fade-in-up": {
         "0%": {
           opacity: "0",
-          transform: "translateY(100%)",
+          transform: "translateY(250%)",
         },
         "100%": {
           opacity: "1",

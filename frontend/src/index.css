@@ -11,6 +11,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 /* Track */
@@ -23,10 +24,6 @@
   background: #555;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #444;
-}
-
 ::-webkit-scrollbar-thumb:active {
-  background: #111;
+  background: #444;
 }

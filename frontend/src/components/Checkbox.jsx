@@ -10,20 +10,21 @@ export default function Checkbox(props) {
     const param = `${encodeSpaces(props.field)}=${props.category}`; // could replace with querystring library
     if (checked) {
       setQueryParam(`${queryParam}&${param}`);
-    } else { // maybe try checking if queryparam includes param..?
+    } else {
+      // maybe try checking if queryparam includes param..?
       setQueryParam(queryParam.replace(`&${param}`, ""));
     }
   }, [checked]);
 
   return (
     <li>
-      <label>
+      <label className="inline-flex items-center text-lg hover:backdrop-brightness-150">
         <input
-          className="mr-1"
+          className="flex-shrink-0 w-4 h-4 mr-1 cursor-pointer"
           type="checkbox"
           onChange={(event) => setChecked(event.target.checked)}
         />
-        {props.field}
+        <span>{props.field}</span>
       </label>
     </li>
   );

@@ -37,17 +37,21 @@ export default function Facets() {
     }
   }, [facets]);
 
-  function renderDropdown() {
+  function renderDropdowns() {
     return (
-      !loading &&
-      Object.entries(facets).map(([key, value], index) => (
-        <Dropdown category={key} key={index}>
-          {value.map((field, index) => (
-            <Checkbox category={key} field={field} key={index} />
+      !loading && (
+        <div className="flex flex-col gap-4 rounded-xl">
+          {Object.entries(facets).map(([key, value], index) => (
+            <Dropdown category={key} key={index}>
+              {value.map((field, index) => (
+                <Checkbox category={key} field={field} key={index} />
+              ))}
+            </Dropdown>
           ))}
-        </Dropdown>
-      ))
+        </div>
+      )
     );
   }
-  return <div className="inline-block w-[27%]">{renderDropdown()}</div>;
+
+  return <div className="inline-block w-[27%]">{renderDropdowns()}</div>;
 }
