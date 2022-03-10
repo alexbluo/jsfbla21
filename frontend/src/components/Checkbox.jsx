@@ -20,7 +20,7 @@ export default function Checkbox(props) {
     <li>
       <label className="inline-flex items-center text-lg hover:backdrop-brightness-150">
         <input
-          className="flex-shrink-0 w-4 h-4 mr-1 cursor-pointer"
+          className="flex-shrink-0 w-4 h-4 mr-1 bg-white border-2 rounded-sm appearance-none cursor-pointer checked:bg-gold transition-colors"
           type="checkbox"
           onChange={(event) => setChecked(event.target.checked)}
         />

@@ -29,7 +29,7 @@ module.exports = {
       "fade-in-down": {
         "0%": {
           opacity: "0",
-          transform: "translateY(-250%)",
+          transform: "translateY(-200%)",
         },
         "100%": {
           opacity: "1",
@@ -39,7 +39,7 @@ module.exports = {
       "fade-in-up": {
         "0%": {
           opacity: "0",
-          transform: "translateY(250%)",
+          transform: "translateY(200%)",
         },
         "100%": {
           opacity: "1",

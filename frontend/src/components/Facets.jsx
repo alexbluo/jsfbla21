@@ -37,10 +37,11 @@ export default function Facets() {
     }
   }, [facets]);
 
-  function renderDropdowns() {
-    return (
-      !loading && (
-        <div className="flex flex-col gap-4 rounded-xl">
+  // 
+  return (
+    <div className="inline-block w-[27%]">
+      {!loading && (
+        <div className="flex flex-col gap-1 rounded-xl">
           {Object.entries(facets).map(([key, value], index) => (
             <Dropdown category={key} key={index}>
               {value.map((field, index) => (
@@ -49,9 +50,7 @@ export default function Facets() {
             </Dropdown>
           ))}
         </div>
-      )
-    );
-  }
-
-  return <div className="inline-block w-[27%]">{renderDropdowns()}</div>;
+      )}
+    </div>
+  );
 }

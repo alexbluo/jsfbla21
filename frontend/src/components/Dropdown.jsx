@@ -7,9 +7,10 @@ export default function Dropdown(props) {
   return (
     <div className="bg-black border-4 rounded-xl">
       <div
-        className="flex p-3 rounded cursor-pointer bg-gold"
+        className="flex items-center p-3 rounded-lg cursor-pointer bg-gold"
         onClick={() => setIsOpened(!isOpened)}
       >
+        {/* TODO: animate dropdown icon and checkbox styling => migrate to react query => redo maps */}
         <h2 className="text-lg text-black">{props.category.toUpperCase()}</h2>
         <img className="w-3 h-3 ml-2" src={dropdownIcon} alt="" />
       </div>
