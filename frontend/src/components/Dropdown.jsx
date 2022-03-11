@@ -10,7 +10,6 @@ export default function Dropdown(props) {
         className="flex items-center p-3 rounded cursor-pointer bg-gold"
         onClick={() => setIsOpened(!isOpened)}
       >
-        {/* TODO: animate dropdown icon => migrate to react query => redo maps */}
         <h2 className="text-lg text-black font-raleway">
           {props.category.toUpperCase()}
         </h2>
