@@ -37,11 +37,10 @@ export default function Facets() {
     }
   }, [facets]);
 
-  // 
   return (
     <div className="inline-block w-[27%]">
       {!loading && (
-        <div className="flex flex-col gap-1 rounded-xl">
+        <div className="flex flex-col gap-1 bg-black border-4 rounded-md">
           {Object.entries(facets).map(([key, value], index) => (
             <Dropdown category={key} key={index}>
               {value.map((field, index) => (

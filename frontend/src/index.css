@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  .page-title {
+    @apply 
+  }
   .content-body-container {
     @apply container px-[8%] pt-[4%] pb-16;
   }
