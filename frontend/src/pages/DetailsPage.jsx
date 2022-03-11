@@ -39,7 +39,7 @@ export default function DetailsPage() {
       <NavBar />
       {data && (
         <div>
-          <h1 className="mb-4 text-4xl">{data.attraction_name}</h1>
+          <h1 className="page-title">{data.attraction_name}</h1>
           <div className="grid grid-cols-3 grid-rows-2">
             <div className="px-[8%] py-[4%] bg-gold">
               <h2 className="mb-2 text-2xl">Description</h2>

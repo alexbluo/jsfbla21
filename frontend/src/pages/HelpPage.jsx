@@ -7,7 +7,7 @@ export default function HelpPage() {
   return (
     <div className="content-body-container">
       <NavBar />
-      <h1 className="mb-4 text-4xl">Help</h1>
+      <h1 className="page-title">Help</h1>
       <h2>FAQ</h2>
       <div className="">
         <h3>What is the white and red marker on the map?</h3>

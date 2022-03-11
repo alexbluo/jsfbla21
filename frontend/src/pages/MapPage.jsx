@@ -15,7 +15,7 @@ export default function MapPage() {
   return (
     <div className="content-body-container">
       <NavBar />
-      <h1 className="text-4xl mb-4">Map</h1>
+      <h1 className="page-title">Map</h1>
       <Map center={center} />
     </div>
   );

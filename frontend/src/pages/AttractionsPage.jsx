@@ -83,7 +83,7 @@ export default function AttractionsPage() {
   return (
     <div className="content-body-container">
       <NavBar />
-      <h1 className="font-montserrat mb-4 text-4xl">Attractions</h1>
+      <h1 className="page-title">Attractions</h1>
       <div className="flex justify-between">
         <QueryParamContext.Provider value={value}>
           <Facets />

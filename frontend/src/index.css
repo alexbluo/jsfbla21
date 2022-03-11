@@ -4,7 +4,7 @@
 
 @layer components {
   .page-title {
-    @apply 
+    @apply font-montserrat mb-4 text-4xl
   }
   .content-body-container {
     @apply container px-[8%] pt-[4%] pb-16;
