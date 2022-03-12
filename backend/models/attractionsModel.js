@@ -6,20 +6,15 @@ const nPerPage = 8;
 
 exports.matchAll = (pageNumber, query, callback) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
-    const data = { previewData: [], hasNext: false };
+    const data = [];
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
     const cursor = collection
       .find(query)
       .sort({ attraction_name: 1 })
       .skip(pageNumber * nPerPage)
-      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
-    await cursor.forEach((doc) => data.previewData.push(doc));
-    // check if there are more attractions on the next page and adjust
-    if (data.previewData.length > nPerPage) {
-      data.hasNext = true;
-      data.previewData = data.previewData.slice(0, nPerPage);
-    }
+      .limit(nPerPage);
+    await cursor.forEach((doc) => data.push(doc));
 
     client.close();
     callback(data);
@@ -28,7 +23,7 @@ exports.matchAll = (pageNumber, query, callback) => {
 
 exports.getAll = (pageNumber, callback) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
-    const data = { previewData: [], hasNext: false };
+    const data = []
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
@@ -36,13 +31,8 @@ exports.getAll = (pageNumber, callback) => {
       .find()
       .sort({ attraction_name: 1 })
       .skip(pageNumber * nPerPage)
-      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
-    await cursor.forEach((doc) => data.previewData.push(doc));
-    // check if there are more attractions on the next page and adjust
-    if (data.previewData.length > nPerPage) {
-      data.hasNext = true;
-      data.previewData = data.previewData.slice(0, nPerPage);
-    }
+      .limit(nPerPage);
+    await cursor.forEach((doc) => data.push(doc));
 
     client.close();
     callback(data);

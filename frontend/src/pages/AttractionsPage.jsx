@@ -50,7 +50,7 @@ export default function AttractionsPage() {
         <div className="relative flex flex-col items-center w-[69%]">
           <div className="grid grid-cols-2 gap-16">
             {data.pages.map((group) =>
-              group.previewData.map((doc) => (
+              group.map((doc) => (
                 <Preview data={doc} key={doc.attraction_id} />
               ))
             )}
