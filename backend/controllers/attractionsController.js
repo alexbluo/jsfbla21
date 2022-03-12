@@ -1,7 +1,6 @@
 const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
-  // could combine into one model function
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
       req.query.page,

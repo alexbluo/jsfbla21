@@ -8,7 +8,7 @@ export default function LandingPage() {
       <img className="fixed object-cover w-full h-full" src={MDFlagGIF} />
 
       <div className="fixed z-10 flex flex-col items-center justify-center w-full h-full">
-        <h1 className="pb-8 text-5xl font-semibold text-transparent select-none font-montserrat animate-fade-in-down bg-clip-text bg-gradient-to-r from-red via-white to-gold">
+        <h1 className="pb-8 text-5xl font-[1000] text-transparent select-none font-montserrat animate-fade-in-down bg-clip-text bg-gradient-to-tr  from-red to-gold">
           Maryland Attractions Searcher
         </h1>
         <Link to="/attractions">

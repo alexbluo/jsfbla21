@@ -9,13 +9,13 @@ exports.matchAll = (pageNumber, query, callback) => {
     const data = { previewData: [], hasNext: false };
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
-
     const cursor = collection
       .find(query)
       .sort({ attraction_name: 1 })
       .skip(pageNumber * nPerPage)
-      .limit(nPerPage + 1);
+      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.previewData.push(doc));
+    // check if there are more attractions on the next page and adjust
     if (data.previewData.length > nPerPage) {
       data.hasNext = true;
       data.previewData = data.previewData.slice(0, nPerPage);
@@ -36,8 +36,9 @@ exports.getAll = (pageNumber, callback) => {
       .find()
       .sort({ attraction_name: 1 })
       .skip(pageNumber * nPerPage)
-      .limit(nPerPage + 1);
+      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.previewData.push(doc));
+    // check if there are more attractions on the next page and adjust
     if (data.previewData.length > nPerPage) {
       data.hasNext = true;
       data.previewData = data.previewData.slice(0, nPerPage);

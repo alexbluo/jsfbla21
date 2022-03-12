@@ -5,6 +5,8 @@ import Facets from "../components/Facets";
 import Preview from "../components/Preview";
 import NavBar from "../components/NavBar";
 
+// function fetchAttractions
+
 // query param string to be passed up from child checkboxes
 export const QueryParamContext = React.createContext({
   queryParam: "",
