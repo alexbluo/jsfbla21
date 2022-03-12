@@ -26,14 +26,15 @@ export default function AttractionsPage() {
     fetchNextPage,
   } = useInfiniteQuery(
     ["attractions", queryParam],
-    async (pageNumber = 0) => {
+    async ({pageNumber = 0}) => {
       const res = await axios.get(
         `/api/attractions?page=${pageNumber}${queryParam}`
       );
+      console.log(pageNumber)
       return res.data;
     },
     {
-      getNextPageParam: (prev) => prev + 1,
+      getNextPageParam: (prev) => console.log(prev),
     }
   );
   if (isLoading) return null;

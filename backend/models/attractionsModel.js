@@ -26,7 +26,6 @@ exports.getAll = (pageNumber, callback) => {
     const data = []
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
-
     const cursor = collection
       .find()
       .sort({ attraction_name: 1 })
