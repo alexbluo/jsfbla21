@@ -1,31 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useQuery } from "react-query";
 import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
-import Popup from "./Popup";
 import findFacet from "../utils/findFacet.js";
 import "../css/Map.css";
 
 export default function Map({ center }) {
-  const _isMounted = useRef(true);
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
+  // TODO: add window to Marker (conditionally render based on "show" prop)
+  // TODO: migrate to react query
 
   useEffect(async () => {
     const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
     const res = await axios.get(`/api/attractions/near${queryParam}`);
-    if (_isMounted.current) {
-      setMarkerData(res.data);
-    }
+    setMarkerData(res.data);
   }, [searchRadius]);
 
   function handleInput(event) {
@@ -59,13 +52,8 @@ export default function Map({ center }) {
             />
           ))}
         </GoogleMapReact>
-        {selectedMarker && (
-          <Popup
-            data={selectedMarker}
-            onCloseClick={() => setSelectedMarker(null)}
-          />
-        )}
       </div>
+
       <div className="Map__search">
         <label>
           <input
