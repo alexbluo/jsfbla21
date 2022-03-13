@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenity"];

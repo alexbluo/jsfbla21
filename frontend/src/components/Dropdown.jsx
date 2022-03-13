@@ -8,10 +8,10 @@ export default function Dropdown(props) {
   const [isOpened, setIsOpened] = useState(false);
 
   const { data, error, isLoading, isError } = useQuery(
-    props.category,
+    ["facets", props.category],
     async () => {
       const res = await axios.get(`/api/facets/${props.category}`);
-      return res.data; // data is returned to the "data" object
+      return res.data; // return to the "data" object
     }
   );
 

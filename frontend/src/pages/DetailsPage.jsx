@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
@@ -7,22 +8,16 @@ import noImage from "../images/noImage.png";
 import findFacet from "../utils/findFacet";
 
 export default function DetailsPage() {
-  const _isMounted = useRef(true);
-  const [data, setData] = useState(null);
   const id = useParams().id;
 
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
-
-  useEffect(async () => {
-    const res = await axios.get(`/api/attractions/${id}`);
-
-    if (_isMounted.current) setData(res.data);
-  }, [id]);
-
+  const { data, error, isLoading, isError } = useQuery(
+    ["attraction", id],
+    async () => {
+      const res = await axios.get(`/api/attractions/${id}`);
+      return res.data; // return to the "data" object
+    }
+  );
+  
   /**
    * Formats the amenities array into html that can be dangerously set
    * @returns the dangerouslySetInnerHTML object
@@ -34,6 +29,8 @@ export default function DetailsPage() {
     return { __html: amenities };
   }
 
+  if (isLoading) return null;
+  if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="content-body-container">
       <NavBar />
