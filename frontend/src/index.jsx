@@ -13,7 +13,13 @@ import {
 } from "./pages/pageExports";
 import "./index.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>

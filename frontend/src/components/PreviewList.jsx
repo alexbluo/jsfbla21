@@ -4,8 +4,8 @@ import axios from "axios";
 import Preview from "../components/Preview";
 import { QueryParamContext } from "../pages/AttractionsPage";
 
-export default function PreviewList(props) {
-  const { queryParam, setQueryParam } = useContext(QueryParamContext);
+export default function PreviewList() {
+  const { queryParam } = useContext(QueryParamContext);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
@@ -26,8 +26,8 @@ export default function PreviewList(props) {
       .map((group) =>
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
       )
-      .flat(1);
-    return previews.length === 0 ? <p>NOTHING MATCHED!</p> : previews;
+      .flat(1); // flatten so array length is accurate
+    return previews.length === 0 ? <p>Nothing Matched!</p> : previews;
   }
 
   if (isLoading) return null;
