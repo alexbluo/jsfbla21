@@ -40,7 +40,7 @@ export default function DetailsPage() {
       {data && (
         <div>
           <h1 className="page-title">{data.attraction_name}</h1>
-          <div className="grid grid-cols-3 grid-rows-2">
+          <div className="grid grid-cols-3 grid-rows-2 font-poppins">
             <div className="px-[8%] py-[4%] bg-gold">
               <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}

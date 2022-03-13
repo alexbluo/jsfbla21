@@ -11,8 +11,6 @@ export default function PreviewList(props) {
     useInfiniteQuery(
       ["attractions", queryParam],
       async ({ pageParam = 0 }) => {
-        console.log(pageParam); // TODO: remove
-
         const res = await axios.get(
           `/api/attractions?page=${pageParam}${queryParam}`
         );
@@ -27,7 +25,8 @@ export default function PreviewList(props) {
     const previews = data.pages
       .map((group) =>
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
-      ).flat(1)
+      )
+      .flat(1);
     return previews.length === 0 ? <p>NOTHING MATCHED!</p> : previews;
   }
 
