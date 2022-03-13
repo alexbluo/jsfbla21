@@ -9,6 +9,7 @@ exports.getOrMatchAll = (req, res) => {
       (data) => res.send(data)
     );
   } else {
+    console.log(req.query);
     attractionsModel.getAll(req.query.page, (data) => res.send(data));
   }
 };

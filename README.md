@@ -2,13 +2,14 @@
 Created by Alex Luo for FBLA Coding & Programming 2021-2022
 
 ## Overview
-Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information from results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
+Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information on results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
 
 ## Tech Stack
 
 This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and a REST API. Other notable technologies used include: 
-- Vite (build tool)
 - TailwindCSS (CSS framework)
+- React Query (fetching and caching)
+- Vite (build tool)
 - Atlas (cloud database hosting)
 - Heroku (deployment)
 - Puppeteer (web scraping)

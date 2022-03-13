@@ -12,7 +12,7 @@ export default function LandingPage() {
           Maryland Attractions Searcher
         </h1>
         <Link to="/attractions">
-          <button className="px-4 py-2 text-white rounded-md bg-red hover:brightness-75 animate-fade-in-up">
+          <button className="px-4 py-2 text-white duration-200 rounded-md bg-red hover:brightness-75 animate-fade-in-up">
             Enter
           </button>
         </Link>

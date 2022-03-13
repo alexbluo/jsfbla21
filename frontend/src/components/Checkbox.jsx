@@ -18,7 +18,7 @@ export default function Checkbox(props) {
 
   return (
     <li>
-      <label className="inline-flex items-center justify-center text-lg hover:brightness-105">
+      <label className="inline-flex items-center justify-center text-lg">
         <input
           className="flex-shrink-0 w-4 h-4 mr-1 transition-colors bg-white border-2 rounded-sm appearance-none cursor-pointer checked:bg-gold"
           type="checkbox"

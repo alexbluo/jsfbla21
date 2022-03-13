@@ -7,7 +7,7 @@ export default function Dropdown(props) {
   return (
     <div className="bg-black">
       <div
-        className="flex items-center p-3 rounded cursor-pointer bg-gold"
+        className="flex items-center p-3 rounded cursor-pointer bg-gold select-none"
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="text-lg text-black font-raleway">
