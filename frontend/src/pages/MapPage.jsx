@@ -6,11 +6,13 @@ import "rc-slider/assets/index.css";
 
 let center = undefined; // initialize so first render doesn't crash
 
-navigator.geolocation.getCurrentPosition((position) => {
-  center = {};
-  center.lat = position.coords.latitude;
-  center.lng = position.coords.longitude;
-});
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    center = {};
+    center.lat = position.coords.latitude;
+    center.lng = position.coords.longitude;
+  });
+}
 
 export default function MapPage() {
   return (

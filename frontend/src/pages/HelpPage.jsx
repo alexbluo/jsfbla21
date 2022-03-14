@@ -41,10 +41,12 @@ export default function HelpPage() {
           The source code can be found&nbsp;
           <a href="https://github.com/alexbluo/jsfbla21">here</a>.
         </p>
-        <div className="HelpPage__contact-button-container">
-          <ButtonLink link="mailto:alexluo92823@gmail.com">
-            Contact Me
-          </ButtonLink>
+        <div className="flex w-full justify-center">
+          <a
+            href="mailto:alexluo92823@gmail.com"
+          >
+            <button className="bg-red text-white rounded-md p-4">Contact Me</button>
+          </a>
         </div>
       </div>
     </div>

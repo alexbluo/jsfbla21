@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* html {
+  change root font size for responsive layouts?
+  } */
+}
+
 @layer components {
   .page-title {
     @apply font-montserrat mb-4 text-4xl
