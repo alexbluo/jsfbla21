@@ -12,7 +12,6 @@ export default function Map({ center }) {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  // TODO: add window to Marker (conditionally render based on "show" prop)
   // TODO: migrate to react query
 
   useEffect(async () => {
@@ -44,10 +43,6 @@ export default function Map({ center }) {
               lng={doc.coordinates[0]}
               onClick={() => setSelectedMarker(doc)}
               name={doc.attraction_name}
-              address={doc.address}
-              city={findFacet(doc, "city")}
-              state={doc.state}
-              zip={doc.zip}
               key={doc.attraction_id}
             />
           ))}
