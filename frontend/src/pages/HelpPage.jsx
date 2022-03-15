@@ -41,11 +41,11 @@ export default function HelpPage() {
           The source code can be found&nbsp;
           <a href="https://github.com/alexbluo/jsfbla21">here</a>.
         </p>
-        <div className="flex w-full justify-center">
-          <a
-            href="mailto:alexluo92823@gmail.com"
-          >
-            <button className="bg-red text-white rounded-md p-4">Contact Me</button>
+        <div className="flex justify-center w-full">
+          <a href="mailto:alexluo92823@gmail.com">
+            <button className="p-4 text-white rounded-md bg-red hover:brightness-75">
+              Contact Me
+            </button>
           </a>
         </div>
       </div>

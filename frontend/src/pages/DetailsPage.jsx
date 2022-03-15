@@ -17,7 +17,7 @@ export default function DetailsPage() {
       return res.data; // return to the "data" object
     }
   );
-  
+
   /**
    * Formats the amenities array into html that can be dangerously set
    * @returns the dangerouslySetInnerHTML object
@@ -45,7 +45,7 @@ export default function DetailsPage() {
 
             <div className="px-[8%] py-[4%] text-red">
               <h2 className="mb-2 text-2xl">Website & Contact</h2>
-              <div className="grid items-center grid-cols-2 gap-0 text-center bg-white">
+              <div className="grid items-center grid-cols-2 grid-rows-2 gap-2 text-center bg-white">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
