@@ -35,8 +35,9 @@ Below is a list of features and technologies which are on track to be implemente
   - Reduce map size and display information on the side instead of in popups
   - Increase performance when a large amount of markers are rendered at once
 - Add maps to attraction detail pages
-- Docker because it sounds fun
+- classnames library to clean up conditionally applied styles
 - Responsive layout
+- Docker because it sounds fun
 
 ## Sourcing
 

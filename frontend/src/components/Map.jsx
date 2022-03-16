@@ -51,9 +51,9 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="relative w-5/12">
-        <div className="absolute top-0 left-0 flex flex-row items-center w-full">
-          <label className="flex mr-2">
+      <div className="relative w-5/12 bg-red">
+        <div className="absolute top-0 left-0 flex flex-row items-center w-full p-4">
+          <label className="flex mr-2 font-semibold">
             <input
               className="w-10 mr-1 text-center border-2 rounded"
               type="number"
@@ -65,7 +65,6 @@ export default function Map({ center }) {
             km
           </label>
           <Slider
-            className=""
             min={0}
             max={500}
             value={sliderValue}
@@ -86,7 +85,9 @@ export default function Map({ center }) {
               borderRadius: "50%",
               borderColor: "gold",
               backgroundColor: "gold",
+              boxShadow: "none"
             }}
+            
           />
         </div>
       </div>
