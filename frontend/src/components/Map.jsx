@@ -10,15 +10,16 @@ import "../css/Map.css";
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
-  const [markerData, setMarkerData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  // TODO: migrate to react query
 
-  useEffect(async () => {
-    const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
-    const res = await axios.get(`/api/attractions/near${queryParam}`);
-    setMarkerData(res.data);
-  }, [searchRadius]);
+  const { data, error, isLoading, isError } = useQuery(
+    ["attraction", searchRadius],
+    async () => {
+      const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
+      const res = await axios.get(`/api/attractions/near${queryParam}`);
+      return res.data; // return to the "data" object
+    }
+  );
 
   function handleInput(event) {
     let value = event.target.value;
@@ -28,6 +29,8 @@ export default function Map({ center }) {
     setSearchRadius(value * 1000);
   }
 
+  if (isLoading) return null;
+  if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="Map">
       <div className="GoogleMapReact">
@@ -37,7 +40,7 @@ export default function Map({ center }) {
           defaultZoom={11}
         >
           <Marker lat={center.lat} lng={center.lng} isCenter />
-          {markerData.map((doc) => (
+          {data.map((doc) => (
             <Marker
               lat={doc.coordinates[1]}
               lng={doc.coordinates[0]}
