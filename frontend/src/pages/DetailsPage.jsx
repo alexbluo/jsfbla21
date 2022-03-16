@@ -14,7 +14,7 @@ export default function DetailsPage() {
     ["attraction", id],
     async () => {
       const res = await axios.get(`/api/attractions/${id}`);
-      return res.data; // return to the "data" object
+      return res.data; // return to "data"
     }
   );
 

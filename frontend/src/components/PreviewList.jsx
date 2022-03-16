@@ -14,7 +14,7 @@ export default function PreviewList() {
         const res = await axios.get(
           `/api/attractions?page=${pageParam}${queryParam}`
         );
-        return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to the "data" object
+        return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to "data"
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextPage,
