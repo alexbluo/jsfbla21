@@ -11,7 +11,7 @@ export default function Dropdown(props) {
     ["facets", props.category],
     async () => {
       const res = await axios.get(`/api/facets/${props.category}`);
-      return res.data; // return to the "data" object
+      return res.data; // return to "data"
     }
   );
 

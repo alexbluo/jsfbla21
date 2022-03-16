@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
-import findFacet from "../utils/findFacet.js";
-import "../css/Map.css";
 
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
@@ -17,8 +15,8 @@ export default function Map({ center }) {
     async () => {
       const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
       const res = await axios.get(`/api/attractions/near${queryParam}`);
-      return res.data; // return to the "data" object
-    }
+      return res.data; // return to "data"
+    },
   );
 
   function handleInput(event) {
@@ -28,19 +26,18 @@ export default function Map({ center }) {
     setSliderValue(value);
     setSearchRadius(value * 1000);
   }
-
-  if (isLoading) return null;
+  
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="Map">
-      <div className="GoogleMapReact">
+    <div className="flex flex-row">
+      <div className="w-1/2 aspect-square">
         <GoogleMapReact
           bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY }}
           defaultCenter={center}
           defaultZoom={11}
         >
           <Marker lat={center.lat} lng={center.lng} isCenter />
-          {data.map((doc) => (
+          {!isLoading && data.map((doc) => (
             <Marker
               lat={doc.coordinates[1]}
               lng={doc.coordinates[0]}
@@ -52,7 +49,7 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="Map__search">
+      <div className="w-1/2 pl-8">
         <label>
           <input
             type="number"
