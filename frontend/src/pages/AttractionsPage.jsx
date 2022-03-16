@@ -14,15 +14,17 @@ export default function AttractionsPage() {
   const value = { queryParam, setQueryParam };
 
   return (
-    <div className="content-body-container">
+    <>
       <NavBar />
-      <h1 className="page-title">Attractions</h1>
-      <div className="flex justify-between">
-        <QueryParamContext.Provider value={value}>
-          <Facets />
-          <PreviewList />
-        </QueryParamContext.Provider>
+      <div className="content-body-container">
+        <h1 className="page-title">Attractions</h1>
+        <div className="flex justify-between">
+          <QueryParamContext.Provider value={value}>
+            <Facets />
+            <PreviewList />
+          </QueryParamContext.Provider>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -10,11 +10,17 @@
 
 @layer components {
   .page-title {
-    @apply font-montserrat mb-4 text-4xl
+    @apply flex items-center font-montserrat text-4xl h-12;
   }
   .content-body-container {
-    @apply container px-[8%] pt-[4%] pb-16;
+    @apply container px-[8%] pt-12 pb-12;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* width */
