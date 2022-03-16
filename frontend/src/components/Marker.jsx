@@ -16,9 +16,7 @@ export default function Marker(props) {
       {/* TODO: find better solution that actually works too */}
       {!props.isCenter && show && (
         <div className="absolute z-20 w-32 h-16 p-2 origin-bottom rounded-lg -top-16 bg-red animate-spring-scale-up">
-          <div className="flex flex-col text-white">
-            <h2 className="text-xs font-raleway">{props.name}</h2>
-          </div>
+          <h2 className="text-xs text-white font-raleway">{props.name}</h2>
         </div>
       )}
     </div>

@@ -23,7 +23,7 @@ module.exports = {
       animation: {
         "fade-in-down": "fade-in-down cubic-bezier(0.16, 1, 0.3, 1) 2s",
         "fade-in-up": "fade-in-up cubic-bezier(0.16, 1, 0.3, 1) 2s",
-        "spring-scale-up": "spring-scale-up .6s cubic-bezier(0.76, 0, 0.24, 1)",
+        "spring-scale-up": "spring-scale-up .4s cubic-bezier(0.76, 0, 0.24, 1)",
       },
     },
     keyframes: {

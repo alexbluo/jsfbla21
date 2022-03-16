@@ -16,9 +16,9 @@ export default function HelpPage() {
           yellow markers are all the attractions within the specified distance.
         </p>
         <label>
-          <Marker isCenter /> Your location
+          <Marker name="Your Location" isCenter /> Your location
           <br />
-          <Marker /> Attraction near you
+          <Marker name="Attraction Name" /> Attraction near you
         </label>
         <h3>
           Why are new attractions not appearing on the map after x distance?

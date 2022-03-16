@@ -19,7 +19,7 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 
 ## Conventions:
 
-File architecture is similar to MVC, with views/templates replaced by pages, which are really just entry-point React components.
+The file architecture is similar to MVC, with views/templates replaced by pages, which are really just entry-point React components.
 
 CSS properties are arranged in the following order: 
 position => display => box => color => text => misc.
@@ -32,12 +32,11 @@ Below is a list of features and technologies which are on track to be implemente
 - Fulltext search
 - Easy clearing of checked fields
 - Redesign of map page UI and popup system
-  - Replace the current library for Google Maps API with one that supports both React and InfoWindows
   - Reduce map size and display information on the side instead of in popups
+  - Increase performance when a large amount of markers are rendered at once
 - Add maps to attraction detail pages
 - Docker because it sounds fun
-- Responsive layouts
-- Performance improvements
+- Responsive layout
 
 ## Sourcing
 
