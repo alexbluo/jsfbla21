@@ -5,6 +5,7 @@ import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
 import "rc-slider/assets/index.css";
+import Preview from "./Preview";
 
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
@@ -25,12 +26,12 @@ export default function Map({ center }) {
     if (value > 500) value = 500;
     if (value < 0) value = 0;
     setSliderValue(value);
-    // setSearchRadius(value * 1000);
   }
 
+  console.log(selectedMarker)
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row">
       <div className="w-1/2 aspect-square">
         <GoogleMapReact
           bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY }}
@@ -51,8 +52,8 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="relative w-5/12 bg-red">
-        <div className="absolute top-0 left-0 flex flex-row items-center w-full p-4">
+      <div className="flex flex-col w-1/2 bg-red">
+        <div className="flex items-center w-full p-4">
           <label className="flex mr-2 font-semibold">
             <input
               className="w-10 mr-1 text-center border-2 rounded"
@@ -65,6 +66,7 @@ export default function Map({ center }) {
             km
           </label>
           <Slider
+            className="mx-2"
             min={0}
             max={500}
             value={sliderValue}
@@ -85,11 +87,13 @@ export default function Map({ center }) {
               borderRadius: "50%",
               borderColor: "gold",
               backgroundColor: "gold",
-              boxShadow: "none"
+              boxShadow: "none",
             }}
-            
           />
         </div>
+        {selectedMarker && <div className="w-full h-full">
+            <Preview data={selectedMarker} />
+        </div>}
       </div>
     </div>
   );
