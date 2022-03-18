@@ -28,7 +28,6 @@ export default function Map({ center }) {
     setSliderValue(value);
   }
 
-  console.log(selectedMarker)
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex flex-row">
@@ -91,9 +90,11 @@ export default function Map({ center }) {
             }}
           />
         </div>
-        {selectedMarker && <div className="w-full h-full">
+        {selectedMarker && (
+          <div className="w-full h-full">
             <Preview data={selectedMarker} />
-        </div>}
+          </div>
+        )}
       </div>
     </div>
   );
