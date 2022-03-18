@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 import "../css/MapPage.css";
 
-let center = undefined; // initialize so first render doesn't crash
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition((position) => {
-    center = {};
-    center.lat = position.coords.latitude;
-    center.lng = position.coords.longitude;
-  });
-}
-
 export default function MapPage() {
+  const [center, setCenter] = useState(undefined);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const coords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setCenter(coords);
+      });
+    }
+  }, []);
+
   return (
     <>
       <NavBar />
