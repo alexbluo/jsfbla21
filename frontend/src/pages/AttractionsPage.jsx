@@ -5,26 +5,26 @@ import NavBar from "../components/NavBar";
 
 // query param string to be passed up from child checkboxes
 export const QueryParamContext = React.createContext({
-  queryParam: "",
-  setQueryParam: () => {},
+    queryParam: "",
+    setQueryParam: () => {},
 });
 
 export default function AttractionsPage() {
-  const [queryParam, setQueryParam] = useState("");
-  const value = { queryParam, setQueryParam };
+    const [queryParam, setQueryParam] = useState("");
+    const value = { queryParam, setQueryParam };
 
-  return (
-    <>
-      <NavBar />
-      <div className="content-body-container">
-        <h1 className="page-title">Attractions</h1>
-        <div className="flex justify-between">
-          <QueryParamContext.Provider value={value}>
-            <Facets />
-            <PreviewList />
-          </QueryParamContext.Provider>
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <NavBar />
+            <div className="content-body-container">
+                <h1 className="page-title">Attractions</h1>
+                <div className="flex justify-between">
+                    <QueryParamContext.Provider value={value}>
+                        <Facets />
+                        <PreviewList />
+                    </QueryParamContext.Provider>
+                </div>
+            </div>
+        </>
+    );
 }

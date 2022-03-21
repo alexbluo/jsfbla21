@@ -3,17 +3,17 @@ const scrape = require("./initScrape");
 require("dotenv").config();
 
 // runs the scraper and inserts all scraped data into a MongoDB database hosted on Atlas
-MongoClient.connect(process.env.URI, async (err, client) => {
-  const db = client.db("attractionsDB");
-  const documents = await scrape();
-  await db.collection("attractions").insertMany(documents.attractions);
-  await db.collection("facets").insertOne(documents.facets);
-  await db
-    .collection("attractions")
-    .createIndex({ "facets.type": 1, "facets.val": 1 });
-  await db.collection("attractions").createIndex({ "attraction_id": 1 });
-  // duplicates removed through mongosh: see below
-  client.close();
+MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const db = client.db("attractionsDB");
+    const documents = await scrape();
+    await db.collection("attractions").insertMany(documents.attractions);
+    await db.collection("facets").insertOne(documents.facets);
+    await db
+        .collection("attractions")
+        .createIndex({ "facets.type": 1, "facets.val": 1 });
+    await db.collection("attractions").createIndex({ attraction_id: 1 });
+    // duplicates removed through mongosh: see below
+    client.close();
 });
 
 // DEV: Aggregation pipeline to remove duplicates, if rerun is needed run from mongosh after completion

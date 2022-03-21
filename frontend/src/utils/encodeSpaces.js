@@ -4,5 +4,5 @@
  * @returns the encoded query string
  */
 export default function encodeSpaces(param) {
-  return param.split(" ").join("+");
+    return param.split(" ").join("+");
 }
