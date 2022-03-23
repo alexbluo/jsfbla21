@@ -9,10 +9,10 @@ export default function Preview(props /* replace with { key names }*/) {
   // only pass in necessary props later then refactor, keeping full data for dev now
 
   return (
-    <div className="">
+    <div className="relative group">
       <Link to={`/attractions/${data.attraction_id}`}>
         <img
-          className="object-cover w-full duration-200 shadow-md shadow-black rounded-3xl aspect-square hover:brightness-50"
+          className="object-cover w-full duration-200 shadow-md shadow-black rounded-3xl aspect-square group-hover:brightness-50"
           src={
             data.attraction_image.includes("data")
               ? noImage
@@ -20,7 +20,7 @@ export default function Preview(props /* replace with { key names }*/) {
           }
           alt=""
         />
-        <div className="">
+        <div className="absolute bottom-0 w-full p-4 text-center duration-200 bg-black rounded-3xl text-gold group-hover:bg-transparent">
           <label className="">{findFacet(data, "city")}</label>
           <br />
           <label className="">

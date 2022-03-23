@@ -46,7 +46,7 @@ export default function DetailsPage() {
 
               <div className="flex flex-col px-[8%] py-[4%] text-red">
                 <h2 className="mb-2 text-2xl">Website & Contact</h2>
-                <div className="grid items-center w-full h-full grid-cols-2 grid-rows-4 gap-2 text-center bg-white">
+                <div className="grid items-center w-full h-full grid-cols-2 grid-rows-4 gap-4 text-center bg-white">
                   {data.website_link && (
                     <ButtonLink link={data.website_link} detail>
                       Website

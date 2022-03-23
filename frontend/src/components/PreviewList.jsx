@@ -36,11 +36,11 @@ export default function PreviewList() {
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="relative flex flex-col items-center w-[69%]">
+    <div className="relative flex flex-col items-center w-2/3">
       <div className="grid grid-cols-2 gap-16">{renderPreviews()}</div>
       {hasNextPage && (
         <button
-          className="px-4 py-2 mt-8 text-white duration-100 rounded-md bg-red hover:brightness-75"
+          className="px-4 py-2 mt-8 text-white duration-100 rounded-md shadow-md bg-red hover:brightness-75"
           onClick={() => fetchNextPage()}
         >
           Load More
