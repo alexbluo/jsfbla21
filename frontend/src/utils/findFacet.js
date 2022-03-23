@@ -7,5 +7,5 @@
  * @returns { string } the value for the searched field
  */
 export default function findFacet(doc, type) {
-    return doc.facets.find((obj) => obj.type === type).val;
+  return doc.facets.find((obj) => obj.type === type).val;
 }

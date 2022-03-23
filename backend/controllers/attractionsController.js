@@ -1,24 +1,24 @@
 const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
-    if (checkQuery(req.query)) {
-        attractionsModel.matchAll(
-            req.query.page,
-            // turn the query object into a filter compatible with MongoDB
-            formatFinalFilter(parseQuery(req.query)),
-            (data) => res.send(data)
-        );
-    } else {
-        attractionsModel.getAll(req.query.page, (data) => res.send(data));
-    }
+  if (checkQuery(req.query)) {
+    attractionsModel.matchAll(
+      req.query.page,
+      // turn the query object into a filter compatible with MongoDB
+      formatFinalFilter(parseQuery(req.query)),
+      (data) => res.send(data)
+    );
+  } else {
+    attractionsModel.getAll(req.query.page, (data) => res.send(data));
+  }
 };
 
 exports.getOne = (req, res) => {
-    attractionsModel.getOne(req.params.id, (data) => res.send(data));
+  attractionsModel.getOne(req.params.id, (data) => res.send(data));
 };
 
 exports.getNear = (req, res) => {
-    attractionsModel.getNear(req.query, (data) => res.send(data));
+  attractionsModel.getNear(req.query, (data) => res.send(data));
 };
 
 /**
@@ -27,9 +27,9 @@ exports.getNear = (req, res) => {
  * @returns true if the query parameters can be searched for
  */
 function checkQuery(query) {
-    const validValueSet = new Set(["region", "city", "category", "amenity"]);
-    const queryValues = Object.values(query);
-    return queryValues.some((queryValue) => validValueSet.has(queryValue));
+  const validValueSet = new Set(["region", "city", "category", "amenity"]);
+  const queryValues = Object.values(query);
+  return queryValues.some((queryValue) => validValueSet.has(queryValue));
 }
 
 /**
@@ -38,24 +38,24 @@ function checkQuery(query) {
  * @returns { Object.<string, Array<Object.<string, string>>> } the parsed query object, grouped by category
  */
 function parseQuery(query) {
-    let parsedQueries = {};
+  let parsedQueries = {};
 
-    for (const [key, value] of Object.entries(query)) {
-        // dont format page entry
-        if (key == "page") continue;
-        // format of parsed entry to pass to filter
-        const parsedEntry = { type: value, val: key };
+  for (const [key, value] of Object.entries(query)) {
+    // dont format page entry
+    if (key == "page") continue;
+    // format of parsed entry to pass to filter
+    const parsedEntry = { type: value, val: key };
 
-        if (parsedQueries.hasOwnProperty(value)) {
-            // push the object to an array in order to group with similar categories
-            parsedQueries[value].push(parsedEntry);
-        } else {
-            // otherwise create a new array
-            parsedQueries[value] = [parsedEntry];
-        }
+    if (parsedQueries.hasOwnProperty(value)) {
+      // push the object to an array in order to group with similar categories
+      parsedQueries[value].push(parsedEntry);
+    } else {
+      // otherwise create a new array
+      parsedQueries[value] = [parsedEntry];
     }
+  }
 
-    return parsedQueries;
+  return parsedQueries;
 }
 
 /**
@@ -64,19 +64,19 @@ function parseQuery(query) {
  * @returns { Filter<Document> } the final formatted filter
  */
 function formatFinalFilter(parsedQuery) {
-    const finalFilter = { facets: { $all: [] } };
+  const finalFilter = { facets: { $all: [] } };
 
-    for (const [key, value] of Object.entries(parsedQuery)) {
-        if (key === "amenity") {
-            // filtering multiple amenities should search for places which have every amenity
-            for (const field of value) {
-                finalFilter.facets.$all.push({ $elemMatch: field });
-            }
-            continue;
-        }
-        // otherwise push an elemMatch for the value
-        finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
+  for (const [key, value] of Object.entries(parsedQuery)) {
+    if (key === "amenity") {
+      // filtering multiple amenities should search for places which have every amenity
+      for (const field of value) {
+        finalFilter.facets.$all.push({ $elemMatch: field });
+      }
+      continue;
     }
+    // otherwise push an elemMatch for the value
+    finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
+  }
 
-    return finalFilter;
+  return finalFilter;
 }

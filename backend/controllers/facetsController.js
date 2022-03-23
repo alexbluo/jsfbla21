@@ -10,7 +10,7 @@ exports.getRegions = (req, res) => {
       "Western Maryland",
     ],
   });
-}
+};
 
 exports.getCities = (req, res) => {
   facetsModel.getCities((data) => res.send(data));
