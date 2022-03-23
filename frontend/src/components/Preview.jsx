@@ -12,7 +12,7 @@ export default function Preview(props /* replace with { key names }*/) {
     <div className="">
       <Link to={`/attractions/${data.attraction_id}`}>
         <img
-          className="object-cover w-full mb-2 duration-200 shadow-md shadow-black rounded-3xl aspect-square hover:brightness-50"
+          className="object-cover w-full duration-200 shadow-md shadow-black rounded-3xl aspect-square hover:brightness-50"
           src={
             data.attraction_image.includes("data")
               ? noImage
@@ -20,12 +20,14 @@ export default function Preview(props /* replace with { key names }*/) {
           }
           alt=""
         />
+        <div className="">
+          <label className="">{findFacet(data, "city")}</label>
+          <br />
+          <label className="">
+            <b>{data.attraction_name}</b>
+          </label>
+        </div>
       </Link>
-      <label className="Preview__city">{findFacet(data, "city")}</label>
-      <br />
-      <label>
-        <b>{data.attraction_name}</b>
-      </label>
     </div>
   );
 }

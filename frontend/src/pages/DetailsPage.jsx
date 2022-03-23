@@ -44,9 +44,9 @@ export default function DetailsPage() {
                 {data.description}
               </div>
 
-              <div className="px-[8%] py-[4%] text-red">
+              <div className="flex flex-col px-[8%] py-[4%] text-red">
                 <h2 className="mb-2 text-2xl">Website & Contact</h2>
-                <div className="grid items-center grid-cols-2 grid-rows-2 gap-2 text-center bg-white">
+                <div className="grid items-center w-full h-full grid-cols-2 grid-rows-4 gap-2 text-center bg-white">
                   {data.website_link && (
                     <ButtonLink link={data.website_link} detail>
                       Website
@@ -110,10 +110,12 @@ export default function DetailsPage() {
 
               <div className="px-[8%] py-[4%] text-red">
                 <h2 className="mb-2 text-2xl">Region</h2>
-                <h3 className="mb-2 text-lg">
+                <h3 className="text-lg">
                   {findFacet(data, "region") && findFacet(data, "region")}
                 </h3>
-                {data.region_image && <img src={data.region_image} alt="" />}
+                {data.region_image && (
+                  <img className="w-full" src={data.region_image} alt="" />
+                )}
               </div>
             </div>
           </div>
