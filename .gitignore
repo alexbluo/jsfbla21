@@ -9,6 +9,8 @@ node_modules
 tg.js
 /coverage
 
+/dist
+
 # misc
 .DS_Store
 .env
