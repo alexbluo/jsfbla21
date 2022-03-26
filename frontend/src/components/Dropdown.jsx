@@ -40,7 +40,6 @@ export default function Dropdown(props) {
           isOpened ? "max-h-48 my-4" : "max-h-0 overflow-hidden"
         } font-raleway text-base text-gold mx-4 overflow-y-auto duration-500 ease-[cubic-bezier(0.34, 1.56, 0.64, 1)]`}
       >
-        
         {/* map fields that fall under the category to checkboxes */}
         {data[props.category].map((field, index) => (
           <Checkbox category={props.category} field={field} key={index} />
