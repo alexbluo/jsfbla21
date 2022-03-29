@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
-import "../css/MapPage.css";
 
 export default function MapPage() {
   const [center, setCenter] = useState(undefined);
