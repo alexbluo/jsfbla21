@@ -19,8 +19,8 @@ export default function Preview(props) {
           alt=""
         />
         <div className="absolute bottom-0 w-full p-4 text-center duration-200 bg-black bg-opacity-90 rounded-3xl text-gold group-hover:bg-transparent">
-          <span className="block">
-            <b>{data.attraction_name}</b>
+          <span className="block text-lg font-medium">
+            {data.attraction_name}
           </span>
           <span className="">{findFacet(data, "city")}</span>
         </div>
