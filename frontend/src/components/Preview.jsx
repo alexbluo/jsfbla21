@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/Preview.css";
 import findFacet from "../utils/findFacet";
 import noImage from "../images/noImage.png";
 
-export default function Preview(props /* replace with { key names }*/) {
+export default function Preview(props) {
   const data = props.data;
-  // only pass in necessary props later then refactor, keeping full data for dev now
 
   return (
     <div className="relative group">
@@ -20,9 +18,9 @@ export default function Preview(props /* replace with { key names }*/) {
           }
           alt=""
         />
-        <div className="absolute bottom-0 w-full p-4 text-center duration-200 bg-black rounded-3xl text-gold group-hover:bg-transparent">
-          <span className="block">
-            <b>{data.attraction_name}</b>
+        <div className="absolute bottom-0 w-full p-4 text-center duration-200 bg-black bg-opacity-90 rounded-3xl text-gold group-hover:bg-transparent">
+          <span className="block text-lg font-medium">
+            {data.attraction_name}
           </span>
           <span className="">{findFacet(data, "city")}</span>
         </div>

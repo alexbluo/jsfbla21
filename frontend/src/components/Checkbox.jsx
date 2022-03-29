@@ -7,7 +7,7 @@ export default function Checkbox(props) {
   const { queryParam, setQueryParam } = useContext(QueryParamContext);
 
   useEffect(() => {
-    const param = `${encodeSpaces(props.field)}=${props.category}`; // could replace with querystring library
+    const param = `${encodeSpaces(props.field)}=${props.category}`;
     if (checked) {
       setQueryParam(`${queryParam}&${param}`);
     } else {
