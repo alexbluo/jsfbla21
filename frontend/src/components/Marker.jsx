@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 
 export default function Marker(props) {
   const [show, setShow] = useState(false);
@@ -6,8 +7,11 @@ export default function Marker(props) {
   return (
     <div className="group relative inline-flex h-4 w-4 flex-col-reverse items-center">
       <div
-        className={`absolute z-10 aspect-square h-4 w-4 cursor-pointer rounded-full border-2 ${props.isCenter ? "border-red bg-white" : "border-black bg-gold"
-          } duration-300 ease-out hover:brightness-50`}
+        className={classNames(
+          "absolute z-10 aspect-square h-4 w-4 cursor-pointer rounded-full border-2 duration-300 ease-out hover:brightness-50",
+          { "border-red bg-white": props.isCenter },
+          { "border-black bg-gold": !props.isCenter }
+        )}
         onClick={props.onClick}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}

@@ -3,10 +3,10 @@ import React from "react";
 export default function ButtonLink(props) {
   return (
     <a
-      className="flex items-center justify-center w-full h-full"
+      className="flex h-full w-full items-center justify-center"
       href={props.link}
     >
-      <button className="w-full h-full text-white duration-200 rounded-md shadow-md whitespace-nowrap bg-red hover:brightness-75">
+      <button className="h-full w-full whitespace-nowrap rounded-md bg-red text-white shadow-md duration-200 hover:brightness-75">
         {props.children}
       </button>
     </a>

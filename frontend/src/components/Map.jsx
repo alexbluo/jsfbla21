@@ -31,7 +31,7 @@ export default function Map({ center }) {
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex flex-row">
-      <div className="w-1/2 aspect-square">
+      <div className="aspect-square w-1/2">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -53,11 +53,11 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="flex flex-col w-1/2 bg-red">
-        <div className="flex items-center w-full p-4">
-          <label className="flex mr-2 font-semibold">
+      <div className="flex w-1/2 flex-col bg-red">
+        <div className="flex w-full items-center p-4">
+          <label className="mr-2 flex font-semibold">
             <input
-              className="w-10 mr-1 text-center border-2 rounded"
+              className="mr-1 w-10 rounded border-2 text-center"
               type="number"
               min={0}
               max={500}
@@ -93,7 +93,7 @@ export default function Map({ center }) {
           />
         </div>
         {selectedMarker && (
-          <div className="w-full h-full">
+          <div className="h-full w-full">
             <Preview data={selectedMarker} />
           </div>
         )}
