@@ -1,9 +1,9 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 const logger = require("morgan");
 const facetsRouter = require("./routes/facets");
 const attractionsRouter = require("./routes/attractions");
+const app = express();
 
 // Serve the frontend build files in production
 if (process.env.NODE_ENV == "production") {

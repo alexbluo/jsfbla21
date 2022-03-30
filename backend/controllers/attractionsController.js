@@ -1,6 +1,7 @@
 const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
+  console.log(req.query)
   if (checkQuery(req.query)) {
     attractionsModel.matchAll(
       req.query.page,
@@ -29,7 +30,7 @@ exports.getNear = (req, res) => {
 function checkQuery(query) {
   const validValueSet = new Set(["region", "city", "category", "amenity"]);
   const queryValues = Object.values(query);
-  
+  // TODO check if EVERY query KEY is in the above array
   return queryValues.some((queryValue) => validValueSet.has(queryValue));
 }
 

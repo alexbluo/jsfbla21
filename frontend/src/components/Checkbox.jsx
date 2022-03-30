@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect, useContext, useReducer } from "react";
 import { QueryParamContext } from "../pages/AttractionsPage";
-import encodeSpaces from "../utils/encodeSpaces";
 
 export default function Checkbox(props) {
+  const [queryParam, dispatch] = useContext(QueryParamContext);
   const [checked, setChecked] = useState(false);
-  const { queryParam, setQueryParam } = useContext(QueryParamContext);
 
   useEffect(() => {
-    const param = `${encodeSpaces(props.field)}=${props.category}`;
     if (checked) {
-      setQueryParam(`${queryParam}&${param}`);
+      dispatch({ type: "ADD_ENTRY", payload: [props.category, props.field] });
     } else {
-      // maybe try checking if queryparam includes param..?
-      setQueryParam(queryParam.replace(`&${param}`, ""));
+      dispatch({ type: "DELETE_ENTRY", payload: [props.category, props.field] });
     }
   }, [checked]);
 

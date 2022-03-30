@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
+import qs from "qs";
 import Preview from "../components/Preview";
 import { QueryParamContext } from "../pages/AttractionsPage";
 
 export default function PreviewList() {
-  const { queryParam } = useContext(QueryParamContext);
+  const [queryParam] = useContext(QueryParamContext);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(["attractions", queryParam], fetchPreviews, {
@@ -14,7 +15,7 @@ export default function PreviewList() {
 
   async function fetchPreviews({ pageParam = 0 }) {
     const res = await axios.get(
-      `/api/attractions?page=${pageParam}${queryParam}`
+      `/api/attractions?page=${pageParam}${qs.stringify(queryParam)}`
     );
     return {
       docs: res.data.previewData,
@@ -39,7 +40,7 @@ export default function PreviewList() {
       {hasNextPage && (
         <button
           className="mt-8 rounded-md bg-red px-4 py-2 text-white shadow-md duration-100 hover:brightness-75"
-          onClick={fetchNextPage} // TODO: CHECK OVER LATER
+          onClick={fetchNextPage}
         >
           Load More
         </button>

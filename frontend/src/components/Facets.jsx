@@ -10,7 +10,9 @@ async function fetchFacets() {
   let data = {};
 
   for (const category of categories) {
+    // res in the form of { category: [fields] }
     const res = await axios.get(`/api/facets/${category}`);
+    // append newly fetched data
     data = { ...data, ...res.data };
   }
 
