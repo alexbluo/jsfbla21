@@ -29,6 +29,7 @@ exports.getNear = (req, res) => {
 function checkQuery(query) {
   const validValueSet = new Set(["region", "city", "category", "amenity"]);
   const queryValues = Object.values(query);
+  
   return queryValues.some((queryValue) => validValueSet.has(queryValue));
 }
 

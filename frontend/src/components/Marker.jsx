@@ -4,18 +4,17 @@ export default function Marker(props) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="relative inline-flex flex-col-reverse items-center w-4 h-4 group">
+    <div className="group relative inline-flex h-4 w-4 flex-col-reverse items-center">
       <div
-        className={`absolute w-4 h-4 z-10 aspect-square border-2 rounded-full cursor-pointer ${
-          props.isCenter ? "bg-white border-red" : "bg-gold border-black"
-        } hover:brightness-50 duration-300 ease-out`}
+        className={`absolute z-10 aspect-square h-4 w-4 cursor-pointer rounded-full border-2 ${props.isCenter ? "border-red bg-white" : "border-black bg-gold"
+          } duration-300 ease-out hover:brightness-50`}
         onClick={props.onClick}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       ></div>
       {!props.isCenter && show && (
-        <div className="absolute z-20 w-32 h-16 p-2 origin-bottom rounded-lg -top-16 bg-red animate-spring-scale-up">
-          <h2 className="text-xs text-white font-raleway">{props.name}</h2>
+        <div className="absolute -top-16 z-20 h-16 w-32 origin-bottom animate-spring-scale-up rounded-lg bg-red p-2">
+          <h2 className="font-raleway text-xs text-white">{props.name}</h2>
         </div>
       )}
     </div>

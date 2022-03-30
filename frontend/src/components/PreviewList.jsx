@@ -8,21 +8,19 @@ export default function PreviewList() {
   const { queryParam } = useContext(QueryParamContext);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
-    useInfiniteQuery(
-      ["attractions", queryParam],
-      async ({ pageParam = 0 }) => {
-        const res = await axios.get(
-          `/api/attractions?page=${pageParam}${queryParam}`
-        );
-        return {
-          docs: res.data.previewData,
-          nextPage: res.data.nextPage,
-        }; // return to "data"
-      },
-      {
-        getNextPageParam: (lastPage) => lastPage.nextPage,
-      }
+    useInfiniteQuery(["attractions", queryParam], fetchPreviews, {
+      getNextPageParam: (lastPage) => lastPage.nextPage,
+    });
+
+  async function fetchPreviews({ pageParam = 0 }) {
+    const res = await axios.get(
+      `/api/attractions?page=${pageParam}${queryParam}`
     );
+    return {
+      docs: res.data.previewData,
+      nextPage: res.data.nextPage,
+    };
+  }
 
   function renderPreviews() {
     const previews = data.pages
@@ -36,12 +34,12 @@ export default function PreviewList() {
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="relative flex flex-col items-center w-2/3">
+    <div className="relative flex w-2/3 flex-col items-center">
       <div className="grid grid-cols-2 gap-12">{renderPreviews()}</div>
       {hasNextPage && (
         <button
-          className="px-4 py-2 mt-8 text-white duration-100 rounded-md shadow-md bg-red hover:brightness-75"
-          onClick={() => fetchNextPage()}
+          className="mt-8 rounded-md bg-red px-4 py-2 text-white shadow-md duration-100 hover:brightness-75"
+          onClick={fetchNextPage} // TODO: CHECK OVER LATER
         >
           Load More
         </button>

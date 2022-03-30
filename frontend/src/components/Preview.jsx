@@ -7,10 +7,10 @@ export default function Preview(props) {
   const data = props.data;
 
   return (
-    <div className="relative group">
+    <div className="group relative">
       <Link to={`/attractions/${data.attraction_id}`}>
         <img
-          className="object-cover w-full duration-200 shadow-md shadow-black rounded-3xl aspect-square group-hover:brightness-50"
+          className="aspect-square w-full rounded-3xl object-cover shadow-md shadow-black duration-200 group-hover:brightness-50"
           src={
             data.attraction_image.includes("data")
               ? noImage
@@ -18,7 +18,7 @@ export default function Preview(props) {
           }
           alt=""
         />
-        <div className="absolute bottom-0 w-full p-4 text-center duration-200 bg-black bg-opacity-90 rounded-3xl text-gold group-hover:bg-transparent">
+        <div className="absolute bottom-0 w-full rounded-3xl bg-black bg-opacity-90 p-4 text-center text-gold duration-200 group-hover:bg-transparent">
           <span className="block text-lg font-medium">
             {data.attraction_name}
           </span>

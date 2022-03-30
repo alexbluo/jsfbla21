@@ -4,15 +4,15 @@ import MDFlagGIF from "../images/MDFlagGIF.gif";
 
 export default function LandingPage() {
   return (
-    <div className="w-screen h-screen">
-      <img className="fixed object-cover w-full h-full" src={MDFlagGIF} />
+    <div className="h-screen w-screen">
+      <img className="fixed h-full w-full object-cover" src={MDFlagGIF} />
 
-      <div className="fixed z-10 flex flex-col items-center justify-center w-full h-full">
-        <h1 className="pb-8 text-5xl opacity-90 font-[1000] text-transparent select-none font-montserrat animate-fade-in-down bg-clip-text bg-gradient-to-r  from-white to-gold">
+      <div className="fixed z-10 flex h-full w-full flex-col items-center justify-center">
+        <h1 className="animate-fade-in-down select-none bg-gradient-to-r from-white to-gold bg-clip-text pb-8 font-montserrat text-5xl font-[1000]  text-transparent opacity-90">
           Maryland Attractions Searcher
         </h1>
         <Link to="/attractions">
-          <button className="px-4 py-2 text-white duration-200 rounded-md shadow-md bg-red animate-fade-in-up hover:shadow-white">
+          <button className="animate-fade-in-up rounded-md bg-red px-4 py-2 text-white shadow-md duration-200 hover:shadow-white">
             Enter
           </button>
         </Link>

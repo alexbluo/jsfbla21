@@ -12,12 +12,13 @@ export default function DetailsPage() {
 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", id],
-    async () => {
-      const res = await axios.get(`/api/attractions/${id}`);
-      return res.data; // return to "data"
-    }
+    fetchDetails
   );
 
+  async function fetchDetails() {
+    const res = await axios.get(`/api/attractions/${id}`);
+    return res.data;
+  }
   /**
    * Formats the amenities array into html that can be dangerously set
    * @returns the dangerouslySetInnerHTML object
@@ -38,14 +39,14 @@ export default function DetailsPage() {
         <div>
           <h1 className="page-title">{data.attraction_name}</h1>
           <div className="grid grid-cols-3 grid-rows-2 font-poppins">
-            <div className="px-[8%] py-[4%] bg-gold">
+            <div className="bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}
             </div>
 
             <div className="flex flex-col px-[8%] py-[4%] text-red">
               <h2 className="mb-2 text-2xl">Website & Contact</h2>
-              <div className="grid items-center w-full h-full grid-cols-2 grid-rows-4 gap-4 text-center bg-white">
+              <div className="grid h-full w-full grid-cols-2 grid-rows-4 items-center gap-4 bg-white text-center">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
@@ -74,7 +75,7 @@ export default function DetailsPage() {
             </div>
 
             <img
-              className="object-fill w-full aspect-square"
+              className="aspect-square w-full object-fill"
               src={
                 data.attraction_image.includes("data") // null images include the word "data" in their URI
                   ? noImage
@@ -92,7 +93,7 @@ export default function DetailsPage() {
               )}
             </div>
 
-            <div className="px-[8%] py-[4%] bg-gold">
+            <div className="bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Location</h2>
               {data.address}
               <br />
@@ -100,7 +101,7 @@ export default function DetailsPage() {
               {data.zip}
               <br />
               <a
-                className="text-white underline duration-200 ease-in hover:text-red decoration-red decoration-4 underline-offset-4"
+                className="text-white underline decoration-red decoration-4 underline-offset-4 duration-200 ease-in hover:text-red"
                 href={data.directions_link}
               >
                 Directions
@@ -109,9 +110,7 @@ export default function DetailsPage() {
 
             <div className="px-[8%] py-[4%] text-red">
               <h2 className="mb-2 text-2xl">Region</h2>
-              <h3 className="text-lg">
-                {findFacet(data, "region")}
-              </h3>
+              <h3 className="text-lg">{findFacet(data, "region")}</h3>
               {data.region_image && (
                 <img className="w-full" src={data.region_image} alt="" />
               )}
