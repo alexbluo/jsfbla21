@@ -38,6 +38,7 @@ export default function DetailsPage() {
       <div className="content-body-container">
         <div>
           <h1 className="page-title">{data.attraction_name}</h1>
+          {/* TODO: :odd :even? */}
           <div className="grid grid-cols-3 grid-rows-2 font-poppins">
             <div className="bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>

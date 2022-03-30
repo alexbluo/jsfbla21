@@ -16,7 +16,6 @@ const initialState = {
 };
 
 function reducer(state, action) {
-  console.log(action);
   const { type, payload } = action;
   const [category, field] = payload;
 
@@ -26,12 +25,12 @@ function reducer(state, action) {
     // the whole thing ultimately reduces code complexity and amibguity in both the frontend and backend
     // ^ write that down somewhere
     // !order does not matter when passing to useQuery
-    case "ADD_ENTRY":
-      console.log("ADD_ENTRY");
+    case "ADD_PARAM":
+      console.log("ADD_PARAM");
 
       return {...state };
-    case "DELETE_ENTRY":
-      console.log("DELETE_ENTRY");
+    case "DEL_PARAM":
+      console.log("DEL_PARAM");
 
       return state;
     default:

@@ -5,11 +5,12 @@ export default function Checkbox(props) {
   const [queryParam, dispatch] = useContext(QueryParamContext);
   const [checked, setChecked] = useState(false);
 
+  // TODO: fix firing hundreds of times on render
   useEffect(() => {
     if (checked) {
-      dispatch({ type: "ADD_ENTRY", payload: [props.category, props.field] });
+      dispatch({ type: "ADD_PARAM", payload: [props.category, props.field] });
     } else {
-      dispatch({ type: "DELETE_ENTRY", payload: [props.category, props.field] });
+      dispatch({ type: "DEL_PARAM", payload: [props.category, props.field] });
     }
   }, [checked]);
 

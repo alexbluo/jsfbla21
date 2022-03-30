@@ -17,6 +17,7 @@ export default function PreviewList() {
     const res = await axios.get(
       `/api/attractions?page=${pageParam}${qs.stringify(queryParam)}`
     );
+    
     return {
       docs: res.data.previewData,
       nextPage: res.data.nextPage,
@@ -29,6 +30,7 @@ export default function PreviewList() {
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
       )
       .flat(1); // flatten so array length is accurate
+
     return previews.length === 0 ? <p>Nothing Matched!</p> : previews;
   }
 
