@@ -33,7 +33,7 @@ exports.getAll = (pageNumber, callback) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
     const cursor = collection
-      .find()
+      .find({})
       .sort({ attraction_name: 1 })
       .skip(pageNumber * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page

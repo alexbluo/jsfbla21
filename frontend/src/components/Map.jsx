@@ -16,12 +16,12 @@ export default function Map({ center }) {
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
-      const queryParam = qs.stringify({
+      const params = qs.stringify({
         lng: center.lng,
         lat: center.lat,
         searchRadius: searchRadius,
       });
-      const res = await axios.get(`/api/attractions/near?${queryParam}`);
+      const res = await axios.get(`/api/attractions/near?${params}`);
       return res.data; // return to "data"
     }
   );

@@ -1,17 +1,12 @@
 const attractionsModel = require("../models/attractionsModel");
 
 exports.getOrMatchAll = (req, res) => {
-  console.log(req.query)
-  if (checkQuery(req.query)) {
-    attractionsModel.matchAll(
-      req.query.page,
-      // turn the query object into a filter compatible with MongoDB
-      formatFinalFilter(parseQuery(req.query)),
-      (data) => res.send(data)
-    );
-  } else {
-    attractionsModel.getAll(req.query.page, (data) => res.send(data));
-  }
+  console.log(req.query);
+  attractionsModel.matchAll(
+    req.query.page,
+    formatFinalFilter(formatFacets(req.query)),
+    (data) => res.send(data)
+  );
 };
 
 exports.getOne = (req, res) => {
@@ -23,52 +18,35 @@ exports.getNear = (req, res) => {
 };
 
 /**
- * Checks if the query parameters are valid and can be searched for
- * @param { Object.<string, string> } query - the req.query object
- * @returns true if the query parameters can be searched for
+ * 
+ * @param {  } query 
+ * @returns 
  */
-function checkQuery(query) {
-  const validValueSet = new Set(["region", "city", "category", "amenity"]);
-  const queryValues = Object.values(query);
-  // TODO check if EVERY query KEY is in the above array
-  return queryValues.some((queryValue) => validValueSet.has(queryValue));
-}
-
-/**
- * Parses the req.query object by reversing the keys with values and separating each entry into a new object
- * @param { Request.query } query - the req.query object
- * @returns { Object.<string, Array<Object.<string, string>>> } the parsed query object, grouped by category
- */
-function parseQuery(query) {
-  let parsedQueries = {};
+function formatFacets(query) {
+  const formattedFacets = {};
 
   for (const [key, value] of Object.entries(query)) {
-    // dont format page entry
-    if (key == "page") continue;
-    // format of parsed entry to pass to filter
-    const parsedEntry = { type: value, val: key };
+    if (!Array.isArray(value)) continue;
 
-    if (parsedQueries.hasOwnProperty(value)) {
-      // push the object to an array in order to group with similar categories
-      parsedQueries[value].push(parsedEntry);
-    } else {
-      // otherwise create a new array
-      parsedQueries[value] = [parsedEntry];
-    }
+    formattedFacets[key] = value.map((value) => {
+      return { type: key, val: value };
+    });
   }
 
-  return parsedQueries;
+  return formattedFacets;
 }
 
 /**
- * Turns the parsed query object into a filter ready to be passed to Collection.find()
+ * Turns the parsed query object into a filter ready to be passed to MongoDB Collection.find()
  * @param { Object.<string, string> } parsedQuery - the parsed query object
  * @returns { Filter<Document> } the final formatted filter
  */
-function formatFinalFilter(parsedQuery) {
+function formatFinalFilter(query) {
+  if (checkQuery(query)) return {};
+
   const finalFilter = { facets: { $all: [] } };
 
-  for (const [key, value] of Object.entries(parsedQuery)) {
+  for (const [key, value] of Object.entries(query)) {
     if (key === "amenity") {
       // filtering multiple amenities should search for places which have every amenity
       for (const field of value) {
@@ -76,9 +54,22 @@ function formatFinalFilter(parsedQuery) {
       }
       continue;
     }
-    // otherwise push an elemMatch for the value
+
+    // otherwise push the array of common values to "or"
     finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
   }
 
   return finalFilter;
+}
+
+/**
+ *
+ * @param { Object } query
+ */
+function checkQuery(query) {
+  const allFacetsEmpty = Object.values(query).every(
+    (value) => value.length === 0
+  );
+
+  return allFacetsEmpty;
 }

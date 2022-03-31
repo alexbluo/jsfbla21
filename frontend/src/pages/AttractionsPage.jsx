@@ -1,5 +1,4 @@
-import React, { useState, useReducer, useMemo } from "react";
-import qs from "qs";
+import React, { useReducer } from "react";
 import Facets from "../components/Facets";
 import PreviewList from "../components/PreviewList";
 import NavBar from "../components/NavBar";
@@ -27,12 +26,14 @@ function reducer(state, action) {
     // !order does not matter when passing to useQuery
     case "ADD_PARAM":
       state[category].push(field);
-      return state;
+      return { ...state };
     case "DEL_PARAM":
       return {
         ...state,
         [category]: state[category].filter((em) => em != field),
       };
+    case "RESET":
+      return initialState;
     default:
       return state;
   }

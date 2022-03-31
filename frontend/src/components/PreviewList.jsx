@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
@@ -8,12 +8,20 @@ import { QueryParamContext } from "../pages/AttractionsPage";
 export default function PreviewList() {
   const [queryParam] = useContext(QueryParamContext);
 
+  useEffect(() => {
+    console.log(queryParam);
+  }, [queryParam]);
+  
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
       ["attractions", queryParam],
       async ({ pageParam = 0 }) => {
+        const params = qs.stringify({
+          page: pageParam,
+          ...queryParam
+        })
         const res = await axios.get(
-          `/api/attractions?page=${pageParam}${queryParam}`
+          `/api/attractions?${params}`
         );
         return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to "data"
       },
