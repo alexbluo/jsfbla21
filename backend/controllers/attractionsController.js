@@ -18,58 +18,46 @@ exports.getNear = (req, res) => {
 };
 
 /**
- * 
- * @param {  } query 
- * @returns 
+ * Formats the query into an object with only facets compatible with MongoDB
+ * @param { Object.<string, Array.<Object.<string, string>> } query the initial req.query object received
+ * @returns a formatted object where the keys are facet categories
+ * and the values are arrays with elements ready to be passed to a MongoDB filter
  */
 function formatFacets(query) {
-  const formattedFacets = {};
+  const facets = {};
 
   for (const [key, value] of Object.entries(query)) {
     if (!Array.isArray(value)) continue;
 
-    formattedFacets[key] = value.map((value) => {
+    facets[key] = value.map((value) => {
       return { type: key, val: value };
     });
   }
 
-  return formattedFacets;
+  return facets;
 }
 
 /**
- * Turns the parsed query object into a filter ready to be passed to MongoDB Collection.find()
+ * Turns the formatted facets into a MongoDB filter
  * @param { Object.<string, string> } parsedQuery - the parsed query object
  * @returns { Filter<Document> } the final formatted filter
  */
 function formatFinalFilter(query) {
-  if (checkQuery(query)) return {};
+  if (Object.values(query).every((value) => value.length === 0)) return {};
 
-  const finalFilter = { facets: { $all: [] } };
+  const filter = { facets: { $all: [] } };
 
   for (const [key, value] of Object.entries(query)) {
     if (key === "amenity") {
       // filtering multiple amenities should search for places which have every amenity
       for (const field of value) {
-        finalFilter.facets.$all.push({ $elemMatch: field });
+        filter.facets.$all.push({ $elemMatch: field });
       }
       continue;
     }
-
     // otherwise push the array of common values to "or"
-    finalFilter.facets.$all.push({ $elemMatch: { $or: value } });
+    filter.facets.$all.push({ $elemMatch: { $or: value } });
   }
 
-  return finalFilter;
-}
-
-/**
- *
- * @param { Object } query
- */
-function checkQuery(query) {
-  const allFacetsEmpty = Object.values(query).every(
-    (value) => value.length === 0
-  );
-
-  return allFacetsEmpty;
+  return filter;
 }

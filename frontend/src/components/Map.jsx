@@ -5,8 +5,8 @@ import qs from "qs";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
-import "rc-slider/assets/index.css";
 import Preview from "./Preview";
+import "rc-slider/assets/index.css";
 
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
