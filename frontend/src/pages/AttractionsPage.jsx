@@ -26,13 +26,13 @@ function reducer(state, action) {
     // ^ write that down somewhere
     // !order does not matter when passing to useQuery
     case "ADD_PARAM":
-      console.log("ADD_PARAM");
-
-      return {...state };
-    case "DEL_PARAM":
-      console.log("DEL_PARAM");
-
+      state[category].push(field);
       return state;
+    case "DEL_PARAM":
+      return {
+        ...state,
+        [category]: state[category].filter((em) => em != field),
+      };
     default:
       return state;
   }
@@ -46,8 +46,8 @@ export default function AttractionsPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Attractions</h1>
-        <div className="flex flex-col lg:flex-row gap-12">
-          <QueryParamContext.Provider value={[ state, dispatch ]}>
+        <div className="flex flex-col gap-12 lg:flex-row">
+          <QueryParamContext.Provider value={[state, dispatch]}>
             <Facets />
             <PreviewList />
           </QueryParamContext.Provider>
