@@ -22,6 +22,7 @@ async function fetchFacets() {
 export default function Facets() {
   const { data, error, isLoading, isError } = useQuery(["facets"], fetchFacets);
 
+  //TODO: truncate long dropdown fields
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
   return (
