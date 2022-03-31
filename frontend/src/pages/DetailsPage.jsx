@@ -12,13 +12,12 @@ export default function DetailsPage() {
 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", id],
-    fetchDetails
+    async () => {
+      const res = await axios.get(`/api/attractions/${id}`);
+      return res.data;
+    }
   );
 
-  async function fetchDetails() {
-    const res = await axios.get(`/api/attractions/${id}`);
-    return res.data;
-  }
   /**
    * Formats the amenities array into html that can be dangerously set
    * @returns the dangerouslySetInnerHTML object

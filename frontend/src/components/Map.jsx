@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
+import qs from "qs";
 import GoogleMapReact from "google-map-react";
 import Slider from "rc-slider";
 import Marker from "./Marker";
@@ -13,10 +14,14 @@ export default function Map({ center }) {
   const [selectedMarker, setSelectedMarker] = useState(null);
 
   const { data, error, isLoading, isError } = useQuery(
-    ["attraction", searchRadius],
+    ["attraction", center.lng, center.lat, searchRadius],
     async () => {
-      const queryParam = `?lng=${center.lng}&lat=${center.lat}&searchRadius=${searchRadius}`;
-      const res = await axios.get(`/api/attractions/near${queryParam}`);
+      const queryParam = qs.stringify({
+        lng: center.lng,
+        lat: center.lat,
+        searchRadius: searchRadius,
+      });
+      const res = await axios.get(`/api/attractions/near?${queryParam}`);
       return res.data; // return to "data"
     }
   );
@@ -30,7 +35,7 @@ export default function Map({ center }) {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex flex-col lg:flex-row w-full">
+    <div className="flex w-full flex-col lg:flex-row">
       <div className="aspect-square lg:w-full">
         <GoogleMapReact
           bootstrapURLKeys={{
@@ -53,7 +58,7 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="flex flex-col bg-red lg:w-full aspect-square">
+      <div className="flex aspect-square flex-col bg-red lg:w-full">
         <div className="flex w-full items-center p-4">
           <label className="mr-2 flex font-semibold">
             <input
