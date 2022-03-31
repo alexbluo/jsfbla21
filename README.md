@@ -28,16 +28,16 @@ position => display => box => color => text => misc.
 
 Below is a list of features and technologies which are on track to be implemented, in order of precedence:
 
-- Tailwind CSS
+- Tailwind CSS DONE
 - Fulltext search
 - Easy clearing of checked fields
-- Redesign of map page UI and popup system
+- Redesign of map page UI and popup system DONE
   - Reduce map size and display information on the side instead of in popups
   - Increase performance when a large amount of markers are rendered at once
 - Add maps to attraction detail pages
 - Embedded contact form 
-- classnames library to clean up conditionally applied styles
-- Responsive layout
+- classnames library to clean up conditionally applied styles DONE
+- Responsive layout DONE
 - Docker because it sounds fun
 
 ## Sourcing

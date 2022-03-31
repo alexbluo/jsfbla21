@@ -38,7 +38,7 @@ export default function PreviewList() {
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="relative flex w-full flex-col items-center lg:w-2/3">
-      <div className="grid gap-12 lg:grid-cols-2">
+      <div className="grid gap-12 sm:grid-cols-2">
         {renderPreviews()}
       </div>
       {hasNextPage && (

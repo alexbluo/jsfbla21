@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* html {
-  change root font size for responsive layouts?
-  } */
-}
-
 @layer components {
   .page-title {
-    @apply flex h-12 items-center font-montserrat text-4xl;
+    @apply flex h-20 justify-center items-center font-montserrat text-4xl;
   }
   .content-body-container {
     @apply container mx-auto px-8 py-12 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28;
