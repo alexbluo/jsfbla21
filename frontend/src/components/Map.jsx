@@ -30,8 +30,8 @@ export default function Map({ center }) {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex flex-row">
-      <div className="aspect-square w-1/2">
+    <div className="flex flex-col lg:flex-row w-full">
+      <div className="aspect-square lg:w-full">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -53,7 +53,7 @@ export default function Map({ center }) {
         </GoogleMapReact>
       </div>
 
-      <div className="flex w-1/2 flex-col bg-red">
+      <div className="flex flex-col bg-red lg:w-full aspect-square">
         <div className="flex w-full items-center p-4">
           <label className="mr-2 flex font-semibold">
             <input

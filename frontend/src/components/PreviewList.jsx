@@ -17,7 +17,7 @@ export default function PreviewList() {
     const res = await axios.get(
       `/api/attractions?page=${pageParam}${qs.stringify(queryParam)}`
     );
-    
+
     return {
       docs: res.data.previewData,
       nextPage: res.data.nextPage,
@@ -37,8 +37,10 @@ export default function PreviewList() {
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="relative flex w-2/3 flex-col items-center">
-      <div className="grid grid-cols-2 gap-12">{renderPreviews()}</div>
+    <div className="relative flex w-full flex-col items-center lg:w-2/3">
+      <div className="grid gap-12 lg:grid-cols-2">
+        {renderPreviews()}
+      </div>
       {hasNextPage && (
         <button
           className="mt-8 rounded-md bg-red px-4 py-2 text-white shadow-md duration-100 hover:brightness-75"

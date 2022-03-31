@@ -10,10 +10,10 @@
 
 @layer components {
   .page-title {
-    @apply flex items-center h-12 text-4xl font-montserrat;
+    @apply flex h-12 items-center font-montserrat text-4xl;
   }
   .content-body-container {
-    @apply container px-4 py-12 mx-auto sm:px-8 lg:px-16 xl:px-20 2xl:px-24;
+    @apply container mx-auto px-8 py-12 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28;
   }
 }
 

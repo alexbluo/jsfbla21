@@ -46,7 +46,7 @@ export default function AttractionsPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Attractions</h1>
-        <div className="flex justify-between">
+        <div className="flex flex-col lg:flex-row gap-12">
           <QueryParamContext.Provider value={[ state, dispatch ]}>
             <Facets />
             <PreviewList />

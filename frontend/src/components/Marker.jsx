@@ -17,7 +17,7 @@ export default function Marker(props) {
         onMouseLeave={() => setShow(false)}
       ></div>
       {!props.isCenter && show && (
-        <div className="absolute -top-16 z-20 h-16 w-32 origin-bottom animate-spring-scale-up rounded-lg bg-red p-2">
+        <div className="absolute -top-16 z-20 h-16 w-32 origin-bottom animate-scale-up rounded-lg bg-red p-2">
           <h2 className="font-raleway text-xs text-white">{props.name}</h2>
         </div>
       )}

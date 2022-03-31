@@ -10,7 +10,7 @@ export default function Preview(props) {
     <div className="group relative">
       <Link to={`/attractions/${data.attraction_id}`}>
         <img
-          className="aspect-square w-full rounded-3xl object-cover shadow-md shadow-black duration-200 group-hover:brightness-50"
+          className="aspect-square w-full rounded-3xl object-cover shadow-md shadow-black duration-200 group-hover:shadow-none group-hover:brightness-50"
           src={
             data.attraction_image.includes("data")
               ? noImage
@@ -18,11 +18,11 @@ export default function Preview(props) {
           }
           alt=""
         />
-        <div className="absolute bottom-0 flex w-full flex-col rounded-3xl bg-black bg-opacity-90 p-4 text-center text-gold duration-200 group-hover:bg-transparent">
-          <span className="block items-center justify-center text-lg font-medium transition-all duration-200 group-hover:py-32">
+        <div className="absolute bottom-0 flex h-24 w-full flex-col rounded-3xl bg-black bg-opacity-90 p-4 text-center text-gold duration-200 group-hover:h-full group-hover:bg-transparent">
+          <div className="my-auto truncate text-xl font-medium duration-200 group-hover:whitespace-normal">
             {data.attraction_name}
-          </span>
-          <span className="block">{findFacet(data, "city")}</span>
+          </div>
+          <span>{findFacet(data, "city")}</span>
         </div>
       </Link>
     </div>
