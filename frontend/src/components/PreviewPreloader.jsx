@@ -1,3 +1,10 @@
-import React from "react";
+export default function PreviewPreloader(props) {
+  
+}
 
-export default function PreviewPreloader(props) {}
+PreviewPreloader.metadata = {
+  name: "RJavlonbek",
+  github: "RJavlonbek",
+  description: "Blog item",
+  filename: "PreviewPreloader",
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -21,7 +21,8 @@ const queryClient = new QueryClient({
   },
 });
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+root.render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
@@ -34,6 +35,5 @@ ReactDOM.render(
       </Routes>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>,
-  document.getElementById("root")
+  </QueryClientProvider>
 );

@@ -1,10 +1,10 @@
-import React, { useReducer } from "react";
+import { useReducer, createContext } from "react";
 import Facets from "../components/Facets";
 import PreviewList from "../components/PreviewList";
 import NavBar from "../components/NavBar";
 
 // query param string to be passed up from child checkboxes
-export const QueryParamContext = React.createContext();
+export const QueryParamContext = createContext();
 
 // TODO: move
 const initialState = {

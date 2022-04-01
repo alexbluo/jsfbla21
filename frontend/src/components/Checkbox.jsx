@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { QueryParamContext } from "../pages/AttractionsPage";
 
 export default function Checkbox(props) {

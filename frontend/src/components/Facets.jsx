@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Dropdown from "./Dropdown";
@@ -6,22 +5,20 @@ import Checkbox from "./Checkbox";
 
 const categories = ["region", "city", "category", "amenity"];
 
-async function fetchFacets() {
-  let data = {};
-
-  for (const category of categories) {
-    // res in the form of { category: [fields] }
-    const res = await axios.get(`/api/facets/${category}`);
-    // append newly fetched data
-    data = { ...data, ...res.data };
-  }
-
-  return data;
-}
-
 export default function Facets() {
-  const { data, error, isLoading, isError } = useQuery(["facets"], fetchFacets);
+  const { data, error, isLoading, isError } = useQuery(["facets"], async () => {
+    let data = {};
 
+    for (const category of categories) {
+      // res in the form of { category: [fields] }
+      const res = await axios.get(`/api/facets/${category}`);
+      // append newly fetched data
+      data = { ...data, ...res.data };
+    }
+
+    return data;
+  });
+  
   if (isLoading) return <div className="">test</div>;
   if (isError) return <span>Error: {error.message}</span>;
   return (

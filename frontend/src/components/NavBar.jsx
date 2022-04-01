@@ -1,4 +1,3 @@
-import React from "react";
 import NavBarLink from "./NavBarLink";
 
 export default function NavBar() {
