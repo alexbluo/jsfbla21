@@ -22,11 +22,10 @@ async function fetchFacets() {
 export default function Facets() {
   const { data, error, isLoading, isError } = useQuery(["facets"], fetchFacets);
 
-  //TODO: truncate long dropdown fields
-  if (isLoading) return null;
+  if (isLoading) return <div className="">test</div>;
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="inline-block w-full lg:w-auto">
+    <div className="inline-block">
       <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
         {Object.entries(data).map(([category, fields], index) => (
           <Dropdown header={category.toUpperCase()} key={index}>

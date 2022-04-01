@@ -1,4 +1,5 @@
 # Maryland Tourist Attractions Searcher
+Deployed to https://mdattractions.herokuapp.com/
 Created by Alex Luo for FBLA Coding & Programming 2021-2022
 
 ## Overview

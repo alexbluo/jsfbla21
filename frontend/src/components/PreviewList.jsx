@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
-import Preview from "../components/Preview";
 import { QueryParamContext } from "../pages/AttractionsPage";
+import Preview from "../components/Preview";
 
 export default function PreviewList() {
   const [queryParam] = useContext(QueryParamContext);

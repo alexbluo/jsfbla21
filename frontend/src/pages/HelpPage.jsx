@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
+import Dropdown from "../components/Dropdown";
 import Marker from "../components/Marker";
 
 export default function HelpPage() {
@@ -8,7 +9,10 @@ export default function HelpPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Help</h1>
-        <h2 className="text-3xl">FAQ</h2>
+        <h2 className="text-3xl pb-4">FAQ</h2>
+        <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
+          <Dropdown header="test">i am testig tis</Dropdown>
+        </div>
         <div className="">
           <h3>What is the white and red marker on the map?</h3>
           <p>
