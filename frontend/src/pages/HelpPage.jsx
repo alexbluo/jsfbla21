@@ -8,7 +8,7 @@ export default function HelpPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Help</h1>
-        <h2 className="text-3xl pb-4">FAQ</h2>
+        <h2 className="pb-4 text-3xl">FAQ</h2>
         <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
           <Dropdown header="test">i am testig tis</Dropdown>
         </div>

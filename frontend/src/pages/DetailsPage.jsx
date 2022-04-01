@@ -30,6 +30,7 @@ export default function DetailsPage() {
 
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
+  // TODO: make responsive >:/
   return (
     <>
       <NavBar />

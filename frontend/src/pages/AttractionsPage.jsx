@@ -47,7 +47,7 @@ export default function AttractionsPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Attractions</h1>
-        <div className="flex flex-col w-full gap-12 lg:flex-row">
+        <div className="flex w-full flex-col gap-12 lg:flex-row">
           <QueryParamContext.Provider value={[state, dispatch]}>
             <Facets />
             <PreviewList />

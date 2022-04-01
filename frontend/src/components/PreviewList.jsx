@@ -25,7 +25,7 @@ export default function PreviewList() {
 
   function renderPreviews() {
     if (isLoading) {
-      return [...Array(8)].map((e, i) => <PreviewPreloader test={1} test2="hi" key={i}></PreviewPreloader>);
+      return [...Array(8)].map((e, i) => <PreviewPreloader key={i} />);
     }
 
     const previews = data.pages
@@ -36,7 +36,7 @@ export default function PreviewList() {
 
     if (previews.length === 0) {
       return (
-        <span className="flex col-span-full w-full justify-center">
+        <span className="col-span-full flex w-full justify-center">
           Nothing Matched!
         </span>
       );
