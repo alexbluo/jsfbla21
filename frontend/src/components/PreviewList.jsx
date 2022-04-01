@@ -1,16 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import Preview from "./Preview";
+import PreviewPreloader from "./PreviewPreloader";
 
 export default function PreviewList() {
   const [queryParam] = useContext(QueryParamContext);
-
-  useEffect(() => {
-    console.log(queryParam);
-  }, [queryParam]);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
@@ -27,6 +24,10 @@ export default function PreviewList() {
     );
 
   function renderPreviews() {
+    if (isLoading) {
+      return [...Array(8)].map((e, i) => <PreviewPreloader test={1} test2="hi" key={i}></PreviewPreloader>);
+    }
+
     const previews = data.pages
       .map((group) =>
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
@@ -43,11 +44,6 @@ export default function PreviewList() {
     return previews;
   }
 
-  if (isLoading) {
-    return (
-      <span className="flex w-full justify-center lg:w-2/3">Loading...</span>
-    );
-  }
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="relative flex w-full flex-col items-center lg:w-2/3">
