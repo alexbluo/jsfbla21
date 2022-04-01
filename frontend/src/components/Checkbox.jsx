@@ -5,7 +5,7 @@ export default function Checkbox(props) {
   const [queryParam, dispatch] = useContext(QueryParamContext);
   const [checked, setChecked] = useState(false);
 
-  // TODO: fix firing hundreds of times on render (maybe use some special hook?)
+  // TODO 5: fix firing hundreds of times on render (maybe use some special hook?)
   useEffect(() => {
     if (checked) {
       dispatch({ type: "ADD_PARAM", payload: [props.category, props.field] });

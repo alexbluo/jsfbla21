@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar";
 // query param string to be passed up from child checkboxes
 export const QueryParamContext = createContext();
 
-// TODO: move
+// TODO 2: move
 const initialState = {
   region: [],
   city: [],
