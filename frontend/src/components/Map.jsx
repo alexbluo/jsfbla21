@@ -8,7 +8,9 @@ import Marker from "./Marker";
 import Preview from "./Preview";
 import "rc-slider/assets/index.css";
 
-// TODO 6: switch to either googlemaps/js-api-loader or 
+// TODO 6: switch to either googlemaps/js-api-loader or react-google-maps/api
+// both have a marker clustering package
+
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
