@@ -46,7 +46,7 @@ export default function PreviewList() {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="relative flex w-full flex-col items-center lg:w-2/3">
+    <div className="relative flex w-full flex-col items-center xl:w-2/3">
       <div className="grid w-full gap-12 sm:grid-cols-2">
         {renderPreviews()}
       </div>

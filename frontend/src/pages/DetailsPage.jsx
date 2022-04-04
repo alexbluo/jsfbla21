@@ -22,7 +22,7 @@ export default function DetailsPage() {
    * @returns the dangerouslySetInnerHTML object
    */
   function createAmenitiesMarkup() {
-    const amenities = `<ul class="absolute max-w-[20%] max-h-[70%] ml-8 overflow-auto"><li>${data.amenities.join(
+    const amenities = `<ul class="w-full indent-4 truncate"><li>${data.amenities.join(
       "</li><li>"
     )}</li></ul>`;
     return { __html: amenities };
@@ -37,16 +37,17 @@ export default function DetailsPage() {
       <div className="content-body-container">
         <div>
           <h1 className="page-title">{data.attraction_name}</h1>
-          {/* TODO 4: :odd :even? */}
-          <div className="grid grid-cols-3 grid-rows-2 font-poppins">
-            <div className="bg-gold px-[8%] py-[4%]">
+          {/* TODO 4: odd: even: (doesnt really work...)? */}
+          <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
+            <div className="flex flex-col bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}
             </div>
 
-            <div className="flex flex-col px-[8%] py-[4%] text-red">
+            {/* two liner buttons USED TO mess up squares */}
+            <div className="flex flex-col bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Website & Contact</h2>
-              <div className="grid h-full w-full grid-cols-2 grid-rows-4 items-center gap-4 bg-white text-center">
+              <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
                 {data.website_link && (
                   <ButtonLink link={data.website_link} detail>
                     Website
@@ -84,7 +85,7 @@ export default function DetailsPage() {
               alt=""
             />
 
-            <div className="px-[8%] py-[4%] text-red">
+            <div className="flex w-auto flex-col bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Amenities</h2>
               {data.amenities ? (
                 <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
@@ -93,7 +94,7 @@ export default function DetailsPage() {
               )}
             </div>
 
-            <div className="bg-gold px-[8%] py-[4%]">
+            <div className="flex flex-col bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Location</h2>
               {data.address}
               <br />
@@ -108,7 +109,7 @@ export default function DetailsPage() {
               </a>
             </div>
 
-            <div className="px-[8%] py-[4%] text-red">
+            <div className="bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Region</h2>
               <h3 className="text-lg">{findFacet(data, "region")}</h3>
               {data.region_image && (
