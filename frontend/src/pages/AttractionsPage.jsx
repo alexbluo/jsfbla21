@@ -20,10 +20,10 @@ function reducer(state, action) {
 
   switch (type) {
     // use of object instead of query string ensures consistent query key caching (string depends on order)
-    // use of reducer allows for simply dispatching an action (less repeat in future feature)
+    // use of reducer allows for simply dispatching an action (less repeat in future clearing feature)
     // the whole thing ultimately reduces code complexity and amibguity in both the frontend and backend
     // ^ write that down somewhere
-    // !order does not matter when passing to useQuery
+    // !entry order does not matter when passing to useQuery
     case "ADD_PARAM":
       state[category].push(field);
       return { ...state };

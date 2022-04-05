@@ -30,14 +30,13 @@ export default function DetailsPage() {
 
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
-  // TODO 3: make responsive >:/
   return (
     <>
       <NavBar />
       <div className="content-body-container">
         <div>
           <h1 className="page-title">{data.attraction_name}</h1>
-          {/* TODO 4: odd: even: (doesnt really work...)? */}
+          {/* odd: even: doesnt really work...? */}
           <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
             <div className="flex flex-col bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>

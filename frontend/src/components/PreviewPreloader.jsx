@@ -5,10 +5,10 @@ export default function PreviewPreloader(props) {
   // https://stackoverflow.com/questions/49081549/passing-object-as-props-to-jsx
   // 333
   return (
-    <ContentLoader viewBox="0 0 280 280" {...props}>
-      <rect x="3" y="3" rx="10" ry="10" width="300" height="180" />
-      <rect x="6" y="190" rx="0" ry="0" width="300" height="20" />
-      <rect x="4" y="215" rx="0" ry="0" width="300" height="20" />
+    <ContentLoader viewBox="0 0 300 300" {...props}>
+      <rect x="0" y="0" rx="10" ry="10" width="300" height="240" />
+      <rect x="0" y="250" rx="5" ry="5" width="300" height="20" />
+      <rect x="0" y="280" rx="5" ry="5" width="300" height="20" />
     </ContentLoader>
   );
 }

@@ -10,7 +10,7 @@ export default function Dropdown(props) {
   return (
     <div className="bg-black">
       <div
-        className="flex cursor-pointer select-none items-center justify-between rounded bg-gold p-3"
+        className="w-full flex cursor-pointer select-none items-center justify-between rounded bg-gold p-3"
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
