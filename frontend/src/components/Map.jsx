@@ -31,7 +31,7 @@ export default function Map({ center }) {
 
   function handleInput(event) {
     let value = event.target.value;
-    if (value > 500) value = 500;
+    if (value > 300) value = 300;
     if (value < 0) value = 0;
     setSliderValue(value);
   }
@@ -68,7 +68,7 @@ export default function Map({ center }) {
               className="mr-1 w-10 rounded border-2 text-center"
               type="number"
               min={0}
-              max={500}
+              max={300}
               value={sliderValue}
               onInput={handleInput}
             />
@@ -77,7 +77,7 @@ export default function Map({ center }) {
           <Slider
             className="mx-2"
             min={0}
-            max={500}
+            max={300}
             value={sliderValue}
             onChange={(value) => setSliderValue(value)}
             onAfterChange={() => setSearchRadius(sliderValue * 1000)}
