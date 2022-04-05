@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
-import GoogleMapReact from "google-map-react";
+import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import Slider from "rc-slider";
-import Marker from "./Marker";
+// import Marker from "./Marker";
 import Preview from "./Preview";
 import "rc-slider/assets/index.css";
 
@@ -40,7 +40,31 @@ export default function Map({ center }) {
   return (
     <div className="flex w-full flex-col lg:flex-row">
       <div className="aspect-square lg:w-full">
-        <GoogleMapReact
+        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+          <GoogleMap
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            center={center}
+            zoom={11}
+          >
+            <Marker
+              position={center}
+              isCenter
+            />
+            {!isLoading &&
+              data.map((doc) => (
+                <Marker
+                  position={{
+                    lat: doc.coordinates[1],
+                    lng: doc.coordinates[0],
+                  }}
+                  onClick={() => setSelectedMarker(doc)}
+                  name={doc.attraction_name}
+                  key={doc.attraction_id}
+                />
+              ))}
+          </GoogleMap>
+        </LoadScript>
+        {/* <GoogleMapReact
           bootstrapURLKeys={{
             key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
           }}
@@ -58,7 +82,7 @@ export default function Map({ center }) {
                 key={doc.attraction_id}
               />
             ))}
-        </GoogleMapReact>
+        </GoogleMapReact> */}
       </div>
 
       <div className="flex aspect-square flex-col bg-red lg:w-full">
