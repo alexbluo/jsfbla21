@@ -25,9 +25,11 @@ export default function Facets() {
   return (
     <div className="inline-block w-full xl:w-1/3">
       <div
-        className={classNames("flex flex-col gap-1 rounded-md", {
-          "border-4 bg-black": !isLoading,
-        })}
+        className={classNames(
+          "flex flex-col gap-1 rounded-md border-4",
+          { "border-transparent": isLoading },
+          { "border-black bg-black": !isLoading }
+        )}
       >
         {isLoading ? (
           <FacetsPreloader width="100%" height="220px" />
