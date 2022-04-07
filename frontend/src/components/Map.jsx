@@ -2,7 +2,12 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import Slider from "rc-slider";
 // import Marker from "./Marker";
 import Preview from "./Preview";
@@ -12,6 +17,7 @@ import "rc-slider/assets/index.css";
 // both have a marker clustering package
 
 export default function Map({ center }) {
+  console.log(center)
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -46,10 +52,7 @@ export default function Map({ center }) {
             center={center}
             zoom={11}
           >
-            <Marker
-              position={center}
-              isCenter
-            />
+            <Marker position={center} isCenter />
             {!isLoading &&
               data.map((doc) => (
                 <Marker
@@ -64,25 +67,6 @@ export default function Map({ center }) {
               ))}
           </GoogleMap>
         </LoadScript>
-        {/* <GoogleMapReact
-          bootstrapURLKeys={{
-            key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-          }}
-          defaultCenter={center}
-          defaultZoom={11}
-        >
-          <Marker lat={center.lat} lng={center.lng} isCenter />
-          {!isLoading &&
-            data.map((doc) => (
-              <Marker
-                lat={doc.coordinates[1]}
-                lng={doc.coordinates[0]}
-                onClick={() => setSelectedMarker(doc)}
-                name={doc.attraction_name}
-                key={doc.attraction_id}
-              />
-            ))}
-        </GoogleMapReact> */}
       </div>
 
       <div className="flex aspect-square flex-col bg-red lg:w-full">

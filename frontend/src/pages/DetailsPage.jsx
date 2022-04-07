@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import ButtonLink from "../components/ButtonLink";
+import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 import noImage from "../images/noImage.png";
 import findFacet from "../utils/findFacet";
@@ -116,6 +117,9 @@ export default function DetailsPage() {
               )}
             </div>
           </div>
+          <Map
+            center={{ lat: data.coordinates[1], lng: data.coordinates[0] }}
+          />
         </div>
       </div>
     </>
