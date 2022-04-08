@@ -7,14 +7,12 @@ import {
   LoadScript,
   Marker,
   InfoWindow,
+  InfoBox,
+  MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
-// import Marker from "./Marker";
 import Preview from "./Preview";
 import "rc-slider/assets/index.css";
-
-// TODO 6: switch to either googlemaps/js-api-loader or react-google-maps/api
-// both have a marker clustering package
 
 export default function Map({ center }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
@@ -50,37 +48,45 @@ export default function Map({ center }) {
             mapContainerStyle={{ width: "100%", height: "100%" }}
             center={center}
             zoom={11}
+            clickableIcons={false}
           >
             <Marker position={center} isCenter />
-            {!isLoading &&
-              data.map((doc) => (
-                <Marker
-                  position={{
-                    lat: doc.coordinates[1],
-                    lng: doc.coordinates[0],
-                  }}
-                  onClick={() => setSelectedMarker(doc)}
-                  name={doc.attraction_name}
-                  key={doc.attraction_id}
-                />
-              ))}
+            {!isLoading && (
+              <MarkerClusterer>
+                {(clusterer) =>
+                  data.map((doc) => (
+                    <>
+                      <Marker
+                        position={{
+                          lat: doc.coordinates[1],
+                          lng: doc.coordinates[0],
+                        }}
+                        clusterer={clusterer}
+                        onClick={() => setSelectedMarker(doc)}
+                        name={doc.attraction_name}
+                        title={doc.attraction_name}
+                        key={doc.attraction_id}
+                      >
+                        {selectedMarker === doc ? (
+                          <InfoWindow
+                            onCloseClick={() => setActiveMarker(null)}
+                          >
+                            <div>{doc.attraction_name}</div>
+                          </InfoWindow>
+                        ) : null}
+                      </Marker>
+                    </>
+                  ))
+                }
+              </MarkerClusterer>
+            )}
           </GoogleMap>
         </LoadScript>
       </div>
 
+      {/* TODO: add toggle between slider and search? */}
       <div className="flex aspect-square flex-col bg-red lg:w-full">
         <div className="flex w-full items-center p-4">
-          <label className="mr-2 flex font-semibold">
-            <input
-              className="mr-1 w-10 rounded border-2 text-center"
-              type="number"
-              min={0}
-              max={300}
-              value={sliderValue}
-              onInput={handleInput}
-            />
-            km
-          </label>
           <Slider
             className="mx-2"
             min={0}
@@ -106,12 +112,23 @@ export default function Map({ center }) {
               boxShadow: "none",
             }}
           />
+          <label className="ml-2 flex rounded bg-white pr-2">
+            <input
+              className="w-10 rounded text-center"
+              type="number"
+              min={0}
+              max={300}
+              value={sliderValue}
+              onInput={handleInput}
+            />
+            km
+          </label>
         </div>
-        {selectedMarker && (
+        {/* {selectedMarker && (
           <div className="h-full w-full">
             <Preview data={selectedMarker} />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
