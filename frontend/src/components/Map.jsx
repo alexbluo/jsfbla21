@@ -7,12 +7,12 @@ import {
   LoadScript,
   Marker,
   InfoWindow,
-  InfoBox,
   MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
 import Preview from "./Preview";
 import "rc-slider/assets/index.css";
+import findFacet from "../utils/findFacet.js";
 
 export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
@@ -50,8 +50,11 @@ export default function Map({ center, centerName }) {
             zoom={11}
             clickableIcons={false}
           >
-            <Marker position={center} onClick={() => setSelectedMarker(doc)}>
-              {!isLoading && (
+            <Marker
+              position={center}
+              onClick={() => setSelectedMarker("center")}
+            >
+              {selectedMarker === "center" && (
                 <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                   <div>{centerName}</div>
                 </InfoWindow>
@@ -97,7 +100,7 @@ export default function Map({ center, centerName }) {
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - map package has) */}
-      {/* TODO: add show center button (just set the selected marker to the center) */}
+      {/* TODO: add show center button (just set the selected marker to "center") */}
       <div className="flex aspect-square flex-col bg-red lg:w-full">
         <div className="flex w-full items-center p-4">
           <Slider
@@ -125,16 +128,16 @@ export default function Map({ center, centerName }) {
               boxShadow: "none",
             }}
           />
-          <label className="ml-2 flex rounded bg-white pr-2">
+          <label className="ml-2 flex rounded bg-white">
             <input
-              className="w-10 rounded text-center"
+              className="w-8 rounded text-right"
               type="number"
               min={0}
               max={300}
               value={sliderValue}
               onInput={handleInput}
             />
-            km
+            <span className="px-2">km</span>
           </label>
         </div>
         {/* {selectedMarker && (
