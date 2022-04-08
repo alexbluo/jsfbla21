@@ -17,7 +17,6 @@ import "rc-slider/assets/index.css";
 // both have a marker clustering package
 
 export default function Map({ center }) {
-  console.log(center)
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
