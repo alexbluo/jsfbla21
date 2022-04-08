@@ -52,30 +52,32 @@ export default function Map({ center }) {
           >
             <Marker position={center} isCenter />
             {!isLoading && (
-              <MarkerClusterer>
+              <MarkerClusterer
+                averageCenter={true}
+                minimumClusterSize={4}
+                zoomOnClick={false}
+              >
                 {(clusterer) =>
                   data.map((doc) => (
-                    <>
-                      <Marker
-                        position={{
-                          lat: doc.coordinates[1],
-                          lng: doc.coordinates[0],
-                        }}
-                        clusterer={clusterer}
-                        onClick={() => setSelectedMarker(doc)}
-                        name={doc.attraction_name}
-                        title={doc.attraction_name}
-                        key={doc.attraction_id}
-                      >
-                        {selectedMarker === doc ? (
-                          <InfoWindow
-                            onCloseClick={() => setActiveMarker(null)}
-                          >
-                            <div>{doc.attraction_name}</div>
-                          </InfoWindow>
-                        ) : null}
-                      </Marker>
-                    </>
+                    <Marker
+                      position={{
+                        lat: doc.coordinates[1],
+                        lng: doc.coordinates[0],
+                      }}
+                      clusterer={clusterer}
+                      onClick={() => setSelectedMarker(doc)}
+                      name={doc.attraction_name}
+                      title={doc.attraction_name}
+                      key={doc.attraction_id}
+                    >
+                      {selectedMarker === doc && (
+                        <InfoWindow
+                          onCloseClick={() => setSelectedMarker(null)}
+                        >
+                          <div>{doc.attraction_name}</div>
+                        </InfoWindow>
+                      )}
+                    </Marker>
                   ))
                 }
               </MarkerClusterer>
@@ -84,7 +86,7 @@ export default function Map({ center }) {
         </LoadScript>
       </div>
 
-      {/* TODO: add toggle between slider and search? */}
+      {/* TODO: add toggle between slider and search (and search too - map package has) */}
       <div className="flex aspect-square flex-col bg-red lg:w-full">
         <div className="flex w-full items-center p-4">
           <Slider
