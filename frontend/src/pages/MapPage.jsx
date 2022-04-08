@@ -22,7 +22,7 @@ export default function MapPage() {
       <NavBar />
       <div className="content-body-container">
         <h1 className="page-title">Map</h1>
-        {center && <Map center={center} />}
+        {center && <Map center={center} centerName="You" />}
       </div>
     </>
   );

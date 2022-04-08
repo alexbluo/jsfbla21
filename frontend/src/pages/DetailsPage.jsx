@@ -119,6 +119,7 @@ export default function DetailsPage() {
           </div>
           <Map
             center={{ lat: data.coordinates[1], lng: data.coordinates[0] }}
+            centerName={`${data.attraction_name} (current)`}
           />
         </div>
       </div>

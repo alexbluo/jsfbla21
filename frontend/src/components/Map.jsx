@@ -14,7 +14,7 @@ import Slider from "rc-slider";
 import Preview from "./Preview";
 import "rc-slider/assets/index.css";
 
-export default function Map({ center }) {
+export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -50,7 +50,13 @@ export default function Map({ center }) {
             zoom={11}
             clickableIcons={false}
           >
-            <Marker position={center} isCenter />
+            <Marker position={center} onClick={() => setSelectedMarker(doc)}>
+              {!isLoading && (
+                <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                  <div>{centerName}</div>
+                </InfoWindow>
+              )}
+            </Marker>
             {!isLoading && (
               <MarkerClusterer
                 averageCenter={true}
@@ -66,7 +72,6 @@ export default function Map({ center }) {
                       }}
                       clusterer={clusterer}
                       onClick={() => setSelectedMarker(doc)}
-                      name={doc.attraction_name}
                       title={doc.attraction_name}
                       key={doc.attraction_id}
                     >
@@ -74,7 +79,12 @@ export default function Map({ center }) {
                         <InfoWindow
                           onCloseClick={() => setSelectedMarker(null)}
                         >
-                          <div>{doc.attraction_name}</div>
+                          <div>
+                            {doc.address}
+                            <br />
+                            {findFacet(doc, "city")}, {doc.state}&nbsp;
+                            {doc.zip}
+                          </div>
                         </InfoWindow>
                       )}
                     </Marker>
@@ -87,6 +97,7 @@ export default function Map({ center }) {
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - map package has) */}
+      {/* TODO: add show center button (just set the selected marker to the center) */}
       <div className="flex aspect-square flex-col bg-red lg:w-full">
         <div className="flex w-full items-center p-4">
           <Slider
