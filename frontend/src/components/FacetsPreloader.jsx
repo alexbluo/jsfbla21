@@ -1,6 +1,5 @@
 import ContentLoader from "react-content-loader";
 
-// TODO 1: learn what is actually going on
 export default function FacetsPreloader(props) {
   return (
     <ContentLoader viewBox="0 0 400 288" preserveAspectRatio="none" {...props}>

@@ -10,6 +10,7 @@ import {
   MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
+import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet.js";
 import "rc-slider/assets/index.css";
 
@@ -51,7 +52,6 @@ export default function Map({ center, centerName }) {
               mapContainerStyle={{ width: "100%", height: "100%" }}
               center={center}
               zoom={11}
-              clickableIcons={false}
             >
               <Marker
                 position={center}
@@ -93,6 +93,14 @@ export default function Map({ center, centerName }) {
                             <br />
                             {findFacet(doc, "city")}, {doc.state}&nbsp;
                             {doc.zip}
+                            <br />
+                            <Link
+                              className="underline underline-offset-1"
+                              to={`/attractions/${doc.attraction_id}`}
+                              target="_blank"
+                            >
+                              Details
+                            </Link>
                           </div>
                         </InfoWindow>
                       )}
@@ -105,12 +113,14 @@ export default function Map({ center, centerName }) {
         )}
       </div>
 
-      {/* TODO: add toggle between slider and search (and search too - map package has) */}
+      {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
       {/* TODO: add show center button (just set the selected marker to "center") */}
+      {/* TODO: add carousel with map key
+          https://www.blog.google/products/maps/google-maps-gets-new-look/
+          https://tailwind-elements.com/docs/standard/components/carousel/*/}
       <div className="flex aspect-square flex-col bg-red lg:w-full">
-        <div className="flex w-full items-center p-4">
+        <div className="flex w-full items-center gap-4 p-6">
           <Slider
-            className="mx-2"
             min={0}
             max={300}
             value={sliderValue}
@@ -134,7 +144,7 @@ export default function Map({ center, centerName }) {
               boxShadow: "none",
             }}
           />
-          <label className="ml-2 flex rounded bg-white">
+          <label className="flex rounded bg-white">
             <input
               className="w-8 rounded py-2 text-right"
               type="number"
@@ -146,11 +156,6 @@ export default function Map({ center, centerName }) {
             <span className="p-2">km</span>
           </label>
         </div>
-        {/* {selectedMarker && (
-          <div className="h-full w-full">
-            <Preview data={selectedMarker} />
-          </div>
-        )} */}
       </div>
     </div>
   );
