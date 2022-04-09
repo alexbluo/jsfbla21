@@ -10,9 +10,8 @@ import {
   MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
-import Preview from "./Preview";
-import "rc-slider/assets/index.css";
 import findFacet from "../utils/findFacet.js";
+import "rc-slider/assets/index.css";
 
 export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
@@ -83,6 +82,10 @@ export default function Map({ center, centerName }) {
                           onCloseClick={() => setSelectedMarker(null)}
                         >
                           <div>
+                            <span className="font-semibold">
+                              {doc.attraction_name}
+                            </span>
+                            <br />
                             {doc.address}
                             <br />
                             {findFacet(doc, "city")}, {doc.state}&nbsp;
@@ -130,14 +133,14 @@ export default function Map({ center, centerName }) {
           />
           <label className="ml-2 flex rounded bg-white">
             <input
-              className="w-8 rounded text-right"
+              className="w-8 rounded py-2 text-right"
               type="number"
               min={0}
               max={300}
               value={sliderValue}
               onInput={handleInput}
             />
-            <span className="px-2">km</span>
+            <span className="p-2">km</span>
           </label>
         </div>
         {/* {selectedMarker && (

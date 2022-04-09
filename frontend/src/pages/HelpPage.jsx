@@ -10,28 +10,8 @@ export default function HelpPage() {
         <h1 className="page-title">Help</h1>
         <h2 className="pb-4 text-3xl">FAQ</h2>
         <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
-          <Dropdown header="test">i am testig tis</Dropdown>
+          <Dropdown header="test">content</Dropdown>
         </div>
-        <div className="">
-          <h3>What is the white and red marker on the map?</h3>
-          <p>
-            The white and red marker is your current location while the black
-            and yellow markers are all the attractions within the specified
-            distance.
-          </p>
-          <label>
-            <Marker name="Your Location" isCenter /> Your location
-            <br />
-            <Marker name="Attraction Name" /> Attraction near you
-          </label>
-          <h3>
-            Why are new attractions not appearing on the map after x distance?
-          </h3>
-          <p>
-            The max distance was set to 500km in order to accommodate for users
-            in the far out regions of Maryland, but most users will likely max
-            out around 250km.
-          </p>
           <h3>Where is the data collected from?</h3>
           <p>
             All data was scraped from&nbsp;
@@ -52,7 +32,6 @@ export default function HelpPage() {
               </button>
             </a>
           </div>
-        </div>
       </div>
     </>
   );

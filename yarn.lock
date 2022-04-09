@@ -322,7 +322,7 @@
   resolved "https://registry.yarnpkg.com/@react-google-maps/infobox/-/infobox-2.8.0.tgz#c4eaa27f20432d3dc0fa511c45d449aca015d0e0"
   integrity sha512-OzLnJfPZnOJGRsS93Arq80ndLk7Etw07uyAqo5IPtS12Qs9rlm5+L3jDUdZKC3URlWEifHLeCykQbCVWHpA+pg==
 
-"@react-google-maps/marker-clusterer@2.9.0", "@react-google-maps/marker-clusterer@^2.9.0":
+"@react-google-maps/marker-clusterer@2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-2.9.0.tgz#6f3c2f9e467a0e7594634ed205a1c171752d1630"
   integrity sha512-BJJH2OXdUreVNdfTCuuO2oHoqBmXSnXtIQvbRYj3LwZ27nnzfY87D/KEUPXnCXj/56kEeVlBbvAbcKKeMRmkSw==
