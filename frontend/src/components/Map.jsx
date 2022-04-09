@@ -13,6 +13,7 @@ import Slider from "rc-slider";
 import findFacet from "../utils/findFacet.js";
 import "rc-slider/assets/index.css";
 
+// TODO: fix clicking away before map loads
 export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
@@ -42,24 +43,26 @@ export default function Map({ center, centerName }) {
   return (
     <div className="flex w-full flex-col lg:flex-row">
       <div className="aspect-square lg:w-full">
-        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-          <GoogleMap
-            mapContainerStyle={{ width: "100%", height: "100%" }}
-            center={center}
-            zoom={11}
-            clickableIcons={false}
+        {!isLoading && (
+          <LoadScript
+            googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
           >
-            <Marker
-              position={center}
-              onClick={() => setSelectedMarker("center")}
+            <GoogleMap
+              mapContainerStyle={{ width: "100%", height: "100%" }}
+              center={center}
+              zoom={11}
+              clickableIcons={false}
             >
-              {selectedMarker === "center" && (
-                <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                  <div>{centerName}</div>
-                </InfoWindow>
-              )}
-            </Marker>
-            {!isLoading && (
+              <Marker
+                position={center}
+                onClick={() => setSelectedMarker("center")}
+              >
+                {selectedMarker === "center" && (
+                  <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                    <div>{centerName}</div>
+                  </InfoWindow>
+                )}
+              </Marker>
               <MarkerClusterer
                 averageCenter={true}
                 minimumClusterSize={4}
@@ -97,9 +100,9 @@ export default function Map({ center, centerName }) {
                   ))
                 }
               </MarkerClusterer>
-            )}
-          </GoogleMap>
-        </LoadScript>
+            </GoogleMap>
+          </LoadScript>
+        )}
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - map package has) */}

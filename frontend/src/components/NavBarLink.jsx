@@ -4,7 +4,7 @@ export default function NavBarLink(props) {
   return (
     <li className="inline">
       <NavLink
-        className="mx-3 text-xl text-white hover:text-gold hover:duration-200 hover:ease-in"
+        className="text-xl text-white duration-200 hover:text-gold hover:ease-in"
         to={props.path}
       >
         {props.children}
