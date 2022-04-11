@@ -4,7 +4,7 @@ import axios from "axios";
 import qs from "qs";
 import {
   GoogleMap,
-  LoadScript,
+  useJsApiLoader,
   Marker,
   InfoWindow,
   MarkerClusterer,
@@ -19,6 +19,10 @@ export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  });
 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
@@ -41,29 +45,28 @@ export default function Map({ center, centerName }) {
     setSearchRadius(value * 1000);
   }
 
+  if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">
       <div className="aspect-square lg:w-full">
-        {!isLoading && (
-          <LoadScript
-            googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+        {isLoaded && (
+          <GoogleMap
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            center={center}
+            zoom={11}
           >
-            <GoogleMap
-              mapContainerStyle={{ width: "100%", height: "100%" }}
-              center={center}
-              zoom={11}
+            <Marker
+              position={center}
+              onClick={() => setSelectedMarker("center")}
             >
-              <Marker
-                position={center}
-                onClick={() => setSelectedMarker("center")}
-              >
-                {selectedMarker === "center" && (
-                  <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                    <div>{centerName}</div>
-                  </InfoWindow>
-                )}
-              </Marker>
+              {selectedMarker === "center" && (
+                <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                  <div>{centerName}</div>
+                </InfoWindow>
+              )}
+            </Marker>
+            {!isLoading && (
               <MarkerClusterer
                 averageCenter={true}
                 minimumClusterSize={4}
@@ -96,7 +99,7 @@ export default function Map({ center, centerName }) {
                             {doc.zip}
                             <br />
                             <Link
-                              className="underline underline-offset-1"
+                              className="font-medium text-blue-600"
                               to={`/attractions/${doc.attraction_id}`}
                               target="_blank"
                             >
@@ -109,8 +112,8 @@ export default function Map({ center, centerName }) {
                   ))
                 }
               </MarkerClusterer>
-            </GoogleMap>
-          </LoadScript>
+            )}
+          </GoogleMap>
         )}
       </div>
 

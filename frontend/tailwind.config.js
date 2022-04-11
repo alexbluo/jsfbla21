@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   mode: "jit",
   content: [
@@ -11,6 +13,7 @@ module.exports = {
       white: "rgb(255, 255, 255)",
       gold: "rgb(234, 170, 0)",
       black: "rgb(0, 0, 0)",
+      blue: colors.blue,
       transparent: "transparent",
     },
     extend: {
