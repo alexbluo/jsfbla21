@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import MDFlagGIF from "../images/MDFlagGIF.gif";
 
+// TODO: only play animation on first cycle and play on cursor move?
 export default function LandingPage() {
   return (
     <div className="h-screen w-screen">

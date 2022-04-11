@@ -10,9 +10,11 @@ import {
   MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
+import Tabs, { TabPane } from "rc-tabs";
 import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet.js";
 import "rc-slider/assets/index.css";
+import "rc-tabs/assets/index.css";
 
 // TODO: fix clicking away before map loads
 export default function Map({ center, centerName }) {
@@ -85,7 +87,7 @@ export default function Map({ center, centerName }) {
                           onCloseClick={() => setSelectedMarker(null)}
                         >
                           <div>
-                            <span className="font-semibold">
+                            <span className="font-medium">
                               {doc.attraction_name}
                             </span>
                             <br />
@@ -115,47 +117,58 @@ export default function Map({ center, centerName }) {
 
       {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
       {/* TODO: add show center button (just set the selected marker to "center") */}
-      {/* TODO: add carousel with map key
+      {/* TODO: add carousel with map icon key
           https://www.blog.google/products/maps/google-maps-gets-new-look/
           https://tailwind-elements.com/docs/standard/components/carousel/*/}
-      <div className="flex aspect-square flex-col bg-red lg:w-full">
-        <div className="flex w-full items-center gap-4 p-6">
-          <Slider
-            min={0}
-            max={300}
-            value={sliderValue}
-            onChange={(value) => setSliderValue(value)}
-            onAfterChange={() => setSearchRadius(sliderValue * 1000)}
-            railStyle={{
-              backgroundColor: "black",
-              height: 3,
-              marginTop: 1,
-            }}
-            trackStyle={{
-              backgroundColor: "gold",
-              marginLeft: -1,
-            }}
-            handleStyle={{
-              height: 15,
-              width: 15,
-              borderRadius: "50%",
-              borderColor: "gold",
-              backgroundColor: "gold",
-              boxShadow: "none",
-            }}
-          />
-          <label className="flex rounded bg-white">
-            <input
-              className="w-8 rounded py-2 text-right"
-              type="number"
-              min={0}
-              max={300}
-              value={sliderValue}
-              onInput={handleInput}
-            />
-            <span className="p-2">km</span>
-          </label>
-        </div>
+      <div className="aspect-square bg-red lg:w-full">
+        <Tabs
+          tabBarStyle={{ width: "100%" }}
+          defaultActiveKey="0"
+          onChange={() => console.log("CHANGE")}
+        >
+          <TabPane tab="tab 1" key="0">
+            <div className="flex w-full items-center gap-4 p-6">
+              <Slider
+                min={0}
+                max={300}
+                value={sliderValue}
+                onChange={(value) => setSliderValue(value)}
+                onAfterChange={() => setSearchRadius(sliderValue * 1000)}
+                railStyle={{
+                  backgroundColor: "black",
+                  height: 3,
+                  marginTop: 1,
+                }}
+                trackStyle={{
+                  backgroundColor: "gold",
+                  marginLeft: -1,
+                }}
+                handleStyle={{
+                  height: 15,
+                  width: 15,
+                  borderRadius: "50%",
+                  borderColor: "gold",
+                  backgroundColor: "gold",
+                  boxShadow: "none",
+                }}
+              />
+              <label className="flex rounded bg-white">
+                <input
+                  className="w-8 rounded py-2 text-right"
+                  type="number"
+                  min={0}
+                  max={300}
+                  value={sliderValue}
+                  onInput={handleInput}
+                />
+                <span className="p-2">km</span>
+              </label>
+            </div>
+          </TabPane>
+          <TabPane tab="tab 2" key="1">
+            second
+          </TabPane>
+        </Tabs>
       </div>
     </div>
   );
