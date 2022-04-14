@@ -35,11 +35,12 @@ export default function DetailsPage() {
     <>
       <NavBar />
       <div className="content-body-container">
-        <div>
+        <div className="flex flex-col">
           <h1 className="page-title">{data.attraction_name}</h1>
+
           {/* odd: even: doesnt really work...? */}
           <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
-            <div className="flex flex-col bg-gold px-[8%] py-[4%]">
+            <div className="flex aspect-square flex-col overflow-y-auto bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}
             </div>

@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet.js";
 import "rc-slider/assets/index.css";
 
-// TODO: fix clicking away before map loads
 export default function Map({ center, centerName }) {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
@@ -34,7 +33,8 @@ export default function Map({ center, centerName }) {
       });
       const res = await axios.get(`/api/attractions/near?${params}`);
       return res.data; // return to "data"
-    }
+    },
+    { staleTime: Infinity }
   );
 
   function handleInput(event) {
@@ -55,10 +55,12 @@ export default function Map({ center, centerName }) {
             mapContainerStyle={{ width: "100%", height: "100%" }}
             center={center}
             zoom={11}
+            clickableIcons={false}
           >
             <Marker
               position={center}
               onClick={() => setSelectedMarker("center")}
+              animation={google.maps.Animation.DROP}
             >
               {selectedMarker === "center" && (
                 <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
@@ -99,7 +101,7 @@ export default function Map({ center, centerName }) {
                             {doc.zip}
                             <br />
                             <Link
-                              className="font-medium text-blue-600"
+                              className="font-normal text-blue-600 hover:underline"
                               to={`/attractions/${doc.attraction_id}`}
                               target="_blank"
                             >
@@ -155,7 +157,7 @@ export default function Map({ center, centerName }) {
               min={0}
               max={300}
               value={sliderValue}
-              onInput={handleInput}
+              onChange={handleInput}
             />
             <span className="p-1">km</span>
           </label>
