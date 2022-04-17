@@ -37,15 +37,15 @@ export default function DetailsPage() {
       <div className="content-body-container">
         <div className="flex flex-col">
           <h1 className="page-title">{data.attraction_name}</h1>
-
-          {/* odd: even: doesnt really work...? */}
           <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
+
+            {/* description */}
             <div className="flex aspect-square flex-col overflow-y-auto bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>
               {data.description}
             </div>
 
-            {/* two liner buttons USED TO mess up squares */}
+            {/* website and contact via button links */}
             <div className="flex flex-col bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Website & Contact</h2>
               <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
@@ -75,7 +75,8 @@ export default function DetailsPage() {
                 )}
               </div>
             </div>
-
+            
+            {/* image from preview */}
             <img
               className="aspect-square w-full object-fill"
               src={
@@ -86,6 +87,7 @@ export default function DetailsPage() {
               alt=""
             />
 
+            {/* amenities */}
             <div className="flex w-auto flex-col bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Amenities</h2>
               {data.amenities ? (
@@ -94,7 +96,8 @@ export default function DetailsPage() {
                 <p>No amenities listed</p>
               )}
             </div>
-
+            
+            {/* location */}
             <div className="flex flex-col bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Location</h2>
               {data.address}
@@ -109,7 +112,8 @@ export default function DetailsPage() {
                 Directions
               </a>
             </div>
-
+            
+            {/* region */}
             <div className="bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Region</h2>
               <h3 className="text-lg">{findFacet(data, "region")}</h3>

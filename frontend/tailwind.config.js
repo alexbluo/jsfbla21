@@ -28,6 +28,9 @@ module.exports = {
         "fade-in-up": "fade-in-up cubic-bezier(0.16, 1, 0.3, 1) 2s",
         "scale-up": "scale-up .4s cubic-bezier(0.76, 0, 0.24, 1)",
       },
+      backgroundImage: {
+        // "md-flag-gif": "url('')",
+      },
     },
     keyframes: {
       "fade-in-down": {
