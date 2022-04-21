@@ -23,6 +23,11 @@ export default function Map({ center, centerName }) {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
+  // !should be getting from react query cache instead of sending to backend, mad laggy for repeated queries
+  // wayy too many markers are being updated at once for some reason
+  // evident by the tens of thousands of warnings and that one wierd looking bug
+  // slider might be querying for every value? doesnt rly make sense bc react query and backend logger only show one query per input
+  // status 304 means that data was retrieved from cache instead of backend
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
@@ -34,7 +39,7 @@ export default function Map({ center, centerName }) {
       const res = await axios.get(`/api/attractions/near?${params}`);
       return res.data; // return to "data"
     },
-    { staleTime: Infinity }
+    { staleTime: Infinity, keepPreviousData: true }
   );
 
   function handleInput(event) {
@@ -42,6 +47,7 @@ export default function Map({ center, centerName }) {
     if (value > 300) value = 300;
     if (value < 0) value = 0;
     setSliderValue(value);
+    console.log("change");
     setSearchRadius(value * 1000);
   }
 

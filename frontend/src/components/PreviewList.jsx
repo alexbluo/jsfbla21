@@ -20,7 +20,10 @@ export default function PreviewList() {
         const res = await axios.get(`/api/attractions?${params}`);
         return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to "data"
       },
-      { getNextPageParam: (lastPage) => lastPage.nextPage }
+      {
+        getNextPageParam: (lastPage) => lastPage.nextPage,
+        keepPreviousData: true,
+      }
     );
 
   function renderPreviews() {
