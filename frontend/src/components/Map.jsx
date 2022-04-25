@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
@@ -47,7 +47,6 @@ export default function Map({ center, centerName }) {
     if (value > 300) value = 300;
     if (value < 0) value = 0;
     setSliderValue(value);
-    console.log("change");
     setSearchRadius(value * 1000);
   }
 
@@ -88,6 +87,7 @@ export default function Map({ center, centerName }) {
                         lng: doc.coordinates[0],
                       }}
                       clusterer={clusterer}
+                      noClustererRedraw={true}
                       onClick={() => setSelectedMarker(doc)}
                       title={doc.attraction_name}
                       key={doc.attraction_id}
@@ -130,7 +130,7 @@ export default function Map({ center, centerName }) {
       {/* TODO: add carousel with map icon key
           https://www.blog.google/products/maps/google-maps-gets-new-look/
           https://tailwind-elements.com/docs/standard/components/carousel/*/}
-      <div className="aspect-square bg-red lg:w-full">
+      <div className="relative aspect-square bg-red lg:w-full h-full">
         <div className="flex w-full items-center gap-4 p-6">
           <Slider
             min={0}
@@ -168,6 +168,7 @@ export default function Map({ center, centerName }) {
             <span className="p-1">km</span>
           </label>
         </div>
+        <button className="absolute bottom-6 right-6 p-4 text-white rounded border-white border hover:bg-white hover:text-red duration-200" onClick={() => setSelectedMarker("center")}>Center</button>
       </div>
     </div>
   );
