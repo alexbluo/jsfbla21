@@ -7,7 +7,7 @@ import {
   useJsApiLoader,
   Marker,
   InfoWindow,
-  MarkerClusterer,
+  // MarkerClusterer,
 } from "@react-google-maps/api";
 import Slider from "rc-slider";
 import { Link } from "react-router-dom";
@@ -23,11 +23,6 @@ export default function Map({ center, centerName }) {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
-  // !should be getting from react query cache instead of sending to backend, mad laggy for repeated queries
-  // wayy too many markers are being updated at once for some reason
-  // evident by the tens of thousands of warnings and that one wierd looking bug
-  // slider might be querying for every value? doesnt rly make sense bc react query and backend logger only show one query per input
-  // status 304 means that data was retrieved from cache instead of backend
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
@@ -39,7 +34,7 @@ export default function Map({ center, centerName }) {
       const res = await axios.get(`/api/attractions/near?${params}`);
       return res.data; // return to "data"
     },
-    { staleTime: Infinity, keepPreviousData: true }
+    { keepPreviousData: true }
   );
 
   function handleInput(event) {
@@ -73,64 +68,64 @@ export default function Map({ center, centerName }) {
                 </InfoWindow>
               )}
             </Marker>
-            {!isLoading && (
-              <MarkerClusterer
-                averageCenter={true}
-                minimumClusterSize={4}
-                zoomOnClick={false}
-              >
-                {(clusterer) =>
-                  data.map((doc) => (
-                    <Marker
-                      position={{
-                        lat: doc.coordinates[1],
-                        lng: doc.coordinates[0],
-                      }}
-                      clusterer={clusterer}
-                      noClustererRedraw={true}
-                      onClick={() => setSelectedMarker(doc)}
-                      title={doc.attraction_name}
-                      key={doc.attraction_id}
-                    >
-                      {selectedMarker === doc && (
-                        <InfoWindow
-                          onCloseClick={() => setSelectedMarker(null)}
-                        >
-                          <div>
-                            <span className="font-medium">
-                              {doc.attraction_name}
-                            </span>
-                            <br />
-                            {doc.address}
-                            <br />
-                            {findFacet(doc, "city")}, {doc.state}&nbsp;
-                            {doc.zip}
-                            <br />
-                            <Link
-                              className="font-normal text-blue-600 hover:underline"
-                              to={`/attractions/${doc.attraction_id}`}
-                              target="_blank"
-                            >
-                              Details
-                            </Link>
-                          </div>
-                        </InfoWindow>
-                      )}
-                    </Marker>
-                  ))
-                }
-              </MarkerClusterer>
-            )}
+            {
+              !isLoading &&
+                // MarkerClusterer causes lag
+                // <MarkerClusterer
+                //   averageCenter={true}
+                //   minimumClusterSize={4}
+                //   zoomOnClick={false}
+                // >
+                //   {(clusterer) =>
+                data.map((doc) => (
+                  <Marker
+                    position={{
+                      lat: doc.coordinates[1],
+                      lng: doc.coordinates[0],
+                    }}
+                    // clusterer={clusterer}
+                    // this fixes the lag but introduces another bug - new query results aren't updated unless zoom
+                    // noClustererRedraw={true}
+                    onClick={() => setSelectedMarker(doc)}
+                    title={doc.attraction_name}
+                    key={doc.attraction_id}
+                  >
+                    {selectedMarker === doc && (
+                      <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                        <div>
+                          <span className="font-medium">
+                            {doc.attraction_name}
+                          </span>
+                          <br />
+                          {doc.address}
+                          <br />
+                          {findFacet(doc, "city")}, {doc.state}&nbsp;
+                          {doc.zip}
+                          <br />
+                          <Link
+                            className="font-normal text-blue-600 hover:underline"
+                            to={`/attractions/${doc.attraction_id}`}
+                            target="_blank"
+                          >
+                            Details
+                          </Link>
+                        </div>
+                      </InfoWindow>
+                    )}
+                  </Marker>
+                ))
+              //   }
+              // </MarkerClusterer>
+            }
           </GoogleMap>
         )}
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
-      {/* TODO: add show center button (just set the selected marker to "center") */}
       {/* TODO: add carousel with map icon key
           https://www.blog.google/products/maps/google-maps-gets-new-look/
-          https://tailwind-elements.com/docs/standard/components/carousel/*/}
-      <div className="relative aspect-square bg-red lg:w-full h-full">
+          https://tailwind-elements.com/docs/standard/components/carousel/ */}
+      <div className="relative aspect-square h-full bg-red lg:w-full">
         <div className="flex w-full items-center gap-4 p-6">
           <Slider
             min={0}
@@ -168,7 +163,12 @@ export default function Map({ center, centerName }) {
             <span className="p-1">km</span>
           </label>
         </div>
-        <button className="absolute bottom-6 right-6 p-4 text-white rounded border-white border hover:bg-white hover:text-red duration-200" onClick={() => setSelectedMarker("center")}>Center</button>
+        <button
+          className="absolute bottom-6 left-6 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
+          onClick={() => setSelectedMarker("center")}
+        >
+          Center
+        </button>
       </div>
     </div>
   );

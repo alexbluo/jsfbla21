@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import MDFlagGIF from "../images/MDFlagGIF.gif";
 
-// TODO: only play animation on first cycle and play on cursor move?
-// or could make the gif only show in text with bg-clip-text
 export default function LandingPage() {
   return (
     <div className="h-screen w-screen bg-gradient-to-br from-gold to-red">
