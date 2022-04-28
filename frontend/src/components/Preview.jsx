@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import findFacet from "../utils/findFacet";
 import noImage from "../images/noImage.png";
+import findFacet from "../utils/findFacet";
 
 export default function Preview(props) {
   const data = props.data;

@@ -1,8 +1,8 @@
-import { useQuery } from "react-query";
 import axios from "axios";
 import classNames from "classnames";
-import Dropdown from "./Dropdown";
+import { useQuery } from "react-query";
 import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 import FacetsPreloader from "./FacetsPreloader";
 
 const categories = ["region", "city", "category", "amenity"];

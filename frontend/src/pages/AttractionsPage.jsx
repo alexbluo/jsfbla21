@@ -1,7 +1,7 @@
 import { useReducer, createContext } from "react";
 import Facets from "../components/Facets";
-import PreviewList from "../components/PreviewList";
 import NavBar from "../components/NavBar";
+import PreviewList from "../components/PreviewList";
 
 // state and dispatch are passed down to Checkbox and PreviewList via context API
 export const QueryParamContext = createContext();

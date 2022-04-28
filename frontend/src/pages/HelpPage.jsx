@@ -1,6 +1,5 @@
-import NavBar from "../components/NavBar";
 import Dropdown from "../components/Dropdown";
-import Marker from "../components/Marker";
+import NavBar from "../components/NavBar";
 
 export default function HelpPage() {
   return (
@@ -12,26 +11,26 @@ export default function HelpPage() {
         <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
           <Dropdown header="test">content</Dropdown>
         </div>
-          <h3>Where is the data collected from?</h3>
-          <p>
-            All data was scraped from&nbsp;
-            <a href="https://www.visitmaryland.org/things-to-do/attractions">
-              here
-            </a>
-            &nbsp;using Puppeteer.
-          </p>
-          <h3>Where can I find the source code?</h3>
-          <p>
-            The source code can be found&nbsp;
-            <a href="https://github.com/alexbluo/jsfbla21">here</a>.
-          </p>
-          <div className="flex w-full justify-center">
-            <a href="mailto:alexluo92823@gmail.com">
-              <button className="rounded-md bg-red p-4 text-white hover:brightness-75">
-                Contact Me
-              </button>
-            </a>
-          </div>
+        <h3>Where is the data collected from?</h3>
+        <p>
+          All data was scraped from&nbsp;
+          <a href="https://www.visitmaryland.org/things-to-do/attractions">
+            here
+          </a>
+          &nbsp;using Puppeteer.
+        </p>
+        <h3>Where can I find the source code?</h3>
+        <p>
+          The source code can be found&nbsp;
+          <a href="https://github.com/alexbluo/jsfbla21">here</a>.
+        </p>
+        <div className="flex w-full justify-center">
+          <a href="mailto:alexluo92823@gmail.com">
+            <button className="rounded-md bg-red p-4 text-white hover:brightness-75">
+              Contact Me
+            </button>
+          </a>
+        </div>
       </div>
     </>
   );

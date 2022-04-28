@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
-import axios from "axios";
-import qs from "qs";
+import { useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -9,7 +6,10 @@ import {
   InfoWindow,
   // MarkerClusterer,
 } from "@react-google-maps/api";
+import axios from "axios";
+import qs from "qs";
 import Slider from "rc-slider";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import findFacet from "../utils/findFacet.js";
 import "rc-slider/assets/index.css";

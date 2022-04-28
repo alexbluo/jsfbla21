@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
 import axios from "axios";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
@@ -38,7 +38,6 @@ export default function DetailsPage() {
         <div className="flex flex-col">
           <h1 className="page-title">{data.attraction_name}</h1>
           <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
-
             {/* description */}
             <div className="flex aspect-square flex-col overflow-y-auto bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Description</h2>
@@ -75,7 +74,7 @@ export default function DetailsPage() {
                 )}
               </div>
             </div>
-            
+
             {/* image from preview */}
             <img
               className="aspect-square w-full object-fill"
@@ -96,7 +95,7 @@ export default function DetailsPage() {
                 <p>No amenities listed</p>
               )}
             </div>
-            
+
             {/* location */}
             <div className="flex flex-col bg-gold px-[8%] py-[4%]">
               <h2 className="mb-2 text-2xl">Location</h2>
@@ -112,7 +111,7 @@ export default function DetailsPage() {
                 Directions
               </a>
             </div>
-            
+
             {/* region */}
             <div className="bg-red px-[8%] py-[4%] text-white">
               <h2 className="mb-2 text-2xl">Region</h2>

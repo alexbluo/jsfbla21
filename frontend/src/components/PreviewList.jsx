@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import qs from "qs";
+import { useInfiniteQuery } from "react-query";
 import { QueryParamContext } from "../pages/AttractionsPage";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
