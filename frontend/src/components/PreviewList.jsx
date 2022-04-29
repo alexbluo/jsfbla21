@@ -1,21 +1,20 @@
-import { useContext } from "react";
 import axios from "axios";
 import qs from "qs";
 import { useInfiniteQuery } from "react-query";
-import { QueryParamContext } from "../pages/AttractionsPage";
+import { useSelector } from "react-redux";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
 export default function PreviewList() {
-  const [queryParam] = useContext(QueryParamContext);
-
+  const filters = useSelector((state) => state.filters);
+  
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
-      ["attractions", queryParam],
+      ["attractions", filters],
       async ({ pageParam = 0 }) => {
         const params = qs.stringify({
           page: pageParam,
-          ...queryParam,
+          ...filters,
         });
         const res = await axios.get(`/api/attractions?${params}`);
         return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to "data"
@@ -27,9 +26,9 @@ export default function PreviewList() {
     );
 
   function renderPreviews() {
-    if (isLoading) {
+    // weird shorthand for making 8 skeleton loaders
+    if (isLoading)
       return [...Array(8)].map((e, i) => <PreviewPreloader key={i} />);
-    }
 
     const previews = data.pages
       .map((group) =>

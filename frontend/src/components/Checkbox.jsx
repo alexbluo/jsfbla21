@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { QueryParamContext } from "../pages/AttractionsPage";
+import { useDispatch } from "react-redux";
+import { add, remove } from "../redux/filtersSlice";
 
 export default function Checkbox(props) {
-  const [queryParam, dispatch] = useContext(QueryParamContext);
+  const dispatch = useDispatch();
 
   function handleCheck(checked) {
     if (checked) {
-      dispatch({ type: "ADD_PARAM", payload: [props.category, props.field] });
+      dispatch(add({ category: props.category, field: props.field }));
     } else {
-      dispatch({ type: "DEL_PARAM", payload: [props.category, props.field] });
+      dispatch(remove({ category: props.category, field: props.field }));
     }
   }
 

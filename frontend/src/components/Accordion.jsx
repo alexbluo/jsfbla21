@@ -1,14 +1,14 @@
 import axios from "axios";
 import classNames from "classnames";
 import { useQuery } from "react-query";
+import AccordionPreloader from "./AccordionPreloader";
 import Checkbox from "./Checkbox";
 import Dropdown from "./Dropdown";
-import FacetsPreloader from "./FacetsPreloader";
 
 const categories = ["region", "city", "category", "amenity"];
 
-export default function Facets() {
-  const { data, error, isLoading, isError } = useQuery(["facets"], async () => {
+export default function Accordion() {
+  const { data, error, isLoading, isError } = useQuery(["filters"], async () => {
     let data = {};
 
     for (const category of categories) {
@@ -32,7 +32,7 @@ export default function Facets() {
         )}
       >
         {isLoading ? (
-          <FacetsPreloader width="100%" height="220px" />
+          <AccordionPreloader width="100%" height="220px" />
         ) : (
           Object.entries(data).map(([category, fields], index) => (
             <Dropdown header={category.toUpperCase()} key={index}>

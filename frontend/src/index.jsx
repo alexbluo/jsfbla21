@@ -11,7 +11,7 @@ import {
   Error404Page,
   MapPage,
 } from "./pages/pageExports";
-import store from "./redux/store";
+import { store } from "./redux/store";
 import "./index.css";
 
 const queryClient = new QueryClient({
