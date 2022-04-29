@@ -8,18 +8,21 @@ import Dropdown from "./Dropdown";
 const categories = ["region", "city", "category", "amenity"];
 
 export default function Accordion() {
-  const { data, error, isLoading, isError } = useQuery(["filters"], async () => {
-    let data = {};
+  const { data, error, isLoading, isError } = useQuery(
+    ["filters"],
+    async () => {
+      let data = {};
 
-    for (const category of categories) {
-      // res in the form of { category: [fields] }
-      const res = await axios.get(`/api/facets/${category}`);
-      // append newly fetched data to previous data
-      data = { ...data, ...res.data };
+      for (const category of categories) {
+        // res in the form of { category: [fields] }
+        const res = await axios.get(`/api/filters/${category}`);
+        // append newly fetched data to previous data
+        data = { ...data, ...res.data };
+      }
+
+      return data;
     }
-
-    return data;
-  });
+  );
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
