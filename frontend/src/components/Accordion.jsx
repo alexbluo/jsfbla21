@@ -19,7 +19,7 @@ export default function Accordion() {
         // append newly fetched data to previous data
         data = { ...data, ...res.data };
       }
-
+      console.log(data);
       return data;
     }
   );

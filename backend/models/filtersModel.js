@@ -19,7 +19,7 @@ exports.getCategories = (callback) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const filters = await collection.distinct("filters");
+    const filters = await collection.distinct("facets");
     const categories = {
       category: filters
         .filter((obj) => obj.type === "category")

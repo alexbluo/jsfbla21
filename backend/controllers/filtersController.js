@@ -1,4 +1,4 @@
-const filtersModel = require("../models/filters");
+const filtersModel = require("../models/filtersModel");
 
 exports.getRegions = (req, res) => {
   res.send({
