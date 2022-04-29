@@ -7,10 +7,10 @@ MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
   const db = client.db("attractionsDB");
   const documents = await scrape();
   await db.collection("attractions").insertMany(documents.attractions);
-  await db.collection("facets").insertOne(documents.facets);
+  await db.collection("filters").insertOne(documents.filters);
   await db
     .collection("attractions")
-    .createIndex({ "facets.type": 1, "facets.val": 1 });
+    .createIndex({ "filters.type": 1, "filters.val": 1 });
   await db.collection("attractions").createIndex({ attraction_id: 1 });
   // duplicates removed through mongosh: see below
   client.close();

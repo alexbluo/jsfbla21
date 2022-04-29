@@ -4,7 +4,7 @@ exports.getOrMatchAll = (req, res) => {
   console.log(req.query);
   attractionsModel.matchAll(
     req.query.page,
-    formatFinalFilter(formatFacets(req.query)),
+    formatFinalFilter(formatQuery(req.query)),
     (data) => res.send(data)
   );
 };
@@ -18,27 +18,27 @@ exports.getNear = (req, res) => {
 };
 
 /**
- * Formats the query into an object with only facets compatible with MongoDB
+ * Formats the query into an object with only filters compatible with MongoDB
  * @param { Object.<string, Array.<Object.<string, string>> } query the initial req.query object received
- * @returns a formatted object where the keys are facet categories
- * and the values are arrays with elements ready to be passed to a MongoDB filter
+ * @returns a formatted object where the keys are filter categories
+ * and the values are arrays with elements ready to be passed to a MongoDB query
  */
-function formatFacets(query) {
-  const facets = {};
+function formatQuery(query) {
+  const filters = {};
 
   for (const [key, value] of Object.entries(query)) {
     if (!Array.isArray(value)) continue;
 
-    facets[key] = value.map((value) => {
+    filters[key] = value.map((value) => {
       return { type: key, val: value };
     });
   }
 
-  return facets;
+  return filters;
 }
 
 /**
- * Turns the formatted facets into a MongoDB filter
+ * Turns the formatted filters into a MongoDB query
  * @param { Object.<string, string> } parsedQuery - the parsed query object
  * @returns { Filter<Document> } the final formatted filter
  */

@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
-const facetsRouter = require("./routes/facets");
+const filtersRouter = require("./routes/filters");
 const attractionsRouter = require("./routes/attractions");
 const app = express();
 
@@ -12,7 +12,7 @@ if (process.env.NODE_ENV == "production") {
 app.use(logger("dev"));
 
 app.use("/api/attractions", attractionsRouter);
-app.use("/api/facets", facetsRouter);
+app.use("/api/filters", filtersRouter);
 
 // catch all other requests
 app.get("*", (req, res) => {

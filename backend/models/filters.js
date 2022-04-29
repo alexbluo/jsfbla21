@@ -4,10 +4,10 @@ require("dotenv").config();
 exports.getCities = (callback) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const db = client.db("attractionsDB");
-    const collection = db.collection("facets");
+    const collection = db.collection("filters");
 
-    const facets = await collection.find().next();
-    const cities = { city: facets.cities };
+    const filters = await collection.find().next();
+    const cities = { city: filters.cities };
 
     client.close();
     callback(cities);
@@ -19,9 +19,9 @@ exports.getCategories = (callback) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const facets = await collection.distinct("facets");
+    const filters = await collection.distinct("filters");
     const categories = {
-      category: facets
+      category: filters
         .filter((obj) => obj.type === "category")
         .map((obj) => obj.val),
     };
@@ -34,10 +34,10 @@ exports.getCategories = (callback) => {
 exports.getAmenities = (callback) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const db = client.db("attractionsDB");
-    const collection = db.collection("facets");
+    const collection = db.collection("filters");
 
-    const facets = await collection.find().next();
-    const amenities = { amenity: facets.amenities };
+    const filters = await collection.find().next();
+    const amenities = { amenity: filters.amenities };
 
     client.close();
     callback(amenities);

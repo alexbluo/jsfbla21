@@ -1,4 +1,4 @@
-const facetsModel = require("../models/facetsModel");
+const filtersModel = require("../models/filters");
 
 exports.getRegions = (req, res) => {
   res.send({
@@ -13,13 +13,13 @@ exports.getRegions = (req, res) => {
 };
 
 exports.getCities = (req, res) => {
-  facetsModel.getCities((data) => res.send(data));
+  filtersModel.getCities((data) => res.send(data));
 };
 
 exports.getCategories = (req, res) => {
-  facetsModel.getCategories((data) => res.send(data));
+  filtersModel.getCategories((data) => res.send(data));
 };
 
 exports.getAmenities = (req, res) => {
-  facetsModel.getAmenities((data) => res.send(data));
+  filtersModel.getAmenities((data) => res.send(data));
 };

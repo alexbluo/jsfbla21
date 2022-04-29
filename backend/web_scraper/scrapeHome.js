@@ -1,5 +1,5 @@
 /**
- * Scrapes https://www.visitmaryland.org/things-to-do/attractions for all the 'city' facets
+ * Scrapes https://www.visitmaryland.org/things-to-do/attractions for all the 'city' filters
  * @param { puppeteer.Page } page - a reference to the Page object
  * @returns { string[] } an array of all the cities that are available as search filters
  */
@@ -15,7 +15,7 @@ async function scrapeCities(page) {
 }
 
 /**
- * Scrapes https://www.visitmaryland.org/things-to-do/attractions for all the 'amenities' facets
+ * Scrapes https://www.visitmaryland.org/things-to-do/attractions for all the 'amenities' filters
  * @param { puppeteer.Page } page
  * @returns { string[] } an array of all the amenities that are available as search filters
  */

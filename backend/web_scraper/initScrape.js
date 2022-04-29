@@ -16,7 +16,7 @@ async function scrape() {
   });
   let data = {
     attractions: [],
-    facets: {
+    filters: {
       cities: await scrapeHome.scrapeCities(page),
       amenities: await scrapeHome.scrapeAmenities(page),
     },
@@ -39,7 +39,7 @@ async function scrape() {
         waitUntil: "domcontentloaded",
       });
 
-      data.attractions.push(await scrapePage(page, data.facets.amenities));
+      data.attractions.push(await scrapePage(page, data.filters.amenities));
       console.log(currentPage);
     }
   }

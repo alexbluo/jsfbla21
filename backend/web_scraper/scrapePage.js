@@ -1,7 +1,7 @@
 /**
  * Scrapes the current attraction information page for various data fields
  * @param { puppeteer.Page } page - a reference to the page object
- * @param { string[] } facetAmenities - the list of amenity facets from the home page
+ * @param { string[] } facetAmenities - the list of amenity filters from the home page
  * @returns a document containing data on the attraction which the current page is on
  */
 async function scrapePage(page, facetAmenities) {
@@ -36,7 +36,7 @@ async function scrapePage(page, facetAmenities) {
       "div.field.field--name-field-region-image.field--type-image > img",
       "src"
     ),
-    // this can include ALL amenities whereas facets only includes common ones used as filters
+    // this can include ALL amenities whereas filters only includes common ones used as filters
     amenities: await tryQuerySelectorAll(
       "li.amenity--subamenities--subamenity",
       "innerHTML"
@@ -45,7 +45,7 @@ async function scrapePage(page, facetAmenities) {
       "article.entity--type-node.node--profile--related-properties-with-map",
       "data-delid"
     ),
-    facets: [
+    filters: [
       {
         type: "region",
         val: await tryQuerySelector(
@@ -69,7 +69,7 @@ async function scrapePage(page, facetAmenities) {
       facetAmenities.includes(amenity)
     );
     filteredAmenities.forEach((amenity) => {
-      pageData.facets.push({ type: "amenity", val: amenity });
+      pageData.filters.push({ type: "amenity", val: amenity });
     });
   }
 
