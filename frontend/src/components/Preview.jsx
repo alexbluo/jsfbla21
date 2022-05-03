@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import noImage from "../images/noImage.png";
+import none from "../images/none.png";
 import findFacet from "../utils/findFacet";
 
 export default function Preview(props) {
   const data = props.data;
 
   return (
-    <div className="group relative">
+    <div className="group relative font-poppins">
       <Link to={`/attractions/${data.attraction_id}`}>
         <img
           className="aspect-square w-full rounded-3xl object-cover shadow-md shadow-black duration-200 group-hover:shadow-none group-hover:brightness-50"
           src={
             data.attraction_image.includes("data")
-              ? noImage
+              ? none
               : data.attraction_image
           }
           alt=""

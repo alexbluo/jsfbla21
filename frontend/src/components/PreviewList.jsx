@@ -2,12 +2,13 @@ import axios from "axios";
 import qs from "qs";
 import { useInfiniteQuery } from "react-query";
 import { useSelector } from "react-redux";
+import crab from "../images/crab.jpg";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
 export default function PreviewList() {
   const filters = useSelector((state) => state.filters);
-  
+
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
       ["attractions", filters],
@@ -38,9 +39,12 @@ export default function PreviewList() {
 
     if (previews.length === 0) {
       return (
-        <span className="col-span-full flex w-full justify-center">
-          Nothing Matched!
-        </span>
+        <div className="col-span-2">
+          <label className="bg-[#f6f6f6] rounded-3xl font-poppins mx-auto block w-full text-center">
+            <img className="mx-auto w-1/2" src={crab} />
+            Nothing Matched!
+          </label>
+        </div>
       );
     }
     return previews;
@@ -48,8 +52,8 @@ export default function PreviewList() {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="relative flex w-full flex-col items-center xl:w-2/3">
-      <div className="grid w-full gap-12 sm:grid-cols-2">
+    <>
+      <div className="justi grid w-full gap-12 sm:grid-cols-2">
         {renderPreviews()}
       </div>
       {hasNextPage && (
@@ -60,6 +64,6 @@ export default function PreviewList() {
           Load More
         </button>
       )}
-    </div>
+    </>
   );
 }

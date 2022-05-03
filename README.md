@@ -1,5 +1,4 @@
 # Maryland Tourist Attractions Searcher
-Deployed to https://mdattractions.herokuapp.com/ (might not load due to hosting limits)
 Created by Alex Luo for FBLA Coding & Programming 2021-2022
 
 ## Overview
@@ -17,13 +16,6 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 - Heroku (deployment)
 - Puppeteer (web scraping)
 
-## Conventions:
-
-The file architecture is similar to MVC, with views/templates replaced by pages, which are really just entry-point React components.
-
-CSS properties are arranged in the following order: 
-position => display => box => color => text => misc.
-
 ## Future Plans
 
 Below is a list of features and technologies which are on track to be implemented, in order of precedence:
@@ -32,9 +24,12 @@ Below is a list of features and technologies which are on track to be implemente
 - Easy clearing of checked fields
 - Embedded contact form 
 - Dockerize and deploy to AWS ElasticBeanstalk because it sounds fun
+- Machine learning using user behavior when entering typos like Google search "did you mean"
+  - not enough data to get this done - not worth the time either, but fun idea
 
 ## Sourcing
 
 - MD Flag GIF: https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA
 - Attractions data: https://www.visitmaryland.org/things-to-do/attractions
+- Nothing matched crab: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD
 - Image for... no image: https://depositphotos.com/vector-images/no-image-available.html

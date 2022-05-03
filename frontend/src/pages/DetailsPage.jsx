@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
-import noImage from "../images/noImage.png";
+import none from "../images/none.png";
 import findFacet from "../utils/findFacet";
 
 export default function DetailsPage() {
@@ -80,7 +80,7 @@ export default function DetailsPage() {
               className="aspect-square w-full object-fill"
               src={
                 data.attraction_image.includes("data") // null images include the word "data" in their URI
-                  ? noImage
+                  ? none
                   : data.attraction_image
               }
               alt=""

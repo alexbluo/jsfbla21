@@ -5,6 +5,7 @@ const initialState = {
   city: [],
   category: [],
   amenity: [],
+  // search: []
 };
 
 export const { reducer, actions } = createSlice({
