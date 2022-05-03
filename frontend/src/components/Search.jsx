@@ -9,7 +9,7 @@ export default function Search() {
   return (
     <div className="my-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black outline-black">
       <input
-        className="w-full rounded-l bg-gold pl-3"
+        className="w-full font-raleway rounded-l bg-gold pl-4 outline-none focus:brightness-90"
         type="text"
         onChange={(e) => setText(e.target.value)}
       />
