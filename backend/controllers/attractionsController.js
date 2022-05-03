@@ -1,62 +1,100 @@
-const attractionsModel = require("../models/attractionsModel");
+const MongoClient = require("mongodb").MongoClient;
+require("dotenv").config();
+
+// number of documents to retrieve per pagination
+const nPerPage = 8;
 
 exports.getOrMatchAll = (req, res) => {
-  console.log(req.query);
-  attractionsModel.matchAll(
-    req.query.page,
-    formatFinalFilter(formatQuery(req.query)),
-    (data) => res.send(data)
+  const query = formatQuery(
+    // skip over the entries, such as page, that are not filters
+    Object.fromEntries(
+      Object.entries(req.query).filter(([key, value]) => Array.isArray(value))
+    )
   );
+  const page = req.query.page;
+
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const data = { previewData: [], nextPage: undefined };
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const cursor = collection
+      .find(query)
+      .sort({ attraction_name: 1 })
+      .skip(page * nPerPage)
+      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
+    await cursor.forEach((doc) => data.previewData.push(doc));
+    // check if there are more attractions on the next page and adjust
+    if (data.previewData.length > nPerPage) {
+      data.nextPage = parseInt(page) + 1;
+      data.previewData = data.previewData.slice(0, nPerPage);
+    }
+
+    client.close();
+    res.json(data);
+  });
 };
 
 exports.getOne = (req, res) => {
-  attractionsModel.getOne(req.params.id, (data) => res.send(data));
+  const id = req.params.id;
+
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const data = await collection.findOne({ attraction_id: id });
+
+    client.close();
+    res.json(data);
+  });
 };
 
 exports.getNear = (req, res) => {
-  attractionsModel.getNear(req.query, (data) => res.send(data));
+  const query = req.query;
+
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const data = [];
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const cursor = collection.find({
+      coordinates: {
+        $near: {
+          $geometry: {
+            type: "Point",
+            coordinates: [parseFloat(query.lng), parseFloat(query.lat)],
+          },
+          $maxDistance: parseInt(query.searchRadius),
+        },
+      },
+    });
+    await cursor.forEach((doc) => data.push(doc));
+
+    client.close();
+    res.json(data);
+  });
 };
 
 /**
- * Formats the query into an object with only filters compatible with MongoDB
- * @param { Object.<string, Array.<Object.<string, string>> } query the initial req.query object received
- * @returns a formatted object where the keys are filter categories
- * and the values are arrays with elements ready to be passed to a MongoDB query
+ * Formats the query into a MongoDB query
+ * @param { Object.<string, Array<string>> } query - the parsed query object
+ * @returns { Filter<Document> } the formatted filter
  */
 function formatQuery(query) {
-  const filters = {};
-
-  for (const [key, value] of Object.entries(query)) {
-    if (!Array.isArray(value)) continue;
-
-    filters[key] = value.map((value) => {
-      return { type: key, val: value };
-    });
-  }
-
-  return filters;
-}
-
-/**
- * Turns the formatted filters into a MongoDB query
- * @param { Object.<string, string> } parsedQuery - the parsed query object
- * @returns { Filter<Document> } the final formatted filter
- */
-function formatFinalFilter(query) {
   if (Object.values(query).every((value) => value.length === 0)) return {};
 
   const filter = { facets: { $all: [] } };
 
-  for (const [key, value] of Object.entries(query)) {
-    if (key === "amenity") {
-      // filtering multiple amenities should search for places which have every amenity
-      for (const field of value) {
-        filter.facets.$all.push({ $elemMatch: field });
-      }
-      continue;
-    }
-    // otherwise push the array of common values to "or"
-    filter.facets.$all.push({ $elemMatch: { $or: value } });
+  for (const [key, values] of Object.entries(query)) {
+    // turn each entry (filter) into an array of { type, val } (required ), wrap in $or and push to $all
+    // this causes filters under the same category to use OR, while across categories use AND
+    filter.facets.$all.push({
+      $elemMatch: {
+        $or: values.map((value) => {
+          return { type: key, val: value };
+        }),
+      },
+    });
   }
 
   return filter;
