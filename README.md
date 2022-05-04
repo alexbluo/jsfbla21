@@ -21,7 +21,7 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 Below is a list of features and technologies which are on track to be implemented, in order of precedence:
 
 - Fulltext search
-- Easy clearing of checked fields
+- Easy clearing of checked filters
 - Embedded contact form 
 - Dockerize and deploy to AWS ElasticBeanstalk because it sounds fun
 - Machine learning using user behavior when entering typos like Google search "did you mean"

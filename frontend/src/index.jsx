@@ -29,6 +29,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          {/* TODO: bring navbar here? */}
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/attractions" element={<AttractionsPage />} />
           <Route exact path="/attractions/:id" element={<DetailsPage />} />

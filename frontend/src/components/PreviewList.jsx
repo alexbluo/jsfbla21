@@ -40,7 +40,7 @@ export default function PreviewList() {
     if (previews.length === 0) {
       return (
         <div className="col-span-2">
-          <label className="bg-[#f6f6f6] rounded-3xl font-poppins mx-auto block w-full text-center">
+          <label className="mx-auto block w-full rounded-3xl bg-[#f6f6f6] p-4 text-center font-poppins">
             <img className="mx-auto w-1/2" src={crab} />
             Nothing Matched!
           </label>
@@ -53,7 +53,7 @@ export default function PreviewList() {
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <>
-      <div className="justi grid w-full gap-12 sm:grid-cols-2">
+      <div className="grid w-full gap-12 sm:grid-cols-2">
         {renderPreviews()}
       </div>
       {hasNextPage && (

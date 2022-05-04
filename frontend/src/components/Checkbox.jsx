@@ -6,9 +6,9 @@ export default function Checkbox(props) {
 
   function handleCheck(checked) {
     if (checked) {
-      dispatch(add({ category: props.category, field: props.field }));
+      dispatch(add({ category: props.category, filter: props.filter }));
     } else {
-      dispatch(remove({ category: props.category, field: props.field }));
+      dispatch(remove({ category: props.category, filter: props.filter }));
     }
   }
 
@@ -19,8 +19,9 @@ export default function Checkbox(props) {
           className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
           type="checkbox"
           onChange={(event) => handleCheck(event.target.checked)}
+          checked={props.checked}
         />
-        <span>{props.field}</span>
+        <span>{props.filter}</span>
       </label>
     </li>
   );

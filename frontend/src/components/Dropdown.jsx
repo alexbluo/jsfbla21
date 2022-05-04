@@ -16,7 +16,7 @@ export default function Dropdown(props) {
         <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
         <img
           className={classNames(
-            "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.87,0,.35,1.03)]",
+            "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
             { "rotate-180": isOpened }
           )}
           src={arrow}
@@ -25,7 +25,7 @@ export default function Dropdown(props) {
       </div>
       <ul
         className={classNames(
-          "mx-4 font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.87,0,.35,1.03)]",
+          "mx-4 font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpened },
           { "my-2 max-h-48": isOpened },
           {

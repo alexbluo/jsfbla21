@@ -1,6 +1,7 @@
 import axios from "axios";
 import classNames from "classnames";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import AccordionPreloader from "./AccordionPreloader";
 import Checkbox from "./Checkbox";
 import Dropdown from "./Dropdown";
@@ -8,13 +9,15 @@ import Dropdown from "./Dropdown";
 const categories = ["region", "city", "category", "amenity"];
 
 export default function Accordion() {
+  const storeFilters = useSelector((state) => state.filters);
+
   const { data, error, isLoading, isError } = useQuery(
     ["filters"],
     async () => {
       let data = {};
 
       for (const category of categories) {
-        // res in the form of { category: [fields] }
+        // res in the form of { category: [filters] }
         const res = await axios.get(`/api/filters/${category}`);
         // append newly fetched data to previous data
         data = { ...data, ...res.data };
@@ -36,10 +39,15 @@ export default function Accordion() {
       {isLoading ? (
         <AccordionPreloader width="100%" height="220px" />
       ) : (
-        Object.entries(data).map(([category, fields], index) => (
+        Object.entries(data).map(([category, filters], index) => (
           <Dropdown header={category.toUpperCase()} key={index}>
-            {fields.map((field, index) => (
-              <Checkbox category={category} field={field} key={index} />
+            {filters.map((filter, index) => (
+              <Checkbox
+                category={category}
+                filter={filter}
+                key={index}
+                checked={storeFilters[category].includes(filter)}
+              />
             ))}
           </Dropdown>
         ))

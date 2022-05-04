@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import none from "../images/none.png";
-import findFacet from "../utils/findFacet";
+import findFilter from "../utils/findFilter";
 
 export default function Preview(props) {
   const data = props.data;
@@ -21,7 +21,7 @@ export default function Preview(props) {
           <div className="my-auto truncate text-xl font-medium duration-200 group-hover:whitespace-normal">
             {data.attraction_name}
           </div>
-          <span>{findFacet(data, "city")}</span>
+          <span>{findFilter(data, "city")}</span>
         </div>
       </Link>
     </div>

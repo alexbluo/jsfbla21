@@ -11,7 +11,7 @@ import qs from "qs";
 import Slider from "rc-slider";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import findFacet from "../utils/findFacet.js";
+import findFilter from "../utils/findFilter";
 import "rc-slider/assets/index.css";
 
 export default function Map({ center, centerName }) {
@@ -99,7 +99,7 @@ export default function Map({ center, centerName }) {
                           <br />
                           {doc.address}
                           <br />
-                          {findFacet(doc, "city")}, {doc.state}&nbsp;
+                          {findFilter(doc, "city")}, {doc.state}&nbsp;
                           {doc.zip}
                           <br />
                           <Link
