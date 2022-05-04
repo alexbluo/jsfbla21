@@ -7,7 +7,9 @@ export default function FilterBlock(props) {
   return (
     <button
       className="bg-gold text-black"
-      onClick={dispatch(remove({ category: props.category, }))}
+      onClick={() =>
+        dispatch(remove({ category: props.category, filter: props.filter }))
+      }
     >
       {props.filter}
     </button>

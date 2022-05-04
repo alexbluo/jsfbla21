@@ -9,7 +9,7 @@ export default function HelpPage() {
         <h1 className="page-title">Help</h1>
         <h2 className="pb-4 text-3xl">FAQ</h2>
         <div className="flex flex-col gap-1 rounded-md border-4 bg-black">
-          <Dropdown header="test">content</Dropdown>
+          <Dropdown header="currently under construction :D">content</Dropdown>
         </div>
         <h3>Where is the data collected from?</h3>
         <p>
