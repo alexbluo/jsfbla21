@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { add } from "../redux/filtersSlice";
 
-export default function Search() {
+const Search = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
@@ -29,4 +29,6 @@ export default function Search() {
       </button>
     </div>
   );
-}
+};
+
+export default Search;

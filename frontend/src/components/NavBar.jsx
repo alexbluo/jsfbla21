@@ -1,6 +1,6 @@
 import NavBarLink from "./NavBarLink";
 
-export default function NavBar() {
+const NavBar = () => {
   return (
     <nav className="fixed top-0 left-0 z-10 flex h-12 w-screen flex-row-reverse bg-red">
       <ul className="flex gap-4 self-center pr-8">
@@ -11,3 +11,4 @@ export default function NavBar() {
     </nav>
   );
 }
+export default NavBar;

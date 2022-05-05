@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import FilterBlock from "./FilterBlock";
 
-export default function FilterBlockList() {
+const FilterBlockList = () => {
   const storeFilters = useSelector((state) => state.filters);
 
   return (
@@ -14,3 +14,5 @@ export default function FilterBlockList() {
     </div>
   );
 }
+
+export default FilterBlockList;

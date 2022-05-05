@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { add, remove } from "../redux/filtersSlice";
 
-export default function Checkbox(props) {
+const Checkbox = (props) => {
   const dispatch = useDispatch();
 
-  function handleCheck(checked) {
+  const handleCheck = (checked) => {
     if (checked) {
       dispatch(add({ category: props.category, filter: props.filter }));
     } else {
@@ -26,3 +26,5 @@ export default function Checkbox(props) {
     </li>
   );
 }
+
+export default Checkbox;

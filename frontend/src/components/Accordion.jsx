@@ -8,7 +8,7 @@ import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenity"];
 
-export default function Accordion() {
+const Accordion = () => {
   const storeFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError } = useQuery(
@@ -55,3 +55,5 @@ export default function Accordion() {
     </div>
   );
 }
+
+export default Accordion;

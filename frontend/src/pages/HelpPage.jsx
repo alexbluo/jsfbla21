@@ -1,7 +1,7 @@
 import Dropdown from "../components/Dropdown";
 import NavBar from "../components/NavBar";
 
-export default function HelpPage() {
+const HelpPage = () => {
   return (
     <>
       <NavBar />
@@ -34,4 +34,6 @@ export default function HelpPage() {
       </div>
     </>
   );
-}
+};
+
+export default HelpPage;

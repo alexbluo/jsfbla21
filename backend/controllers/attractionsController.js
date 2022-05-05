@@ -1,6 +1,31 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
+/**
+ * Formats the query into a MongoDB query
+ * @param { Object.<string, Array<string>> } query - the parsed query object
+ * @returns { Filter<Document> } the formatted filter
+ */
+const formatQuery = (query) => {
+  if (Object.values(query).every((value) => value.length === 0)) return {};
+
+  const filter = { facets: { $all: [] } };
+
+  for (const [key, values] of Object.entries(query)) {
+    // turn each entry (filter) into an array of { type, val } (required ), wrap in $or and push to $all
+    // this causes filters under the same category to use OR, while across categories use AND
+    filter.facets.$all.push({
+      $elemMatch: {
+        $or: values.map((value) => {
+          return { type: key, val: value };
+        }),
+      },
+    });
+  }
+
+  return filter;
+};
+
 // number of documents to retrieve per pagination
 const nPerPage = 8;
 
@@ -74,28 +99,3 @@ exports.getNear = (req, res) => {
     res.json(data);
   });
 };
-
-/**
- * Formats the query into a MongoDB query
- * @param { Object.<string, Array<string>> } query - the parsed query object
- * @returns { Filter<Document> } the formatted filter
- */
-function formatQuery(query) {
-  if (Object.values(query).every((value) => value.length === 0)) return {};
-
-  const filter = { facets: { $all: [] } };
-
-  for (const [key, values] of Object.entries(query)) {
-    // turn each entry (filter) into an array of { type, val } (required ), wrap in $or and push to $all
-    // this causes filters under the same category to use OR, while across categories use AND
-    filter.facets.$all.push({
-      $elemMatch: {
-        $or: values.map((value) => {
-          return { type: key, val: value };
-        }),
-      },
-    });
-  }
-
-  return filter;
-}

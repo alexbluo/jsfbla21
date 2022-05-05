@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import PreviewList from "../components/PreviewList";
 import Search from "../components/Search";
 
-export default function AttractionsPage() {
+const AttractionsPage = () => {
   return (
     <>
       <NavBar />
@@ -23,4 +23,6 @@ export default function AttractionsPage() {
       </div>
     </>
   );
-}
+};
+
+export default AttractionsPage;

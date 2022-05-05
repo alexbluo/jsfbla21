@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function NavBarLink(props) {
+const NavBarLink = (props) => {
   return (
     <li className="inline">
       <NavLink
@@ -12,3 +12,5 @@ export default function NavBarLink(props) {
     </li>
   );
 }
+
+export default NavBarLink;

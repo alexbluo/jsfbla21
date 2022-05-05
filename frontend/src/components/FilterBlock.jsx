@@ -4,9 +4,12 @@ import { remove } from "../redux/filtersSlice";
 // TODO: move to arrow functions, then find out how memoization actually works... (refresh props but still same = no rerender?)
 // TODO: make accordion only one open at a time
 // TODO: clean up internal mongodb naming (facets => filters and typos)
-// TODO: also check if separate facets are needed, if not maybe rescrape or do fancy mongodb stuff
+// TODO: but first check if separate facets property in documents is even needed, if not maybe rescrape or do fancy mongodb stuff
 // TODO: add clear all block to the top of filterblocklist if at least one filter is checked
-export default function FilterBlock(props) {
+// TODO: change dropdown arrow back to svg and test
+// TODO: make fulltext search thing actually work
+// TODO: dawker
+const FilterBlock = (props) => {
   const dispatch = useDispatch();
 
   return (
@@ -36,3 +39,5 @@ export default function FilterBlock(props) {
     </div>
   );
 }
+
+export default FilterBlock;

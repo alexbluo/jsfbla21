@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import none from "../images/none.png";
 import findFilter from "../utils/findFilter";
 
-export default function Preview(props) {
-  const data = props.data;
-
+const Preview = ({ data }) => {
   return (
     <div className="group relative font-poppins">
       <Link to={`/attractions/${data.attraction_id}`}>
@@ -26,4 +24,6 @@ export default function Preview(props) {
       </Link>
     </div>
   );
-}
+};
+
+export default Preview;

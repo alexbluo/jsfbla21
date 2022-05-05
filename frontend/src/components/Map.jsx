@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import findFilter from "../utils/findFilter";
 import "rc-slider/assets/index.css";
 
-export default function Map({ center, centerName }) {
+const Map = ({ center, centerName }) => {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -37,7 +37,7 @@ export default function Map({ center, centerName }) {
     { keepPreviousData: true }
   );
 
-  function handleInput(event) {
+  const handleInput = (event) => {
     let value = event.target.value;
     if (value > 300) value = 300;
     if (value < 0) value = 0;
@@ -169,4 +169,6 @@ export default function Map({ center, centerName }) {
       </div>
     </div>
   );
-}
+};
+
+export default Map;

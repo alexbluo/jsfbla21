@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-export default function AccordionPreloader(props) {
+const AccordionPreloader = (props) => {
   return (
     <ContentLoader viewBox="0 0 400 288" preserveAspectRatio="none" {...props}>
       <rect x="0" y="0" width="400" height="69" />
@@ -10,3 +10,5 @@ export default function AccordionPreloader(props) {
     </ContentLoader>
   );
 }
+
+export default AccordionPreloader;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 
-export default function MapPage() {
+const MapPage = () => {
   const [center, setCenter] = useState(undefined);
 
   useEffect(() => {
@@ -26,4 +26,6 @@ export default function MapPage() {
       </div>
     </>
   );
-}
+};
+
+export default MapPage;

@@ -4,7 +4,7 @@ import arrow from "../images/arrow.png";
 
 const scrollHeaders = ["CITY", "CATEGORY", "AMENITY"];
 
-export default function Dropdown(props) {
+const Dropdown = (props) => {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
@@ -14,7 +14,6 @@ export default function Dropdown(props) {
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
-        {/* change to svg? was laggy the last time but image seems to be  */}
         <img
           className={classNames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
@@ -45,4 +44,6 @@ export default function Dropdown(props) {
       </ul>
     </div>
   );
-}
+};
+
+export default Dropdown;

@@ -6,7 +6,7 @@ import crab from "../images/crab.jpg";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
-export default function PreviewList() {
+const PreviewList = () => {
   const filters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
@@ -26,7 +26,7 @@ export default function PreviewList() {
       }
     );
 
-  function renderPreviews() {
+  const renderPreviews = () => {
     // weird shorthand for making 8 skeleton loaders
     if (isLoading)
       return [...Array(8)].map((e, i) => <PreviewPreloader key={i} />);
@@ -48,7 +48,7 @@ export default function PreviewList() {
       );
     }
     return previews;
-  }
+  };
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
@@ -58,7 +58,7 @@ export default function PreviewList() {
       </div>
       {hasNextPage && (
         <button
-          className="mt-8 rounded-md p-4 bg-red text-white shadow-md duration-200 hover:brightness-125"
+          className="mt-8 rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125"
           onClick={fetchNextPage}
         >
           Load More
@@ -66,4 +66,6 @@ export default function PreviewList() {
       )}
     </>
   );
-}
+};
+
+export default PreviewList;

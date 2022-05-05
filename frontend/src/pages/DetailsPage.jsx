@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar";
 import none from "../images/none.png";
 import findFilter from "../utils/findFilter";
 
-export default function DetailsPage() {
+const DetailsPage = () => {
   const id = useParams().id;
 
   const { data, error, isLoading, isError } = useQuery(
@@ -22,12 +22,12 @@ export default function DetailsPage() {
    * Formats the amenities array into html that can be dangerously set
    * @returns the dangerouslySetInnerHTML object
    */
-  function createAmenitiesMarkup() {
+  const createAmenitiesMarkup = () => {
     const amenities = `<ul class="w-full indent-4 truncate"><li>${data.amenities.join(
       "</li><li>"
     )}</li></ul>`;
     return { __html: amenities };
-  }
+  };
 
   if (isLoading) return null;
   if (isError) return <span>Error: {error.message}</span>;
@@ -129,4 +129,6 @@ export default function DetailsPage() {
       </div>
     </>
   );
-}
+};
+
+export default DetailsPage;
