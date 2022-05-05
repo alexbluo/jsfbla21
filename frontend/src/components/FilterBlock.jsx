@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { remove } from "../redux/filtersSlice";
 
 // TODO: move to arrow functions, then find out how memoization actually works... (refresh props but still same = no rerender?)
-// TODO: fix long category names for blocks
 // TODO: make accordion only one open at a time
 // TODO: clean up internal mongodb naming (facets => filters and typos)
 // TODO: also check if separate facets are needed, if not maybe rescrape or do fancy mongodb stuff
@@ -11,7 +10,7 @@ export default function FilterBlock(props) {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex h-16 w-full max-w-full gap-1 rounded-md border-4 bg-black">
+    <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">
       <div
         className="flex items-center overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90"
         type="text"
