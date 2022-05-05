@@ -122,9 +122,6 @@ export default function Map({ center, centerName }) {
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
-      {/* TODO: add carousel with map icon key
-          https://www.blog.google/products/maps/google-maps-gets-new-look/
-          https://tailwind-elements.com/docs/standard/components/carousel/ */}
       <div className="relative aspect-square h-full bg-red lg:w-full">
         <div className="flex w-full items-center gap-4 p-6">
           <Slider

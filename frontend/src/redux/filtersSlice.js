@@ -14,6 +14,8 @@ export const { reducer, actions } = createSlice({
   reducers: {
     add: (state, { payload: { category, filter } }) => {
       state[category].push(filter);
+      // sort so that react-query query keys are consistent
+      state[category].sort();
     },
     remove: (state, { payload: { category, filter } }) => {
       state[category] = state[category].filter((e) => e !== filter);

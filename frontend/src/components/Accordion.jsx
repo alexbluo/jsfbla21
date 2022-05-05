@@ -39,13 +39,13 @@ export default function Accordion() {
       {isLoading ? (
         <AccordionPreloader width="100%" height="220px" />
       ) : (
-        Object.entries(data).map(([category, filters], index) => (
-          <Dropdown header={category.toUpperCase()} key={index}>
-            {filters.map((filter, index) => (
+        Object.entries(data).map(([category, filters]) => (
+          <Dropdown header={category.toUpperCase()} key={category}>
+            {filters.map((filter) => (
               <Checkbox
                 category={category}
                 filter={filter}
-                key={index}
+                key={filter}
                 checked={storeFilters[category].includes(filter)}
               />
             ))}

@@ -14,6 +14,7 @@ export default function Dropdown(props) {
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
+        {/* change to svg? was laggy the last time but image seems to be  */}
         <img
           className={classNames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
