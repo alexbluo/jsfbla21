@@ -3,9 +3,9 @@ import FilterBlock from "./FilterBlock";
 
 export default function FilterBlockList() {
   const storeFilters = useSelector((state) => state.filters);
-  // console.log(filters);
+
   return (
-    <div>
+    <div className="flex flex-wrap gap-1 my-1">
       {Object.entries(storeFilters).map(([category, filters]) =>
         filters.map((filter) => (
           <FilterBlock category={category} filter={filter} key={filter} />

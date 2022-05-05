@@ -40,7 +40,7 @@ export default function PreviewList() {
     if (previews.length === 0) {
       return (
         <div className="col-span-2">
-          <label className="mx-auto block w-full rounded-3xl bg-[#f6f6f6] p-4 text-center font-poppins">
+          <label className="mx-auto block w-full rounded-2xl bg-[#f6f6f6] p-4 text-center font-poppins">
             <img className="mx-auto w-1/2" src={crab} />
             Nothing Matched!
           </label>
@@ -58,7 +58,7 @@ export default function PreviewList() {
       </div>
       {hasNextPage && (
         <button
-          className="mt-8 rounded-md bg-red px-4 py-2 text-white shadow-md duration-100 hover:brightness-75"
+          className="mt-8 rounded-md p-4 bg-red text-white shadow-md duration-200 hover:brightness-125"
           onClick={fetchNextPage}
         >
           Load More

@@ -8,7 +8,7 @@ export default function Dropdown(props) {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <div className="bg-black">
+    <div>
       <div
         className="flex h-14 w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
         onClick={() => setIsOpened(!isOpened)}

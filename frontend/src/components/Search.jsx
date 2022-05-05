@@ -7,9 +7,9 @@ export default function Search() {
   const dispatch = useDispatch();
 
   return (
-    <div className="my-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black outline-black">
+    <div className="my-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black">
       <input
-        className="w-full rounded-l bg-gold pl-4 font-raleway outline-none focus:brightness-90"
+        className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none focus:brightness-90"
         type="text"
         onChange={(e) => setText(e.target.value)}
       />
@@ -19,7 +19,6 @@ export default function Search() {
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-200 group-hover:fill-black"
-          // fill="#000000"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 50 50"
           width="50px"

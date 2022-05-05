@@ -21,7 +21,7 @@ export default function Checkbox(props) {
           onChange={(event) => handleCheck(event.target.checked)}
           checked={props.checked}
         />
-        <span>{props.filter}</span>
+        {props.filter}
       </label>
     </li>
   );
