@@ -18,7 +18,7 @@ const Checkbox = (props) => {
         <input
           className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
           type="checkbox"
-          onChange={(event) => handleCheck(event.target.checked)}
+          onChange={(e) => handleCheck(e.target.checked)}
           checked={props.checked}
         />
         {props.filter}

@@ -2,7 +2,8 @@ import { useState } from "react";
 import classNames from "classnames";
 import arrow from "../images/arrow.png";
 
-const scrollHeaders = ["CITY", "CATEGORY", "AMENITY"];
+// headers which should be overflow-y: auto
+const overflowHeaders = ["CITY", "CATEGORY", "AMENITY"];
 
 const Dropdown = (props) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -29,12 +30,12 @@ const Dropdown = (props) => {
           { "max-h-0": !isOpened },
           { "my-2 max-h-48": isOpened },
           {
-            "overflow-y-auto": scrollHeaders.some(
+            "overflow-y-auto": overflowHeaders.some(
               (header) => header === props.header
             ),
           },
           {
-            "overflow-y-hidden": !scrollHeaders.some(
+            "overflow-y-hidden": !overflowHeaders.some(
               (header) => header === props.header
             ),
           }

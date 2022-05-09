@@ -4,7 +4,7 @@ const NavBarLink = (props) => {
   return (
     <li className="inline">
       <NavLink
-        className="text-xl text-white duration-200 hover:text-gold hover:ease-in"
+        className="text-xl text-black duration-200 hover:text-gold hover:ease-in"
         to={props.path}
       >
         {props.children}

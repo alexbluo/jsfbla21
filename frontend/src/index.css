@@ -11,10 +11,6 @@
   }
 }
 
-body {
-  scrollbar-gutter: stable;
-}
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -27,24 +23,4 @@ input[type="number"] {
 
 input[type="number"]:focus {
   outline: none;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #555;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #444;
 }

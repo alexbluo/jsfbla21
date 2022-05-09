@@ -25,7 +25,7 @@ Below is a list of features and technologies which are on track to be implemente
 - Embedded contact form 
 - List nearby places on map marker select
 - Fancy nav bar stuff
-- Dockerize and deploy to AWS ElasticBeanstalk because it sounds fun
+- Dockerize and deploy to AWS/GCP because it sounds fun (serverless/PaaS)
 - Machine learning using user behavior when entering typos like Google search "did you mean"
   - not enough data to get this done - not worth the time either, but fun idea
 
