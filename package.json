@@ -1,22 +1,19 @@
 {
-  "name": "jsfbla21",
+  "name": "mdattractions",
+  "author": "Alex Luo",
   "version": "1.0.0",
-  "description": "",
+  "license": "ISC",
   "private": true,
   "workspaces": [
     "frontend",
     "backend"
   ],
   "scripts": {
-    "start": "cd backend && node app.js",
-    "heroku-postbuild": "cd frontend && yarn --production=false && yarn run build",
-    "dev": "concurrently -i \"cd backend && yarn dev\" \"cd frontend && yarn start\""
+    "start": "yarn workspace backend start",
+    "heroku-postbuild": "yarn workspace frontend yarn && yarn workspace frontend build",
+    "dev": "concurrently -i \"yarn workspace backend dev\" \"yarn workspace frontend start\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^7.0.0"
-  },
-  "dependencies": {}
+  }
 }
