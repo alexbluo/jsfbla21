@@ -12,7 +12,7 @@ COPY frontend/package.json frontend/
 
 COPY backend/package.json backend/
 
-# TODO: just move required dev dependencies instead?
+# TODO: just move required dev dependencies instead
 RUN yarn --production=false --no-lockfile
 
 COPY frontend frontend/
