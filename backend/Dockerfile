@@ -1,3 +1,0 @@
-FROM node:18
-
-ARG BUILD_CONTEXT

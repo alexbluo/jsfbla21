@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
+  "license": "ISC",
   "scripts": {
     "start": "vite",
     "build": "vite build",
@@ -41,7 +42,6 @@
   "devDependencies": {
     "@vitejs/plugin-react": "1.1.1",
     "autoprefixer": "^10.4.2",
-    "concurrently": "^7.1.0",
     "eslint": "^8.14.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
