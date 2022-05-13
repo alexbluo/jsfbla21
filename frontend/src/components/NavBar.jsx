@@ -1,35 +1,30 @@
 import { useState, useEffect, useCallback } from "react";
+import classNames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
+  // TODO: add active
   const [lastY, setLastY] = useState(window.scrollY);
-  const [blurNav, setBlurNav] = useState(false);
+  const [blur, setBlur] = useState(false);
 
-  const handleScroll = () => {
-    // console.log("window.scrollY: " + window.scrollY);
-    // console.log("lastY:" + lastY);
-    if (window.scrollY > lastY) {
-      // setBlurNav(true);
-      console.log("down");
-    } else {
-      // setBlurNav(false)
-      console.log("up");
-    }
+  const handleScroll = useCallback(() => {
+    setBlur(window.scrollY > lastY);
     setLastY(window.scrollY);
-  }
+  }, [lastY]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastY]);
+  }, [handleScroll]);
 
   return (
-    <nav className="fixed top-0 left-0 z-10 flex h-12 w-screen flex-row-reverse bg-gold">
-      <ul className="flex gap-4 self-center pr-8">
+    <nav className="fixed top-0 left-0 z-10 flex h-16 w-screen flex-row-reverse border-b-2 border-gold border-opacity-80 bg-black">
+      <ul className="flex h-full self-center pr-8">
         <NavBarLink path="/attractions">Attractions</NavBarLink>
         <NavBarLink path="/map">Map</NavBarLink>
         <NavBarLink path="/help">Help</NavBarLink>
@@ -37,4 +32,5 @@ const NavBar = () => {
     </nav>
   );
 };
+
 export default NavBar;

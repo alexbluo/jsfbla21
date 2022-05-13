@@ -13,6 +13,7 @@ COPY frontend/package.json frontend/
 COPY backend/package.json backend/
 
 # TODO: just move required dev dependencies instead
+# TODO: also change and test heroku script
 RUN yarn --production=false --no-lockfile
 
 COPY frontend frontend/

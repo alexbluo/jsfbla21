@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import Map from "../components/Map";
 import NavBar from "../components/NavBar";
 
-// TODO: useQuery instead
 const MapPage = () => {
   const [center, setCenter] = useState(undefined);
-
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {

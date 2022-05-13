@@ -8,7 +8,6 @@ import { remove } from "../redux/filtersSlice";
 // TODO: add clear all block to the top of filterblocklist if at least one filter is checked
 // TODO: change dropdown arrow back to svg and test
 // TODO: make fulltext search thing actually work
-// TODO: dawker
 const FilterBlock = (props) => {
   const dispatch = useDispatch();
 
