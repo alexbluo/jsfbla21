@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "start": "yarn workspace backend start -p",
-    "build": "yarn workspace frontend build",
-    "heroku-postbuild": "yarn workspace frontend yarn && yarn workspace frontend build",
+    "heroku-postbuild": "yarn workspace frontend yarn --production=false && yarn workspace frontend build",
     "dev": "concurrently -i \"yarn workspace backend dev\" \"yarn workspace frontend start\""
   },
   "devDependencies": {
