@@ -5,7 +5,7 @@ import NavBarLink from "./NavBarLink";
 const NavBar = () => {
   const [lastY, setLastY] = useState(window.scrollY);
   const [blur, setBlur] = useState(false);
-  
+
   const handleScroll = useCallback(() => {
     setBlur(window.scrollY > lastY);
     setLastY(window.scrollY);
