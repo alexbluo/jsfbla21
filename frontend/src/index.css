@@ -6,9 +6,6 @@
   .page-title {
     @apply my-5 flex items-center justify-center font-montserrat text-4xl;
   }
-  .content-body-container {
-    @apply container mx-auto px-8 py-12 sm:px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28;
-  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,

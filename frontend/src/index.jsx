@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import {
   LandingPage,
   AttractionsPage,
@@ -29,12 +30,14 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/attractions" element={<AttractionsPage />} />
-          <Route exact path="/attractions/:id" element={<DetailsPage />} />
-          <Route exact path="/map" element={<MapPage />} />
-          <Route exact path="/help" element={<HelpPage />} />
-          <Route path="*" element={<Error404Page />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route element={<Layout />}>
+            <Route path="/attractions" element={<AttractionsPage />} />
+            <Route path="/attractions/:id" element={<DetailsPage />} />
+            <Route path="/map" element={<MapPage />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="*" element={<Error404Page />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
