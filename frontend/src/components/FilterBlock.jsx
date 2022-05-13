@@ -1,6 +1,3 @@
-import { useDispatch } from "react-redux";
-import { remove } from "../redux/filtersSlice";
-
 // TODO: move to arrow functions, then find out how memoization actually works... (refresh props but still same = no rerender?)
 // TODO: make accordion only one open at a time
 // TODO: clean up internal mongodb naming (facets => filters and typos)
@@ -8,23 +5,20 @@ import { remove } from "../redux/filtersSlice";
 // TODO: add clear all block to the top of filterblocklist if at least one filter is checked
 // TODO: change dropdown arrow back to svg and test
 // TODO: make fulltext search thing actually work
-const FilterBlock = (props) => {
-  const dispatch = useDispatch();
 
+// TODO: fix rerenders?
+const FilterBlock = (props) => {
   return (
     <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">
       <div
         className="flex items-center overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90"
         type="text"
-        onChange={(e) => setText(e.target.value)}
       >
-        <span className="truncate">{props.filter}</span>
+        <span className="truncate">{props.children}</span>
       </div>
       <button
         className="group aspect-square h-full rounded-r text-gold duration-200 hover:bg-gold active:brightness-50"
-        onClick={() =>
-          dispatch(remove({ category: props.category, filter: props.filter }))
-        }
+        onClick={props.onClick}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-200 group-hover:fill-black"
@@ -37,6 +31,6 @@ const FilterBlock = (props) => {
       </button>
     </div>
   );
-}
+};
 
 export default FilterBlock;

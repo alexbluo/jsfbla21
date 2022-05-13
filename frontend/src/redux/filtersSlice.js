@@ -21,7 +21,7 @@ export const { reducer, actions } = createSlice({
       state[category] = state[category].filter((e) => e !== filter);
     },
     reset: (state) => {
-      state = initialState;
+      return initialState;
     },
   },
 });

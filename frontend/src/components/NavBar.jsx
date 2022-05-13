@@ -3,7 +3,6 @@ import classNames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
-  // TODO: add active
   const [lastY, setLastY] = useState(window.scrollY);
   const [blur, setBlur] = useState(false);
 

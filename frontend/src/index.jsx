@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
 import {
   LandingPage,
   AttractionsPage,
@@ -30,7 +29,6 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          {/* TODO: bring navbar here? */}
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/attractions" element={<AttractionsPage />} />
           <Route exact path="/attractions/:id" element={<DetailsPage />} />
