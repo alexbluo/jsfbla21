@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classNames from "classnames";
+import classnames from "classnames";
 import arrow from "../images/arrow.png";
 
 // headers which should be overflow-y: auto
@@ -16,7 +16,7 @@ const Dropdown = (props) => {
       >
         <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
         <img
-          className={classNames(
+          className={classnames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
             { "rotate-180": isOpened }
           )}
@@ -25,7 +25,7 @@ const Dropdown = (props) => {
         />
       </div>
       <ul
-        className={classNames(
+        className={classnames(
           "mx-4 font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpened },
           { "my-2 max-h-48": isOpened },

@@ -161,10 +161,10 @@ const Map = ({ center, centerName }) => {
           </label>
         </div>
         <button
-          className="absolute bottom-6 left-6 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
+          className="absolute te bottom-6 left-6 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
           onClick={() => setSelectedMarker("center")}
         >
-          Center
+          Show Center
         </button>
       </div>
     </div>

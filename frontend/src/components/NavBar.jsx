@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import classNames from "classnames";
+import classnames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
@@ -7,7 +7,7 @@ const NavBar = () => {
   const [blur, setBlur] = useState(false);
 
   const handleScroll = useCallback(() => {
-    setBlur(window.scrollY > lastY);
+    setBlur(window.scrollY > lastY && window.scrollY > 32);
     setLastY(window.scrollY);
   }, [lastY]);
 
@@ -23,9 +23,12 @@ const NavBar = () => {
 
   return (
     <nav
-      className={classNames(
-        "fixed top-0 left-0 z-10 flex h-16 w-screen flex-row-reverse border-b border-gold border-opacity-80 bg-black duration-300",
-        { "bg-opacity-30 backdrop-blur-lg backdrop-filter": blur }
+      className={classnames(
+        "fixed top-0 left-0 z-10 flex h-16 w-screen flex-row-reverse border-b border-gold bg-black duration-300 ease-in-out",
+        {
+          "bg-opacity-40 backdrop-blur backdrop-filter firefox:bg-opacity-80":
+            blur,
+        }
       )}
     >
       <ul className="flex h-full self-center pr-6">

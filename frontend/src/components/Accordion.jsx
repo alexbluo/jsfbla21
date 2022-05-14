@@ -1,5 +1,5 @@
 import axios from "axios";
-import classNames from "classnames";
+import classnames from "classnames";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import AccordionPreloader from "./AccordionPreloader";
@@ -30,7 +30,7 @@ const Accordion = () => {
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div
-      className={classNames(
+      className={classnames(
         "flex flex-col gap-1 rounded-md border-4",
         { "border-transparent": isLoading },
         { "border-black bg-black": !isLoading }
@@ -54,6 +54,6 @@ const Accordion = () => {
       )}
     </div>
   );
-}
+};
 
 export default Accordion;
