@@ -2,15 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavBarLink = (props) => {
-  // TODO: before/after, block, gold, rotate, clip with z?
   return (
     <li className="group relative inline cursor-pointer">
-      <div className="absolute bottom-0 -z-10 h-0 w-full bg-gold duration-200 ease-out group-hover:h-full"></div>
+      <div className="absolute bottom-0 h-0 w-full bg-gold duration-200 ease-out group-hover:h-full" />
       <NavLink
-        className="flex h-full items-center justify-center px-6 text-xl text-gold duration-75 hover:ease-in group-hover:text-black"
+        className="flex h-full items-center justify-center bg-black px-6 text-xl text-gold duration-75 hover:ease-in group-hover:text-black"
         to={props.path}
       >
-        {props.children}
+        <span className="-skew-x-[28deg]">{props.children}</span>
       </NavLink>
     </li>
   );
