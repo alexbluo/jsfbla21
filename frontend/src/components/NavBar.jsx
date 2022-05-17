@@ -3,6 +3,8 @@ import classnames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
+  const [active, setActive] = useState("")
+
   const [lastY, setLastY] = useState(window.scrollY);
   const [hide, setBlur] = useState(false);
 
@@ -30,7 +32,7 @@ const NavBar = () => {
         }
       )}
     >
-      <ul className="mr-4 flex h-full skew-x-[28deg] border-x-gold">
+      <ul className="mr-4 flex h-full skew-x-[60deg] border-x-gold">
         <NavBarLink path="/attractions">Attractions</NavBarLink>
         <NavBarLink path="/map">Map</NavBarLink>
         <NavBarLink path="/help">Help</NavBarLink>

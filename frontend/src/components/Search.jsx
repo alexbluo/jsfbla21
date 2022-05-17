@@ -7,7 +7,7 @@ const Search = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="my-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black">
+    <div className="mb-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black">
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none focus:brightness-90"
         type="text"
