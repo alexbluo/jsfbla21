@@ -3,7 +3,7 @@ import classnames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
-  const [active, setActive] = useState("")
+  const [active, setActive] = useState("");
 
   const [lastY, setLastY] = useState(window.scrollY);
   const [hide, setBlur] = useState(false);
@@ -27,9 +27,7 @@ const NavBar = () => {
     <nav
       className={classnames(
         "fixed top-0 left-0 z-10 flex h-16 w-screen flex-row-reverse border-b border-gold bg-black duration-200 ease-out",
-        {
-          "-translate-y-full": hide,
-        }
+        { "-translate-y-full": hide }
       )}
     >
       <ul className="mr-4 flex h-full skew-x-[60deg] border-x-gold">
