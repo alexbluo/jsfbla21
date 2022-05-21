@@ -6,20 +6,19 @@
 // TODO: make fulltext search thing actually work
 
 // TODO: fix rerenders?
-const FilterBlock = (props) => {
-
-  console.log("FilterBlock render")
+const FilterBlock = ({onClick, children}) => {
+  console.log("FilterBlock render");
   return (
     <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">
       <div
         className="flex items-center overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90"
         type="text"
       >
-        <span className="truncate">{props.children}</span>
+        <span className="truncate">{children}</span>
       </div>
       <button
         className="group aspect-square h-full rounded-r text-gold duration-200 hover:bg-gold active:brightness-50"
-        onClick={props.onClick}
+        onClick={onClick}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-200 group-hover:fill-black"

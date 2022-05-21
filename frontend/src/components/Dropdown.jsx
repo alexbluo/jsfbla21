@@ -5,7 +5,7 @@ import arrow from "../images/arrow.png";
 // headers which should be overflow-y: auto
 const overflowHeaders = ["CITY", "CATEGORY", "AMENITY"];
 
-const Dropdown = (props) => {
+const Dropdown = ({ header, children }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ const Dropdown = (props) => {
         className="flex h-14 w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
         onClick={() => setIsOpened(!isOpened)}
       >
-        <h2 className="font-raleway text-lg font-semibold">{props.header}</h2>
+        <h2 className="font-raleway text-lg font-semibold">{header}</h2>
         <img
           className={classnames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
@@ -31,17 +31,17 @@ const Dropdown = (props) => {
           { "my-2 max-h-48": isOpened },
           {
             "overflow-y-auto": overflowHeaders.some(
-              (header) => header === props.header
+              (header) => header === header
             ),
           },
           {
             "overflow-y-hidden": !overflowHeaders.some(
-              (header) => header === props.header
+              (header) => header === header
             ),
           }
         )}
       >
-        {props.children}
+        {children}
       </ul>
     </div>
   );

@@ -31,9 +31,9 @@ const NavBar = () => {
       )}
     >
       <ul className="mr-4 flex h-full skew-x-[60deg] border-x-gold">
-        <NavBarLink path="/attractions">Attractions</NavBarLink>
-        <NavBarLink path="/map">Map</NavBarLink>
-        <NavBarLink path="/help">Help</NavBarLink>
+        <NavBarLink to="/attractions">Attractions</NavBarLink>
+        <NavBarLink to="/map">Map</NavBarLink>
+        <NavBarLink to="/help">Help</NavBarLink>
       </ul>
     </nav>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { NavLink } from "react-router-dom";
 
-const NavBarLink = (props) => {
+const NavBarLink = ({ to, children }) => {
   return (
     <li className="group relative inline cursor-pointer">
       <div className="absolute bottom-0 -z-10 h-0 w-full transform bg-gold duration-200 ease-out group-hover:h-full" />
@@ -15,11 +15,11 @@ const NavBarLink = (props) => {
             { "bg-gold text-black": isActive }
           )
         }
-        to={props.path}
+        to={to}
       >
         {/* TODO: make this actually cover all areas */}
         <span className="flex h-full -skew-x-[60deg] items-center">
-          {props.children}
+          {children}
         </span>
       </NavLink>
     </li>
