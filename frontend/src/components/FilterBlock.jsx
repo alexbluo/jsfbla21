@@ -1,4 +1,3 @@
-// TODO: move to arrow functions, then find out how memoization actually works... (refresh props but still same = no rerender?)
 // TODO: make accordion only one open at a time
 // TODO: clean up internal mongodb naming (facets => filters and typos)
 // TODO: but first check if separate facets property in documents is even needed, if not maybe rescrape or do fancy mongodb stuff
@@ -8,6 +7,8 @@
 
 // TODO: fix rerenders?
 const FilterBlock = (props) => {
+
+  console.log("FilterBlock render")
   return (
     <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">
       <div

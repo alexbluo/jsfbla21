@@ -4,8 +4,8 @@ import { add, remove } from "../redux/filtersSlice";
 const Checkbox = (props) => {
   const dispatch = useDispatch();
 
-  const handleCheck = (checked) => {
-    if (checked) {
+  const handleCheck = (e) => {
+    if (e.target.checked) {
       dispatch(add({ category: props.category, filter: props.filter }));
     } else {
       dispatch(remove({ category: props.category, filter: props.filter }));
@@ -18,7 +18,7 @@ const Checkbox = (props) => {
         <input
           className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
           type="checkbox"
-          onChange={(e) => handleCheck(e.target.checked)}
+          onChange={(e) => handleCheck(e)}
           checked={props.checked}
         />
         {props.filter}

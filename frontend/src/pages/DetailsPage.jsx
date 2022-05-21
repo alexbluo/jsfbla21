@@ -45,24 +45,20 @@ const DetailsPage = () => {
           <h2 className="mb-2 text-2xl">Website & Contact</h2>
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
             {data.website_link && (
-              <ButtonLink link={data.website_link} detail>
-                Website
-              </ButtonLink>
+              <ButtonLink link={data.website_link}>Website</ButtonLink>
             )}
             {data.mailto_link && (
-              <ButtonLink link={data.mailto_link} detail>
-                Email
-              </ButtonLink>
+              <ButtonLink link={data.mailto_link}>Email</ButtonLink>
             )}
             {data.phone_number && (
-              <ButtonLink link={`tel:${data.phone_number}`} detail>
+              <ButtonLink link={`tel:${data.phone_number}`}>
                 Phone
                 <br />
                 {data.phone_number}
               </ButtonLink>
             )}
             {data.fax && (
-              <ButtonLink link={`tel:${data.fax}`} detail>
+              <ButtonLink link={`tel:${data.fax}`}>
                 Fax
                 <br />
                 {data.fax}
