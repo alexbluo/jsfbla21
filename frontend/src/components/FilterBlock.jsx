@@ -6,7 +6,7 @@
 // TODO: make fulltext search thing actually work
 
 // TODO: fix rerenders?
-const FilterBlock = ({onClick, children}) => {
+const FilterBlock = ({ onClick, children }) => {
   console.log("FilterBlock render");
   return (
     <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">

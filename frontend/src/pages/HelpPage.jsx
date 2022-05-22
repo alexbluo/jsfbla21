@@ -29,7 +29,7 @@ const HelpPage = () => {
       </div>
       <div className="flex w-full justify-center">
         <a href="mailto:alexluo92823@gmail.com">
-          <button className="rounded-md bg-red p-4 text-white hover:brightness-75">
+          <button className="rounded-md shadow-md bg-red p-4 text-white duration-200 hover:brightness-125">
             Contact Me
           </button>
         </a>

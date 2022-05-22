@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { add, remove } from "../redux/filtersSlice";
 
@@ -27,4 +28,4 @@ const Checkbox = ({ category, filter, checked }) => {
   );
 };
 
-export default Checkbox;
+export default React.memo(Checkbox);

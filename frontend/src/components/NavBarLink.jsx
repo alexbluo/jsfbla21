@@ -6,7 +6,6 @@ const NavBarLink = ({ to, children }) => {
   return (
     <li className="group relative inline cursor-pointer">
       <div className="absolute bottom-0 -z-10 h-0 w-full transform bg-gold duration-200 ease-out group-hover:h-full" />
-      {/* could just make my own active state using url params */}
       <NavLink
         className={({ isActive }) =>
           classnames(
@@ -17,7 +16,6 @@ const NavBarLink = ({ to, children }) => {
         }
         to={to}
       >
-        {/* TODO: make this actually cover all areas */}
         <span className="flex h-full -skew-x-[60deg] items-center">
           {children}
         </span>
