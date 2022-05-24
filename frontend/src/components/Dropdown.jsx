@@ -1,9 +1,5 @@
 import { useState } from "react";
 import classnames from "classnames";
-import arrow from "../images/arrow.png";
-
-// headers which should be overflow-y: auto
-const overflowHeaders = ["CITY", "CATEGORY", "AMENITY"];
 
 const Dropdown = ({ header, children }) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -15,30 +11,22 @@ const Dropdown = ({ header, children }) => {
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{header}</h2>
-        <img
+        <svg
           className={classnames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
-            { "rotate-180": isOpened }
+            { "-rotate-180": isOpened }
           )}
-          src={arrow}
-          alt=""
-        />
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+        >
+          <path d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+        </svg>
       </div>
       <ul
         className={classnames(
-          "mx-4 font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
+          "mx-4 overflow-y-auto font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpened },
-          { "my-2 max-h-48": isOpened },
-          {
-            "overflow-y-auto": overflowHeaders.some(
-              (header) => header === header
-            ),
-          },
-          {
-            "overflow-y-hidden": !overflowHeaders.some(
-              (header) => header === header
-            ),
-          }
+          { "my-2 max-h-48": isOpened }
         )}
       >
         {children}

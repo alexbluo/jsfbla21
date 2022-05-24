@@ -1,11 +1,8 @@
-// TODO: make accordion only one open at a time
 // TODO: clean up internal mongodb naming (facets => filters and typos)
 // TODO: but first check if separate facets property in documents is even needed, if not maybe rescrape or do fancy mongodb stuff
-// TODO: add clear all block to the top of filterblocklist if at least one filter is checked
 // TODO: change dropdown arrow back to svg and test
 // TODO: make fulltext search thing actually work
 
-// TODO: fix rerenders?
 const FilterBlock = ({ onClick, children }) => {
   console.log("FilterBlock render");
   return (
