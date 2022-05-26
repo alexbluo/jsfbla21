@@ -1,24 +1,36 @@
+import classnames from "classnames";
 // TODO: clean up internal mongodb naming (facets => filters and typos)
 // TODO: but first check if separate facets property in documents is even needed, if not maybe rescrape or do fancy mongodb stuff
-// TODO: change dropdown arrow back to svg and test
 // TODO: make fulltext search thing actually work
 
-const FilterBlock = ({ onClick, children }) => {
-  console.log("FilterBlock render");
+const FilterBlock = ({ onClick, clearAll, children }) => {
   return (
-    <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black">
+    <div
+      className={classnames(
+        "flex h-16 max-w-full gap-1 rounded-md border-4 bg-black",
+        { "xl:w-full": clearAll }
+      )}
+    >
       <div
-        className="flex items-center overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90"
+        className={classnames(
+          "overflow-hidden whitespace-nowrap rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90",
+          { "grow basis-0 xl:w-1/2": clearAll }
+        )}
         type="text"
       >
-        <span className="truncate">{children}</span>
+        <span className="mx-auto block truncate align-middle">
+        {children}
+        </span>
       </div>
       <button
-        className="group aspect-square h-full rounded-r text-gold duration-200 hover:bg-gold active:brightness-50"
+        className={classnames(
+          "group aspect-square h-full rounded-r text-gold duration-200 hover:bg-gold active:brightness-50",
+          { "flex-grow basis-0 px-4 xl:w-1/2": clearAll }
+        )}
         onClick={onClick}
       >
         <svg
-          className="mx-auto h-1/2 w-1/2 fill-gold duration-200 group-hover:fill-black"
+          className="mx-auto h-1/2 w-1/2 fill-gold duration-150 ease-in-out group-hover:fill-black"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
         >

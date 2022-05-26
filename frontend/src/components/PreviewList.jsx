@@ -18,10 +18,10 @@ const PreviewList = () => {
           ...filters,
         });
         const res = await axios.get(`/api/attractions?${params}`);
-        return { docs: res.data.previewData, nextPage: res.data.nextPage }; // return to "data"
+        return { docs: res.data.attractions, nextPageNumber: res.data.nextPageNumber }; // return to "data"
       },
       {
-        getNextPageParam: (lastPage) => lastPage.nextPage,
+        getNextPageParam: (lastPage) => lastPage.nextPageNumber,
         keepPreviousData: true,
       }
     );
@@ -59,7 +59,7 @@ const PreviewList = () => {
       {hasNextPage && (
         <button
           className="mt-8 rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125"
-          onClick={fetchNextPage}
+          onClick={() => fetchNextPage()}
         >
           Load More
         </button>
