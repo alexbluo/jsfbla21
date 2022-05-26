@@ -4,7 +4,7 @@
 
 @layer components {
   .page-title {
-    @apply my-5 flex items-center justify-center font-montserrat text-4xl;
+    @apply flex h-16 items-center justify-center font-montserrat text-4xl;
   }
 }
 
