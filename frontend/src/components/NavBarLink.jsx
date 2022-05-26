@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const NavBarLink = ({ to, children }) => {
   return (
     <li className="group relative inline cursor-pointer">
-      <div className="absolute bottom-0 -z-10 h-0 w-full transform bg-gold duration-200 ease-out group-hover:h-full" />
+      <div className="absolute bottom-0 -z-10 h-0 w-full transform bg-gold duration-200 ease-in-out group-hover:h-full" />
       <NavLink
         className={({ isActive }) =>
           classnames(

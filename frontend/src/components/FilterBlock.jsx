@@ -13,19 +13,17 @@ const FilterBlock = ({ onClick, clearAll, children }) => {
     >
       <div
         className={classnames(
-          "overflow-hidden whitespace-nowrap rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90",
-          { "grow basis-0 xl:w-1/2": clearAll }
+          "min-w-fit overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90",
+          { "xl:w-1/2": clearAll }
         )}
         type="text"
       >
-        <span className="mx-auto block truncate align-middle">
-        {children}
-        </span>
+        <span className="flex h-full items-center truncate justify-center">{children}</span>
       </div>
       <button
         className={classnames(
-          "group aspect-square h-full rounded-r text-gold duration-200 hover:bg-gold active:brightness-50",
-          { "flex-grow basis-0 px-4 xl:w-1/2": clearAll }
+          "group aspect-square h-full rounded-r text-gold duration-150 ease-in-out hover:bg-gold active:brightness-75",
+          { "xl:w-1/2": clearAll }
         )}
         onClick={onClick}
       >
