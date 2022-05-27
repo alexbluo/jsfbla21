@@ -10,7 +10,7 @@ const Search = () => {
     // ignore empty inputs
     if (input.trim() === "") return;
 
-    dispatch(add({ category: "search", filter: input }));
+    dispatch(add({ category: "search", filter: input.trim() }));
   };
 
   return (

@@ -6,16 +6,17 @@ require("dotenv").config();
  * @param { Object.<string, Array<string>> } query - the parsed query object
  * @returns { Filter<Document> } the formatted filter
  */
-const formatQuery = (query) => {
+const formatFilterQuery = (filters) => {
   // search for all attractions if no filters are specified
-  if (Object.values(query).every((value) => value.length === 0)) return {};
+  if (Object.values(filters).every((value) => value.length === 0))
+    return { $match: {} };
 
-  const filter = { facets: { $all: [] } };
+  const filterQuery = { $match: { facets: { $all: [] } } };
 
-  for (const [key, values] of Object.entries(query)) {
+  for (const [key, values] of Object.entries(filters)) {
     // turn each entry (filter) into an array of { type, val }, wrap in $or + $elemMatch and push to $all
     // this causes filters under the same category to use OR, while across categories use AND
-    filter.facets.$all.push({
+    filterQuery.$match.facets.$all.push({
       $elemMatch: {
         $or: values.map((value) => {
           return { type: key, val: value };
@@ -23,8 +24,7 @@ const formatQuery = (query) => {
       },
     });
   }
-
-  return filter;
+  return filterQuery;
 };
 
 // number of documents to retrieve per pagination
@@ -34,7 +34,7 @@ exports.getOrMatchAll = (req, res) => {
   const page = req.query.page;
 
   const filterKeys = ["region", "city", "category", "amenity"];
-  const query = formatQuery(
+  const filterQuery = formatFilterQuery(
     // format a query for only entries which have a key used in filters
     Object.fromEntries(
       Object.entries(req.query).filter(([key]) => filterKeys.includes(key))
@@ -46,62 +46,31 @@ exports.getOrMatchAll = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const search = req.query.search;
-    console.log(search);
+    const queries = [filterQuery];
 
-    const cursor = collection
-      .aggregate([
-        // { $match: query },
-        {
-          $match: {
-            $search: {
-              index: "text",
-              text: {
-                query: search[0],
-                path: {
-                  wildcard: "*",
-                },
-              },
-            },
-          },
+    // searches and searchQuery will both be null if no search was inputted
+    const searches = req.query.search;
+    if (searches) {
+      const searchQuery = {
+        $search: {
+          index: "text",
+          // separate words are separated by spaces; using multiple $search queries is NOT allowed
+          text: { query: searches.join(" "), path: { wildcard: "*" } },
         },
-      ])
+      };
+
+      queries.unshift(searchQuery);
+    }
+    console.log(queries);
+
+    // console.log(queries);
+    const cursor = collection
+      // working default for getting all attractions resolves to [{ $match: {} }]
+      .aggregate(queries)
       .sort({ attraction_name: 1 })
       .skip(page * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.attractions.push(doc));
-
-    console.log(data.attractions);
-    // if (req.query.search) {
-    //   const searches = req.query.search;
-    //   const searchResults = [];
-    //   for (const search of searches) {
-    //     const cursor = collection.aggregate([
-    // {
-    //   $searchMeta: {
-    //     index: "text",
-    //     text: {
-    //       query: search,
-    //       path: {
-    //         wildcard: "*",
-    //       },
-    //     },
-    //   },
-    // },
-    //       { score: { $meta: "textScore" } },
-    //     ]);
-
-    //     await cursor.forEach((doc) => searchResults.push(doc));
-    //   }
-
-    // console.log(searchResults);
-    //   console.log(data.attractions);
-    //   data.attractions = data.attractions.filter((current) =>
-    //     searchResults.some(
-    //       (result) => current.attraction_id === result.attraction_id
-    //     )
-    //   );
-    // }
 
     // check if there are more attractions on the next page and adjust
     if (data.attractions.length > nPerPage) {

@@ -18,11 +18,13 @@ const FilterBlock = ({ onClick, clearAll, children }) => {
         )}
         type="text"
       >
-        <span className="flex h-full items-center truncate justify-center">{children}</span>
+        <span className="flex h-full items-center justify-center truncate">
+          {children}
+        </span>
       </div>
       <button
         className={classnames(
-          "group aspect-square h-full rounded-r text-gold duration-150 ease-in-out hover:bg-gold active:brightness-75",
+          "group aspect-square h-full rounded-r text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75",
           { "xl:w-1/2": clearAll }
         )}
         onClick={onClick}
