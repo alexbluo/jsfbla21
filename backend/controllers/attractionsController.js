@@ -12,7 +12,6 @@ const formatQuery = (query) => {
 
   const filter = { facets: { $all: [] } };
 
-  //  { score: { $meta: "textScore" } } :
   for (const [key, values] of Object.entries(query)) {
     // turn each entry (filter) into an array of { type, val }, wrap in $or + $elemMatch and push to $all
     // this causes filters under the same category to use OR, while across categories use AND
@@ -47,14 +46,62 @@ exports.getOrMatchAll = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
+    const search = req.query.search;
+    console.log(search);
+
     const cursor = collection
-      .find(query)
+      .aggregate([
+        // { $match: query },
+        {
+          $match: {
+            $search: {
+              index: "text",
+              text: {
+                query: search[0],
+                path: {
+                  wildcard: "*",
+                },
+              },
+            },
+          },
+        },
+      ])
       .sort({ attraction_name: 1 })
       .skip(page * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.attractions.push(doc));
 
-    
+    console.log(data.attractions);
+    // if (req.query.search) {
+    //   const searches = req.query.search;
+    //   const searchResults = [];
+    //   for (const search of searches) {
+    //     const cursor = collection.aggregate([
+    // {
+    //   $searchMeta: {
+    //     index: "text",
+    //     text: {
+    //       query: search,
+    //       path: {
+    //         wildcard: "*",
+    //       },
+    //     },
+    //   },
+    // },
+    //       { score: { $meta: "textScore" } },
+    //     ]);
+
+    //     await cursor.forEach((doc) => searchResults.push(doc));
+    //   }
+
+    // console.log(searchResults);
+    //   console.log(data.attractions);
+    //   data.attractions = data.attractions.filter((current) =>
+    //     searchResults.some(
+    //       (result) => current.attraction_id === result.attraction_id
+    //     )
+    //   );
+    // }
 
     // check if there are more attractions on the next page and adjust
     if (data.attractions.length > nPerPage) {
@@ -66,48 +113,6 @@ exports.getOrMatchAll = (req, res) => {
     res.json(data);
   });
 };
-
-exports.getSearch = (req, res) => {
-  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
-    const db = client.db("attractionsDB");
-    const collection = db.collection("attractions");
-
-    // const data = 
-
-    if (req.query.search) {
-      const searches = req.query.search;
-      const searchResults = [];
-      for (const search of searches) {
-        const cursor = collection.aggregate([
-          {
-            $search: {
-              index: "text",
-              text: {
-                query: search,
-                path: {
-                  wildcard: "*",
-                },
-              },
-            },
-          },
-        ]);
-
-        await cursor.forEach((doc) => searchResults.push(doc));
-      }
-
-      // console.log(searchResults);
-      console.log(data.attractions);
-      data.attractions = data.attractions.filter((current) =>
-        searchResults.some(
-          (result) => current.attraction_id === result.attraction_id
-        )
-      );
-    }
-
-    client.close();
-    res.json(data);
-  });
-}
 
 exports.getOne = (req, res) => {
   const id = req.params.id;
