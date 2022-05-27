@@ -13,14 +13,12 @@ const FilterBlock = ({ onClick, clearAll, children }) => {
     >
       <div
         className={classnames(
-          "min-w-fit overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90",
+          "flex items-center justify-center overflow-hidden rounded-l bg-gold px-4 font-raleway text-lg focus:brightness-90",
           { "xl:w-1/2": clearAll }
         )}
         type="text"
       >
-        <span className="flex h-full items-center justify-center truncate">
-          {children}
-        </span>
+        <span className="truncate">{children}</span>
       </div>
       <button
         className={classnames(

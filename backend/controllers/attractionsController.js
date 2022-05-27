@@ -66,10 +66,11 @@ exports.getOrMatchAll = (req, res) => {
     // console.log(queries);
     const cursor = collection
       // working default for getting all attractions resolves to [{ $match: {} }]
-      .aggregate(queries)
-      .sort({ attraction_name: 1 })
-      .skip(page * nPerPage)
-      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
+      .aggregate(queries);
+    if (searches) cursor.sort({ text: { $meta: "textScore" } });
+    if (!searches) cursor.sort({ attraction_name: 1 });
+    cursor.skip(page * nPerPage).limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
+
     await cursor.forEach((doc) => data.attractions.push(doc));
 
     // check if there are more attractions on the next page and adjust
