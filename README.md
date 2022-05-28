@@ -10,28 +10,38 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 
 - TailwindCSS (CSS framework)
 - Redux Toolkit + React Redux (global state)
-- React Query (fetching and caching)
+- Axios + React Query (fetching and caching)
 - Vite (build tool)
 - Docker (containerization)
-- Heroku | GCP Cloud Run (deployment)
+- Heroku | Google Cloud Run (deployment)
 - Puppeteer (web scraping)
 
-## Future Plans
+## Changes Since March 2022
 
-Below is a list of features and technologies which are on track to be implemented, in order of precedence:
+Below is a list of features, technologies, and fixes which are on track to be implemented, with more high priority ones at the top:
 
-- Fulltext search
-- Easy clearing of checked filters
-- Embedded contact form
-- List nearby places on map marker select
-- Fancy nav bar stuff
-- Dockerize and deploy to AWS/GCP because it sounds fun (serverless/PaaS)
-- Machine learning using user behavior when entering typos like Google search "did you mean"
-  - not enough data to get this done - not worth the time either, but fun idea
+- [ ] Fulltext search for both filters and map pages
+- [ ] List nearby places on map marker select
+- [ ] Embedded contact form
+- [ ] Async/debouncing/concurrent for handling text inputs that query on change <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
+- [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
+  - definitely not enough time or data to get this done, but fun idea
+- [x] Deploy to Heroku, AWS, and GCP (serverless/PaaS)
+- [x] Small performance optimizations, bug fixes, code structure cleanups
+- [x] Easy clearing of checked filters
+- [x] Docker because it sounds fun
+- [x] Responsive layout
+- [x] Update to internal checkbox system
+- [x] Cool landing page
+- [x] Fix performance when multiple markers are rendered at once
+- [x] Add maps to attraction detail pages
+- [x] Replace current library for Google Maps API with one that supports both React and InfoWindows
+- [x] Redesign of map page UI and popup system
+- [x] Move from plain CSS to TailwindCSS, CRA/Webpack to Vite, React Context API to Redux Toolkit + React-Redux, fetch to Axios + React Query, template literals to classnames, npm to yarn
 
 ## Sourcing
 
 - [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)
 - [Attractions data](https://www.visitmaryland.org/things-to-do/attractions)
-- [Crab](<https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD>)
-- [Image for... no image](<https://depositphotos.com/vector-images/no-image-available.html>)
+- [Crab](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD)
+- [Image for... no image](https://depositphotos.com/vector-images/no-image-available.html)
