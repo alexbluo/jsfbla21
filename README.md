@@ -18,7 +18,7 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 
 ## Changes Since March 2022
 
-Below is a list of features, technologies, and fixes which are on track to be implemented, with more high priority ones at the top:
+Below is a list of features, technologies, and fixes which have been or will be implemented, with more recent/high priority ones at the top:
 
 - [ ] Fulltext search for both filters and map pages
 - [ ] List nearby places on map marker select
