@@ -18,26 +18,27 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 
 ## Changes Since March 2022
 
-Below is a list of features, technologies, and fixes which have been or will be implemented, with more recent/high priority ones at the top:
+Below is a list of features, technologies, and fixes which have been or will be implemented, with more recent and higher priority ones at the top:
 
 - [ ] Fulltext search for both filters and map pages
 - [ ] List nearby places on map marker select
 - [ ] Embedded contact form
+- [ ] Break down components into smaller, more reusable, and at least equally performant components
 - [ ] Async/debouncing/concurrent for handling text inputs that query on change <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
 - [x] Deploy to Heroku, AWS, and GCP (serverless/PaaS)
-- [x] Small performance optimizations, bug fixes, code structure cleanups
 - [x] Easy clearing of checked filters
 - [x] Docker because it sounds fun
-- [x] Responsive layout
 - [x] Update to internal checkbox system
+- [x] Responsive layout
 - [x] Cool landing page
 - [x] Fix performance when multiple markers are rendered at once
 - [x] Add maps to attraction detail pages
 - [x] Replace current library for Google Maps API with one that supports both React and InfoWindows
-- [x] Redesign of map page UI and popup system
-- [x] Move from plain CSS to TailwindCSS, CRA/Webpack to Vite, React Context API to Redux Toolkit + React-Redux, fetch to Axios + React Query, template literals to classnames, npm to yarn
+- [x] Redesign of map page UI and modals system
+- [x] Move from plain CSS to TailwindCSS, CRA/Webpack to Vite, React Context API to Redux Toolkit + React Redux, Fetch API to Axios + React Query, template literals to classnames, npm to yarn
+- [x] Small performance optimizations, bug fixes, code structure cleanups
 
 ## Sourcing
 
