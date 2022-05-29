@@ -22,7 +22,7 @@ exports.getCities = (req, res) => {
     const cities = { city: filters.cities };
 
     client.close();
-    res.json(cities);
+    res.status(200).json(cities);
   });
 };
 
@@ -39,7 +39,7 @@ exports.getCategories = (req, res) => {
     };
 
     client.close();
-    res.json(categories);
+    res.status(200).json(categories);
   });
 };
 
@@ -52,6 +52,6 @@ exports.getAmenities = (req, res) => {
     const amenities = { amenity: filters.amenities };
 
     client.close();
-    res.json(amenities);
+    res.status(200).json(amenities);
   });
 };

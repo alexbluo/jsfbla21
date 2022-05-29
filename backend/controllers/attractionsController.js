@@ -8,15 +8,14 @@ require("dotenv").config();
  */
 const formatFilterQuery = (filters) => {
   // search for all attractions if no filters are specified
-  if (Object.values(filters).every((value) => value.length === 0))
-    return { $match: {} };
+  if (Object.values(filters).every((value) => value.length === 0)) return {};
 
-  const filterQuery = { $match: { facets: { $all: [] } } };
+  const filterQuery = { facets: { $all: [] } };
 
   for (const [key, values] of Object.entries(filters)) {
     // turn each entry (filter) into an array of { type, val }, wrap in $or + $elemMatch and push to $all
     // this causes filters under the same category to use OR, while across categories use AND
-    filterQuery.$match.facets.$all.push({
+    filterQuery.facets.$all.push({
       $elemMatch: {
         $or: values.map((value) => {
           return { type: key, val: value };
@@ -30,7 +29,7 @@ const formatFilterQuery = (filters) => {
 // number of documents to retrieve per pagination
 const nPerPage = 8;
 
-exports.getOrMatchAll = (req, res) => {
+exports.matchAll = (req, res) => {
   const page = req.query.page;
 
   const filterKeys = ["region", "city", "category", "amenity"];
@@ -46,31 +45,12 @@ exports.getOrMatchAll = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const queries = [filterQuery];
-
-    // searches and searchQuery will both be null if no search was inputted
-    const searches = req.query.search;
-    if (searches) {
-      const searchQuery = {
-        $search: {
-          index: "text",
-          // separate words are separated by spaces; using multiple $search queries is NOT allowed
-          text: { query: searches.join(" "), path: { wildcard: "*" } },
-        },
-      };
-
-      queries.unshift(searchQuery);
-    }
-    console.log(queries);
-
-    // console.log(queries);
     const cursor = collection
       // working default for getting all attractions resolves to [{ $match: {} }]
-      .aggregate(queries);
-    if (searches) cursor.sort({ text: { $meta: "textScore" } });
-    if (!searches) cursor.sort({ attraction_name: 1 });
-    cursor.skip(page * nPerPage).limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
-
+      .find(filterQuery)
+      .sort({ attraction_name: 1 })
+      .skip(page * nPerPage)
+      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.attractions.push(doc));
 
     // check if there are more attractions on the next page and adjust
@@ -80,7 +60,7 @@ exports.getOrMatchAll = (req, res) => {
     }
 
     client.close();
-    res.json(data);
+    res.status(200).json(data);
   });
 };
 
@@ -94,7 +74,7 @@ exports.getOne = (req, res) => {
     const data = await collection.findOne({ attraction_id: id });
 
     client.close();
-    res.json(data);
+    res.status(200).json(data);
   });
 };
 
@@ -120,6 +100,50 @@ exports.getNear = (req, res) => {
     await cursor.forEach((doc) => data.push(doc));
 
     client.close();
-    res.json(data);
+    res.status(200).json(data);
+  });
+};
+
+exports.search = (req, res) => {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const data = [];
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const q = req.query.q;
+
+    // TODO: ensure that multiple word queries work correctly
+    const cursor = collection.aggregate([
+      {
+        $search: {
+          index: "text",
+          text: {
+            query: q,
+            path: { wildcard: "*" },
+          },
+          highlight: {
+            path: { wildcard: "*" },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          attraction_name: 1,
+          attraction_id: 1,
+          description: 1,
+          facets: 1,
+          highlights: { $meta: "searchHighlights" },
+          score: { $meta: "searchScore" },
+        },
+      },
+    ]);
+    // .sort({ score: { $meta: "searchScore" } });
+    await cursor.forEach((doc) => data.push(doc));
+
+    console.log(data);
+
+    client.close();
+    res.status(200).json(data);
   });
 };
