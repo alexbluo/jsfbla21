@@ -10,7 +10,7 @@ const FilterBlockList = () => {
   return (
     <div className="my-1 flex flex-wrap gap-1">
       {Object.values(storeFilters).some((filter) => filter.length > 0) && (
-        <FilterBlock onClick={() => dispatch(reset())} clearAll>
+        <FilterBlock onClick={() => dispatch(reset())}>
           Clear All
         </FilterBlock>
       )}

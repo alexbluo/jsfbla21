@@ -18,7 +18,10 @@ const PreviewList = () => {
           ...filters,
         });
         const res = await axios.get(`/api/attractions?${params}`);
-        return { docs: res.data.attractions, nextPageNumber: res.data.nextPageNumber }; // return to "data"
+        return {
+          docs: res.data.attractions,
+          nextPageNumber: res.data.nextPageNumber,
+        }; // return to "data"
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextPageNumber,

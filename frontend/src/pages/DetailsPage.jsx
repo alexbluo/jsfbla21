@@ -3,8 +3,8 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import Map from "../components/Map";
+import findFilter from "../helpers/findFilter";
 import none from "../images/none.png";
-import findFilter from "../utils/findFilter";
 
 const DetailsPage = () => {
   const id = useParams().id;

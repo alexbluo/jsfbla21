@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -11,18 +11,14 @@ import qs from "qs";
 import Slider from "rc-slider";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import findFilter from "../utils/findFilter";
+import findFilter from "../helpers/findFilter";
 import "rc-slider/assets/index.css";
 
 const Map = ({ center, centerName }) => {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null);
-  
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-  });
-  
+
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
@@ -37,19 +33,27 @@ const Map = ({ center, centerName }) => {
     { keepPreviousData: true }
   );
 
+  useEffect(() => {
+    if (selectedMarker == "recenter") setSelectedMarker("center");
+  }, [selectedMarker]);
+
   const handleInput = (e) => {
     let value = e.target.value;
     if (value > 300) value = 300;
     if (value < 0) value = 0;
     setSliderValue(value);
     setSearchRadius(value * 1000);
-  }
+  };
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  });
 
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">
-      <div className="aspect-square lg:w-full">
+      <div className="aspect-square lg:w-1/2">
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={{ width: "100%", height: "100%" }}
@@ -86,11 +90,11 @@ const Map = ({ center, centerName }) => {
                     // clusterer={clusterer}
                     // this fixes the lag but introduces another bug - new query results aren't updated unless zoom
                     // noClustererRedraw={true}
-                    onClick={() => setSelectedMarker(doc)}
+                    onClick={() => setSelectedMarker(doc.attraction_id)}
                     title={doc.attraction_name}
                     key={doc.attraction_id}
                   >
-                    {selectedMarker === doc && (
+                    {selectedMarker === doc.attraction_id && (
                       <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                         <div>
                           <span className="font-medium">
@@ -122,8 +126,8 @@ const Map = ({ center, centerName }) => {
       </div>
 
       {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
-      <div className="relative aspect-square h-full bg-red lg:w-full">
-        <div className="flex w-full items-center gap-4 p-6">
+      <div className="relative aspect-square bg-red p-8 lg:w-1/2">
+        <div className="flex h-12 w-full items-center gap-8">
           <Slider
             min={0}
             max={300}
@@ -148,23 +152,23 @@ const Map = ({ center, centerName }) => {
               boxShadow: "none",
             }}
           />
-          <label className="flex rounded bg-white">
+          <label className="flex gap-2 rounded bg-white p-2">
             <input
-              className="w-8 rounded py-1 text-right"
+              className="my-auto w-6 rounded text-right"
               type="number"
               min={0}
               max={300}
               value={sliderValue}
               onChange={handleInput}
             />
-            <span className="p-1">km</span>
+            <span className="my-auto">km</span>
           </label>
         </div>
         <button
-          className="absolute te bottom-6 left-6 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
-          onClick={() => setSelectedMarker("center")}
+          className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
+          onClick={() => setSelectedMarker("recenter")}
         >
-          Show Center
+          Recenter
         </button>
       </div>
     </div>

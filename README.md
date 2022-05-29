@@ -23,7 +23,8 @@ Below is a list of features, technologies, and fixes which have been or will be 
 - [ ] Fulltext search for both filters and map pages
 - [ ] List nearby places on map marker select
 - [ ] Embedded contact form
-- [ ] Break down components into smaller, more reusable, and at least equally performant components
+- [ ] Refactor into smart and dumb components
+- [ ] If necessary, add more advanced stuff when refactoring like memoization, higher order components, and custom hooks
 - [ ] Async/debouncing/concurrent for handling text inputs that query on change <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea

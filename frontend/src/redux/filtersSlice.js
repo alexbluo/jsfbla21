@@ -5,7 +5,6 @@ const initialState = {
   city: [],
   category: [],
   amenity: [],
-  search: [],
 };
 
 export const { reducer, actions } = createSlice({
@@ -13,9 +12,6 @@ export const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     add: (state, { payload: { category, filter } }) => {
-      // don't change anything if a search has already been inputted
-      if (state[category].includes(filter)) return state;
-
       state[category].push(filter);
       // sort so that react-query query keys are consistent
       state[category].sort();

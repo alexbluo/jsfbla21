@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import findFilter from "../helpers/findFilter";
 import none from "../images/none.png";
-import findFilter from "../utils/findFilter";
 
 const Preview = ({ data }) => {
   return (
