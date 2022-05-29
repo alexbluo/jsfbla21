@@ -29,7 +29,7 @@ const formatFilterQuery = (filters) => {
 // number of documents to retrieve per pagination
 const nPerPage = 8;
 
-exports.matchAll = (req, res) => {
+exports.getByFilter = (req, res) => {
   const page = req.query.page;
 
   const filterKeys = ["region", "city", "category", "amenity"];
@@ -64,47 +64,7 @@ exports.matchAll = (req, res) => {
   });
 };
 
-exports.getOne = (req, res) => {
-  const id = req.params.id;
-
-  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
-    const db = client.db("attractionsDB");
-    const collection = db.collection("attractions");
-
-    const data = await collection.findOne({ attraction_id: id });
-
-    client.close();
-    res.status(200).json(data);
-  });
-};
-
-exports.getNear = (req, res) => {
-  const query = req.query;
-
-  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
-    const data = [];
-    const db = client.db("attractionsDB");
-    const collection = db.collection("attractions");
-
-    const cursor = collection.find({
-      coordinates: {
-        $near: {
-          $geometry: {
-            type: "Point",
-            coordinates: [parseFloat(query.lng), parseFloat(query.lat)],
-          },
-          $maxDistance: parseInt(query.searchRadius),
-        },
-      },
-    });
-    await cursor.forEach((doc) => data.push(doc));
-
-    client.close();
-    res.status(200).json(data);
-  });
-};
-
-exports.search = (req, res) => {
+exports.getBySearch = (req, res) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
     const db = client.db("attractionsDB");
@@ -142,6 +102,46 @@ exports.search = (req, res) => {
     await cursor.forEach((doc) => data.push(doc));
 
     console.log(data);
+
+    client.close();
+    res.status(200).json(data);
+  });
+};
+
+exports.getByID = (req, res) => {
+  const id = req.params.id;
+
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const data = await collection.findOne({ attraction_id: id });
+
+    client.close();
+    res.status(200).json(data);
+  });
+};
+
+exports.getByDistance = (req, res) => {
+  const query = req.query;
+
+  MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
+    const data = [];
+    const db = client.db("attractionsDB");
+    const collection = db.collection("attractions");
+
+    const cursor = collection.find({
+      coordinates: {
+        $near: {
+          $geometry: {
+            type: "Point",
+            coordinates: [parseFloat(query.lng), parseFloat(query.lat)],
+          },
+          $maxDistance: parseInt(query.searchRadius),
+        },
+      },
+    });
+    await cursor.forEach((doc) => data.push(doc));
 
     client.close();
     res.status(200).json(data);
