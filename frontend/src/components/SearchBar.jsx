@@ -1,18 +1,38 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeInput, openModal } from "../redux/searchSlice";
 
-const SearchBar = ({ onSearchInput, onSearchEnter }) => {
-  const [input, setInput] = useState("");
+const SearchBar = ({ withSearchButton }) => {
+  const search = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    dispatch(changeInput(e.target.value));
+  };
+
+  const handleEnterKeyDown = (e) => {
+    // only respond to presses of the enter key
+    if (!e.key === "Enter") return;
+
+    dispatch(openModal());
+  };
+
+  const handleSearchClick = () => {
+    dispatch(openModal());
+  };
 
   return (
     <div className="mb-1 flex h-16 w-full gap-1 rounded-md border-4 bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-gold/50">
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
-        onChange={(e) => onSearchInput(e)}
+        value={search.input}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       <button
-        className="group aspect-square h-full rounded-r text-gold duration-150 ease-in-out hover:bg-gold active:brightness-75"
-        onClick={onSearchEnter}
+        className="group aspect-square h-full rounded-r duration-150 ease-in-out hover:bg-gold active:brightness-75"
+        onClick={handleClick}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-150 ease-in-out group-hover:fill-black"

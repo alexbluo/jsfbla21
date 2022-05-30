@@ -1,5 +1,5 @@
 const Tabs = ({ children }) => {
-  return <div>{children}</div>;
+  return <ul className="">{children}</ul>;
 };
 
 export default Tabs;

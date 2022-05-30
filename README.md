@@ -24,8 +24,8 @@ Below is a list of features, technologies, and fixes which have been or will be 
 - [ ] List nearby places on map marker select
 - [ ] Embedded contact form
 - [ ] Refactor into smart and dumb components
-- [ ] If necessary, add more advanced stuff when refactoring like memoization, higher order components, and custom hooks
-- [ ] Async/debouncing/concurrent for handling text inputs that query on change <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
+- [ ] Async/debouncing/concurrent for handling input fields that query on input <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
+  - currently, all inputs field are set to not query on input
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
 - [x] Deploy to Heroku, AWS, and GCP (serverless/PaaS)

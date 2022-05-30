@@ -1,29 +1,31 @@
 import { useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
 import SearchModal from "./SearchModal";
 
 const Search = () => {
-  const [searchModalIsOpen, setSearchModalIsOpen] = useState(false);
+  const search = useSelector((state) => state.search);
+  console.log(search);
 
-  const handleSearchInput = (e) => {
-    const value = e.target.value.trim();
-
-    // ignore empty inputs
-    if (value === "") return;
-  };
+  const { data, error, isLoading, isError } = useQuery(
+    [search.input],
+    async () => {
+      const res = await axios.get(`/api/attractions/search?q=${search.input}`);
+      console.log(res.data);
+      return res.data;
+    },
+    {
+      // only run the query when the search modal is open and there is an input that is not empty
+      enabled: search.modalIsOpen && search.input.trim() !== "",
+    }
+  );
 
   return (
     <>
-      <SearchBar
-        onSearchInput={handleSearchInput}
-        onSearchEnter={() => setSearchModalIsOpen(true)}
-      />
-      <SearchModal
-        onClose={() => setSearchModalIsOpen(false)}
-        isOpen={searchModalIsOpen}
-      >
-        <div> </div><SearchBar />
-      </SearchModal>
+      <SearchBar />
+      <SearchModal data={data} isOpen={search.modalIsOpen} />
     </>
   );
 };

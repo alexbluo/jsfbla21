@@ -9,7 +9,7 @@ import Dropdown from "./Dropdown";
 const categories = ["region", "city", "category", "amenity"];
 
 const Accordion = () => {
-  const storeFilters = useSelector((state) => state.filters);
+  const checkedFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError } = useQuery(
     ["filters"],
@@ -46,7 +46,7 @@ const Accordion = () => {
                 category={category}
                 filter={filter}
                 key={filter}
-                checked={storeFilters[category].includes(filter)}
+                checked={checkedFilters[category].includes(filter)}
               />
             ))}
           </Dropdown>

@@ -4,18 +4,18 @@ import { remove, reset } from "../redux/filtersSlice";
 import FilterBlock from "./FilterBlock";
 
 const FilterBlockList = () => {
-  const storeFilters = useSelector((state) => state.filters);
+  const checkedFilters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
 
   return (
     <div className="my-1 flex flex-wrap gap-1">
-      {Object.values(storeFilters).some((filter) => filter.length > 0) && (
+      {Object.values(checkedFilters).some((filter) => filter.length > 0) && (
         <FilterBlock onClick={() => dispatch(reset())}>
           Clear All
         </FilterBlock>
       )}
 
-      {Object.entries(storeFilters).map(([category, filters]) =>
+      {Object.entries(checkedFilters).map(([category, filters]) =>
         filters.map((filter) => (
           <FilterBlock
             onClick={() => dispatch(remove({ category, filter }))}
