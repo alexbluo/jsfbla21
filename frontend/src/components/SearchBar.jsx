@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SearchBar = ({ onSearchEnter }) => {
+const SearchBar = ({ onSearchInput, onSearchEnter }) => {
   const [input, setInput] = useState("");
 
   return (
@@ -8,11 +8,11 @@ const SearchBar = ({ onSearchEnter }) => {
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
-        onChange={(e) => handleSearchInput(e)}
+        onChange={(e) => onSearchInput(e)}
       />
       <button
         className="group aspect-square h-full rounded-r text-gold duration-150 ease-in-out hover:bg-gold active:brightness-75"
-        onClick={() => onSearchEnter()}
+        onClick={onSearchEnter}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-150 ease-in-out group-hover:fill-black"

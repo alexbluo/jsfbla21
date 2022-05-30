@@ -33,14 +33,16 @@ const Map = ({ center, centerName }) => {
     { keepPreviousData: true }
   );
 
+  // unset center and reset when recentering
   useEffect(() => {
-    if (selectedMarker == "recenter") setSelectedMarker("center");
+    if (selectedMarker === "recenter") setSelectedMarker("center");
   }, [selectedMarker]);
 
   const handleInput = (e) => {
     let value = e.target.value;
     if (value > 300) value = 300;
     if (value < 0) value = 0;
+
     setSliderValue(value);
     setSearchRadius(value * 1000);
   };

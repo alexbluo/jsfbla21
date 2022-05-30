@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchBar from "./SearchBar";
+import SearchModal from "./SearchModal";
 
 const Search = () => {
   const [searchModalIsOpen, setSearchModalIsOpen] = useState(false);
@@ -9,18 +10,20 @@ const Search = () => {
 
     // ignore empty inputs
     if (value === "") return;
-
-    
-  };
-
-  const handleSearchEnter = () => {
-    setSearchModalIsOpen(true);
   };
 
   return (
     <>
-      <SearchBar onSearchEnter={handleSearchEnter} />
-      {searchModalIsOpen && <SearchModal open={searchModalIsOpen}></SearchModal>}
+      <SearchBar
+        onSearchInput={handleSearchInput}
+        onSearchEnter={() => setSearchModalIsOpen(true)}
+      />
+      <SearchModal
+        onClose={() => setSearchModalIsOpen(false)}
+        isOpen={searchModalIsOpen}
+      >
+        <div> </div><SearchBar />
+      </SearchModal>
     </>
   );
 };

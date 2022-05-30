@@ -9,6 +9,6 @@ router.get("/search", attractionsController.getBySearch);
 router.get("/near", attractionsController.getByDistance);
 
 // this route has to be last for the others to work
-router.get("/:id", attractionsController.getByID  );
+router.get("/:id", attractionsController.getByID);
 
 module.exports = router;
