@@ -20,9 +20,9 @@ This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and
 
 Below is a list of features, technologies, and fixes which have been or will be implemented, with more recent and higher priority ones at the top:
 
-- [ ] Fulltext search for both filters and map pages
+- [ ] Rescrape all data and insert to database in a different format before doing lots of refactoring
+- [ ] Fulltext search for filter and map pages
 - [ ] List nearby places on map marker select
-- [ ] Embedded contact form
 - [ ] Refactor into smart and dumb components
 - [ ] Async/debouncing/concurrent for handling input fields that query on input <https://www.youtube.com/watch?v=AdNJ3fydeao&t=1200>
   - currently, all inputs field are set to not query on input

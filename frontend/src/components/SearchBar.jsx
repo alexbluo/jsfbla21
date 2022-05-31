@@ -1,20 +1,39 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeInput, openModal } from "../redux/searchSlice";
+import axios from "axios";
+import { useInfiniteQuery } from "react-query";
 
-const SearchBar = ({ withSearchButton }) => {
-  const search = useSelector((state) => state.search);
-  const dispatch = useDispatch();
+/**
+ * create dropdown as the user types:
+ * on backend, combine all current endpoints except id into one endpoint
+ * query filters (redux) + search on attractions page, distance + search on map
+ * check if each exists on req.query before pushing to the final query array, which is passed into mongodb aggregation pipeline
+ * if theres enough time, use react intersection observer with useinfinitequery https://codesandbox.io/s/github/tannerlinsley/react-query/tree/master/examples/load-more-infinite-scroll
+ * otherwise just make pagination only on previewlist
+ * prob scrap the dropdown as typing thing and just refetch on search press, add filterblock for attractions page and display search result items as MARKERS
+ * then prob dont add debouncing/async/conurrent - no time
+ */
+const SearchBar = ({}) => {
+  const [input, setInput] = useState("");
+
+  // const { data, error, isLoading, isError } = useQuery(
+  //   [search.input],
+  //   async () => {
+  //     const res = await axios.get(``);
+  //     console.log(res.data);
+  //     return res.data;
+  //   },
+  //   { enabled: false }
+  // );
 
   const handleInputChange = (e) => {
-    dispatch(changeInput(e.target.value));
+    setInput(e.target.value);
   };
 
   const handleEnterKeyDown = (e) => {
     // only respond to presses of the enter key
     if (!e.key === "Enter") return;
 
-    dispatch(openModal());
+    // refetch()
   };
 
   const handleSearchClick = () => {
@@ -27,8 +46,8 @@ const SearchBar = ({ withSearchButton }) => {
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
         value={search.input}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
+        onChange={handleInputChange}
+        onKeyDown={handleEnterKeyDown}
       />
       <button
         className="group aspect-square h-full rounded-r duration-150 ease-in-out hover:bg-gold active:brightness-75"
