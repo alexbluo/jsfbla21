@@ -89,17 +89,17 @@ exports.getByQuery = (req, res) => {
               type: "Point",
               coordinates: [-76.919334, 39.210384],
             },
-            query: {
-              $search: {
-                index: "text",
-                text: {
-                  query: "food",
-                  path: { wildcard: "*" },
-                },
-              },
-            },
             distanceField: "dist",
             maxDistance: 20000,
+          },
+        },
+        {
+          $search: {
+            index: "text",
+            text: {
+              query: "food",
+              path: { wildcard: "*" },
+            },
           },
         },
         // {

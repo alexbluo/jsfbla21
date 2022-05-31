@@ -10,10 +10,12 @@ const scrapeHome = require("./scrapeHome");
 async function scrape() {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  const pagesToScrape = 120;
+  const pagesToScrape = 121;
+
   await page.goto(`https://www.visitmaryland.org/things-to-do/attractions`, {
     waitUntil: "domcontentloaded",
   });
+
   let data = {
     attractions: [],
     filters: {

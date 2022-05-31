@@ -4,74 +4,73 @@
  * @param { string[] } facetAmenities - the list of amenity filters from the home page
  * @returns a document containing data on the attraction which the current page is on
  */
-async function scrapePage(page, facetAmenities) {
+async function scrapePage(page, filterAmenityList) {
   const mainArticleSelector =
     "article.entity--type-node.node--profile--full.node--listing--full.node--profile.node--promoted";
 
-  let pageData = {
+  const pageData = {
     attraction_id: await tryQuerySelector(mainArticleSelector, "data-delid"),
+
     attraction_name: await tryQuerySelector(mainArticleSelector, "data-dename"),
+
     attraction_image: await tryQuerySelector("img.media__image", "src"),
+
     // [<lon>, <lat>]
     coordinates: [
       parseFloat(await tryQuerySelector(mainArticleSelector, "data-lon")),
       parseFloat(await tryQuerySelector(mainArticleSelector, "data-lat")),
     ],
+
     website_link: await tryQuerySelector("a.button-gold.website-link", "href"),
+
     directions_link: await tryQuerySelector("a.button.get-directions", "href"),
+
     address: await tryQuerySelector("div.address", "innerText"),
+
+    city: await tryQuerySelector("span.city", "innerText"),
+
     state: await tryQuerySelector("span.state", "innerText"),
+
     zip: await tryQuerySelector("span.zip", "innerText"),
+
+    region: await tryQuerySelector(
+      "div.field.field--name-name.field--type-string.field--label-hidden.field__item",
+      "innerHTML"
+    ),
+
     phone_number: await tryQuerySelector(
       "a.phone-link.email--local_phone",
       "innerText"
     ),
+
     fax: await tryQuerySelector("a.phone-link.email--fax", "innerText"),
+
     mailto_link: await tryQuerySelector("a.email--business_email", "href"),
+
     description: await tryQuerySelector(
       "div.mmg8-listing-fields.mmg8_listing_fields_description",
       "innerText"
     ),
+
     region_image: await tryQuerySelector(
       "div.field.field--name-field-region-image.field--type-image > img",
       "src"
     ),
-    // this can include ALL amenities whereas filters only includes common ones used as filters
-    amenities: await tryQuerySelectorAll(
+
+    category: parseURLforCategory(page.url()),
+
+    // this can include ALL amenities whereas filterAmenities only includes common ones used as filters
+    allAmenities: await tryQuerySelectorAll(
       "li.amenity--subamenities--subamenity",
       "innerHTML"
     ),
-    nearby_places: await tryQuerySelectorAll(
-      "article.entity--type-node.node--profile--related-properties-with-map",
-      "data-delid"
-    ),
-    filters: [
-      {
-        type: "region",
-        val: await tryQuerySelector(
-          "div.field.field--name-name.field--type-string.field--label-hidden.field__item",
-          "innerHTML"
-        ),
-      },
-      {
-        type: "city",
-        val: await tryQuerySelector("span.city", "innerText"),
-      },
-      {
-        type: "category",
-        val: parseURLforCategory(page.url()),
-      },
-    ],
-  };
 
-  if (pageData.amenities != null) {
-    const filteredAmenities = pageData.amenities.filter((amenity) =>
-      facetAmenities.includes(amenity)
-    );
-    filteredAmenities.forEach((amenity) => {
-      pageData.filters.push({ type: "amenity", val: amenity });
-    });
-  }
+    filterAmenities: this.allAmenities
+      ? this.allAmenities.filter((amenity) =>
+          filterAmenityList.includes(amenity)
+        )
+      : null,
+  };
 
   console.log(pageData);
   return pageData;
@@ -92,6 +91,7 @@ async function scrapePage(page, facetAmenities) {
       selector,
       tag
     );
+
     return result;
   }
 
@@ -113,6 +113,7 @@ async function scrapePage(page, facetAmenities) {
       selector,
       tag
     );
+
     return result;
   }
 }
@@ -128,6 +129,7 @@ function parseURLforCategory(URL) {
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
     .join(" ");
+
   return category;
 }
 

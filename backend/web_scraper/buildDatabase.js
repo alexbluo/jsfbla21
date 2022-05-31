@@ -5,14 +5,16 @@ require("dotenv").config();
 // runs the scraper and inserts all scraped data into a MongoDB database hosted on Atlas
 MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
   const db = client.db("attractionsDB");
+
   const documents = await scrape();
+
   await db.collection("attractions").insertMany(documents.attractions);
+
   await db.collection("filters").insertOne(documents.filters);
-  await db
-    .collection("attractions")
-    .createIndex({ "filters.type": 1, "filters.val": 1 });
+
   await db.collection("attractions").createIndex({ attraction_id: 1 });
-  // duplicates removed through mongosh: see below
+
+  // TODO: figure out index creation
   client.close();
 });
 
