@@ -4,7 +4,7 @@
  * @param { string[] } facetAmenities - the list of amenity filters from the home page
  * @returns a document containing data on the attraction which the current page is on
  */
-async function scrapePage(page, filterAmenityList) {
+async function scrapePage(page) {
   const mainArticleSelector =
     "article.entity--type-node.node--profile--full.node--listing--full.node--profile.node--promoted";
 
@@ -60,17 +60,17 @@ async function scrapePage(page, filterAmenityList) {
     category: parseURLforCategory(page.url()),
 
     // this can include ALL amenities whereas filterAmenities only includes common ones used as filters
-    allAmenities: await tryQuerySelectorAll(
+    amenities: await tryQuerySelectorAll(
       "li.amenity--subamenities--subamenity",
       "innerHTML"
     ),
-
-    filterAmenities: this.allAmenities
-      ? this.allAmenities.filter((amenity) =>
-          filterAmenityList.includes(amenity)
-        )
-      : null,
   };
+
+  // hard code typo on website
+  if (pageData.amenities && pageData.amenities.includes("Self-Guides Tours")) {
+    pageData.amenities[pageData.amenities.indexOf("Self-Guides Tours")] =
+      "Self-Guided Tours";
+  }
 
   console.log(pageData);
   return pageData;
@@ -129,6 +129,18 @@ function parseURLforCategory(URL) {
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
     .join(" ");
+
+  // hard code special cases
+  if (category === "Breweries Wineries Distilleries")
+    return "Breweries, Wineries, & Distilleries";
+  if (category === "History Heritage") return "History & Heritage";
+  if (category === "Arts Culture") return "Arts & Culture";
+  if (category === "Gaming Casinos") return "Gaming & Casinos";
+  if (category === "Scenic Points Landmarks")
+    return "Scenic Points & Landmarks";
+  if (category === "Science Education") return "Science & Education";
+  if (category === "Zoos Aquariums") return "Zoos & Aquariums";
+  if (category === "Attraction") return "General Attractions";
 
   return category;
 }

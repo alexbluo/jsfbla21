@@ -41,7 +41,7 @@ async function scrape() {
         waitUntil: "domcontentloaded",
       });
 
-      data.attractions.push(await scrapePage(page, data.filters.amenities));
+      data.attractions.push(await scrapePage(page));
       console.log(currentPage);
     }
   }

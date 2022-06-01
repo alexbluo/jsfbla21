@@ -38,8 +38,8 @@ const PreviewList = () => {
       .map((group) =>
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
       )
-      .flat(1); // flatten so array length is accurate
-
+      .flat(1); // flatten so that preview length in next step is always accurate
+      
     if (previews.length === 0) {
       return (
         <div className="col-span-2">

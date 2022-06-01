@@ -27,6 +27,8 @@ async function scrapeAmenities(page) {
         element.getAttribute("data-tracking-facet-value")
       )
   );
+
+  amenities[amenities.indexOf("Self-Guides Tours")] = "Self-Guided Tours"
   return amenities;
 }
 

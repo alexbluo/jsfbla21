@@ -1,6 +1,3 @@
-// TODO: clean up internal mongodb naming (facets => filters and typos)
-// TODO: but first check if separate facets property in documents is even needed, if not maybe rescrape or do fancy mongodb stuff
-
 const FilterBlock = ({ onClick, children }) => {
   return (
     <div className="flex h-16 max-w-full gap-1 rounded-md border-4 bg-black xl:w-full">

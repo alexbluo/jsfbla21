@@ -1,7 +1,7 @@
 import Accordion from "../components/Accordion";
 import FilterBlockList from "../components/FilterBlockList";
 import PreviewList from "../components/PreviewList";
-import Search from "../components/Search";
+import SearchBar from "../components/SearchBar";
 
 const AttractionsPage = () => {
   return (
@@ -9,7 +9,7 @@ const AttractionsPage = () => {
       <h1 className="page-title">Attractions</h1>
       <div className="flex w-full flex-col gap-12 xl:flex-row">
         <div className="inline-block w-full xl:w-1/3">
-          <Search />
+          <SearchBar />
           <Accordion />
           <FilterBlockList />
         </div>

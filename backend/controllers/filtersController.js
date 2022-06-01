@@ -31,6 +31,7 @@ exports.getCategories = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
+    // TODO: edit after scraping is done
     const filters = await collection.distinct("facets");
     const categories = {
       category: filters

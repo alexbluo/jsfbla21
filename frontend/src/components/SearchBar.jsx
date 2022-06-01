@@ -45,13 +45,13 @@ const SearchBar = ({}) => {
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
-        value={search.input}
+        value={input}
         onChange={handleInputChange}
         onKeyDown={handleEnterKeyDown}
       />
       <button
         className="group aspect-square h-full rounded-r duration-150 ease-in-out hover:bg-gold active:brightness-75"
-        onClick={handleClick}
+        onClick={handleSearchClick}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-150 ease-in-out group-hover:fill-black"

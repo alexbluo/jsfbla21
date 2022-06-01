@@ -3,12 +3,11 @@ import classnames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
-  const [active, setActive] = useState("");
-
-  const [lastY, setLastY] = useState(window.scrollY);
   const [hide, setBlur] = useState(false);
+  const [lastY, setLastY] = useState(window.scrollY);
 
   const handleScroll = useCallback(() => {
+    // blur the navbar if the user is scrolling down
     setBlur(window.scrollY > lastY && window.scrollY > 32);
     setLastY(window.scrollY);
   }, [lastY]);
