@@ -11,7 +11,6 @@ import qs from "qs";
 import Slider from "rc-slider";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import findFilter from "../helpers/findFilter";
 import "rc-slider/assets/index.css";
 
 const Map = ({ center, centerName }) => {
@@ -112,7 +111,7 @@ const Map = ({ center, centerName }) => {
                           <br />
                           {doc.address}
                           <br />
-                          {findFilter(doc, "city")}, {doc.state}&nbsp;
+                          {doc.city}, {doc.state}&nbsp;
                           {doc.zip}
                           <br />
                           <Link

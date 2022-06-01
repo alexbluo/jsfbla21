@@ -41,6 +41,15 @@ Below is a list of features, technologies, and fixes which have been or will be 
 - [x] Move from plain CSS to TailwindCSS, CRA/Webpack to Vite, React Context API to Redux Toolkit + React Redux, Fetch API to Axios + React Query, template literals to classnames, npm to yarn
 - [x] Small performance optimizations, bug fixes, code structure cleanups
 
+## Dynamic Backup
+
+The following commands from the MongoDB Database Tools are used to dynamically backup the database:
+
+- take snapshot: mongodump --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump
+- restore snapshot: mongorestore --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -d attractionsDB ~/mongodump/attractionsDB
+
+Note that a .env file with the correct credentials are required for anything related to the database to work locally
+
 ## Sourcing
 
 - [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)

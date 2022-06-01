@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
 import Map from "../components/Map";
-import findFilter from "../helpers/findFilter";
 import none from "../images/none.png";
 
 const DetailsPage = () => {
@@ -93,7 +92,7 @@ const DetailsPage = () => {
           <h2 className="mb-2 text-2xl">Location</h2>
           {data.address}
           <br />
-          {findFilter(data, "city")}, {data.state}&nbsp;
+          {data.city}, {data.state}&nbsp;
           {data.zip}
           <br />
           <a
@@ -107,7 +106,7 @@ const DetailsPage = () => {
         {/* region */}
         <div className="bg-red px-[8%] py-[4%] text-white">
           <h2 className="mb-2 text-2xl">Region</h2>
-          <h3 className="text-lg">{findFilter(data, "region")}</h3>
+          <h3 className="text-lg">{data.region}</h3>
           {data.region_image && (
             <img className="w-full" src={data.region_image} alt="" />
           )}

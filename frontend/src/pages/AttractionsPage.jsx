@@ -14,7 +14,7 @@ const AttractionsPage = () => {
           <FilterBlockList />
         </div>
         <div className="flex w-full flex-col items-center xl:w-2/3">
-          {/* <PreviewList /> */}
+          <PreviewList />
         </div>
       </div>
     </>

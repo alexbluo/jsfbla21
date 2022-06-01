@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import findFilter from "../helpers/findFilter";
 import none from "../images/none.png";
 
 const Preview = ({ data }) => {
@@ -19,7 +18,7 @@ const Preview = ({ data }) => {
           <div className="my-auto truncate text-xl font-medium duration-200 group-hover:whitespace-normal">
             {data.attraction_name}
           </div>
-          <span>{findFilter(data, "city")}</span>
+          <span>{data.city}</span>
         </div>
       </Link>
     </div>
