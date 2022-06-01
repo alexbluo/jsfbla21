@@ -17,8 +17,9 @@ import "rc-slider/assets/index.css";
 const Map = ({ center, centerName }) => {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
 
+  // 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
@@ -33,7 +34,7 @@ const Map = ({ center, centerName }) => {
     { keepPreviousData: true }
   );
 
-  // unset center and reset when recentering
+  // unselect and reselect center when recentering in case the center was already selected
   useEffect(() => {
     if (selectedMarker === "recenter") setSelectedMarker("center");
   }, [selectedMarker]);
@@ -51,7 +52,13 @@ const Map = ({ center, centerName }) => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
-  if (loadError) return <div>Map cannot be loaded right now, sorry. Please make sure that you have granted location access.</div>;
+  if (loadError)
+    return (
+      <div>
+        Map cannot be loaded right now, sorry. Please make sure that you have
+        granted location access.
+      </div>
+    );
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">

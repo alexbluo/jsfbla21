@@ -9,12 +9,12 @@ const FilterBlockList = () => {
 
   return (
     <div className="my-1 flex flex-wrap gap-1">
+      {/* render clear all block if there is at least one filter */}
       {Object.values(checkedFilters).some((filter) => filter.length > 0) && (
-        <FilterBlock onClick={() => dispatch(reset())}>
-          Clear All
-        </FilterBlock>
+        <FilterBlock onClick={() => dispatch(reset())}>Clear All</FilterBlock>
       )}
 
+      {/* map each checked filter to a designated filter block */}
       {Object.entries(checkedFilters).map(([category, filters]) =>
         filters.map((filter) => (
           <FilterBlock

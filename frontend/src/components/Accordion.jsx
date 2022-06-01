@@ -16,6 +16,7 @@ const Accordion = () => {
     async () => {
       let data = {};
 
+      // fetch the filters for each category
       for (const category of categories) {
         // res in the form of { category: [filters] }
         const res = await axios.get(`/api/filters/${category}`);

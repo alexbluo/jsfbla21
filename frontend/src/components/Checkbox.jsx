@@ -5,6 +5,7 @@ import { add, remove } from "../redux/filtersSlice";
 const Checkbox = ({ category, filter, checked }) => {
   const dispatch = useDispatch();
 
+  // trigger redux action and refetch
   const handleCheck = (e) => {
     if (e.target.checked) {
       dispatch(add({ category: category, filter: filter }));

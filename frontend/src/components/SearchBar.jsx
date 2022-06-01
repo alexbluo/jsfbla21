@@ -33,11 +33,11 @@ const SearchBar = ({}) => {
     // only respond to presses of the enter key
     if (!e.key === "Enter") return;
 
-    // refetch()
+    handleSearchClick();
   };
 
   const handleSearchClick = () => {
-    dispatch(openModal());
+
   };
 
   return (
