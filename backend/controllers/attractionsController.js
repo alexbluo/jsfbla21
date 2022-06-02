@@ -31,28 +31,17 @@ const nPerPage = 8;
 
 exports.getByFilter = (req, res) => {
   const page = req.query.page;
+  const filters = req.query.filters;
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = { attractions: [], nextPageNumber: undefined };
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const filterKeys = ["region", "city", "category", "amenity"];
-    const filterDocument = formatFilterDocument(
-      // format a document for only the properties of req.query which are filters
-      Object.fromEntries(
-        Object.entries(req.query).filter(([key]) => filterKeys.includes(key))
-      )
-    );
-
-    // figure out order of this thing and working defaults
-    // pipeline.push(filterDocument);
-    // if (searchDocument) pipeline.push(searchDocument);
-    // if (distanceDocument) pipeline.push(distanceDocument);
-
     const cursor = collection
       // working default for getting all attractions resolves to [{ $match: {} }]
-      .find({}
+      .find(
+        {}
         // [{
         //   $search: {
         //     index: "text",
@@ -72,14 +61,13 @@ exports.getByFilter = (req, res) => {
         //     score: { $meta: "searchScore" },
         //   },
         // },]
-        )
+      )
       .sort({ attraction_name: 1 })
       .skip(page * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
 
     await cursor.forEach((doc) => data.attractions.push(doc));
 
-    // check if there are more attractions on the next page and adjust
     if (data.attractions.length > nPerPage) {
       data.nextPageNumber = parseInt(page) + 1;
       data.attractions = data.attractions.slice(0, nPerPage);

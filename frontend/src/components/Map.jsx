@@ -18,7 +18,7 @@ const Map = ({ center, centerName }) => {
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
 
-  // 
+  //
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", center.lng, center.lat, searchRadius],
     async () => {
@@ -136,7 +136,7 @@ const Map = ({ center, centerName }) => {
       {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
       {/* TODO: separate out slider, maybe implement searching within specified range and remove tabs*/}
       <div className="relative aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex h-12 w-full items-center gap-8">
+        <div className="flex h-16 w-full items-center gap-4">
           <Slider
             min={0}
             max={300}
@@ -155,13 +155,12 @@ const Map = ({ center, centerName }) => {
             handleStyle={{
               height: 15,
               width: 15,
-              borderRadius: "50%",
               borderColor: "gold",
               backgroundColor: "gold",
               boxShadow: "none",
             }}
           />
-          <label className="flex gap-2 rounded bg-white p-2">
+          <label className="flex h-full gap-2 rounded bg-white px-4 brightness-90 focus-within:brightness-100">
             <input
               className="my-auto w-6 rounded text-right"
               type="number"

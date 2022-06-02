@@ -1,5 +1,5 @@
 import Accordion from "../components/Accordion";
-import FilterBlockList from "../components/FilterBlockList";
+import ClearBlockList from "../components/ClearBlockList";
 import PreviewList from "../components/PreviewList";
 import SearchBar from "../components/SearchBar";
 
@@ -11,7 +11,7 @@ const AttractionsPage = () => {
         <div className="inline-block w-full xl:w-1/3">
           <SearchBar />
           <Accordion />
-          <FilterBlockList />
+          <ClearBlockList />
         </div>
         <div className="flex w-full flex-col items-center xl:w-2/3">
           <PreviewList />

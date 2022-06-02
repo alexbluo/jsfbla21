@@ -8,14 +8,16 @@ import PreviewPreloader from "./PreviewPreloader";
 
 const PreviewList = () => {
   const checkedFilters = useSelector((state) => state.filters);
+  const search = useSelector((state) => state.search);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
       ["attractions", checkedFilters],
       async ({ pageParam = 0 }) => {
         const params = qs.stringify({
+          filters: checkedFilters,
+          search: search.input,
           page: pageParam,
-          ...checkedFilters,
         });
         const res = await axios.get(`/api/attractions?${params}`);
         return {
@@ -39,7 +41,7 @@ const PreviewList = () => {
         group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
       )
       .flat(1); // flatten so that preview length in next step is always accurate
-      
+
     if (previews.length === 0) {
       return (
         <div className="col-span-2">
