@@ -29,9 +29,26 @@ const formatFilterDocument = (filters) => {
 const nPerPage = 8;
 
 exports.getByFilter = (req, res) => {
-  const page = req.query.page;
-  const filters = req.query.filters;
+  const { filters, search, page } = req.query;
+
+  const searchDocument = {
+    $search: {
+      index: "text",
+      text: {
+        query: search,
+        path: { wildcard: "*" },
+        fuzzy: {
+          maxEdits: 1,
+          prefixLength: 4,
+        },
+      },
+    },
+  };
   const filterDocument = formatFilterDocument(filters);
+  const pipeline = [];
+
+  if (search.trim().length > 0) pipeline.push(searchDocument);
+  if (filters) pipeline.push(filterDocument);
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = { attractions: [], nextPageNumber: undefined };
@@ -40,32 +57,7 @@ exports.getByFilter = (req, res) => {
 
     const cursor = await collection
       // working default for getting all attractions resolves to [{ $match: {} }]
-      .aggregate([
-        // {
-        //   $search: {
-        //     index: "text",
-        //     text: {
-        //       query: "food",
-        //       // TODO: edit path to include all
-        //       path: { wildcard: "*" },
-        //       fuzzy: {
-        //         maxEdits: 1,
-        //         prefixLength: 4,
-        //       },
-        //     },
-        //     // compound: {
-
-        //     // }
-        //   },
-        // },
-        filterDocument,
-        // {
-        //   $project: {
-        //     attraction_name: 1,
-        //     score: { $meta: "searchScore" },
-        //   },
-        // },
-      ])
+      .aggregate(pipeline)
       .skip(page * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.attractions.push(doc));
@@ -83,7 +75,7 @@ exports.getByFilter = (req, res) => {
 };
 
 exports.getByDistance = (req, res) => {
-  const query = req.query;
+  const { lng, lat } = req.query;
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
@@ -95,7 +87,7 @@ exports.getByDistance = (req, res) => {
         $near: {
           $geometry: {
             type: "Point",
-            coordinates: [parseFloat(query.lng), parseFloat(query.lat)],
+            coordinates: [parseFloat(lng), parseFloat(lat)],
           },
           $maxDistance: parseInt(query.searchRadius),
         },

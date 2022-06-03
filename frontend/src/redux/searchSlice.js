@@ -9,8 +9,6 @@ export const { reducer, actions } = createSlice({
   name: "search",
   initialState,
   reducers: {
-    // can use this for clear as well dispatch(changeInput(""))
-    // TODO: make sure multiple different searches override the last one
     changeInput: (state, { payload }) => {
       state.input = payload;
     },

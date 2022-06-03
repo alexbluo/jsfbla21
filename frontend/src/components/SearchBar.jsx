@@ -7,16 +7,6 @@ const SearchBar = ({}) => {
   const search = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
-  // const { data, error, isLoading, isError } = useQuery(
-  //   [search.input],
-  //   async () => {
-  //     const res = await axios.get(``);
-  //     console.log(res.data);
-  //     return res.data;
-  //   },
-  //   { enabled: false }
-  // );
-
   const handleInputChange = (e) => {
     dispatch(changeInput(e.target.value));
   };

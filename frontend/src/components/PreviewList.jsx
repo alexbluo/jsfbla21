@@ -12,14 +12,16 @@ const PreviewList = () => {
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
-      ["attractions", checkedFilters],
+      ["attractions", checkedFilters, search.input],
       async ({ pageParam = 0 }) => {
         const params = qs.stringify({
           filters: checkedFilters,
           search: search.input,
           page: pageParam,
         });
+      
         const res = await axios.get(`/api/attractions?${params}`);
+
         return {
           docs: res.data.attractions,
           nextPageNumber: res.data.nextPageNumber,
@@ -34,7 +36,7 @@ const PreviewList = () => {
   const renderPreviews = () => {
     // weird shorthand for making 8 skeleton loaders
     if (isLoading)
-      return [...Array(8)].map((e, i) => <PreviewPreloader key={i} />);
+      return [...Array(8)].map((_, i) => <PreviewPreloader key={i} />);
 
     const previews = data.pages
       .map((group) =>
@@ -64,7 +66,7 @@ const PreviewList = () => {
       {hasNextPage && (
         <button
           className="mt-8 rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125"
-          onClick={() => fetchNextPage()}
+          onClick={fetchNextPage}
         >
           Load More
         </button>
