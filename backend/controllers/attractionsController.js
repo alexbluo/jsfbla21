@@ -10,17 +10,15 @@ const formatFilterDocument = (filters) => {
   // search for all attractions if no filters are specified
   if (!filters) return { $match: {} };
 
-  const filterDocument = { $match: { $all: [] } };
+  const filterDocument = { $match: { $and: [] } };
 
   for (const [key, values] of Object.entries(filters)) {
     // turn each entry (filter) into an array of { type, val }, wrap in $or + $elemMatch and push to $all
     // this causes filters under the same category to use OR, while across categories use AND
-    filterDocument.$match.$all.push({
-      $elemMatch: {
-        $or: values.map((value) => {
-          return { [key]: value };
-        }),
-      },
+    filterDocument.$match.$and.push({
+      $or: values.map((value) => {
+        return { [key]: value };
+      }),
     });
   }
 
@@ -33,119 +31,51 @@ const nPerPage = 8;
 exports.getByFilter = (req, res) => {
   const page = req.query.page;
   const filters = req.query.filters;
+  const filterDocument = formatFilterDocument(filters);
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = { attractions: [], nextPageNumber: undefined };
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
-    console.log(filters)
 
-    const filterQuery = formatFilterDocument(filters);
-    console.log(filterQuery);
-    // {
-    //   mappings: {
-    //     dynamic: false,
-    //     fields: {
-    //       coordinates: {
-    //         type: "geo",
-    //       },
-    //       attraction_name: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 4,
-    //           maxGrams: 128,
-    //           tokenization: "edgeGram",
-    //           fuzzy: {
-    //             maxEdits: 1,
-    //           },
-    //         },
-    //       ],
-    //       description: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 8,
-    //           maxGrams: 1024,
-    //           tokenization: "edgeGram",
-    //           fuzzy: {
-    //             maxEdits: 1,
-    //           },
-    //         },
-    //       ],
-    //       address: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 4,
-    //           maxGrams: 64,
-    //           tokenization: "edgeGram",
-    //           fuzzy: {
-    //             maxEdits: 1,
-    //           },
-    //         },
-    //       ],
-    //       city: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 4,
-    //           maxGrams: 16,
-    //           tokenization: "edgeGram",
-    //           fuzzy: {
-    //             maxEdits: 1,
-    //           },
-    //         },
-    //       ],
-    //       zip: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 4,
-    //           maxGrams: 6,
-    //           tokenization: "edgeGram",
-    //         },
-    //       ],
-    //       region: [
-    //         {
-    //           type: "autocomplete",
-    //           minGrams: 4,
-    //           maxGrams: 32,
-    //           tokenization: "edgeGram",
-    //         },
-    //       ],
-    //     },
-    //   },
-    // }
-
-    const cursor = collection
+    const cursor = await collection
       // working default for getting all attractions resolves to [{ $match: {} }]
       .aggregate([
-        {
-          $search: {
-            index: "dynamic",
-            text: {
-              query: "food",
-              path: { wildcard: "*" },
-            },
-          },
-        },
-        {
-          $project: {
-            // TODO: include needed stuff, make sure it works in map too (need address and coordinates)
-            _id: 0,
-            attraction_name: 1,
-            attraction_id: 1,
-            attraction_image: 1,
-            description: 1,
-            score: { $meta: "searchScore" },
-          },
-        },
-      ]);
-    // .sort({ attraction_name: 1 })
-    // .skip(page * nPerPage)
-    // .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
+        // {
+        //   $search: {
+        //     index: "text",
+        //     text: {
+        //       query: "food",
+        //       // TODO: edit path to include all
+        //       path: { wildcard: "*" },
+        //       fuzzy: {
+        //         maxEdits: 1,
+        //         prefixLength: 4,
+        //       },
+        //     },
+        //     // compound: {
 
+        //     // }
+        //   },
+        // },
+        filterDocument,
+        // {
+        //   $project: {
+        //     attraction_name: 1,
+        //     score: { $meta: "searchScore" },
+        //   },
+        // },
+      ])
+      .skip(page * nPerPage)
+      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
     await cursor.forEach((doc) => data.attractions.push(doc));
-    // if (data.attractions.length > nPerPage) {
-    //   data.nextPageNumber = parseInt(page) + 1;
-    //   data.attractions = data.attractions.slice(0, nPerPage);
-    // }
+
+    if (data.attractions.length > nPerPage) {
+      data.nextPageNumber = parseInt(page) + 1;
+      data.attractions = data.attractions.slice(0, nPerPage);
+    }
+
+    console.log(data.attractions);
 
     client.close();
     res.status(200).json(data);
