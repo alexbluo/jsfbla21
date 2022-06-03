@@ -70,7 +70,7 @@ const DetailsPage = () => {
         <img
           className="aspect-square w-full object-fill"
           src={
-            data.attraction_image.includes("data") // null images include the word "data" in their URI
+            !data.attraction_image || data.attraction_image.includes("data") // null images include the word "data" in their URI
               ? none
               : data.attraction_image
           }

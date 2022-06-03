@@ -8,7 +8,7 @@ const Preview = ({ data }) => {
         <img
           className="aspect-square w-full rounded-md object-cover shadow-md shadow-black duration-200 group-hover:shadow-none group-hover:brightness-50"
           src={
-            data.attraction_image.includes("data")
+            !data.attraction_image || data.attraction_image.includes("data")
               ? none
               : data.attraction_image
           }
