@@ -75,27 +75,32 @@ exports.getByFilter = (req, res) => {
 };
 
 exports.getByDistance = (req, res) => {
-  const { lng, lat } = req.query;
+  const { lng, lat, searchRadius } = req.query;
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const cursor = collection.find({
-      coordinates: {
-        $near: {
-          $geometry: {
+    const cursor = collection.aggregate([
+      {
+        $geoNear: {
+          near: {
             type: "Point",
             coordinates: [parseFloat(lng), parseFloat(lat)],
           },
-          $maxDistance: parseInt(query.searchRadius),
+          distanceField: "dist",
+          // might not need to parse
+          maxDistance: parseInt(searchRadius),
         },
       },
-    });
+    ]);
     await cursor.forEach((doc) => data.push(doc));
 
+    console.log(data);
+
     client.close();
+    // TODO check if json is fine for array
     res.status(200).json(data);
   });
 };
