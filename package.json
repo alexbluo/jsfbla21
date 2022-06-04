@@ -9,8 +9,8 @@
     "backend"
   ],
   "scripts": {
-    "start": "cd backend && yarn start",
-    "build": "cd frontend && yarn build",
+    "start": "yarn workspace backend start",
+    "build": "yarn workspace frontend build",
     "heroku-postbuild": "cd frontend && yarn --production=false && yarn run build",
     "dev": "concurrently -i \"yarn workspace backend dev\" \"yarn workspace frontend start\""
   },

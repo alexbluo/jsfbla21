@@ -14,7 +14,5 @@ MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
 
   await db.collection("attractions").createIndex({ attraction_id: 1 });
 
-  await db.collection("attractions").createIndex({ coordinates: "2dsphere" });
-
   client.close();
 });

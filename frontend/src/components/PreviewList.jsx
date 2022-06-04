@@ -7,19 +7,19 @@ import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
 const PreviewList = () => {
-  const checkedFilters = useSelector((state) => state.filters);
   const search = useSelector((state) => state.search);
+  const checkedFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
       ["attractions", checkedFilters, search.input],
       async ({ pageParam = 0 }) => {
         const params = qs.stringify({
-          filters: checkedFilters,
           search: search.input,
+          filters: checkedFilters,
           page: pageParam,
         });
-      
+
         const res = await axios.get(`/api/attractions?${params}`);
 
         return {

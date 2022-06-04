@@ -13,17 +13,19 @@ async function scrapePage(page) {
 
     attraction_name: await tryQuerySelector(mainArticleSelector, "data-dename"),
 
-    attraction_image: await tryQuerySelector("img.media__image", "src"),
+    description: await tryQuerySelector(
+      "div.mmg8-listing-fields.mmg8_listing_fields_description",
+      "innerText"
+    ),
 
     // [<lon>, <lat>]
-    coordinates: [
-      parseFloat(await tryQuerySelector(mainArticleSelector, "data-lon")),
-      parseFloat(await tryQuerySelector(mainArticleSelector, "data-lat")),
-    ],
-
-    website_link: await tryQuerySelector("a.button-gold.website-link", "href"),
-
-    directions_link: await tryQuerySelector("a.button.get-directions", "href"),
+    location: {
+      type: "Point",
+      coordinates: [
+        parseFloat(await tryQuerySelector(mainArticleSelector, "data-lon")),
+        parseFloat(await tryQuerySelector(mainArticleSelector, "data-lat")),
+      ],
+    },
 
     address: await tryQuerySelector("div.address", "innerText"),
 
@@ -38,6 +40,10 @@ async function scrapePage(page) {
       "innerHTML"
     ),
 
+    attraction_image: await tryQuerySelector("img.media__image", "src"),
+
+    website_link: await tryQuerySelector("a.button-gold.website-link", "href"),
+
     phone_number: await tryQuerySelector(
       "a.phone-link.email--local_phone",
       "innerText"
@@ -46,11 +52,8 @@ async function scrapePage(page) {
     fax: await tryQuerySelector("a.phone-link.email--fax", "innerText"),
 
     mailto_link: await tryQuerySelector("a.email--business_email", "href"),
-
-    description: await tryQuerySelector(
-      "div.mmg8-listing-fields.mmg8_listing_fields_description",
-      "innerText"
-    ),
+    
+    directions_link: await tryQuerySelector("a.button.get-directions", "href"),
 
     region_image: await tryQuerySelector(
       "div.field.field--name-field-region-image.field--type-image > img",

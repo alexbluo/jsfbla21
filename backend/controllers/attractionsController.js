@@ -29,7 +29,7 @@ const formatFilterDocument = (filters) => {
 const nPerPage = 8;
 
 exports.getByFilter = (req, res) => {
-  const { filters, search, page } = req.query;
+  const { search, filters, page } = req.query;
 
   const searchDocument = {
     $search: {
@@ -39,7 +39,7 @@ exports.getByFilter = (req, res) => {
         path: { wildcard: "*" },
         fuzzy: {
           maxEdits: 1,
-          prefixLength: 4,
+          prefixLength: 6,
         },
       },
     },
@@ -67,15 +67,13 @@ exports.getByFilter = (req, res) => {
       data.attractions = data.attractions.slice(0, nPerPage);
     }
 
-    console.log(data.attractions);
-
     client.close();
     res.status(200).json(data);
   });
 };
 
 exports.getByDistance = (req, res) => {
-  const { lng, lat, searchRadius } = req.query;
+  const { search, lng, lat, searchRadius } = req.query;
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = [];
@@ -84,14 +82,34 @@ exports.getByDistance = (req, res) => {
 
     const cursor = collection.aggregate([
       {
-        $geoNear: {
-          near: {
-            type: "Point",
-            coordinates: [parseFloat(lng), parseFloat(lat)],
+        $search: {
+          index: "text",
+          compound: {
+            must: [
+              // {
+              //   text: {
+              //     query: search,
+              //     path: { wildcard: "*" },
+              //     fuzzy: {
+              //       maxEdits: 1,
+              //       prefixLength: 6,
+              //     },
+              //   },
+              // },
+              {
+                geoWithin: {
+                  circle: {
+                    center: {
+                      type: "Point",
+                      coordinates: [parseFloat(lng), parseFloat(lat)],
+                    },
+                    radius: parseInt(searchRadius),
+                  },
+                  path: "coordinates",
+                },
+              },
+            ],
           },
-          distanceField: "dist",
-          // might not need to parse
-          maxDistance: parseInt(searchRadius),
         },
       },
     ]);
