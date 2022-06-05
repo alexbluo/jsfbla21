@@ -1,10 +1,9 @@
 /**
  * Scrapes the current attraction information page for various data fields
  * @param { puppeteer.Page } page - a reference to the page object
- * @param { string[] } facetAmenities - the list of amenity filters from the home page
  * @returns a document containing data on the attraction which the current page is on
  */
-async function scrapePage(page) {
+async function scrapeAttraction(page) {
   const mainArticleSelector =
     "article.entity--type-node.node--profile--full.node--listing--full.node--profile.node--promoted";
 
@@ -52,7 +51,7 @@ async function scrapePage(page) {
     fax: await tryQuerySelector("a.phone-link.email--fax", "innerText"),
 
     mailto_link: await tryQuerySelector("a.email--business_email", "href"),
-    
+
     directions_link: await tryQuerySelector("a.button.get-directions", "href"),
 
     region_image: await tryQuerySelector(
@@ -68,7 +67,7 @@ async function scrapePage(page) {
       "innerHTML"
     ),
   };
-
+  
   // hard code typo on website
   if (pageData.amenities && pageData.amenities.includes("Self-Guides Tours")) {
     pageData.amenities[pageData.amenities.indexOf("Self-Guides Tours")] =
@@ -148,4 +147,4 @@ function parseURLforCategory(URL) {
   return category;
 }
 
-module.exports = scrapePage;
+module.exports = scrapeAttraction;

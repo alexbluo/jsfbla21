@@ -105,7 +105,7 @@ exports.getByDistance = (req, res) => {
                     },
                     radius: parseInt(searchRadius),
                   },
-                  path: "coordinates",
+                  path: "location.coordinates",
                 },
               },
             ],

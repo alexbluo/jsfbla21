@@ -65,7 +65,7 @@ const PreviewList = () => {
       </div>
       {hasNextPage && (
         <button
-          className="mt-8 rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125"
+          className="mt-12 rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125"
           onClick={fetchNextPage}
         >
           Load More

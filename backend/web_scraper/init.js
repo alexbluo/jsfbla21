@@ -1,5 +1,5 @@
 const MongoClient = require("mongodb").MongoClient;
-const scrape = require("./initScrape");
+const scrape = require("./scrape");
 require("dotenv").config();
 
 // runs the scraper and inserts all scraped data into a MongoDB database hosted on Atlas

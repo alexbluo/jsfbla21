@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
-const scrapePage = require("./scrapePage");
-const scrapeHome = require("./scrapeHome");
+const scrapeAttraction = require("./scrapeAttraction");
+const { scrapeCities, scrapeAmenities } = require("./scrapeFilters");
 
 /**
  * Initializes the scraper and navigates through https://www.visitmaryland.org/things-to-do/attractions,
@@ -16,11 +16,11 @@ async function scrape() {
     waitUntil: "domcontentloaded",
   });
 
-  let data = {
+  const data = {
     attractions: [],
     filters: {
-      cities: await scrapeHome.scrapeCities(page),
-      amenities: await scrapeHome.scrapeAmenities(page),
+      cities: await scrapeCities(page),
+      amenities: await scrapeAmenities(page),
     },
   };
 
@@ -41,7 +41,7 @@ async function scrape() {
         waitUntil: "domcontentloaded",
       });
 
-      data.attractions.push(await scrapePage(page));
+      data.attractions.push(await scrapeAttraction(page));
       console.log(currentPage);
     }
   }
