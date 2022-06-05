@@ -26,7 +26,9 @@ Below is a list of features, technologies, and fixes which have been or will be 
 
 - [ ] List nearby places on map marker select
 - [ ] Refactor into smart and dumb components
+  - could always do better
 - [ ] React concurrent for handling input fields that query on input (search and distance)
+  - turns out this was not needed for optimization
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
 - [x] Fulltext search for filter and map pages
@@ -42,7 +44,7 @@ Below is a list of features, technologies, and fixes which have been or will be 
 - [x] Replace current library for Google Maps API with one that supports both React and InfoWindows
 - [x] Redesign of map page UI and modals system
 - [x] Move from plain CSS to TailwindCSS, CRA/Webpack to Vite, React Context API to Redux Toolkit + React Redux, Fetch API to Axios + React Query, template literals to classnames, npm to yarn
-- [x] Small performance optimizations, bug fixes, code structure cleanups
+- [x] Performance optimizations, bug fixes, refactorings
 
 ## Dynamic Backup
 
