@@ -7,15 +7,15 @@ import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
 const PreviewList = () => {
-  const search = useSelector((state) => state.search);
+  const { filterSearchInput } = useSelector((state) => state.search);
   const checkedFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError, hasNextPage, fetchNextPage } =
     useInfiniteQuery(
-      ["attractions", checkedFilters, search.input],
+      ["attractions", filterSearchInput, checkedFilters],
       async ({ pageParam = 0 }) => {
         const params = qs.stringify({
-          search: search.input,
+          search: filterSearchInput,
           filters: checkedFilters,
           page: pageParam,
         });

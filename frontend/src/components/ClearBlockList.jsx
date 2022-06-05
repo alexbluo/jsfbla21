@@ -1,16 +1,15 @@
-import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { remove, reset } from "../redux/filtersSlice";
+import { changeFilterSearchInput } from "../redux/searchSlice";
 import ClearBlock from "./ClearBlock";
 
 const ClearBlockList = () => {
   const checkedFilters = useSelector((state) => state.filters);
-  const search = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   const handleClearAll = () => {
     dispatch(reset());
-    dispatch(changeInput(""));
+    dispatch(changeFilterSearchInput(""));
   };
 
   return (

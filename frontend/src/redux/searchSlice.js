@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  input: "",
+  filterSearchInput: "",
+  mapSearchInput: "",
 };
 
-// !! need redux so previewlist can query all from one component instead of being split between previewlist and search (BAD!)
 export const { reducer, actions } = createSlice({
   name: "search",
   initialState,
   reducers: {
-    changeInput: (state, { payload }) => {
-      state.input = payload;
+    changeFilterSearchInput: (state, { payload }) => {
+      state.filterSearchInput = payload;
+    },
+    changeMapSearchInput: (state, { payload }) => {
+      state.mapSearchInput = payload;
     },
   },
 });
 
-export const { changeInput } = actions;
+export const { changeFilterSearchInput, changeMapSearchInput } = actions;
 export default reducer;

@@ -8,6 +8,7 @@ require("dotenv").config();
  */
 const formatFilterDocument = (filters) => {
   // search for all attractions if no filters are specified
+  // TODO: remove this entire function lol, dont need line below
   if (!filters) return { $match: {} };
 
   const filterDocument = { $match: { $and: [] } };
@@ -45,8 +46,8 @@ exports.getByFilter = (req, res) => {
     },
   };
   const filterDocument = formatFilterDocument(filters);
-  const pipeline = [];
 
+  const pipeline = [];
   if (search.trim().length > 0) pipeline.push(searchDocument);
   if (filters) pipeline.push(filterDocument);
 
@@ -80,35 +81,39 @@ exports.getByDistance = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
+    const searchDocument = {
+      text: {
+        query: search,
+        path: { wildcard: "*" },
+        fuzzy: {
+          maxEdits: 1,
+          prefixLength: 6,
+        },
+      },
+    };
+    const geoDocument = {
+      geoWithin: {
+        path: "location",
+        circle: {
+          center: {
+            type: "Point",
+            coordinates: [parseFloat(lng), parseFloat(lat)],
+          },
+          radius: parseInt(searchRadius),
+        },
+      },
+    };
+
+    const pipeline = [];
+    if (search.trim().length > 0) pipeline.push(searchDocument);
+    pipeline.push(geoDocument);
+
     const cursor = collection.aggregate([
       {
         $search: {
           index: "text",
           compound: {
-            must: [
-              // {
-              //   text: {
-              //     query: search,
-              //     path: { wildcard: "*" },
-              //     fuzzy: {
-              //       maxEdits: 1,
-              //       prefixLength: 6,
-              //     },
-              //   },
-              // },
-              {
-                geoWithin: {
-                  circle: {
-                    center: {
-                      type: "Point",
-                      coordinates: [parseFloat(lng), parseFloat(lat)],
-                    },
-                    radius: parseInt(searchRadius),
-                  },
-                  path: "location.coordinates",
-                },
-              },
-            ],
+            must: pipeline,
           },
         },
       },

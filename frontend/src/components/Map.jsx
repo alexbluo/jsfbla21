@@ -10,19 +10,22 @@ import axios from "axios";
 import qs from "qs";
 import Slider from "rc-slider";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
+import SearchBar from "./SearchBar";
 
 const Map = ({ center, centerName }) => {
+  const { mapSearchInput } = useSelector((state) => state.search);
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
 
-  //
   const { data, error, isLoading, isError } = useQuery(
-    ["attraction", center.lng, center.lat, searchRadius],
+    ["attraction", mapSearchInput, center.lng, center.lat, searchRadius],
     async () => {
       const params = qs.stringify({
+        search: mapSearchInput,
         lng: center.lng,
         lat: center.lat,
         searchRadius: searchRadius,
@@ -92,8 +95,8 @@ const Map = ({ center, centerName }) => {
                 data.map((doc) => (
                   <Marker
                     position={{
-                      lat: doc.coordinates[1],
-                      lng: doc.coordinates[0],
+                      lat: doc.location.coordinates[1],
+                      lng: doc.location.coordinates[0],
                     }}
                     // clusterer={clusterer}
                     // this fixes the lag but introduces another bug - new query results aren't updated unless zoom
@@ -133,9 +136,9 @@ const Map = ({ center, centerName }) => {
         )}
       </div>
 
-      {/* TODO: add toggle between slider and search (and search too - the map package has it) */}
-      {/* TODO: separate out slider, maybe implement searching within specified range and remove tabs*/}
+      {/* TODO: extract into separate component MapInput */}
       <div className="relative aspect-square bg-red p-8 lg:w-1/2">
+        <SearchBar type="map" />
         <div className="flex h-16 w-full items-center gap-4">
           <Slider
             min={0}

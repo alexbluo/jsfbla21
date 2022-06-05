@@ -1,25 +1,19 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeInput } from "../redux/searchSlice";
+import {
+  changeFilterSearchInput,
+  changeMapSearchInput,
+} from "../redux/searchSlice";
 
 // TODO: concurrent after backend is done
-const SearchBar = ({}) => {
-  const search = useSelector((state) => state.search);
+const SearchBar = ({ type }) => {
+  const { filterSearchInput, mapSearchInput } = useSelector(
+    (state) => state.search
+  );
   const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
-    dispatch(changeInput(e.target.value));
-  };
-
-  const handleEnterKeyDown = (e) => {
-    // only respond to presses of the enter key
-    if (!e.key === "Enter") return;
-
-    handleSearchClick();
-  };
-
-  const handleSearchClick = () => {
-    // but search is changing and triggering query from global state...
+    if (type === "filter") dispatch(changeFilterSearchInput(e.target.value));
+    if (type === "map") dispatch(changeMapSearchInput(e.target.value));
   };
 
   return (
@@ -27,9 +21,8 @@ const SearchBar = ({}) => {
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
-        value={search.input}
+        value={type === "filter" ? filterSearchInput : mapSearchInput}
         onChange={handleInputChange}
-        onKeyDown={handleEnterKeyDown}
       />
       <div className="flex aspect-square h-full items-center justify-center rounded-r">
         <svg className="h-1/2 w-1/2 fill-gold" viewBox="0 0 50 50">

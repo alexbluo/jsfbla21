@@ -40,6 +40,7 @@ const DetailsPage = () => {
         </div>
 
         {/* website and contact via button links */}
+        {/* TODO: extract to component with tel prop */}
         <div className="flex flex-col bg-red px-[8%] py-[4%] text-white">
           <h2 className="mb-2 text-2xl">Website & Contact</h2>
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
@@ -113,7 +114,10 @@ const DetailsPage = () => {
         </div>
       </div>
       <Map
-        center={{ lat: data.coordinates[1], lng: data.coordinates[0] }}
+        center={{
+          lat: data.location.coordinates[1],
+          lng: data.location.coordinates[0],
+        }}
         centerName={`${data.attraction_name} (current)`}
       />
     </div>
