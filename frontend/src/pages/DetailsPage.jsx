@@ -2,6 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import ButtonLink from "../components/ButtonLink";
+import DetailSection from "../components/DetailSection";
 import Map from "../components/Map";
 import none from "../images/none.png";
 
@@ -18,12 +19,12 @@ const DetailsPage = () => {
 
   /**
    * Formats the amenities array into html that can be dangerously set
-   * @returns the dangerouslySetInnerHTML object
+   * @returns the html for amenities
    */
   const createAmenitiesMarkup = () => {
-    const amenities = `<ul class="w-full indent-4 truncate"><li>${data.amenities.join(
-      "</li><li>"
-    )}</li></ul>`;
+    const amenities = `<ul class="w-full pl-8"><li>
+                        ${data.amenities.join("</li><li>")}
+                      </li></ul>`;
     return { __html: amenities };
   };
 
@@ -34,15 +35,11 @@ const DetailsPage = () => {
       <h1 className="page-title">{data.attraction_name}</h1>
       <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
         {/* description */}
-        <div className="flex aspect-square flex-col overflow-y-auto bg-gold px-[8%] py-[4%]">
-          <h2 className="mb-2 text-2xl">Description</h2>
-          {data.description}
-        </div>
+        <DetailSection header="Description">{data.description}</DetailSection>
 
         {/* website and contact via button links */}
         {/* TODO: extract to component with tel prop */}
-        <div className="flex flex-col bg-red px-[8%] py-[4%] text-white">
-          <h2 className="mb-2 text-2xl">Website & Contact</h2>
+        <DetailSection header="Website & Contact">
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
             {data.website_link && (
               <ButtonLink link={data.website_link}>Website</ButtonLink>
@@ -65,7 +62,7 @@ const DetailsPage = () => {
               </ButtonLink>
             )}
           </div>
-        </div>
+        </DetailSection>
 
         {/* image from preview */}
         <img
@@ -79,18 +76,17 @@ const DetailsPage = () => {
         />
 
         {/* amenities */}
-        <div className="flex w-auto flex-col bg-red px-[8%] py-[4%] text-white">
-          <h2 className="mb-2 text-2xl">Amenities</h2>
+        <DetailSection header="Amenities">
+          {/* TODO: move null check to markup function */}
           {data.amenities ? (
             <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
           ) : (
             <p>No amenities listed</p>
           )}
-        </div>
+        </DetailSection>
 
         {/* location */}
-        <div className="flex flex-col bg-gold px-[8%] py-[4%]">
-          <h2 className="mb-2 text-2xl">Location</h2>
+        <DetailSection header="Location">
           {data.address}
           <br />
           {data.city}, {data.state}&nbsp;
@@ -102,16 +98,15 @@ const DetailsPage = () => {
           >
             Directions
           </a>
-        </div>
+        </DetailSection>
 
         {/* region */}
-        <div className="bg-red px-[8%] py-[4%] text-white">
-          <h2 className="mb-2 text-2xl">Region</h2>
+        <DetailSection header="Region">
           <h3 className="text-lg">{data.region}</h3>
           {data.region_image && (
             <img className="w-full" src={data.region_image} alt="" />
           )}
-        </div>
+        </DetailSection>
       </div>
       <Map
         center={{
