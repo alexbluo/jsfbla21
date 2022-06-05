@@ -22,9 +22,9 @@ const DetailsPage = () => {
    * @returns the html for amenities
    */
   const createAmenitiesMarkup = () => {
-    const amenities = `<ul class="w-full"><li>- 
+    const amenities = `<li>- 
                         ${data.amenities.join("</li><li>- ")}
-                      </li></ul>`;
+                      </li>`;
     return { __html: amenities };
   };
 
@@ -81,7 +81,7 @@ const DetailsPage = () => {
         <DetailSection header="Amenities" order="even">
           {/* TODO: move null check to markup function */}
           {data.amenities ? (
-            <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
+            <ul dangerouslySetInnerHTML={createAmenitiesMarkup()}></ul>
           ) : (
             <p>No amenities listed</p>
           )}
