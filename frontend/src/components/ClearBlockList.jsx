@@ -13,7 +13,7 @@ const ClearBlockList = () => {
   };
 
   return (
-    <div className="my-1 flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1">
       {/* render clear all block if there is at least one filter */}
       {Object.values(checkedFilters).some((filter) => filter.length > 0) && (
         <ClearBlock onClick={handleClearAll} reverse>

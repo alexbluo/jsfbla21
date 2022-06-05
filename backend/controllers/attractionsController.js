@@ -110,7 +110,6 @@ exports.getByDistance = (req, res) => {
     console.log(data);
 
     client.close();
-    // TODO check if json is fine for array
     res.status(200).json(data);
   });
 };
