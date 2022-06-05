@@ -22,8 +22,8 @@ const DetailsPage = () => {
    * @returns the html for amenities
    */
   const createAmenitiesMarkup = () => {
-    const amenities = `<ul class="w-full pl-8"><li>
-                        ${data.amenities.join("</li><li>")}
+    const amenities = `<ul class="w-full"><li>- 
+                        ${data.amenities.join("</li><li>- ")}
                       </li></ul>`;
     return { __html: amenities };
   };
