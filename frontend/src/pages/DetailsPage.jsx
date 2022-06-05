@@ -97,7 +97,11 @@ const DetailsPage = () => {
         <DetailSection header="Region" order="even">
           <h3 className="text-lg">{data.region}</h3>
           {data.region_image && (
-            <img className="w-full" src={data.region_image} alt="" />
+            <img
+              className="w-full"
+              src={data.region_image}
+              alt={`${data.region_name} image`}
+            />
           )}
         </DetailSection>
       </div>
