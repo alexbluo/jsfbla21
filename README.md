@@ -58,6 +58,6 @@ Note that a .env file with the correct credentials are required for anything rel
 ## Sourcing
 
 - [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)
-- [Attractions data](https://www.visitmaryland.org/things-to-do/attractions)
+- [Data Source](https://www.visitmaryland.org/things-to-do/attractions)
 - [Crab](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD)
 - [Image for... no image](https://depositphotos.com/vector-images/no-image-available.html)
