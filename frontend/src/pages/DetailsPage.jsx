@@ -22,6 +22,8 @@ const DetailsPage = () => {
    * @returns the html for amenities
    */
   const createAmenitiesMarkup = () => {
+    if (!data.amenities) return { __html: "<li>No amenities listed</li>" };
+
     const amenities = `<li>- ${data.amenities.join("</li><li>- ")}</li>`;
 
     return { __html: amenities };
@@ -39,7 +41,6 @@ const DetailsPage = () => {
         </DetailSection>
 
         {/* website and contact via button links */}
-        {/* TODO: extract to component with tel prop */}
         <DetailSection header="Website & Contact" order="even">
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
             <ButtonLink link={data.website_link}>Website</ButtonLink>
@@ -70,12 +71,7 @@ const DetailsPage = () => {
 
         {/* amenities */}
         <DetailSection header="Amenities" order="even">
-          {/* TODO: move null check to markup function */}
-          {data.amenities ? (
-            <ul dangerouslySetInnerHTML={createAmenitiesMarkup()}></ul>
-          ) : (
-            <p>No amenities listed</p>
-          )}
+          <ul dangerouslySetInnerHTML={createAmenitiesMarkup()}></ul>
         </DetailSection>
 
         {/* location */}
