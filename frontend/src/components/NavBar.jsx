@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import classnames from "classnames";
+import classNames from "classnames";
 import NavBarLink from "./NavBarLink";
 
 const NavBar = () => {
@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={classnames(
+      className={classNames(
         "fixed top-0 left-0 z-10 flex h-16 w-screen flex-row-reverse border-b border-gold bg-black duration-200 ease-out",
         {
           "border-opacity-60 bg-opacity-60 backdrop-blur backdrop-filter": blur,

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classnames from "classnames";
+import classNames from "classnames";
 
 const Dropdown = ({ header, children }) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -12,7 +12,7 @@ const Dropdown = ({ header, children }) => {
       >
         <h2 className="font-raleway text-lg font-semibold">{header}</h2>
         <svg
-          className={classnames(
+          className={classNames(
             "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
             { "-rotate-180": isOpened }
           )}
@@ -22,7 +22,7 @@ const Dropdown = ({ header, children }) => {
         </svg>
       </div>
       <ul
-        className={classnames(
+        className={classNames(
           "mx-4 overflow-y-auto font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpened },
           { "my-2 max-h-48": isOpened }

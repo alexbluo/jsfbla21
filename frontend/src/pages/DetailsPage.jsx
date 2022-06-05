@@ -22,9 +22,7 @@ const DetailsPage = () => {
    * @returns the html for amenities
    */
   const createAmenitiesMarkup = () => {
-    const amenities = `<li>- 
-                        ${data.amenities.join("</li><li>- ")}
-                      </li>`;
+    const amenities = `<li>- ${data.amenities.join("</li><li>- ")}</li>`;
     return { __html: amenities };
   };
 

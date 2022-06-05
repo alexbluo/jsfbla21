@@ -118,7 +118,7 @@ const Map = ({ center, centerName }) => {
                           {doc.zip}
                           <br />
                           <Link
-                            className="font-normal text-blue-600 hover:underline"
+                            className="font-normal text-[#2563eb] underline"
                             to={`/attractions/${doc.attraction_id}`}
                             target="_blank"
                           >

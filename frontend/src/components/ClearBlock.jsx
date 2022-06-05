@@ -1,15 +1,15 @@
-import classnames from "classnames";
+import classNames from "classnames";
 
 const ClearBlock = ({ onClick, reverse, children }) => {
   return (
     <div
-      className={classnames(
+      className={classNames(
         "flex h-16 max-w-full gap-1 rounded-md border-4 bg-black xl:w-full",
         { "flex-row-reverse": reverse }
       )}
     >
       <div
-        className={classnames(
+        className={classNames(
           "flex items-center justify-center overflow-hidden bg-gold px-4 font-raleway text-lg focus:brightness-90 xl:w-1/2",
           { "rounded-r": reverse },
           { "rounded-l": !reverse }
@@ -19,7 +19,7 @@ const ClearBlock = ({ onClick, reverse, children }) => {
         <span className="truncate">{children}</span>
       </div>
       <button
-        className={classnames(
+        className={classNames(
           "group aspect-square h-full text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75 xl:w-1/2",
           { "rounded-l": reverse },
           { "rounded-r": !reverse }
