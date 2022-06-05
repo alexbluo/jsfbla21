@@ -1,31 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
-/**
- * Formats the filters in the request's query object into a MongoDB document
- * @param { Object.<string, Array<string>> } query - the parsed query object
- * @returns { Filter<Document> } the formatted filter
- */
-const formatFilterDocument = (filters) => {
-  // search for all attractions if no filters are specified
-  // TODO: remove this entire function lol, dont need line below
-  if (!filters) return { $match: {} };
-
-  const filterDocument = { $match: { $and: [] } };
-
-  for (const [key, values] of Object.entries(filters)) {
-    // turn each entry (filter) into an array of { type, val }, wrap in $or + $elemMatch and push to $all
-    // this causes filters under the same category to use OR, while across categories use AND
-    filterDocument.$match.$and.push({
-      $or: values.map((value) => {
-        return { [key]: value };
-      }),
-    });
-  }
-
-  return filterDocument;
-};
-
 // number of documents to retrieve per pagination
 const nPerPage = 8;
 
@@ -45,7 +20,19 @@ exports.getByFilter = (req, res) => {
       },
     },
   };
-  const filterDocument = formatFilterDocument(filters);
+  const filterDocument = {
+    $match: {
+      $and: [
+        ...Object.entries(filters ?? []).map(([key, values]) => {
+          return {
+            $or: values.map((value) => {
+              return { [key]: value };
+            }),
+          };
+        }),
+      ],
+    },
+  };
 
   const pipeline = [];
   if (search.trim().length > 0) pipeline.push(searchDocument);
