@@ -35,11 +35,13 @@ const DetailsPage = () => {
       <h1 className="page-title">{data.attraction_name}</h1>
       <div className="grid grid-rows-6 font-poppins lg:grid-cols-3 lg:grid-rows-2">
         {/* description */}
-        <DetailSection header="Description">{data.description}</DetailSection>
+        <DetailSection header="Description" order="odd">
+          {data.description}
+        </DetailSection>
 
         {/* website and contact via button links */}
         {/* TODO: extract to component with tel prop */}
-        <DetailSection header="Website & Contact">
+        <DetailSection header="Website & Contact" order="even">
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
             {data.website_link && (
               <ButtonLink link={data.website_link}>Website</ButtonLink>
@@ -76,7 +78,7 @@ const DetailsPage = () => {
         />
 
         {/* amenities */}
-        <DetailSection header="Amenities">
+        <DetailSection header="Amenities" order="even">
           {/* TODO: move null check to markup function */}
           {data.amenities ? (
             <div dangerouslySetInnerHTML={createAmenitiesMarkup()}></div>
@@ -86,7 +88,7 @@ const DetailsPage = () => {
         </DetailSection>
 
         {/* location */}
-        <DetailSection header="Location">
+        <DetailSection header="Location" order="odd">
           {data.address}
           <br />
           {data.city}, {data.state}&nbsp;
@@ -101,7 +103,7 @@ const DetailsPage = () => {
         </DetailSection>
 
         {/* region */}
-        <DetailSection header="Region">
+        <DetailSection header="Region" order="even">
           <h3 className="text-lg">{data.region}</h3>
           {data.region_image && (
             <img className="w-full" src={data.region_image} alt="" />
