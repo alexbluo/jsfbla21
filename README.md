@@ -2,19 +2,23 @@
 
 ## Overview
 
-Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information on results narrowed down from 1000+ attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
+Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information on results narrowed down from 1,399 attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
 
 ## Tech Stack
 
-This project uses the MERN stack, which is MongoDB, Express, React, Node.js, and a REST API. Other notable technologies used include:
-
-- TailwindCSS (CSS framework)
-- Redux Toolkit + React Redux (global state)
-- Axios + React Query (fetching and caching)
-- Vite (build tool)
-- Docker (containerization)
-- Heroku | Google Cloud Run (deployment)
-- Puppeteer (web scraping)
+|         Technology          |       Purpose        |
+| :-------------------------: | :------------------: |
+|           MongoDB           |         DBMS         |
+|           Express           |       REST API       |
+|            React            |  Frontend Framework  |
+|           Node.js           |   Backend Runtime    |
+|         TailwindCSS         |    CSS Framework     |
+| Redux Toolkit + React Redux |     Global State     |
+|     Axios + React Query     | Fetching and Caching |
+|            Vite             |      Build Tool      |
+|           Docker            |   Containerization   |
+|  Heroku, Google Cloud Run   |      Deployment      |
+|          Puppeteer          |     Web Scraping     |
 
 ## Changes Since March 2022
 
