@@ -23,6 +23,7 @@ const DetailsPage = () => {
    */
   const createAmenitiesMarkup = () => {
     const amenities = `<li>- ${data.amenities.join("</li><li>- ")}</li>`;
+
     return { __html: amenities };
   };
 
@@ -41,26 +42,18 @@ const DetailsPage = () => {
         {/* TODO: extract to component with tel prop */}
         <DetailSection header="Website & Contact" order="even">
           <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
-            {data.website_link && (
-              <ButtonLink link={data.website_link}>Website</ButtonLink>
-            )}
-            {data.mailto_link && (
-              <ButtonLink link={data.mailto_link}>Email</ButtonLink>
-            )}
-            {data.phone_number && (
-              <ButtonLink link={`tel:${data.phone_number}`}>
-                Phone
-                <br />
-                {data.phone_number}
-              </ButtonLink>
-            )}
-            {data.fax && (
-              <ButtonLink link={`tel:${data.fax}`}>
-                Fax
-                <br />
-                {data.fax}
-              </ButtonLink>
-            )}
+            <ButtonLink link={data.website_link}>Website</ButtonLink>
+            <ButtonLink link={data.mailto_link}>Email</ButtonLink>
+            <ButtonLink link={data.phone_number}>
+              Phone
+              <br />
+              {data.phone_number}
+            </ButtonLink>
+            <ButtonLink link={data.fax}>
+              Fax
+              <br />
+              {data.fax}
+            </ButtonLink>
           </div>
         </DetailSection>
 
@@ -68,7 +61,7 @@ const DetailsPage = () => {
         <img
           className="aspect-square w-full object-fill"
           src={
-            !data.attraction_image || data.attraction_image.includes("data") // null images include the word "data" in their URI
+            !data.attraction_image || data.attraction_image.includes("data") // empty placeholder images are base64 encoded
               ? none
               : data.attraction_image
           }
