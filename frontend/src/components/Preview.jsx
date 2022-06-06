@@ -15,9 +15,9 @@ const Preview = ({ data }) => {
           alt={`${data.attraction_name} image`}
         />
         <div className="absolute bottom-0 flex h-24 w-full flex-col rounded-md bg-black bg-opacity-90 p-4 text-center text-gold duration-200 group-hover:h-full group-hover:bg-transparent">
-          <div className="my-auto truncate text-xl font-medium duration-200 group-hover:whitespace-normal">
+          <span className="my-auto truncate text-xl font-medium duration-200 group-hover:whitespace-normal">
             {data.attraction_name}
-          </div>
+          </span>
           <span>{data.city}</span>
         </div>
       </Link>

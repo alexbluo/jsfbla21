@@ -62,6 +62,9 @@ const Map = ({ center, centerName }) => {
     );
 
   // TODO: add options for: recenter, use my location, use default location (baltimore), show all locations
+  // show all: set searchRadius to big number so that search still works
+  // use default location: set center using function passed down via props
+  // use my location: 
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">

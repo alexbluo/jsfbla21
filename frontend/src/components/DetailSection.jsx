@@ -2,7 +2,7 @@ import classNames from "classnames";
 
 const DetailSection = ({ header, order, children }) => {
   return (
-    <div
+    <section
       className={classNames(
         "flex aspect-square flex-col gap-2 overflow-auto py-4 px-8",
         { "bg-gold text-black": order === "odd" },
@@ -10,8 +10,8 @@ const DetailSection = ({ header, order, children }) => {
       )}
     >
       <h2 className="text-2xl">{header}</h2>
-      <div className="box-border h-full overflow-auto">{children}</div>
-    </div>
+      <article className="box-border h-full overflow-auto">{children}</article>
+    </section>
   );
 };
 

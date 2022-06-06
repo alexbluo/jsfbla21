@@ -3,8 +3,8 @@ import Map from "../components/Map";
 
 const MapPage = () => {
   // put center as state so that everything rerenders after the user location is returned
-  const [center, setCenter] = useState(undefined);
-
+  const [center, setCenter] = useState({ lat: 39.2904, lng: -76.6122 });
+  // TODO: change on to handle
   // get user location on page load
   useEffect(() => {
     if (navigator.geolocation) {
