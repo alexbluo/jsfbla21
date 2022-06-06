@@ -42,7 +42,7 @@ const Map = ({ center, centerName }) => {
   }, [selectedMarker]);
 
   useEffect(() => {
-    if (sliderValue === "0") inputRef.current.select();
+    if (sliderValue === 0) inputRef.current.select();
   }, [sliderValue]);
 
   const handleInputChange = (e) => {
