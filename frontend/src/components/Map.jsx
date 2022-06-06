@@ -7,12 +7,12 @@ import {
 } from "@react-google-maps/api";
 import axios from "axios";
 import qs from "qs";
-import Slider from "rc-slider";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
 import SearchBar from "./SearchBar";
+import SliderInput from "./SliderInput";
 
 const Map = ({ center, centerName }) => {
   const { mapSearchInput } = useSelector((state) => state.search);
@@ -40,7 +40,7 @@ const Map = ({ center, centerName }) => {
     if (selectedMarker === "recenter") setSelectedMarker("center");
   }, [selectedMarker]);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     let value = e.target.value;
     if (value > 300) value = 300;
     if (value < 0) value = 0;
@@ -123,42 +123,12 @@ const Map = ({ center, centerName }) => {
 
       <div className="relative aspect-square bg-red p-8 lg:w-1/2">
         <SearchBar type="map" />
-        <div className="flex h-16 w-full items-center gap-4">
-          <Slider
-            min={0}
-            max={300}
-            value={sliderValue}
-            onChange={(value) => setSliderValue(value)}
-            onAfterChange={() => setSearchRadius(sliderValue * 1000)}
-            railStyle={{
-              backgroundColor: "black",
-              height: 3,
-              marginTop: 1,
-            }}
-            trackStyle={{
-              backgroundColor: "gold",
-              marginLeft: -1,
-            }}
-            handleStyle={{
-              height: 15,
-              width: 15,
-              borderColor: "gold",
-              backgroundColor: "gold",
-              boxShadow: "none",
-            }}
-          />
-          <label className="flex h-full gap-2 rounded bg-white px-4 brightness-90 focus-within:brightness-100">
-            <input
-              className="my-auto w-6 rounded text-right"
-              type="number"
-              min={0}
-              max={300}
-              value={sliderValue}
-              onChange={handleChange}
-            />
-            <span className="my-auto">km</span>
-          </label>
-        </div>
+        <SliderInput
+          value={sliderValue}
+          onSliderChange={(value) => setSliderValue(value)}
+          onSliderAfterChange={(value) => setSearchRadius(value * 1000)}
+          onInputChange={(e) => handleInputChange(e.target.value)}
+        />
         <button
           className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
           onClick={() => setSelectedMarker("recenter")}
