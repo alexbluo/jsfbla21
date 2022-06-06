@@ -133,9 +133,8 @@ const Map = ({ center, centerName }) => {
             onInputChange={handleInputChange}
           />
         </div>
-        {/* TODO: extract out button component */}
         <button
-          className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
+          className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 ease-in-out hover:bg-white hover:text-red"
           onClick={() => setSelectedMarker("recenter")}
         >
           Recenter

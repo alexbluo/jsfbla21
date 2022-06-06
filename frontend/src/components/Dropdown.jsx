@@ -11,15 +11,17 @@ const Dropdown = ({ header, children }) => {
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{header}</h2>
-        <svg
-          className={classNames(
-            "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
-            { "-rotate-180": isOpened }
-          )}
-          viewBox="0 0 16 16"
-        >
-          <path d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
-        </svg>
+        <button>
+          <svg
+            className={classNames(
+              "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
+              { "-rotate-180": isOpened }
+            )}
+            viewBox="0 0 16 16"
+          >
+            <path d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z" />
+          </svg>
+        </button>
       </div>
       <ul
         className={classNames(
