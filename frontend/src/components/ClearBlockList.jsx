@@ -16,7 +16,7 @@ const ClearBlockList = () => {
     <div className="flex flex-wrap gap-1">
       {/* render clear all block if there is at least one filter */}
       {Object.values(checkedFilters).some((filter) => filter.length > 0) && (
-        <ClearBlock onClick={handleClearAll} reverse>
+        <ClearBlock handleClick={handleClearAll} reverse>
           Reset
         </ClearBlock>
       )}
@@ -25,7 +25,7 @@ const ClearBlockList = () => {
       {Object.entries(checkedFilters).map(([category, filters]) =>
         filters.map((filter) => (
           <ClearBlock
-            onClick={() => dispatch(remove({ category, filter }))}
+            handleClick={() => dispatch(remove({ category, filter }))}
             key={filter}
           >
             {filter}

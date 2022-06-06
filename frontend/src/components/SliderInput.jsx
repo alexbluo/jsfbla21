@@ -2,9 +2,9 @@ import Slider from "rc-slider";
 
 const SliderInput = ({
   value,
-  onSliderChange,
-  onSliderAfterChange,
-  onInputChange,
+  handleSliderChange,
+  handleSliderAfterChange,
+  handleInputChange,
 }) => {
   return (
     <div className="flex h-16 w-full items-center gap-1 rounded-md border-4 border-black bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-gold/50">
@@ -13,8 +13,8 @@ const SliderInput = ({
           min={0}
           max={400}
           value={value}
-          onChange={onSliderChange}
-          onAfterChange={onSliderAfterChange}
+          onChange={handleSliderChange}
+          onAfterChange={handleSliderAfterChange}
           railStyle={{
             backgroundColor: "gold",
             height: 3,
@@ -40,7 +40,7 @@ const SliderInput = ({
           min={0}
           max={400}
           value={value}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
         km
       </label>

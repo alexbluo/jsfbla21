@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const ClearBlock = ({ onClick, reverse, children }) => {
+const ClearBlock = ({ handleClick, reverse, children }) => {
   return (
     <div
       className={classNames(
@@ -24,7 +24,7 @@ const ClearBlock = ({ onClick, reverse, children }) => {
           { "rounded-l": reverse },
           { "rounded-r": !reverse }
         )}
-        onClick={onClick}
+        onClick={handleClick}
       >
         <svg
           className="mx-auto h-1/2 w-1/2 fill-gold duration-150 ease-in-out group-hover:fill-black"

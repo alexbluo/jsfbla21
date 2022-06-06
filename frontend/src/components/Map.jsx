@@ -43,7 +43,7 @@ const Map = ({ center, centerName }) => {
   const handleInputChange = (e) => {
     let value = parseInt(e.target.value);
     if (value > 300) value = 300;
-    if (value < 0 || isNaN(value)) value = 0;
+    if (isNaN(value)) value = 0;
 
     setSliderValue(value);
     setSearchRadius(value * 1000);
@@ -64,7 +64,7 @@ const Map = ({ center, centerName }) => {
   // TODO: add options for: recenter, use my location, use default location (baltimore), show all locations
   // show all: set searchRadius to big number so that search still works
   // use default location: set center using function passed down via props
-  // use my location: 
+  // use my location:
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">
@@ -87,6 +87,7 @@ const Map = ({ center, centerName }) => {
                 </InfoWindow>
               )}
             </Marker>
+            {/* map each document from the data to a marker */}
             {!isLoading &&
               data.map((doc) => (
                 <Marker
@@ -98,6 +99,7 @@ const Map = ({ center, centerName }) => {
                   title={doc.attraction_name}
                   key={doc.attraction_id}
                 >
+                  {/* only show info window if the currently selected marker's id matched */}
                   {selectedMarker === doc.attraction_id && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                       <div>
@@ -131,9 +133,9 @@ const Map = ({ center, centerName }) => {
           <SearchBar type="map" />
           <SliderInput
             value={sliderValue.toString()}
-            onSliderChange={(value) => setSliderValue(value)}
-            onSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-            onInputChange={handleInputChange}
+            handleSliderChange={(value) => setSliderValue(value)}
+            handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
+            handleInputChange={handleInputChange}
           />
         </div>
         <button
