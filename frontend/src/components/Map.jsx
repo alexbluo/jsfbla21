@@ -41,9 +41,9 @@ const Map = ({ center, centerName }) => {
   }, [selectedMarker]);
 
   const handleInputChange = (e) => {
-    let value = e.target.value;
+    let value = parseInt(e.target.value);
     if (value > 300) value = 300;
-    if (value < 0) value = 0;
+    if (value < 0 || isNaN(value)) value = 0;
 
     setSliderValue(value);
     setSearchRadius(value * 1000);
@@ -125,7 +125,7 @@ const Map = ({ center, centerName }) => {
         <div className="flex flex-col gap-1">
           <SearchBar type="map" />
           <SliderInput
-            value={sliderValue}
+            value={sliderValue.toString()}
             onSliderChange={(value) => setSliderValue(value)}
             onSliderAfterChange={(value) => setSearchRadius(value * 1000)}
             onInputChange={handleInputChange}
