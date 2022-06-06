@@ -107,8 +107,6 @@ exports.getByDistance = (req, res) => {
     ]);
     await cursor.forEach((doc) => data.push(doc));
 
-    console.log(data);
-
     client.close();
     res.status(200).json(data);
   });

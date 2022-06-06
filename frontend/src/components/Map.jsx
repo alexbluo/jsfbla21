@@ -4,7 +4,6 @@ import {
   useJsApiLoader,
   Marker,
   InfoWindow,
-  // MarkerClusterer,
 } from "@react-google-maps/api";
 import axios from "axios";
 import qs from "qs";
@@ -83,60 +82,45 @@ const Map = ({ center, centerName }) => {
                 </InfoWindow>
               )}
             </Marker>
-            {
-              !isLoading &&
-                // MarkerClusterer causes lag
-                // <MarkerClusterer
-                //   averageCenter={true}
-                //   minimumClusterSize={4}
-                //   zoomOnClick={false}
-                // >
-                //   {(clusterer) =>
-                data.map((doc) => (
-                  <Marker
-                    position={{
-                      lat: doc.location.coordinates[1],
-                      lng: doc.location.coordinates[0],
-                    }}
-                    // clusterer={clusterer}
-                    // this fixes the lag but introduces another bug - new query results aren't updated unless zoom
-                    // noClustererRedraw={true}
-                    onClick={() => setSelectedMarker(doc.attraction_id)}
-                    title={doc.attraction_name}
-                    key={doc.attraction_id}
-                  >
-                    {selectedMarker === doc.attraction_id && (
-                      <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                        <div>
-                          <span className="font-medium">
-                            {doc.attraction_name}
-                          </span>
-                          <br />
-                          {doc.address}
-                          <br />
-                          {doc.city}, {doc.state}&nbsp;
-                          {doc.zip}
-                          <br />
-                          <Link
-                            className="font-normal text-[#2563eb] underline"
-                            to={`/attractions/${doc.attraction_id}`}
-                            target="_blank"
-                          >
-                            Details
-                          </Link>
-                        </div>
-                      </InfoWindow>
-                    )}
-                  </Marker>
-                ))
-              //   }
-              // </MarkerClusterer>
-            }
+            {!isLoading &&
+              data.map((doc) => (
+                <Marker
+                  position={{
+                    lat: doc.location.coordinates[1],
+                    lng: doc.location.coordinates[0],
+                  }}
+                  onClick={() => setSelectedMarker(doc.attraction_id)}
+                  title={doc.attraction_name}
+                  key={doc.attraction_id}
+                >
+                  {selectedMarker === doc.attraction_id && (
+                    <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                      <div>
+                        <span className="font-medium">
+                          {doc.attraction_name}
+                        </span>
+                        <br />
+                        {doc.address}
+                        <br />
+                        {doc.city}, {doc.state}&nbsp;
+                        {doc.zip}
+                        <br />
+                        <Link
+                          className="font-normal text-[#2563eb] underline"
+                          to={`/attractions/${doc.attraction_id}`}
+                          target="_blank"
+                        >
+                          Details
+                        </Link>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </Marker>
+              ))}
           </GoogleMap>
         )}
       </div>
 
-      {/* TODO: extract into separate component MapInput */}
       <div className="relative aspect-square bg-red p-8 lg:w-1/2">
         <SearchBar type="map" />
         <div className="flex h-16 w-full items-center gap-4">
