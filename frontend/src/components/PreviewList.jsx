@@ -23,7 +23,7 @@ const PreviewList = () => {
         const res = await axios.get(`/api/attractions?${params}`);
 
         return {
-          docs: res.data.attractions,
+          data: res.data.attractions,
           nextPageNumber: res.data.nextPageNumber,
         }; // return to "data"
       },
@@ -40,7 +40,9 @@ const PreviewList = () => {
 
     const previews = data.pages
       .map((group) =>
-        group.docs.map((doc) => <Preview data={doc} key={doc.attraction_id} />)
+        group.data.map((data) => (
+          <Preview {...data} key={data.attraction_id} />
+        ))
       )
       .flat(1); // flatten so that preview length in next step is always accurate
 

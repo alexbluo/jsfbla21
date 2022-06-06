@@ -33,10 +33,20 @@ exports.getByFilter = (req, res) => {
       ],
     },
   };
+  const projectDocument = {
+    $project: {
+      _id: 0,
+      attraction_id: 1,
+      attraction_name: 1,
+      attraction_image: 1,
+      city: 1,
+    },
+  };
 
   const pipeline = [];
   if (search.trim().length > 0) pipeline.push(searchDocument);
   if (filters) pipeline.push(filterDocument);
+  pipeline.push(projectDocument);
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = { attractions: [], nextPageNumber: undefined };
@@ -90,6 +100,11 @@ exports.getByDistance = (req, res) => {
         },
       },
     };
+    const projectDocument = {
+      $project: {
+        
+      }
+    }
 
     const pipeline = [];
     if (search.trim().length > 0) pipeline.push(searchDocument);
