@@ -1,6 +1,7 @@
 import Slider from "rc-slider";
 
 const SliderInput = ({
+  inputRef,
   value,
   handleSliderChange,
   handleSliderAfterChange,
@@ -35,6 +36,7 @@ const SliderInput = ({
       </div>
       <label className="flex h-full items-center gap-1 rounded-r px-4 text-gold duration-150 ease-in-out focus-within:bg-gold focus-within:text-black">
         <input
+          ref={inputRef}
           className="w-8 bg-black text-right duration-150 ease-in-out focus:bg-gold"
           type="number"
           min={0}

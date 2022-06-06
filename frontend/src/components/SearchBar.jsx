@@ -4,7 +4,7 @@ import {
   changeMapSearchInput,
 } from "../redux/searchSlice";
 
-// TODO: concurrent after backend is done
+// TODO: make input always gold
 const SearchBar = ({ type }) => {
   const { filterSearchInput, mapSearchInput } = useSelector(
     (state) => state.search

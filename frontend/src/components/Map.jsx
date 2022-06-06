@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -19,6 +19,7 @@ const Map = ({ center, centerName }) => {
   const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
+  const inputRef = useRef();
 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", mapSearchInput, center.lng, center.lat, searchRadius],
@@ -40,8 +41,12 @@ const Map = ({ center, centerName }) => {
     if (selectedMarker === "recenter") setSelectedMarker("center");
   }, [selectedMarker]);
 
+  useEffect(() => {
+    if (sliderValue === "0") inputRef.current.select();
+  }, [sliderValue]);
+
   const handleInputChange = (e) => {
-    let value = parseInt(e.target.value);
+    let value = parseInt(e.target.value, 10);
     if (value > 300) value = 300;
     if (isNaN(value)) value = 0;
 
@@ -132,6 +137,7 @@ const Map = ({ center, centerName }) => {
         <div className="flex flex-col gap-1">
           <SearchBar type="map" />
           <SliderInput
+            inputRef={inputRef}
             value={sliderValue.toString()}
             handleSliderChange={(value) => setSliderValue(value)}
             handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
