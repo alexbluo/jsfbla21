@@ -4,7 +4,6 @@ import {
   changeMapSearchInput,
 } from "../redux/searchSlice";
 
-// TODO: make input always gold
 const SearchBar = ({ type }) => {
   const { filterSearchInput, mapSearchInput } = useSelector(
     (state) => state.search
