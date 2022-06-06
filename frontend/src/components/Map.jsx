@@ -127,7 +127,7 @@ const Map = ({ center, centerName }) => {
           value={sliderValue}
           onSliderChange={(value) => setSliderValue(value)}
           onSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-          onInputChange={(e) => handleInputChange(e.target.value)}
+          onInputChange={handleInputChange}
         />
         <button
           className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
