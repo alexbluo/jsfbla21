@@ -102,9 +102,16 @@ exports.getByDistance = (req, res) => {
     };
     const projectDocument = {
       $project: {
-        
-      }
-    }
+        _id: 0,
+        attraction_id: 1,
+        attraction_name: 1,
+        location: 1,
+        address: 1,
+        city: 1,
+        state: 1,
+        zip: 1,
+      },
+    };
 
     const pipeline = [];
     if (search.trim().length > 0) pipeline.push(searchDocument);
@@ -119,6 +126,7 @@ exports.getByDistance = (req, res) => {
           },
         },
       },
+      projectDocument,
     ]);
     await cursor.forEach((doc) => data.push(doc));
 
