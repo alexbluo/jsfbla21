@@ -26,7 +26,6 @@ Below is a list of features, technologies, and fixes which have been or will be 
 
 - [ ] List nearby places on map marker select
 - [ ] Refactor into smart and dumb components
-  - could always do better
 - [ ] React concurrent for handling input fields that query on input (search and distance)
   - turns out this was not needed for optimization
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"

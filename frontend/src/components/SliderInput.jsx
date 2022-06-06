@@ -11,7 +11,7 @@ const SliderInput = ({
       <div className="flex h-full w-full items-center rounded-l bg-gold px-4">
         <Slider
           min={0}
-          max={300}
+          max={400}
           value={value}
           onChange={onSliderChange}
           onAfterChange={onSliderAfterChange}
@@ -38,7 +38,7 @@ const SliderInput = ({
           className="w-8 bg-black text-right duration-150 ease-in-out focus:bg-gold"
           type="number"
           min={0}
-          max={300}
+          max={400}
           value={value}
           onChange={onInputChange}
         />

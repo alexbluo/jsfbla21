@@ -8,6 +8,8 @@ import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenity"];
 
+// TODO: go up one more component level so that help page can use this?
+// TODO: refactor block into smart/dumb as well?
 const Accordion = () => {
   const checkedFilters = useSelector((state) => state.filters);
 

@@ -60,6 +60,8 @@ const Map = ({ center, centerName }) => {
         granted location access.
       </div>
     );
+
+  // TODO: add options for: recenter, use my location, use default location (baltimore), show all locations
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">
@@ -131,6 +133,7 @@ const Map = ({ center, centerName }) => {
             onInputChange={handleInputChange}
           />
         </div>
+        {/* TODO: extract out button component */}
         <button
           className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 hover:bg-white hover:text-red"
           onClick={() => setSelectedMarker("recenter")}
