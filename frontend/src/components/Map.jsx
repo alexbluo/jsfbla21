@@ -67,10 +67,6 @@ const Map = ({ center, centerName }) => {
       </div>
     );
 
-  // TODO: add options for: recenter, use my location, use default location (baltimore), show all locations
-  // show all: set searchRadius to big number so that search still works
-  // use default location: set center using function passed down via props
-  // use my location:
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col lg:flex-row">
@@ -149,9 +145,16 @@ const Map = ({ center, centerName }) => {
             <Button handleClick={() => setSelectedMarker("recenter")}>
               Show Center
             </Button>
-            <Button handleClick={() => setSelectedMarker("recenter")}>
-              {/* or specified */}
-              Show All
+            <Button
+              handleClick={() =>
+                setSearchRadius((prev) =>
+                  // dont laugh.
+                  // circumference of the Earth in meters, actually the simplest implementation since it still allows for accurate search bar queries
+                  prev === 200000000 ? sliderValue * 1000 : 200000000
+                )
+              }
+            >
+              Show {searchRadius === 200000000 ? "Specified" : "All"}
             </Button>
           </div>
         </div>
