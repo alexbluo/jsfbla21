@@ -30,7 +30,9 @@ Below is a list of features, technologies, and fixes which have been or will be 
   - turns out this was not needed for optimization
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
-- [x] Fulltext search for filter and map pages
+- [x] Button to toggle showing all attractions on the map
+- [x] Detection of whether the user is within 200 kilometers of an attraction
+- [x] Full-text search for filter and map pages
 - [x] Rescrape all data and insert to database in a different format
 - [x] Deploy to Heroku, AWS, and GCP (serverless/PaaS)
 - [x] Easy clearing of checked filters
