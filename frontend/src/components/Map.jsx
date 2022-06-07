@@ -19,7 +19,7 @@ import SliderInput from "./SliderInput";
 const Map = ({ center, centerName }) => {
   const { mapSearchInput } = useSelector((state) => state.search);
   const [isDefault, setIsDefault] = useState(centerName === defaultCenterName);
-  const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
+  const [sliderValue, setSliderValue] = useState(10); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
   const inputRef = useRef();
