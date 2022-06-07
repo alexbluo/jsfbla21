@@ -6,15 +6,44 @@ const HelpPage = () => {
       <h1 className="page-title">Help</h1>
       <h2 className="pb-4 text-3xl">FAQ</h2>
       <div className="mb-8 flex flex-col gap-1 rounded-md border-4 bg-black">
-        <Dropdown header="Why are my map inputs not showing new locations?">
+        <Dropdown header="What if I don't want to provide access to my location for the map?">
           <article>
-            Most locations are able to reach all areas of Maryland within around
-            200-300 kilometers. The limit is set to 400 kilometers in order to
-            accomodate for users in far-out regions.
+            This website is open-source and will never collect any user data.
+            Users who either do not want to or are unable to provide access to their
+            location will still have the ability to view all attractions and
+            search through using the search bar. Unfortunately they will not
+            have access to the slider/input feature, nor the "show center" and
+            "show all" (enabled by default) buttons.
           </article>
         </Dropdown>
-        {/* TODO: add block for what if i am not in maryland? */}
-        <Dropdown header="Where is the data collected from?">
+        <Dropdown header="How does the map work if I am not located in Maryland?">
+          <article>
+            The map automatically detects whether the user is within 200
+            kilometers of any attraction in Maryland, adjusting accordingly.
+            Users located within that threshold will have access to all
+            features. Users who are not located within 200 kilometers of any
+            attraction in Maryland will still have the ability to view all
+            attractions and search through using the search bar. Unfortunately
+            they will not have access to the slider/input feature, nor the "show
+            center" and "show all" (enabled by default) buttons.
+          </article>
+        </Dropdown>
+        <Dropdown header="Why does the map not show any attractions when the distance is changed?">
+          <article>
+            Please be sure to input a distance that is high enough to reach
+            Maryland, or use the "show all" button to view every attraction.
+          </article>
+        </Dropdown>
+        <Dropdown header="Why is the input distance for the map capped at 200 kilometers?">
+          <article>
+            The idea is that users taking advantage of the slider/input
+            funcationality are only looking for attractions within a reasonable
+            distance of their location. Users who wish to view any attractions
+            beyond 200 kilometers of their location may use the "show all"
+            button.
+          </article>
+        </Dropdown>
+        <Dropdown header="Where is the attraction data collected from?">
           <article>
             All data was scraped from&nbsp;
             <a
