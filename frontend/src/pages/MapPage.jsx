@@ -28,7 +28,7 @@ const MapPage = () => {
         });
         // check if the user is near maryland by checking if there is an attraction within the max distance (200 km)
         const res = await axios.get(`/api/attractions/near?${params}`);
-        // set the center to the user's location only if they are nearby, otherwise stay with default
+        // set the center to the user's location only if the user is nearby, otherwise stay with default center
         if (res.data.length > 0) {
           setCenter(coords);
           setCenterName("You");

@@ -44,6 +44,7 @@ const Map = ({ center, centerName }) => {
     if (selectedMarker === "recenter") setSelectedMarker("center");
   }, [selectedMarker]);
 
+  // select the input if it is 0
   useEffect(() => {
     if (sliderValue === 0) inputRef.current.select();
   }, [sliderValue]);

@@ -40,7 +40,7 @@ const DetailsPage = () => {
           {data.description}
         </DetailSection>
 
-        {/* website and contact via button links */}
+        {/* website and contact with links */}
         <DetailSection header="Website & Contact" order="even">
           <div className="grid grid-cols-2 gap-4 text-center">
             <ButtonLink link={data.website_link}>Website</ButtonLink>

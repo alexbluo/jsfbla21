@@ -54,10 +54,10 @@ exports.getByFilter = (req, res) => {
     const collection = db.collection("attractions");
 
     const cursor = await collection
-      // working default for getting all attractions resolves to [{ $match: {} }]
       .aggregate(pipeline)
       .skip(page * nPerPage)
       .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
+    // TODO: can edit this using hasNext()
     await cursor.forEach((doc) => data.attractions.push(doc));
 
     if (data.attractions.length > nPerPage) {
