@@ -42,7 +42,7 @@ const DetailsPage = () => {
 
         {/* website and contact via button links */}
         <DetailSection header="Website & Contact" order="even">
-          <div className="grid h-full grid-cols-2 grid-rows-4 gap-4 text-center">
+          <div className="grid grid-cols-2 gap-4 text-center">
             <ButtonLink link={data.website_link}>Website</ButtonLink>
             <ButtonLink link={data.mailto_link}>Email</ButtonLink>
             <ButtonLink link={data.phone_number}>

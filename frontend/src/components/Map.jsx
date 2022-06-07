@@ -11,6 +11,7 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
+import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
@@ -143,13 +144,15 @@ const Map = ({ center, centerName }) => {
             handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
             handleInputChange={handleInputChange}
           />
-          <div className="flex w-full justify-between">
-            <button
-              className="rounded border border-white p-4 font-light text-white duration-200 ease-in-out hover:bg-white hover:text-red"
-              onClick={() => setSelectedMarker("recenter")}
-            >
-              Recenter
-            </button>
+          {/* put map items here */}
+          <div className="flex w-full gap-1">
+            <Button handleClick={() => setSelectedMarker("recenter")}>
+              Show Center
+            </Button>
+            <Button handleClick={() => setSelectedMarker("recenter")}>
+              {/* or specified */}
+              Show All
+            </Button>
           </div>
         </div>
       </div>

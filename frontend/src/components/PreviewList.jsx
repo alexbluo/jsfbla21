@@ -3,6 +3,7 @@ import qs from "qs";
 import { useInfiniteQuery } from "react-query";
 import { useSelector } from "react-redux";
 import crab from "../images/crab.jpg";
+import Button from "./Button";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
@@ -40,9 +41,7 @@ const PreviewList = () => {
 
     const previews = data.pages
       .map((group) =>
-        group.data.map((data) => (
-          <Preview {...data} key={data.attraction_id} />
-        ))
+        group.data.map((data) => <Preview {...data} key={data.attraction_id} />)
       )
       .flat(1); // flatten so that preview length in next step is always accurate
 
@@ -61,19 +60,16 @@ const PreviewList = () => {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <>
+    <div className="flex flex-col justify-center gap-12">
       <div className="grid w-full gap-12 sm:grid-cols-2">
         {renderPreviews()}
       </div>
       {hasNextPage && (
-        <button
-          className="mt-12 rounded-md border border-red p-4 text-red duration-200 ease-in-out hover:bg-red hover:text-white"
-          onClick={fetchNextPage}
-        >
+        <Button handleClick={fetchNextPage} inverted>
           Load More
-        </button>
+        </Button>
       )}
-    </>
+    </div>
   );
 };
 
