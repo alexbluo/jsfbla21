@@ -53,11 +53,12 @@ exports.getByFilter = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
-    const cursor = await collection
-      .aggregate(pipeline)
-      .skip(page * nPerPage)
-      .limit(nPerPage + 1); // 1 more than needed to test if there is more on next page
-    // TODO: can edit this using hasNext()
+    const cursor = await collection.aggregate(pipeline);
+    // sort by name unless search query is specified, in which case stay with default sort by relevancy score
+    if (search.trim().length === 0) cursor.sort({ attraction_name: 1 });
+    // 1 more than needed to test if there is more on next page
+    cursor.skip(page * nPerPage).limit(nPerPage + 1);
+
     await cursor.forEach((doc) => data.attractions.push(doc));
 
     if (data.attractions.length > nPerPage) {
