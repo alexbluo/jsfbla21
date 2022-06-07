@@ -131,7 +131,7 @@ const Map = ({ center, centerName }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex h-full flex-col justify-between">
+        <div className="flex h-full flex-col justify-between gap-1">
           <div className="flex flex-col gap-1">
             <SearchBar type="map" />
             <SliderInput
@@ -150,8 +150,7 @@ const Map = ({ center, centerName }) => {
             <Button
               handleClick={() =>
                 setSearchRadius((prev) =>
-                  // dont laugh.
-                  // half the circumference of the Earth in meters, actually the simplest implementation since it still allows for accurate search bar queries
+                  // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
                   prev === 20000000 ? sliderValue * 1000 : 20000000
                 )
               }
