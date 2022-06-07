@@ -131,17 +131,19 @@ const Map = ({ center, centerName }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex flex-col gap-1">
-          <SearchBar type="map" />
-          <SliderInput
-            inputRef={inputRef}
-            value={sliderValue.toString()}
-            handleSliderChange={(value) => setSliderValue(value)}
-            handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-            handleInputChange={handleInputChange}
-          />
-          {/* put map items here */}
-          <div className="flex w-full gap-1">
+        <div className="flex h-full flex-col justify-between">
+          <div className="flex flex-col gap-1">
+            <SearchBar type="map" />
+            <SliderInput
+              inputRef={inputRef}
+              value={sliderValue.toString()}
+              handleSliderChange={(value) => setSliderValue(value)}
+              handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
+              handleInputChange={handleInputChange}
+            />
+            {/* put map items here */}
+          </div>
+          <div className="flex w-full flex-col gap-1 sm:flex-row">
             <Button handleClick={() => setSelectedMarker("recenter")}>
               Show Center
             </Button>
@@ -149,12 +151,12 @@ const Map = ({ center, centerName }) => {
               handleClick={() =>
                 setSearchRadius((prev) =>
                   // dont laugh.
-                  // circumference of the Earth in meters, actually the simplest implementation since it still allows for accurate search bar queries
-                  prev === 200000000 ? sliderValue * 1000 : 200000000
+                  // half the circumference of the Earth in meters, actually the simplest implementation since it still allows for accurate search bar queries
+                  prev === 20000000 ? sliderValue * 1000 : 20000000
                 )
               }
             >
-              Show {searchRadius === 200000000 ? "Specified" : "All"}
+              Show {searchRadius === 20000000 ? "Specified" : "All"}
             </Button>
           </div>
         </div>
