@@ -47,7 +47,7 @@ const Map = ({ center, centerName }) => {
 
   const handleInputChange = (e) => {
     let value = parseInt(e.target.value, 10);
-    if (value > 300) value = 300;
+    if (value > 200) value = 200;
     if (isNaN(value)) value = 0;
 
     setSliderValue(value);
