@@ -7,17 +7,17 @@ import Map from "../components/Map";
 export const defaultCenterName = "Default Center - Baltimore";
 
 const MapPage = () => {
-  // default to coordinates of baltimore
-  const [center, setCenter] = useState({ lat: 39.2904, lng: -76.6122 });
-  const [centerName, setCenterName] = useState(defaultCenterName);
+  const [center, setCenter] = useState(null);
+  const [centerName, setCenterName] = useState("");
 
   // get user location on page load
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const coords = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          // rounded to four decimal places for query key consistency
+          lat: Number(position.coords.latitude.toFixed(4)),
+          lng: Number(position.coords.longitude.toFixed(4)),
         };
 
         const params = qs.stringify({
@@ -32,6 +32,10 @@ const MapPage = () => {
         if (res.data.length > 0) {
           setCenter(coords);
           setCenterName("You");
+        } else {
+          // default to coordinates of baltimore
+          setCenter({ lat: 39.2904, lng: -76.6122 });
+          setCenterName(defaultCenterName);
         }
       });
     }

@@ -17,9 +17,9 @@ import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
 const Map = ({ center, centerName }) => {
-  const isDefault = centerName === defaultCenterName;
   const { mapSearchInput } = useSelector((state) => state.search);
-  const [sliderValue, setSliderValue] = useState(isDefault ? 20000 : 20); // in km, not passed to query
+  const [isDefault, setIsDefault] = useState(centerName === defaultCenterName);
+  const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
   const inputRef = useRef();
@@ -38,6 +38,16 @@ const Map = ({ center, centerName }) => {
     },
     { keepPreviousData: true }
   );
+
+  useEffect(() => {
+    if (centerName === defaultCenterName) {
+      setSearchRadius(20000 * 1000);
+      setIsDefault(true);
+    } else {
+      setSearchRadius(sliderValue * 1000);
+      setIsDefault(false);
+    }
+  }, [centerName]);
 
   // unselect and reselect center when recentering in case the center was already selected
   useEffect(() => {
