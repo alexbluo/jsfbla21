@@ -11,13 +11,15 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
+import { defaultCenterName } from "../pages/MapPage";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
 const Map = ({ center, centerName }) => {
+  const isDefault = centerName === defaultCenterName;
   const { mapSearchInput } = useSelector((state) => state.search);
-  const [sliderValue, setSliderValue] = useState(20); // in km, not passed to query
+  const [sliderValue, setSliderValue] = useState(isDefault ? 20000 : 20); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
   const inputRef = useRef();
@@ -134,30 +136,36 @@ const Map = ({ center, centerName }) => {
         <div className="flex h-full flex-col justify-between gap-1">
           <div className="flex flex-col gap-1">
             <SearchBar type="map" />
-            <SliderInput
-              inputRef={inputRef}
-              value={sliderValue.toString()}
-              handleSliderChange={(value) => setSliderValue(value)}
-              handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-              handleInputChange={handleInputChange}
-            />
+            {!isDefault && (
+              <SliderInput
+                inputRef={inputRef}
+                value={sliderValue.toString()}
+                handleSliderChange={(value) => setSliderValue(value)}
+                handleSliderAfterChange={(value) =>
+                  setSearchRadius(value * 1000)
+                }
+                handleInputChange={handleInputChange}
+              />
+            )}
             {/* put map items here */}
           </div>
-          <div className="flex w-full flex-col gap-1 sm:flex-row">
-            <Button handleClick={() => setSelectedMarker("recenter")}>
-              Show Center
-            </Button>
-            <Button
-              handleClick={() =>
-                setSearchRadius((prev) =>
-                  // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
-                  prev === 20000000 ? sliderValue * 1000 : 20000000
-                )
-              }
-            >
-              Show {searchRadius === 20000000 ? "Specified" : "All"}
-            </Button>
-          </div>
+          {!isDefault && (
+            <div className="flex w-full flex-col gap-1 sm:flex-row">
+              <Button handleClick={() => setSelectedMarker("recenter")}>
+                Show Center
+              </Button>
+              <Button
+                handleClick={() =>
+                  setSearchRadius((prev) =>
+                    // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
+                    prev === 20000000 ? sliderValue * 1000 : 20000000
+                  )
+                }
+              >
+                Show {searchRadius === 20000000 ? "Specified" : "All"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
