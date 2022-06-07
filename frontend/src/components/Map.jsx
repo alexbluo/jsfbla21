@@ -133,7 +133,7 @@ const Map = ({ center, centerName }) => {
         )}
       </div>
 
-      <div className="relative aspect-square bg-red p-8 lg:w-1/2">
+      <div className="aspect-square bg-red p-8 lg:w-1/2">
         <div className="flex flex-col gap-1">
           <SearchBar type="map" />
           <SliderInput
@@ -143,13 +143,15 @@ const Map = ({ center, centerName }) => {
             handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
             handleInputChange={handleInputChange}
           />
+          <div className="flex w-full justify-between">
+            <button
+              className="rounded border border-white p-4 font-light text-white duration-200 ease-in-out hover:bg-white hover:text-red"
+              onClick={() => setSelectedMarker("recenter")}
+            >
+              Recenter
+            </button>
+          </div>
         </div>
-        <button
-          className="absolute bottom-8 left-8 rounded border border-white p-4 font-light text-white duration-200 ease-in-out hover:bg-white hover:text-red"
-          onClick={() => setSelectedMarker("recenter")}
-        >
-          Recenter
-        </button>
       </div>
     </div>
   );
