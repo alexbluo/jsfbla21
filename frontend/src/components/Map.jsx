@@ -145,7 +145,7 @@ const Map = ({ center, centerName }) => {
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
         <div className="flex h-full flex-col justify-between gap-1">
-          <div className="flex flex-col gap-1">
+          <div className="flex h-full flex-col gap-1">
             <SearchBar type="map" />
             {!isDefault && (
               <SliderInput
@@ -159,6 +159,12 @@ const Map = ({ center, centerName }) => {
               />
             )}
             {/* put map items here */}
+            <section className="grow rounded-md border border-white">
+              <h2 className="flex h-16 items-center border-b-2 font-raleway text-4xl font-semibold text-white">
+                Nearby Attractions
+              </h2>
+              <article className="text-white"></article>
+            </section>
           </div>
           {!isDefault && (
             <div className="flex w-full flex-col gap-1 sm:flex-row">
