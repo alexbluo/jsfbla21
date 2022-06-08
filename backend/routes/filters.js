@@ -8,6 +8,6 @@ router.get("/city", filtersController.getCities);
 
 router.get("/category", filtersController.getCategories);
 
-router.get("/amenity", filtersController.getAmenities);
+router.get("/amenities", filtersController.getAmenities);
 
 module.exports = router;

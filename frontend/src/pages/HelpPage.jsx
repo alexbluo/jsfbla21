@@ -6,6 +6,7 @@ const HelpPage = () => {
       <h1 className="page-title">Help</h1>
       <h2 className="pb-4 text-3xl">FAQ</h2>
       <div className="mb-8 flex flex-col gap-1 rounded-md border-4 bg-black">
+        {/* TODO: add filtering system (or within, and across), maybe also why is amenities plural, does that affect anything (internal, just ignore lol) */}
         <Dropdown header="Why do my text searches not seem to match the results?">
           <article>
             The search bar performs a full-text search on more fields than just

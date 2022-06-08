@@ -6,7 +6,7 @@ import AccordionPreloader from "./AccordionPreloader";
 import Checkbox from "./Checkbox";
 import Dropdown from "./Dropdown";
 
-const categories = ["region", "city", "category", "amenity"];
+const categories = ["region", "city", "category", "amenities"];
 
 const Accordion = () => {
   const checkedFilters = useSelector((state) => state.filters);

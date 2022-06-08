@@ -23,8 +23,11 @@ exports.getByFilter = (req, res) => {
   const filterDocument = {
     $match: {
       $and: [
+        // {amenities: "Concessions"} WORKS
+        // can delete spread and brackets
         ...Object.entries(filters ?? []).map(([key, values]) => {
           return {
+            // [key]: values,
             $or: values.map((value) => {
               return { [key]: value };
             }),
@@ -33,6 +36,7 @@ exports.getByFilter = (req, res) => {
       ],
     },
   };
+  console.log(JSON.stringify(filterDocument))
   const projectDocument = {
     $project: {
       _id: 0,
@@ -47,6 +51,7 @@ exports.getByFilter = (req, res) => {
   if (search.trim().length > 0) pipeline.push(searchDocument);
   if (filters) pipeline.push(filterDocument);
   pipeline.push(projectDocument);
+  console.log(pipeline)
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const data = { attractions: [], nextPageNumber: undefined };

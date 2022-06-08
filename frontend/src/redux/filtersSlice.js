@@ -4,7 +4,7 @@ const initialState = {
   region: [],
   city: [],
   category: [],
-  amenity: [],
+  amenities: [],
 };
 
 export const { reducer, actions } = createSlice({

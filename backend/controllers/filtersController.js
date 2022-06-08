@@ -44,7 +44,7 @@ exports.getAmenities = (req, res) => {
     const collection = db.collection("filters");
 
     const filters = await collection.find().next();
-    const amenities = { amenity: filters.amenities };
+    const amenities = { amenities: filters.amenities };
 
     client.close();
     res.status(200).json(amenities);
