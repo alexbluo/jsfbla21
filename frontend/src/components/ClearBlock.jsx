@@ -1,5 +1,6 @@
 import classNames from "classnames";
 
+// TODO: fix breweries larger than others
 const ClearBlock = ({ handleClick, reverse, children }) => {
   return (
     <div
@@ -10,7 +11,7 @@ const ClearBlock = ({ handleClick, reverse, children }) => {
     >
       <div
         className={classNames(
-          "flex items-center justify-center overflow-hidden bg-gold px-4 font-raleway text-lg focus:brightness-90 xl:w-1/2",
+          "flex items-center justify-center bg-gold px-4 font-raleway text-lg focus:brightness-90 xl:w-1/2",
           { "rounded-r": reverse },
           { "rounded-l": !reverse }
         )}
