@@ -156,6 +156,7 @@ const Map = ({ center, centerName }) => {
             />
           )}
           <section className="flex grow flex-col lg:overflow-y-scroll rounded-md border border-white">
+            {/* TODO: replace with currently selected info */}
             <h2 className="flex items-center border-b rounded-md p-4 font-raleway text-4xl font-semibold text-white">
               Nearby Attractions
             </h2>

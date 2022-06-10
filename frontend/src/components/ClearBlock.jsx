@@ -21,7 +21,7 @@ const ClearBlock = ({ handleClick, reverse, children }) => {
       </div>
       <button
         className={classNames(
-          "group aspect-square h-full text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75 xl:w-1/2",
+          "group h-full text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75 xl:w-1/2",
           { "rounded-l": reverse },
           { "rounded-r": !reverse }
         )}
