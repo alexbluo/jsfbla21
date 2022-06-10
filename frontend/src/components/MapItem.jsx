@@ -1,1 +1,0 @@
-// TODO: implement this, probably want to refactor selected marker to store the entire document or at least coordinates for second query

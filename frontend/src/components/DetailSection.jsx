@@ -4,7 +4,7 @@ const DetailSection = ({ header, order, children }) => {
   return (
     <section
       className={classNames(
-        "flex aspect-square flex-col gap-2 overflow-auto py-4 px-8",
+        "flex aspect-square flex-col gap-2 overflow-auto p-8",
         { "bg-gold text-black": order === "odd" },
         { "bg-red text-white": order === "even" }
       )}

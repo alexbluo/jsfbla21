@@ -144,7 +144,6 @@ const Map = ({ center, centerName }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        {/* <div className="flex h-full flex-col justify-between gap-1"> */}
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
           {!isDefault && (
@@ -156,12 +155,11 @@ const Map = ({ center, centerName }) => {
               handleInputChange={handleInputChange}
             />
           )}
-          {/* put map items here */}
-          <section className="flex grow flex-col overflow-y-scroll rounded-md border border-white">
-            <h2 className="flex h-16 items-center border-b-2 p-4 font-raleway text-4xl font-semibold text-white">
+          <section className="flex grow flex-col lg:overflow-y-scroll rounded-md border border-white">
+            <h2 className="flex items-center border-b rounded-md p-4 font-raleway text-4xl font-semibold text-white">
               Nearby Attractions
             </h2>
-            <article className="overflow-y-scroll text-white">
+            <article className="lg:overflow-y-scroll text-white">
               <div className="my-1 h-16 bg-black "></div>
               <div className="my-1 h-16 bg-black "></div>
               <div className="my-1 h-16 bg-black "></div>
@@ -172,7 +170,7 @@ const Map = ({ center, centerName }) => {
             </article>
           </section>
           {!isDefault && (
-            <div className="flex w-full flex-col gap-1 sm:flex-row">
+            <div className="flex shrink-0 w-full flex-col gap-1 sm:flex-row">
               <Button handleClick={() => setSelectedMarker("recenter")}>
                 Show Center
               </Button>
@@ -191,7 +189,6 @@ const Map = ({ center, centerName }) => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

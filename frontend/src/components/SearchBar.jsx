@@ -17,7 +17,7 @@ const SearchBar = ({ type }) => {
   };
 
   return (
-    <div className="flex h-16 w-full gap-1 rounded-md border-4 bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-gold/50">
+    <div className="flex h-16 w-full shrink-0 gap-1 rounded-md border-4 bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-gold/50">
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
