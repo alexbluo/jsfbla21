@@ -105,8 +105,10 @@ const DetailsPage = () => {
         center={{
           lat: data.location.coordinates[1],
           lng: data.location.coordinates[0],
+          name: data.attraction_name,
+          description: data.description,
+          id: data.attraction_id,
         }}
-        centerName={`${data.attraction_name} (current)`}
       />
     </div>
   );

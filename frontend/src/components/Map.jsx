@@ -11,16 +11,16 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
-import { defaultCenterName } from "../pages/MapPage";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
-const Map = ({ center, centerName }) => {
+const Map = ({ center, isDefaultCenter }) => {
   const { mapSearchInput } = useSelector((state) => state.search);
-  const [isDefault, setIsDefault] = useState(centerName === defaultCenterName);
   const [sliderValue, setSliderValue] = useState(10); // in km, not passed to query
-  const [searchRadius, setSearchRadius] = useState(sliderValue * 1000); // in m, passed to query
+  const [searchRadius, setSearchRadius] = useState(
+    isDefaultCenter ? 20000 * 1000 : sliderValue * 1000
+  ); // in m, is passed to query
   const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
   const inputRef = useRef();
 
@@ -39,19 +39,9 @@ const Map = ({ center, centerName }) => {
     { keepPreviousData: true }
   );
 
-  useEffect(() => {
-    if (centerName === defaultCenterName) {
-      setSearchRadius(20000 * 1000);
-      setIsDefault(true);
-    } else {
-      setSearchRadius(sliderValue * 1000);
-      setIsDefault(false);
-    }
-  }, [centerName]);
-
   // unselect and reselect center when recentering in case the center was already selected
   useEffect(() => {
-    if (selectedMarker === "recenter") setSelectedMarker("center");
+    if (selectedMarker === "recenter") setSelectedMarker(center);
   }, [selectedMarker]);
 
   // select the input if it is 0
@@ -93,12 +83,12 @@ const Map = ({ center, centerName }) => {
           >
             <Marker
               position={center}
-              onClick={() => setSelectedMarker("center")}
+              onClick={() => setSelectedMarker(center)}
               animation={google.maps.Animation.DROP}
             >
-              {selectedMarker === "center" && (
+              {selectedMarker === center && (
                 <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                  <div>{centerName}</div>
+                  <div>{center.name}</div>
                 </InfoWindow>
               )}
             </Marker>
@@ -110,12 +100,12 @@ const Map = ({ center, centerName }) => {
                     lat: doc.location.coordinates[1],
                     lng: doc.location.coordinates[0],
                   }}
-                  onClick={() => setSelectedMarker(doc.attraction_id)}
+                  onClick={() => setSelectedMarker(doc)}
                   title={doc.attraction_name}
                   key={doc.attraction_id}
                 >
                   {/* only show info window if the currently selected marker's id matched */}
-                  {selectedMarker === doc.attraction_id && (
+                  {selectedMarker === doc && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                       <div>
                         <span className="font-medium">
@@ -144,46 +134,49 @@ const Map = ({ center, centerName }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex h-full flex-col gap-1">
-          <SearchBar type="map" />
-          {!isDefault && (
-            <SliderInput
-              inputRef={inputRef}
-              value={sliderValue.toString()}
-              handleSliderChange={(value) => setSliderValue(value)}
-              handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-              handleInputChange={handleInputChange}
-            />
-          )}
-          <section className="flex grow flex-col lg:overflow-y-scroll rounded-md border border-white">
-            {/* TODO: replace with currently selected info */}
-            <h2 className="flex items-center border-b rounded-md p-4 font-raleway text-4xl font-semibold text-white">
-              Nearby Attractions
-            </h2>
-            <article className="lg:overflow-y-scroll text-white">
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-              <div className="my-1 h-16 bg-black "></div>
-            </article>
-          </section>
-          {!isDefault && (
-            <div className="flex shrink-0 w-full flex-col gap-1 sm:flex-row">
+        <div className="flex h-full flex-col justify-between">
+          <div className="flex flex-col gap-1">
+            <SearchBar type="map" />
+            {!isDefaultCenter && (
+              <SliderInput
+                inputRef={inputRef}
+                value={sliderValue.toString()}
+                handleSliderChange={(value) => setSliderValue(value)}
+                handleSliderAfterChange={(value) =>
+                  setSearchRadius(value * 1000)
+                }
+                handleInputChange={handleInputChange}
+              />
+            )}
+            {selectedMarker && selectedMarker !== "recenter" && (
+              <section className="flex grow flex-col rounded-md border border-white p-4 lg:overflow-y-scroll">
+                {/* TODO: replace with currently selected info */}
+                <h2 className="flex items-center  border-b font-raleway text-4xl font-semibold text-white">
+                  {selectedMarker === center
+                    ? center.name
+                    : selectedMarker.attraction_name}
+                </h2>
+                <article className="pt-4 text-white lg:overflow-y-scroll">
+                  {selectedMarker.description}
+                </article>
+              </section>
+            )}
+          </div>
+          {!isDefaultCenter && (
+            <div className="flex w-full shrink-0 flex-col gap-1 sm:flex-row">
               <Button handleClick={() => setSelectedMarker("recenter")}>
                 Show Center
               </Button>
+              {/* TODO: maybe extract into state */}
               <Button
                 handleClick={() =>
                   setSearchRadius((prev) =>
                     // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
-                    prev === 20000000 ? sliderValue * 1000 : 20000000
+                    prev === 20000 * 1000 ? sliderValue * 1000 : 20000 * 1000
                   )
                 }
               >
-                Show {searchRadius === 20000000 ? "Specified" : "All"}
+                Show {searchRadius === 20000 * 1000 ? "Specified" : "All"}
               </Button>
             </div>
           )}

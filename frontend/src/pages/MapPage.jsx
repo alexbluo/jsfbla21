@@ -3,12 +3,17 @@ import axios from "axios";
 import qs from "qs";
 import Map from "../components/Map";
 
-// used in child to determine whether the map is using the user as the center or the default center
-export const defaultCenterName = "Default Center - Baltimore";
+// the map's center is located in Baltimore is the user is unable to provide their location
+const defaultCenter = {
+  lat: 39.2904,
+  lng: -76.6122,
+  name: "Default Center - Baltimore",
+  description:
+    "This is the default center for users who are either too far away from Maryland or don't have location services enabled. For more information, see the help page.",
+};
 
 const MapPage = () => {
   const [center, setCenter] = useState(null);
-  const [centerName, setCenterName] = useState("");
 
   // get user location on page load
   useEffect(() => {
@@ -30,12 +35,13 @@ const MapPage = () => {
         const res = await axios.get(`/api/attractions/near?${params}`);
         // set the center to the user's location only if the user is nearby, otherwise stay with default center
         if (res.data.length > 0) {
-          setCenter(coords);
-          setCenterName("You");
+          setCenter({
+            ...coords,
+            name: "You",
+            description: "Your current location.",
+          });
         } else {
-          // default to coordinates of baltimore
-          setCenter({ lat: 39.2904, lng: -76.6122 });
-          setCenterName(defaultCenterName);
+          setCenter(defaultCenter);
         }
       });
     }
@@ -44,7 +50,9 @@ const MapPage = () => {
   return (
     <>
       <h1 className="page-title">Map</h1>
-      {center && <Map center={center} centerName={centerName} />}
+      {center && (
+        <Map center={center} isDefaultCenter={center === defaultCenter} />
+      )}
     </>
   );
 };
