@@ -150,8 +150,7 @@ const Map = ({ center, isDefaultCenter }) => {
             )}
             {selectedMarker && selectedMarker !== "recenter" && (
               <section className="flex grow flex-col rounded-md border border-white p-4 lg:overflow-y-scroll">
-                {/* TODO: replace with currently selected info */}
-                <h2 className="flex items-center  border-b font-raleway text-4xl font-semibold text-white">
+                <h2 className="flex items-center border-b font-raleway text-4xl font-semibold text-white">
                   {selectedMarker === center
                     ? center.name
                     : selectedMarker.attraction_name}

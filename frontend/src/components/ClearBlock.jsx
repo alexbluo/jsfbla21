@@ -1,6 +1,5 @@
 import classNames from "classnames";
 
-// TODO: fix breweries larger than others
 const ClearBlock = ({ handleClick, reverse, children }) => {
   return (
     <div

@@ -22,13 +22,11 @@ exports.getByFilter = (req, res) => {
   };
   const filterDocument = {
     $match: {
-      $and: Object.entries(filters ?? []).map(([key, values]) => {
-        return {
-          $or: values.map((value) => {
-            return { [key]: value };
-          }),
-        };
-      }),
+      $and: Object.entries(filters ?? []).map(([key, values]) => ({
+        $or: values.map((value) => ({
+          [key]: value,
+        })),
+      })),
     },
   };
   const projectDocument = {
