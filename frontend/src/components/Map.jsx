@@ -134,53 +134,17 @@ const Map = ({ center, isDefaultCenter }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex h-full flex-col justify-between gap-1">
-          <div className="flex h-full flex-col gap-1">
-            <SearchBar type="map" />
-            {!isDefaultCenter && (
-              <SliderInput
-                inputRef={inputRef}
-                value={sliderValue.toString()}
-                handleSliderChange={(value) => setSliderValue(value)}
-                handleSliderAfterChange={(value) =>
-                  setSearchRadius(value * 1000)
-                }
-                handleInputChange={handleInputChange}
-              />
-            )}
-            {selectedMarker && selectedMarker !== "recenter" && (
-              <section className="flex grow flex-col rounded-md border border-white p-8 lg:overflow-y-scroll">
-                <h2 className="flex items-center border-b font-raleway text-4xl font-semibold text-white">
-                  {selectedMarker === center
-                    ? center.name
-                    : selectedMarker.attraction_name}
-                </h2>
-                <article className="pt-4 text-white lg:overflow-y-scroll">
-                  {/* {selectedMarker.description} */}
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test test test test
-                  test test test test test test test test test
-                </article>
-              </section>
-            )}
-          </div>
-          {/* TODO: add go to page link */}
+        <div className="flex h-full flex-col gap-1">
+          <SearchBar type="map" />
+          {!isDefaultCenter && (
+            <SliderInput
+              inputRef={inputRef}
+              value={sliderValue.toString()}
+              handleSliderChange={(value) => setSliderValue(value)}
+              handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
+              handleInputChange={handleInputChange}
+            />
+          )}
           {!isDefaultCenter && (
             <div className="flex w-full shrink-0 flex-col gap-1 sm:flex-row">
               <Button handleClick={() => setSelectedMarker("recenter")}>
@@ -198,6 +162,18 @@ const Map = ({ center, isDefaultCenter }) => {
                 Show {searchRadius === 20000 * 1000 ? "Specified" : "All"}
               </Button>
             </div>
+          )}
+          {selectedMarker && selectedMarker !== "recenter" && (
+            <section className="flex grow flex-col rounded-md border border-white p-8 lg:overflow-y-scroll">
+              <h2 className="flex items-center border-b font-raleway text-4xl font-semibold text-white">
+                {selectedMarker === center
+                  ? center.name
+                  : selectedMarker.attraction_name}
+              </h2>
+              <article className="pt-4 text-white lg:overflow-y-scroll">
+                {selectedMarker.description}
+              </article>
+            </section>
           )}
         </div>
       </div>
