@@ -117,13 +117,12 @@ const Map = ({ center, isDefaultCenter }) => {
                         {doc.city}, {doc.state}&nbsp;
                         {doc.zip}
                         <br />
-                        <Link
+                        <a
                           className="font-normal text-[#2563eb] underline"
-                          to={`/attractions/${doc.attraction_id}`}
-                          target="_blank"
+                          href={doc.directions_link}
                         >
-                          Details
-                        </Link>
+                          Directions
+                        </a>
                       </div>
                     </InfoWindow>
                   )}
@@ -164,14 +163,25 @@ const Map = ({ center, isDefaultCenter }) => {
             </div>
           )}
           {selectedMarker && selectedMarker !== "recenter" && (
-            <section className="flex grow flex-col rounded-md border border-white p-8 lg:overflow-y-scroll">
-              <h2 className="flex items-center border-b font-raleway text-4xl font-semibold text-white">
+            <section className="flex grow flex-col rounded-md border border-white p-4 lg:overflow-y-scroll">
+              <h2 className="flex items-center border-b font-raleway text-3xl font-semibold text-white">
                 {selectedMarker === center
                   ? center.name
                   : selectedMarker.attraction_name}
               </h2>
-              <article className="pt-4 text-white lg:overflow-y-scroll">
-                {selectedMarker.description}
+              <article className="text-white h-full lg:overflow-y-scroll">
+                <div className="flex flex-col h-full justify-between gap-4">
+                  <p className="pt-4">{selectedMarker.description}</p>
+                    <Link
+                      className="font-normal text-[#2563eb] underline"
+                      to={`/attractions/${selectedMarker.attraction_id}`}
+                      target="_blank"
+                      >
+                      <Button>
+                      Details
+                  </Button>
+                    </Link>
+                </div>
               </article>
             </section>
           )}
