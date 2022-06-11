@@ -72,8 +72,8 @@ const Map = ({ center, isDefaultCenter }) => {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex w-full flex-col lg:flex-row">
-      <div className="aspect-square lg:w-1/2">
+    <div className="flex w-full flex-col xl:flex-row">
+      <div className="aspect-square xl:w-1/2">
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={{ width: "100%", height: "100%" }}
@@ -132,7 +132,7 @@ const Map = ({ center, isDefaultCenter }) => {
         )}
       </div>
 
-      <div className="aspect-square bg-red p-8 lg:w-1/2">
+      <div className="aspect-square bg-red p-8 xl:w-1/2">
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
           {!isDefaultCenter && (
@@ -163,24 +163,34 @@ const Map = ({ center, isDefaultCenter }) => {
             </div>
           )}
           {selectedMarker && selectedMarker !== "recenter" && (
-            <section className="flex grow flex-col rounded-md border border-white p-4 lg:overflow-y-scroll">
+            <section className="flex grow flex-col rounded-md border border-white p-4 xl:overflow-y-scroll">
               <h2 className="flex items-center border-b font-raleway text-3xl font-semibold text-white">
                 {selectedMarker === center
                   ? center.name
                   : selectedMarker.attraction_name}
               </h2>
-              <article className="text-white h-full lg:overflow-y-scroll">
-                <div className="flex flex-col h-full justify-between gap-4">
+              <article className="h-full text-white xl:overflow-y-scroll">
+                <div className="flex h-full flex-col justify-between gap-4">
                   <p className="pt-4">{selectedMarker.description}</p>
-                    <Link
-                      className="font-normal text-[#2563eb] underline"
-                      to={`/attractions/${selectedMarker.attraction_id}`}
-                      target="_blank"
-                      >
-                      <Button>
-                      Details
-                  </Button>
-                    </Link>
+                  <Link
+                    className="group font-normal text-[#2563eb] underline"
+                    to={`/attractions/${selectedMarker.attraction_id}`}
+                    target="_blank"
+                  >
+                    <Button>
+                      <div className="flex items-center justify-center">
+                        More Details&nbsp;
+                        <svg
+                          className="fill-white duration-200 ease-in-out group-hover:translate-x-1 group-hover:fill-red"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                        </svg>
+                      </div>
+                    </Button>
+                  </Link>
                 </div>
               </article>
             </section>
