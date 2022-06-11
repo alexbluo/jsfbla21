@@ -21,7 +21,7 @@ const Map = ({ center, isDefaultCenter }) => {
   const [searchRadius, setSearchRadius] = useState(
     isDefaultCenter ? 20000 * 1000 : sliderValue * 1000
   ); // in m, is passed to query
-  const [selectedMarker, setSelectedMarker] = useState(null); // id of the currently selected marker
+  const [selectedMarker, setSelectedMarker] = useState(null); // data object of the currently selected marker
   const inputRef = useRef();
 
   const { data, error, isLoading, isError } = useQuery(

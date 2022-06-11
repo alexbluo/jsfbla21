@@ -13,6 +13,7 @@ const defaultCenter = {
 };
 
 const MapPage = () => {
+  // initialized to null so that the map doesn't always show with default center at first
   const [center, setCenter] = useState(null);
 
   // get user location on page load
@@ -50,6 +51,9 @@ const MapPage = () => {
           setCenter(defaultCenter);
         }
       );
+    } else {
+      // handle browsers that don't support the geolocation api
+      setCenter(defaultCenter);
     }
   }, []);
 
