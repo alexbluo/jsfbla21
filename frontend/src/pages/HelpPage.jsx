@@ -35,9 +35,9 @@ const HelpPage = () => {
         <Dropdown header="How does the map work if I am not located in Maryland?">
           <article>
             The map automatically detects whether the user is within 200
-            kilometers of any attraction in Maryland, adjusting accordingly.
-            Users located within that threshold will have access to all
-            features. Users who are not located within 200 kilometers of any
+            kilometers of any attraction in Maryland before adjusting
+            accordingly. Users located within that threshold will have access to
+            all features. Users not located within 200 kilometers of any
             attraction in Maryland will still have the ability to view and
             search all attractions. Unfortunately they will not have access to
             the slider/input feature, nor the "show center" and "show all"
