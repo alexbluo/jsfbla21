@@ -162,39 +162,41 @@ const Map = ({ center, isDefaultCenter }) => {
               </Button>
             </div>
           )}
-          {selectedMarker && selectedMarker !== "recenter" && (
-            <section className="flex grow flex-col rounded-md border border-white p-4 xl:overflow-y-scroll">
-              <h2 className="flex items-center border-b font-raleway text-3xl font-semibold text-white">
-                {selectedMarker === center
-                  ? center.name
-                  : selectedMarker.attraction_name}
-              </h2>
-              <article className="h-full text-white xl:overflow-y-scroll">
-                <div className="flex h-full flex-col justify-between gap-4">
-                  <p className="pt-4">{selectedMarker.description}</p>
-                  <Link
-                    className="group font-normal text-[#2563eb] underline"
-                    to={`/attractions/${selectedMarker.attraction_id}`}
-                    target="_blank"
-                  >
-                    <Button>
-                      <div className="flex items-center justify-center">
-                        More Details&nbsp;
-                        <svg
-                          className="fill-white duration-200 ease-in-out group-hover:translate-x-1 group-hover:fill-red"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                        </svg>
-                      </div>
-                    </Button>
-                  </Link>
-                </div>
-              </article>
-            </section>
-          )}
+          {selectedMarker &&
+            selectedMarker !== center &&
+            selectedMarker !== "recenter" && (
+              <section className="flex grow flex-col rounded-md border border-white p-4 xl:overflow-y-scroll">
+                <h2 className="flex items-center border-b font-raleway text-3xl font-semibold text-white">
+                  {selectedMarker === center
+                    ? center.name
+                    : selectedMarker.attraction_name}
+                </h2>
+                <article className="h-full text-white xl:overflow-y-scroll">
+                  <div className="flex h-full flex-col justify-between gap-4">
+                    <p className="pt-4">{selectedMarker.description}</p>
+                    <Link
+                      className="group font-normal text-[#2563eb] underline"
+                      to={`/attractions/${selectedMarker.attraction_id}`}
+                      target="_blank"
+                    >
+                      <Button>
+                        <div className="flex items-center justify-center">
+                          More Details&nbsp;
+                          <svg
+                            className="fill-white duration-200 ease-in-out group-hover:translate-x-1 group-hover:fill-red"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                          </svg>
+                        </div>
+                      </Button>
+                    </Link>
+                  </div>
+                </article>
+              </section>
+            )}
         </div>
       </div>
     </div>
