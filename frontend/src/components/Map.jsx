@@ -134,8 +134,8 @@ const Map = ({ center, isDefaultCenter }) => {
       </div>
 
       <div className="aspect-square bg-red p-8 lg:w-1/2">
-        <div className="flex h-full flex-col justify-between">
-          <div className="flex flex-col gap-1">
+        <div className="flex h-full flex-col justify-between gap-1">
+          <div className="flex h-full flex-col gap-1">
             <SearchBar type="map" />
             {!isDefaultCenter && (
               <SliderInput
@@ -149,18 +149,38 @@ const Map = ({ center, isDefaultCenter }) => {
               />
             )}
             {selectedMarker && selectedMarker !== "recenter" && (
-              <section className="flex grow flex-col rounded-md border border-white p-4 lg:overflow-y-scroll">
+              <section className="flex grow flex-col rounded-md border border-white p-8 lg:overflow-y-scroll">
                 <h2 className="flex items-center border-b font-raleway text-4xl font-semibold text-white">
                   {selectedMarker === center
                     ? center.name
                     : selectedMarker.attraction_name}
                 </h2>
                 <article className="pt-4 text-white lg:overflow-y-scroll">
-                  {selectedMarker.description}
+                  {/* {selectedMarker.description} */}
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test test test test
+                  test test test test test test test test test
                 </article>
               </section>
             )}
           </div>
+          {/* TODO: add go to page link */}
           {!isDefaultCenter && (
             <div className="flex w-full shrink-0 flex-col gap-1 sm:flex-row">
               <Button handleClick={() => setSelectedMarker("recenter")}>
