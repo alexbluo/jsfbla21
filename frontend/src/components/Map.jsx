@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -104,7 +104,7 @@ const Map = ({ center, isDefaultCenter }) => {
                   title={doc.attraction_name}
                   key={doc.attraction_id}
                 >
-                  {/* only show info window if the currently selected marker's id matched */}
+                  {/* only show info window if the currently selected marker matches */}
                   {selectedMarker === doc && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                       <div>
@@ -131,7 +131,7 @@ const Map = ({ center, isDefaultCenter }) => {
           </GoogleMap>
         )}
       </div>
-
+      
       <div className="aspect-square bg-red p-8 xl:w-1/2">
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
@@ -149,7 +149,6 @@ const Map = ({ center, isDefaultCenter }) => {
               <Button handleClick={() => setSelectedMarker("recenter")}>
                 Show Center
               </Button>
-              {/* TODO: maybe extract into state */}
               <Button
                 handleClick={() =>
                   setSearchRadius((prev) =>
@@ -162,6 +161,7 @@ const Map = ({ center, isDefaultCenter }) => {
               </Button>
             </div>
           )}
+          {/* info about whichever marker is selected */}
           {selectedMarker &&
             selectedMarker !== center &&
             selectedMarker !== "recenter" && (

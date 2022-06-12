@@ -6,13 +6,12 @@ const HelpPage = () => {
       <h1 className="page-title">Help</h1>
       <h2 className="pb-4 text-3xl">FAQ</h2>
       <div className="mb-8 flex flex-col gap-1 rounded-md border-4 bg-black">
-        {/* TODO: add filtering system (or within, and across) offer more in depth reasoning (depth of) via contact */}
         <Dropdown header="Why do my text searches not seem to match the results?">
           <article>
             The search bar performs a full-text search on more fields than just
             the attractions' name. Thus, results may consist of attractions with
-            a name, description, amenity, category, or address which matches the
-            query. Results are sorted by relevance to the search query!
+            a name, description, amenity, category, and/or address which matches
+            the query. Results are sorted by relevance to the search query!
           </article>
         </Dropdown>
         <Dropdown header="What if I don't want to provide access to my location for the map?">

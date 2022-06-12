@@ -4,8 +4,6 @@ import {
   changeMapSearchInput,
 } from "../redux/searchSlice";
 
-// TODO: test individual rerenders from other components' state changes and memoize
-// TODO: or refactor into dumb
 const SearchBar = ({ type }) => {
   const { filterSearchInput, mapSearchInput } = useSelector(
     (state) => state.search
