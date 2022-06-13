@@ -58,6 +58,31 @@ Note that a .env file with the correct credentials are required for anything rel
 
 ## Sourcing
 
+### Libraries
+
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- [React Redux](https://react-redux.js.org/introduction/getting-started)
+- [TailwindCSS](https://tailwindcss.com/docs/installation)
+- [axios](https://axios-http.com/docs/intro)
+- [classnames](https://github.com/JedWatson/classnames)
+- [qs](https://github.com/ljharb/qs)
+- [rc-slider](https://github.com/schrodinger/rc-slider)
+- [React Query](https://react-query.tanstack.com/overview)
+- [React Router DOM](https://reactrouter.com/docs/en/v6)
+- [Vite](https://vitejs.dev/guide/)
+- [ESLint](https://eslint.org/docs/user-guide/configuring/)
+- [PostCSS](https://github.com/postcss/postcss)
+- [Autoprefixer](https://github.com/postcss/autoprefixer)
+- [Node.js](https://nodejs.org/en/docs/)
+- [MongoDB](https://www.mongodb.com/docs/)
+- [Express](https://expressjs.com/en/starter/installing.html)
+- [dotenv](https://github.com/motdotla/dotenv)
+- [Prettier](https://prettier.io/docs/en/index.html)
+- [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
+
+### Images
+
 - [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)
 - [Data Source](https://www.visitmaryland.org/things-to-do/attractions)
 - [Crab](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD)
