@@ -60,26 +60,26 @@ Note that a .env file with the correct credentials are required for anything rel
 
 ### Libraries
 
+- [MongoDB](https://www.mongodb.com/docs/)
+- [Express](https://expressjs.com/en/starter/installing.html)
 - [React](https://reactjs.org/docs/getting-started.html)
+- [Node.js](https://nodejs.org/en/docs/)
+- [TailwindCSS](https://tailwindcss.com/docs/installation)
+- [React Query](https://react-query.tanstack.com/overview)
 - [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
 - [React Redux](https://react-redux.js.org/introduction/getting-started)
-- [TailwindCSS](https://tailwindcss.com/docs/installation)
+- [Vite](https://vitejs.dev/guide/)
+- [React Router DOM](https://reactrouter.com/docs/en/v6)
+- [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
 - [axios](https://axios-http.com/docs/intro)
 - [classnames](https://github.com/JedWatson/classnames)
 - [qs](https://github.com/ljharb/qs)
 - [rc-slider](https://github.com/schrodinger/rc-slider)
-- [React Query](https://react-query.tanstack.com/overview)
-- [React Router DOM](https://reactrouter.com/docs/en/v6)
-- [Vite](https://vitejs.dev/guide/)
-- [ESLint](https://eslint.org/docs/user-guide/configuring/)
-- [PostCSS](https://github.com/postcss/postcss)
-- [Autoprefixer](https://github.com/postcss/autoprefixer)
-- [Node.js](https://nodejs.org/en/docs/)
-- [MongoDB](https://www.mongodb.com/docs/)
-- [Express](https://expressjs.com/en/starter/installing.html)
+- [postcss](https://github.com/postcss/postcss)
+- [autoprefixer](https://github.com/postcss/autoprefixer)
 - [dotenv](https://github.com/motdotla/dotenv)
-- [Prettier](https://prettier.io/docs/en/index.html)
-- [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
+- [eslint](https://eslint.org/docs/user-guide/configuring/)
+- [prettier](https://prettier.io/docs/en/index.html)
 
 ### Images
 
