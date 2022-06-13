@@ -24,12 +24,12 @@ Website that suggests tourist attractions in Maryland based on user-defined attr
 
 Below is a list of features, technologies, and fixes which have been or will be implemented, with more recent and higher priority ones at the top:
 
-- [ ] List nearby places on map marker select
-- [ ] Refactor into smart and dumb components
 - [ ] React concurrent for handling input fields that query on input (search and distance)
   - turns out this was not needed for optimization
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
+- [x] Refactor into smart and dumb components
+- [x] Show info about selected marker
 - [x] Button to toggle showing all attractions on the map
 - [x] Detection of whether the user is within 200 kilometers of an attraction
 - [x] Full-text search for filter and map pages
