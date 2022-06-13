@@ -54,8 +54,6 @@ The following commands from the MongoDB Database Tools are used to dynamically b
 - take snapshot: mongodump --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump
 - restore snapshot: mongorestore --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -d attractionsDB ~/mongodump/attractionsDB
 
-Note that a .env file with the correct credentials are required for anything related to the database to work locally
-
 ## Sourcing
 
 ### Libraries
