@@ -34,6 +34,10 @@ const PreviewList = () => {
       }
     );
 
+  /**
+   * Render previews based on the state of the data (loading, empty, good)
+   * @returns skeleton loaders if data is loading, nothing matched crab if data is empty, otherwise list of previews
+   */
   const renderPreviews = () => {
     // weird shorthand for making 8 skeleton loaders
     if (isLoading)
@@ -60,10 +64,8 @@ const PreviewList = () => {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex flex-col w-full justify-center gap-12">
-      <div className="grid gap-12 sm:grid-cols-2">
-        {renderPreviews()}
-      </div>
+    <div className="flex w-full flex-col justify-center gap-12">
+      <div className="grid gap-12 sm:grid-cols-2">{renderPreviews()}</div>
       {hasNextPage && (
         <Button handleClick={fetchNextPage} inverted>
           Load More
