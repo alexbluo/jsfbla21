@@ -5,7 +5,7 @@ import { add, remove } from "../redux/filtersSlice";
 const Checkbox = ({ category, filter, checked }) => {
   const dispatch = useDispatch();
 
-  // trigger redux action and refetch
+  // trigger redux action (add/remove filter), which causes preview list component to refetch
   const handleCheck = (e) => {
     if (e.target.checked) {
       dispatch(add({ category: category, filter: filter }));
@@ -23,7 +23,7 @@ const Checkbox = ({ category, filter, checked }) => {
           onChange={(e) => handleCheck(e)}
           checked={checked}
         />
-      {filter}
+        {filter}
       </label>
     </li>
   );

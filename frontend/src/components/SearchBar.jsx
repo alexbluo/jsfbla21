@@ -9,7 +9,7 @@ const SearchBar = ({ type }) => {
     (state) => state.search
   );
   const dispatch = useDispatch();
-
+  
   const handleInputChange = (e) => {
     if (type === "filter") dispatch(changeFilterSearchInput(e.target.value));
     if (type === "map") dispatch(changeMapSearchInput(e.target.value));

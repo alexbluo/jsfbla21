@@ -40,8 +40,9 @@ const PreviewList = () => {
    */
   const renderPreviews = () => {
     // weird shorthand for making 8 skeleton loaders
-    if (isLoading)
+    if (isLoading) {
       return [...Array(8)].map((_, i) => <PreviewPreloader key={i} />);
+    }
 
     const previews = data.pages
       .map((group) =>

@@ -62,13 +62,14 @@ const Map = ({ center, isDefaultCenter }) => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
-  if (loadError)
+  if (loadError) {
     return (
       <div>
         Map cannot be loaded right now, sorry. Please make sure that you have
         granted location access.
       </div>
     );
+  }
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
@@ -131,7 +132,7 @@ const Map = ({ center, isDefaultCenter }) => {
           </GoogleMap>
         )}
       </div>
-      
+
       <div className="aspect-square bg-red p-8 xl:w-1/2">
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
