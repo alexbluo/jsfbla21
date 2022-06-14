@@ -9,14 +9,14 @@ const SearchBar = ({ type }) => {
     (state) => state.search
   );
   const dispatch = useDispatch();
-  
+
   const handleInputChange = (e) => {
     if (type === "filter") dispatch(changeFilterSearchInput(e.target.value));
     if (type === "map") dispatch(changeMapSearchInput(e.target.value));
   };
 
   return (
-    <div className="flex h-16 w-full shrink-0 gap-1 rounded-md border-4 bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-gold/50">
+    <div className="flex h-16 w-full shrink-0 gap-1 rounded-md border-4 bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-4 focus-within:outline-gold/50">
       <input
         className="w-full rounded-l bg-gold pl-4 font-raleway text-lg outline-none"
         type="text"
