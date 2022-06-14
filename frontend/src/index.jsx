@@ -4,14 +4,12 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import {
-  LandingPage,
-  AttractionsPage,
-  DetailsPage,
-  HelpPage,
-  Error404Page,
-  MapPage,
-} from "./pages/pageExports";
+import AttractionsPage from "./pages/AttractionsPage";
+import DetailsPage from "./pages/DetailsPage";
+import Error404Page from "./pages/Error404Page";
+import HelpPage from "./pages/HelpPage";
+import LandingPage from "./pages/LandingPage";
+import MapPage from "./pages/MapPage";
 import { store } from "./redux/store";
 import "./index.css";
 
