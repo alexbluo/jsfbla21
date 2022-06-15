@@ -8,7 +8,7 @@ const AttractionsPage = () => {
     <>
       <h1 className="page-title">Attractions</h1>
       <div className="flex w-full flex-col gap-12 xl:flex-row">
-        <div className="flex flex-col gap-1 w-full xl:w-1/3">
+        <div className="flex w-full flex-col gap-1 xl:w-1/3">
           <SearchBar type="filter" />
           <Accordion />
           <ClearBlockList />
