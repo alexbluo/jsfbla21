@@ -6,7 +6,7 @@ import DetailSection from "../components/DetailSection";
 import Map from "../components/Map";
 import none from "../images/none.png";
 
-const DetailsPage = () => {
+export default function DetailsPage() {
   const { id } = useParams();
 
   const { data, error, isLoading, isError } = useQuery(
@@ -71,7 +71,7 @@ const DetailsPage = () => {
 
         {/* amenities */}
         <DetailSection header="Amenities" order="even">
-          <ul dangerouslySetInnerHTML={createAmenitiesMarkup()}></ul>
+          <ul dangerouslySetInnerHTML={createAmenitiesMarkup()} />
         </DetailSection>
 
         {/* location */}
@@ -112,6 +112,4 @@ const DetailsPage = () => {
       />
     </div>
   );
-};
-
-export default DetailsPage;
+}

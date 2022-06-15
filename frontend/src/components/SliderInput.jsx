@@ -1,12 +1,12 @@
 import Slider from "rc-slider";
 
-const SliderInput = ({
+function SliderInput({
   inputRef,
   value,
   handleSliderChange,
   handleSliderAfterChange,
   handleInputChange,
-}) => {
+}) {
   return (
     <div className="flex h-16 w-full shrink-0 items-center gap-1 rounded-md border-4 border-black bg-black duration-150 ease-in-out focus-within:outline focus-within:outline-4 focus-within:outline-gold/50">
       <div className="flex h-full w-full items-center rounded-l bg-gold px-4">
@@ -34,7 +34,7 @@ const SliderInput = ({
           }}
         />
       </div>
-      <label className="flex h-full items-center gap-1 rounded-r bg-gold px-4">
+      <div className="flex h-full items-center gap-1 rounded-r bg-gold px-4">
         <input
           ref={inputRef}
           className="w-8 bg-gold text-right"
@@ -45,9 +45,9 @@ const SliderInput = ({
           onChange={handleInputChange}
         />
         km
-      </label>
+      </div>
     </div>
   );
-};
+}
 
 export default SliderInput;

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const Button = ({ handleClick, inverted, children }) => {
+function Button({ handleClick, inverted, children }) {
   return (
     <button
       className={classNames(
@@ -13,6 +13,6 @@ const Button = ({ handleClick, inverted, children }) => {
       {children}
     </button>
   );
-};
+}
 
 export default Button;

@@ -3,7 +3,7 @@ import ClearBlockList from "../components/ClearBlockList";
 import PreviewList from "../components/PreviewList";
 import SearchBar from "../components/SearchBar";
 
-const AttractionsPage = () => {
+export default function AttractionsPage() {
   return (
     <>
       <h1 className="page-title">Attractions</h1>
@@ -19,6 +19,4 @@ const AttractionsPage = () => {
       </div>
     </>
   );
-};
-
-export default AttractionsPage;
+}

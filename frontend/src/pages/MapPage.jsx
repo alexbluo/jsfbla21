@@ -12,7 +12,7 @@ const defaultCenter = {
     "This is the default center for users who are either too far away from Maryland or don't have location services enabled. For more information, see the help page.",
 };
 
-const MapPage = () => {
+export default function MapPage() {
   // initialized to null so that the map doesn't always show with default center at first
   const [center, setCenter] = useState(null);
 
@@ -65,6 +65,4 @@ const MapPage = () => {
       )}
     </>
   );
-};
-
-export default MapPage;
+}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const LandingPage = () => {
+export default function LandingPage() {
   return (
     <div className="h-screen w-screen bg-gradient-to-br from-gold to-red">
       <div className="fixed z-10 flex h-full w-full flex-col items-center justify-center">
@@ -15,6 +15,4 @@ const LandingPage = () => {
       </div>
     </div>
   );
-};
-
-export default LandingPage;
+}

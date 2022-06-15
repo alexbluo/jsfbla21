@@ -10,7 +10,7 @@ import Error404Page from "./pages/Error404Page";
 import HelpPage from "./pages/HelpPage";
 import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
-import { store } from "./redux/store";
+import store from "./redux/store";
 import "./index.css";
 
 const queryClient = new QueryClient({

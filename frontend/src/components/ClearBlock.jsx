@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const ClearBlock = ({ handleClick, reverse, children }) => {
+function ClearBlock({ handleClick, reverse, children }) {
   return (
     <div
       className={classNames(
@@ -36,6 +36,6 @@ const ClearBlock = ({ handleClick, reverse, children }) => {
       </button>
     </div>
   );
-};
+}
 
 export default ClearBlock;

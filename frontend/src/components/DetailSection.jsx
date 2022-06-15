@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-const DetailSection = ({ header, order, children }) => {
+function DetailSection({ header, order, children }) {
   return (
     <section
       className={classNames(
@@ -13,6 +13,6 @@ const DetailSection = ({ header, order, children }) => {
       <article className="box-border h-full overflow-auto">{children}</article>
     </section>
   );
-};
+}
 
 export default DetailSection;

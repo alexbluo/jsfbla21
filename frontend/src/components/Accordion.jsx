@@ -8,15 +8,15 @@ import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenities"];
 
-const Accordion = () => {
+function Accordion() {
   const checkedFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError } = useQuery(
     ["filters"],
     async () => {
       let data = {};
-
-      // fetch the filters for each category
+      // TODO: use reduce, keep comments
+      // fetch the filters for each category and aggregate the results into an object
       for (const category of categories) {
         // res in the form of { category: [filters] }
         const res = await axios.get(`/api/filters/${category}`);
@@ -55,6 +55,6 @@ const Accordion = () => {
       )}
     </div>
   );
-};
+}
 
 export default Accordion;

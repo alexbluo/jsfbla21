@@ -3,7 +3,7 @@ import { remove, reset } from "../redux/filtersSlice";
 import { changeFilterSearchInput } from "../redux/searchSlice";
 import ClearBlock from "./ClearBlock";
 
-const ClearBlockList = () => {
+function ClearBlockList() {
   const checkedFilters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
 
@@ -34,6 +34,6 @@ const ClearBlockList = () => {
       )}
     </div>
   );
-};
+}
 
 export default ClearBlockList;

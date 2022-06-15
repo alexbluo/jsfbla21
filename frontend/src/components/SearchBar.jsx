@@ -4,7 +4,7 @@ import {
   changeMapSearchInput,
 } from "../redux/searchSlice";
 
-const SearchBar = ({ type }) => {
+function SearchBar({ type }) {
   const { filterSearchInput, mapSearchInput } = useSelector(
     (state) => state.search
   );
@@ -30,6 +30,6 @@ const SearchBar = ({ type }) => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchBar;

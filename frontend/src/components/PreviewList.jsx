@@ -7,7 +7,7 @@ import Button from "./Button";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
-const PreviewList = () => {
+function PreviewList() {
   const { filterSearchInput } = useSelector((state) => state.search);
   const checkedFilters = useSelector((state) => state.filters);
 
@@ -53,10 +53,10 @@ const PreviewList = () => {
     if (previews.length === 0) {
       return (
         <div className="col-span-2">
-          <label className="mx-auto block w-full rounded-2xl bg-[#f6f6f6] p-6 text-center font-poppins">
+          <span className="mx-auto block w-full rounded-2xl bg-[#f6f6f6] p-6 text-center font-poppins">
             <img className="mx-auto w-1/2" src={crab} />
             Nothing Matched!
-          </label>
+          </span>
         </div>
       );
     }
@@ -74,6 +74,6 @@ const PreviewList = () => {
       )}
     </div>
   );
-};
+}
 
 export default PreviewList;

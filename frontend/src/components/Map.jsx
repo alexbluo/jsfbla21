@@ -15,7 +15,7 @@ import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
-const Map = ({ center, isDefaultCenter }) => {
+function Map({ center, isDefaultCenter }) {
   const { mapSearchInput } = useSelector((state) => state.search);
   const [sliderValue, setSliderValue] = useState(10); // in km, not passed to query
   const [searchRadius, setSearchRadius] = useState(
@@ -31,7 +31,7 @@ const Map = ({ center, isDefaultCenter }) => {
         search: mapSearchInput,
         lng: center.lng,
         lat: center.lat,
-        searchRadius: searchRadius,
+        searchRadius,
       });
       const res = await axios.get(`/api/attractions/near?${params}`);
       return res.data; // return to "data"
@@ -42,7 +42,7 @@ const Map = ({ center, isDefaultCenter }) => {
   // unselect and reselect center when recentering in case the center was already selected
   useEffect(() => {
     if (selectedMarker === "recenter") setSelectedMarker(center);
-  }, [selectedMarker]);
+  }, [selectedMarker, center]);
 
   // select the input if it is 0
   useEffect(() => {
@@ -202,6 +202,6 @@ const Map = ({ center, isDefaultCenter }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Map;

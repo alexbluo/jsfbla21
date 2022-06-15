@@ -1,5 +1,11 @@
 {
-  "extends": ["plugin:import/recommended", "plugin:react/jsx-runtime"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb/whitespace",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -8,25 +14,14 @@
     }
   },
   "rules": {
-    "import/order": [
-      "error",
-      {
-        "groups": ["type", "builtin", "external", "internal"],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "type",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "never",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ]
+    "quotes": "off",
+    "camelcase": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": "off",
+    "arrow-body-style": "off",
+    "react/prop-types": "off",
+    "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "settings": {
     "react": {

@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
 import none from "../images/none.png";
 
-const Preview = ({
-  attraction_id,
-  attraction_name,
-  attraction_image,
-  city,
-}) => {
+function Preview({ attraction_id, attraction_name, attraction_image, city }) {
   return (
     <div className="group relative font-poppins">
       <Link to={`/attractions/${attraction_id}`}>
@@ -28,6 +23,6 @@ const Preview = ({
       </Link>
     </div>
   );
-};
+}
 
 export default Preview;

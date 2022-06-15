@@ -1,6 +1,6 @@
 import Dropdown from "../components/Dropdown";
 
-const HelpPage = () => {
+export default function HelpPage() {
   return (
     <>
       <h1 className="page-title">Help</h1>
@@ -9,9 +9,10 @@ const HelpPage = () => {
         <Dropdown header="Why do my text searches not seem to match the results?">
           <article>
             The search bar performs a full-text search on more fields than just
-            the attractions' name. Thus, results may consist of attractions with
-            a name, description, amenity, category, and/or address which matches
-            the query. Results are sorted by relevance to the search query!
+            the attractions&apos; name. Thus, results may consist of attractions
+            with a name, description, amenity, category, and/or address which
+            matches the query. Results are sorted by relevance to the search
+            query!
           </article>
         </Dropdown>
         <Dropdown header="What if I don't want to provide access to my location for the map?">
@@ -27,8 +28,8 @@ const HelpPage = () => {
             . Users who either do not want to or are unable to provide access to
             their location will still have the ability to view and search all
             attractions. Unfortunately they will not have access to the
-            slider/input feature, nor the "show center" and "show all" (enabled
-            by default) buttons.
+            slider/input feature, nor the &ldquo;show center&rdquo; and
+            &ldquo;show all&rdquo; (enabled by default) buttons.
           </article>
         </Dropdown>
         <Dropdown header="How does the map work if I am not located in Maryland?">
@@ -39,15 +40,16 @@ const HelpPage = () => {
             all features. Users not located within 200 kilometers of any
             attraction in Maryland will still have the ability to view and
             search all attractions. Unfortunately they will not have access to
-            the slider/input feature, nor the "show center" and "show all"
-            (enabled by default) buttons.
+            the slider/input feature, nor the &ldquo;show center&rdquo; and
+            &ldquo;show all&rdquo; (enabled by default) buttons.
           </article>
         </Dropdown>
         <Dropdown header="Why does the map not show any attractions when the distance is changed?">
           <article>
             If you are outside of Maryland but still within the threshold,
             please be sure to input a distance that is high enough to reach
-            Maryland, or use the "show all" button to view every attraction.
+            Maryland, or use the &ldquo;show all&rdquo; button to view every
+            attraction.
           </article>
         </Dropdown>
         <Dropdown header="Why is the input distance for the map capped at 200 kilometers?">
@@ -55,8 +57,8 @@ const HelpPage = () => {
             The idea is that users taking advantage of the slider/input
             funcationality are only looking for attractions within a reasonable
             distance of their location. Users who wish to view any attractions
-            beyond 200 kilometers of their location may use the "show all"
-            button.
+            beyond 200 kilometers of their location may use the &ldquo;show
+            all&rdquo; button.
           </article>
         </Dropdown>
         <Dropdown header="Where is the attraction data collected from?">
@@ -94,6 +96,4 @@ const HelpPage = () => {
       </div>
     </>
   );
-};
-
-export default HelpPage;
+}
