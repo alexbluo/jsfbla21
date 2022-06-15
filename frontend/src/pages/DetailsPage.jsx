@@ -7,7 +7,7 @@ import Map from "../components/Map";
 import none from "../images/none.png";
 
 const DetailsPage = () => {
-  const id = useParams().id;
+  const { id } = useParams();
 
   const { data, error, isLoading, isError } = useQuery(
     ["attraction", id],
