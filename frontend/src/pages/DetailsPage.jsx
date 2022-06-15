@@ -96,7 +96,7 @@ export default function DetailsPage() {
             <img
               className="w-full"
               src={data.region_image}
-              alt={`${data.region_name} image`}
+              alt={`${data.region_name}`}
             />
           )}
         </DetailSection>

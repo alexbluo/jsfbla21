@@ -46,7 +46,7 @@ function PreviewList() {
 
     const previews = data.pages
       .map((group) =>
-        group.data.map((data) => <Preview {...data} key={data.attraction_id} />)
+        group.data.map((doc) => <Preview {...doc} key={doc.attraction_id} />)
       )
       .flat(1); // flatten so that preview length in next step is always accurate
 
@@ -54,7 +54,7 @@ function PreviewList() {
       return (
         <div className="col-span-2">
           <span className="mx-auto block w-full rounded-2xl bg-[#f6f6f6] p-6 text-center font-poppins">
-            <img className="mx-auto w-1/2" src={crab} />
+            <img className="mx-auto w-1/2" src={crab} alt="" />
             Nothing Matched!
           </span>
         </div>

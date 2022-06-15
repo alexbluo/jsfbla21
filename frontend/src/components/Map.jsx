@@ -52,7 +52,7 @@ function Map({ center, isDefaultCenter }) {
   const handleInputChange = (e) => {
     let value = parseInt(e.target.value, 10);
     if (value > 200) value = 200;
-    if (isNaN(value)) value = 0;
+    if (Number.isNaN(value)) value = 0;
 
     setSliderValue(value);
     setSearchRadius(value * 1000);
