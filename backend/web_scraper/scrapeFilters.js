@@ -28,7 +28,7 @@ async function scrapeAmenities(page) {
       )
   );
 
-  amenities[amenities.indexOf("Self-Guides Tours")] = "Self-Guided Tours"
+  amenities[amenities.indexOf("Self-Guides Tours")] = "Self-Guided Tours";
   return amenities;
 }
 

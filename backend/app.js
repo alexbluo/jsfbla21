@@ -1,8 +1,8 @@
-const express = require("express");
 const path = require("path");
+const express = require("express");
 const logger = require("morgan");
-const filtersRouter = require("./routes/filters");
 const attractionsRouter = require("./routes/attractions");
+const filtersRouter = require("./routes/filters");
 const app = express();
 
 // serve the frontend build files in production
