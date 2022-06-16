@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -111,7 +111,7 @@ function Map({ center, isDefaultCenter }) {
                   {/* only show info window if the currently selected marker matches */}
                   {selectedMarker === doc && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                      <div>
+                      <>
                         <p className="font-medium">{doc.attraction_name}</p>
                         <p>
                           {doc.address}
@@ -125,7 +125,7 @@ function Map({ center, isDefaultCenter }) {
                         >
                           Directions
                         </a>
-                      </div>
+                      </>
                     </InfoWindow>
                   )}
                 </Marker>
