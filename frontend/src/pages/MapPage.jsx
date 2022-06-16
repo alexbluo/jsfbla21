@@ -47,7 +47,7 @@ export default function MapPage() {
           }
         },
         // handle error when user denies location access
-        (err) => {
+        () => {
           setCenter(defaultCenter);
         }
       );
