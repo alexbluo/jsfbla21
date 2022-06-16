@@ -17,11 +17,14 @@ import SliderInput from "./SliderInput";
 
 function Map({ center, isDefaultCenter }) {
   const { mapSearchInput } = useSelector((state) => state.search);
-  const [sliderValue, setSliderValue] = useState(10); // in km, not passed to query
+  // in km, not passed to query
+  const [sliderValue, setSliderValue] = useState(10);
+  // in m, is passed to query
   const [searchRadius, setSearchRadius] = useState(
     isDefaultCenter ? 20000 * 1000 : sliderValue * 1000
-  ); // in m, is passed to query
-  const [selectedMarker, setSelectedMarker] = useState(null); // data object of the currently selected marker
+  );
+  // data object of the currently selected marker
+  const [selectedMarker, setSelectedMarker] = useState(null);
   const inputRef = useRef();
 
   const { data, error, isLoading, isError } = useQuery(
@@ -85,7 +88,7 @@ function Map({ center, isDefaultCenter }) {
             <Marker
               position={center}
               onClick={() => setSelectedMarker(center)}
-              animation={google.maps.Animation.DROP}
+              animation={window.google.maps.Animation.DROP}
             >
               {selectedMarker === center && (
                 <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
@@ -109,16 +112,13 @@ function Map({ center, isDefaultCenter }) {
                   {selectedMarker === doc && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                       <div>
-                        {/* TODO: change to p */}
-                        <span className="font-medium">
-                          {doc.attraction_name}
-                        </span>
-                        <br />
-                        {doc.address}
-                        <br />
-                        {doc.city}, {doc.state}&nbsp;
-                        {doc.zip}
-                        <br />
+                        <p className="font-medium">{doc.attraction_name}</p>
+                        <p>
+                          {doc.address}
+                          <br />
+                          {doc.city}, {doc.state}&nbsp;
+                          {doc.zip}
+                        </p>
                         <a
                           className="font-normal text-[#2563eb] underline"
                           href={doc.directions_link}

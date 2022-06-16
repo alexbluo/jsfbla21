@@ -1,11 +1,5 @@
 {
-  "extends": [
-    "airbnb",
-    "airbnb/hooks",
-    "airbnb/whitespace",
-    "plugin:react/jsx-runtime",
-    "prettier"
-  ],
+  "extends": ["airbnb", "airbnb/hooks", "plugin:react/jsx-runtime", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
