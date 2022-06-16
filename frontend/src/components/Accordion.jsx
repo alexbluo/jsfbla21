@@ -14,17 +14,16 @@ function Accordion() {
   const { data, error, isLoading, isError } = useQuery(
     ["filters"],
     async () => {
-      let data = {};
-      // TODO: use reduce, keep comments
+      let acc = {};
       // fetch the filters for each category and aggregate the results into an object
       for (const category of categories) {
-        // res in the form of { category: [filters] }
+        // res in the shape of { category: [filters] }
         const res = await axios.get(`/api/filters/${category}`);
         // append newly fetched data to previous data
-        data = { ...data, ...res.data };
+        acc = { ...acc, ...res.data };
       }
 
-      return data;
+      return acc;
     }
   );
 

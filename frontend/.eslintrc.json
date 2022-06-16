@@ -16,6 +16,8 @@
     "react/prop-types": "off",
     "react/button-has-type": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-await-in-loop": "off",
+    "no-restricted-syntax": "off",
     "import/order": [
       "error",
       {
