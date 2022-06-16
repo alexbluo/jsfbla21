@@ -18,7 +18,6 @@ Website that suggests tourist attractions in Maryland based on user-defined attr
 |            Vite             |      Build Tool      |
 |           Docker            |   Containerization   |
 |  Heroku, Google Cloud Run   |      Deployment      |
-|          Puppeteer          |     Web Scraping     |
 
 ## Changes Since March 2022
 
@@ -69,8 +68,8 @@ The following commands from the MongoDB Database Tools are used to dynamically b
 - [Vite](https://vitejs.dev/guide/)
 - [React Router DOM](https://reactrouter.com/docs/en/v6)
 - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
-- [axios](https://axios-http.com/docs/intro)
 - [autoprefixer](https://github.com/postcss/autoprefixer)
+- [axios](https://axios-http.com/docs/intro)
 - [classnames](https://github.com/JedWatson/classnames)
 - [dotenv](https://github.com/motdotla/dotenv)
 - [postcss](https://github.com/postcss/postcss)
@@ -79,14 +78,17 @@ The following commands from the MongoDB Database Tools are used to dynamically b
 
 ### Development
 
+- [Docker](https://docs.docker.com/)
 - [ESLint](https://eslint.org/docs/user-guide/configuring/)
+- [Google Cloud Run](https://cloud.google.com/run/docs)
+- [Heroku](https://devcenter.heroku.com/categories/reference)
 - [Morgan](https://github.com/expressjs/morgan)
 - [Nodemon](https://github.com/remy/nodemon#nodemon)
 - [Prettier](https://prettier.io/docs/en/index.html)
 
 ### Images
 
-- [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)
-- [Data Source](https://www.visitmaryland.org/things-to-do/attractions)
 - [Crab](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD)
+- [Data Source](https://www.visitmaryland.org/things-to-do/attractions)
 - [Image for... no image](https://depositphotos.com/vector-images/no-image-available.html)
+- [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)
