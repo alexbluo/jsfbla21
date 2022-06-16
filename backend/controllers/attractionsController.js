@@ -58,7 +58,7 @@ exports.getByFilter = (req, res) => {
     await cursor.forEach((doc) => data.attractions.push(doc));
 
     if (data.attractions.length > nPerPage) {
-      data.nextPageNumber = parseInt(page) + 1;
+      data.nextPageNumber = parseInt(page, 10) + 1;
       data.attractions = data.attractions.slice(0, nPerPage);
     }
 
@@ -93,7 +93,7 @@ exports.getByDistance = (req, res) => {
             type: "Point",
             coordinates: [parseFloat(lng), parseFloat(lat)],
           },
-          radius: parseInt(searchRadius),
+          radius: parseInt(searchRadius, 10),
         },
       },
     };
@@ -135,7 +135,7 @@ exports.getByDistance = (req, res) => {
 };
 
 exports.getByID = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const db = client.db("attractionsDB");

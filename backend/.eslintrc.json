@@ -1,24 +1,14 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["airbnb-base", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "rules": {
-    "import/order": [
-      "error",
-      {
-        "groups": ["type", "builtin", "external", "internal"],
-        "newlines-between": "never",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ]
+    "quotes": "off",
+    "camelcase": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": "off",
+    "arrow-body-style": "off"
   },
   "settings": {
     "import/resolver": {

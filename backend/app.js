@@ -3,10 +3,11 @@ const express = require("express");
 const logger = require("morgan");
 const attractionsRouter = require("./routes/attractions");
 const filtersRouter = require("./routes/filters");
+
 const app = express();
 
 // serve the frontend build files in production
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 }
 

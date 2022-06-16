@@ -86,7 +86,6 @@ export default function HelpPage() {
           </article>
         </Dropdown>
       </div>
-      {/* TODO: embed form? */}
       <div className="flex w-full justify-center">
         <a href="mailto:alexluo92823@gmail.com">
           <button className="rounded-md bg-red p-4 text-white shadow-md duration-200 hover:brightness-125">

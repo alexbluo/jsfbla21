@@ -109,6 +109,7 @@ function Map({ center, isDefaultCenter }) {
                   {selectedMarker === doc && (
                     <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                       <div>
+                        {/* TODO: change to p */}
                         <span className="font-medium">
                           {doc.attraction_name}
                         </span>

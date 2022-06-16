@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const filtersController = require("../controllers/filtersController");
+
+const router = express.Router();
 
 router.get("/region", filtersController.getRegions);
 

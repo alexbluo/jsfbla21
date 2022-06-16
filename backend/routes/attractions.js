@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const attractionsController = require("../controllers/attractionsController");
+
+const router = express.Router();
 
 router.get("/", attractionsController.getByFilter);
 
