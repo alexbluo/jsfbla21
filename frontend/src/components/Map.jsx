@@ -133,8 +133,10 @@ function Map({ center, isDefaultCenter }) {
           </GoogleMap>
         )}
       </div>
-
+      
+      {/* map inputs and selected marker info */}
       <div className="aspect-square bg-red p-8 xl:w-1/2">
+        {/* slider, searchbar, show center and show all buttons */}
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
           {!isDefaultCenter && (
@@ -176,6 +178,7 @@ function Map({ center, isDefaultCenter }) {
                 <article className="h-full text-white xl:overflow-y-auto">
                   <div className="flex h-full flex-col justify-between gap-4">
                     <p className="pt-4">{selectedMarker.description}</p>
+                    {/* link to the currently selected attraction's page */}
                     <Link
                       className="group font-normal text-[#2563eb] underline"
                       to={`/attractions/${selectedMarker.attraction_id}`}

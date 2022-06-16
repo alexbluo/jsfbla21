@@ -39,6 +39,7 @@ function Accordion() {
       {isLoading ? (
         <AccordionPreloader width="100%" height="220px" />
       ) : (
+        // map each category to a dropdown and each filter to a checkbox within that dropdown
         Object.entries(data).map(([category, filters]) => (
           <Dropdown header={category.toUpperCase()} key={category}>
             {filters.map((filter) => (
