@@ -27,6 +27,7 @@ Below is a list of features, technologies, and fixes which have been or will be 
   - turns out this was not needed for optimization
 - [ ] Machine learning using user behavior when entering typos like Google search "did you mean"
   - definitely not enough time or data to get this done, but fun idea
+- [x] Code splitting and lazy loading
 - [x] Refactor into smart and dumb components
 - [x] Show info about selected marker
 - [x] Button to toggle showing all attractions on the map
