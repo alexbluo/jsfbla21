@@ -50,8 +50,9 @@ Below is a list of features, technologies, and fixes which have been or will be 
 
 The following commands from the MongoDB Database Tools are used to dynamically backup the database:
 
-- take snapshot: mongodump --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump
-- restore snapshot: mongorestore --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -d attractionsDB ~/mongodump/attractionsDB
+`mongodump --uri mongodb+srv://alexbluo@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump`
+
+`mongorestore --uri mongodb+srv://alexbluo@mdcp.opzuc.mongodb.net/attractionsDB -d attractionsDB ~/mongodump/attractionsDB`
 
 ## Sourcing Documentation
 
