@@ -9,9 +9,9 @@ const app = express();
 // serve the frontend build files in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
+} else {
+  app.use(logger("dev"));
 }
-
-app.use(logger("dev"));
 
 app.use("/api/attractions", attractionsRouter);
 app.use("/api/filters", filtersRouter);

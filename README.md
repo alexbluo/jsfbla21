@@ -54,7 +54,7 @@ The following commands from the MongoDB Database Tools are used to dynamically b
 - take snapshot: mongodump --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump
 - restore snapshot: mongorestore --uri mongodb+srv://alexbluo:@mdcp.opzuc.mongodb.net/attractionsDB -d attractionsDB ~/mongodump/attractionsDB
 
-## Sourcing
+## Sourcing Documentation
 
 ### Libraries
 
@@ -70,14 +70,19 @@ The following commands from the MongoDB Database Tools are used to dynamically b
 - [React Router DOM](https://reactrouter.com/docs/en/v6)
 - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
 - [axios](https://axios-http.com/docs/intro)
+- [autoprefixer](https://github.com/postcss/autoprefixer)
 - [classnames](https://github.com/JedWatson/classnames)
+- [dotenv](https://github.com/motdotla/dotenv)
+- [postcss](https://github.com/postcss/postcss)
 - [qs](https://github.com/ljharb/qs)
 - [rc-slider](https://github.com/schrodinger/rc-slider)
-- [postcss](https://github.com/postcss/postcss)
-- [autoprefixer](https://github.com/postcss/autoprefixer)
-- [dotenv](https://github.com/motdotla/dotenv)
-- [eslint](https://eslint.org/docs/user-guide/configuring/)
-- [prettier](https://prettier.io/docs/en/index.html)
+
+### Development
+
+- [ESLint](https://eslint.org/docs/user-guide/configuring/)
+- [Morgan](https://github.com/expressjs/morgan)
+- [Nodemon](https://github.com/remy/nodemon#nodemon)
+- [Prettier](https://prettier.io/docs/en/index.html)
 
 ### Images
 
