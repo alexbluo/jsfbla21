@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import { dependencies } from "./package.json";
 
 /**
- * Formats the dependencies for code-splitting
+ * Formats the dependencies into chunks for code splitting
  * @param { Object<string, string> } deps the list of dependencies from package.json
  * @returns { Object<string, Array<string>> } the list of code chunks to be split
  */
