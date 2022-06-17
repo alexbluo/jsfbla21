@@ -1,13 +1,17 @@
 const express = require("express");
-const attractionsController = require("../controllers/attractionsController");
+const {
+  getByFilter,
+  getByDistance,
+  getByID,
+} = require("../controllers/attractionsController");
 
 const router = express.Router();
 
-router.get("/", attractionsController.getByFilter);
+router.get("/", getByFilter);
 
-router.get("/near", attractionsController.getByDistance);
+router.get("/near", getByDistance);
 
 // this route is dynamic so it has to be last for the others to work
-router.get("/:id", attractionsController.getByID);
+router.get("/:id", getByID);
 
 module.exports = router;

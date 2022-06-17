@@ -1,14 +1,19 @@
 const express = require("express");
-const filtersController = require("../controllers/filtersController");
+const {
+  getRegions,
+  getCities,
+  getCategories,
+  getAmenities,
+} = require("../controllers/filtersController");
 
 const router = express.Router();
 
-router.get("/region", filtersController.getRegions);
+router.get("/region", getRegions);
 
-router.get("/city", filtersController.getCities);
+router.get("/city", getCities);
 
-router.get("/category", filtersController.getCategories);
+router.get("/category", getCategories);
 
-router.get("/amenities", filtersController.getAmenities);
+router.get("/amenities", getAmenities);
 
 module.exports = router;
