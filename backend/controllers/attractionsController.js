@@ -1,12 +1,17 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
+/**
+ * This controller contains functions which return attractions by id, full-text, faceted, or geospatial queries.
+ */
+
 // number of documents to retrieve per pagination
 const nPerPage = 8;
 
 exports.getByFilter = (req, res) => {
   const { search, filters, page } = req.query;
 
+  // format documents for search, filter, and project
   const searchDocument = {
     $search: {
       index: "text",
@@ -39,6 +44,7 @@ exports.getByFilter = (req, res) => {
     },
   };
 
+  // assemble the aggregation pipeline based on whether the user specified search and/or filters
   const pipeline = [];
   if (search.trim().length > 0) pipeline.push(searchDocument);
   if (filters) pipeline.push(filterDocument);
@@ -52,11 +58,12 @@ exports.getByFilter = (req, res) => {
     const cursor = await collection.aggregate(pipeline);
     // sort by name unless search query is specified, in which case stay with default sort by relevancy score
     if (search.trim().length === 0) cursor.sort({ attraction_name: 1 });
-    // 1 more than needed to test if there is more on next page
+    // limit documents to 1 more than number per pagination to test if there is more on next page
     cursor.skip(page * nPerPage).limit(nPerPage + 1);
 
     await cursor.forEach((doc) => data.attractions.push(doc));
 
+    // if there are more documents than the number per pagination, slice off the extras
     if (data.attractions.length > nPerPage) {
       data.nextPageNumber = parseInt(page, 10) + 1;
       data.attractions = data.attractions.slice(0, nPerPage);
@@ -75,6 +82,7 @@ exports.getByDistance = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
+    // format documents for search, geo, and project
     const searchDocument = {
       text: {
         query: search,
@@ -112,10 +120,13 @@ exports.getByDistance = (req, res) => {
       },
     };
 
+    // assemble the aggregation pipeline based on whether the user specified search
     const pipeline = [];
     if (search.trim().length > 0) pipeline.push(searchDocument);
+    // a geospatial parameter will always be specified no matter what
     pipeline.push(geoDocument);
 
+    // aggregate using Atlas Search and compound full-text and geospatial indexes
     const cursor = collection.aggregate([
       {
         $search: {
@@ -141,6 +152,7 @@ exports.getByID = (req, res) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
 
+    // simply find by the attraction id specified in the request
     const data = await collection.findOne({ attraction_id: id });
 
     client.close();

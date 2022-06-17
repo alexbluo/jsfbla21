@@ -7,7 +7,7 @@ router.get("/", attractionsController.getByFilter);
 
 router.get("/near", attractionsController.getByDistance);
 
-// this route has to be last for the others to work
+// this route is dynamic so it has to be last for the others to work
 router.get("/:id", attractionsController.getByID);
 
 module.exports = router;

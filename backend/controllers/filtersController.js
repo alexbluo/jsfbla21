@@ -1,6 +1,10 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
+/**
+ * This controller contains functions which return lists of filters for each filter category.
+ */
+
 exports.getRegions = (req, res) => {
   res.json({
     region: [
@@ -30,7 +34,7 @@ exports.getCategories = (req, res) => {
   MongoClient.connect(process.env.MONGODB_URI, async (err, client) => {
     const db = client.db("attractionsDB");
     const collection = db.collection("attractions");
-
+    
     const categories = await collection.distinct("category");
 
     client.close();
