@@ -49,7 +49,7 @@ Below is a list of features, technologies, and fixes which have been or will be 
 
 ## Dynamic Backup
 
-The following commands from the MongoDB Database Tools are used to dynamically backup the database:
+The following commands use the [MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/) to dynamically backup the database:
 
 `mongodump --uri mongodb+srv://alexbluo@mdcp.opzuc.mongodb.net/attractionsDB -o ~/mongodump`
 
