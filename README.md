@@ -2,7 +2,7 @@
 
 ## Overview
 
-Website that suggests tourist attractions in Maryland based on user-defined attributes. Choose from over 300 filters via a familiar faceted or fulltext search and view detailed information on results narrowed down from 1,399 attractions. Interact with Google Maps to search for attractions within a chosen distance of you or another attraction.
+Website that suggests tourist attractions in Maryland based on user-defined attributes. Filter through 1,000+ attractions using full-text, faceted, and geospatial search. Interact with Google Maps to locate attractions within a chosen distance of you or another attraction.
 
 ## Tech Stack
 
