@@ -13,7 +13,7 @@ const defaultCenter = {
 };
 
 export default function MapPage() {
-  // initialized to null so that the map doesn't always show with default center at first
+  // initialized to null so that the map doesn't always show default center initially
   const [center, setCenter] = useState(null);
 
   // get user location on page load
@@ -35,7 +35,7 @@ export default function MapPage() {
           });
           // check if the user is near Maryland by checking if there is an attraction within the max distance (200 km)
           const res = await axios.get(`/api/attractions/near?${params}`);
-          // set map's the center to the user's location only if the user is nearby, otherwise use the default center
+          // if the user is nearby then set map's the center to the user's location, otherwise use the default center
           if (res.data.length > 0) {
             setCenter({
               ...coords,
