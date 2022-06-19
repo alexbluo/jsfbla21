@@ -9,7 +9,7 @@ node_modules
 tg.js
 /coverage
 
-/dist
+dist
 
 # misc
 .DS_Store
