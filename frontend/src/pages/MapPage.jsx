@@ -46,7 +46,7 @@ export default function MapPage() {
             setCenter(defaultCenter);
           }
         },
-        // handle error when user denies location access
+        // handle error if user denies location access
         () => {
           setCenter(defaultCenter);
         }

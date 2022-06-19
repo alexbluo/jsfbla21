@@ -8,6 +8,7 @@ import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenities"];
 
+// TODO: make open one at a time
 function Accordion() {
   const checkedFilters = useSelector((state) => state.filters);
 

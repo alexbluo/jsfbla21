@@ -8,7 +8,7 @@ export default function AttractionsPage() {
     <>
       <h1 className="page-title">Attractions</h1>
       <div className="flex w-full flex-col gap-12 xl:flex-row">
-        <div className="flex w-full flex-col gap-1 xl:w-1/3">
+        <div className="container flex w-full flex-col gap-1 xl:w-1/3">
           <SearchBar type="filter" />
           <Accordion />
           <ClearBlockList />
