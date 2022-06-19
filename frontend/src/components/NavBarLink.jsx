@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 
-function NavBarLink({ to, children }) {
+export default React.memo(({ to, children }) => {
   return (
     <li className="group relative inline cursor-pointer">
       <div className="absolute bottom-0 -z-10 h-0 w-full transform bg-gold duration-200 ease-in-out group-hover:h-full" />
@@ -22,6 +22,4 @@ function NavBarLink({ to, children }) {
       </NavLink>
     </li>
   );
-}
-
-export default React.memo(NavBarLink);
+});

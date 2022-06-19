@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-function ButtonLink({ link, tel, children }) {
+export default function ButtonLink({ link, tel, children }) {
   // render nothing if there is no link
   if (!link) return null;
 
@@ -10,5 +10,3 @@ function ButtonLink({ link, tel, children }) {
     </a>
   );
 }
-
-export default ButtonLink;

@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-function PreviewPreloader(props) {
+export default function PreviewPreloader(props) {
   return (
     <ContentLoader viewBox="0 0 300 300" {...props}>
       <rect x="0" y="0" rx="10" ry="10" width="300" height="240" />
@@ -9,5 +9,3 @@ function PreviewPreloader(props) {
     </ContentLoader>
   );
 }
-
-export default PreviewPreloader;

@@ -7,7 +7,7 @@ import Button from "./Button";
 import Preview from "./Preview";
 import PreviewPreloader from "./PreviewPreloader";
 
-function PreviewList() {
+export default function PreviewList() {
   const { filterSearchInput } = useSelector((state) => state.search);
   const checkedFilters = useSelector((state) => state.filters);
 
@@ -41,6 +41,7 @@ function PreviewList() {
   const renderPreviews = () => {
     // weird shorthand for making 8 skeleton loaders
     if (isLoading) {
+      // eslint-disable-next-line react/no-array-index-key
       return [...Array(8)].map((_, i) => <PreviewPreloader key={i} />);
     }
 
@@ -75,5 +76,3 @@ function PreviewList() {
     </div>
   );
 }
-
-export default PreviewList;

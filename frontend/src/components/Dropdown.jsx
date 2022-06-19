@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-function Dropdown({ header, children }) {
+export default function Dropdown({ header, children }) {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
@@ -33,5 +33,3 @@ function Dropdown({ header, children }) {
     </div>
   );
 }
-
-export default Dropdown;

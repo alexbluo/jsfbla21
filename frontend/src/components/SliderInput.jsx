@@ -1,6 +1,6 @@
 import Slider from "rc-slider";
 
-function SliderInput({
+export default function SliderInput({
   inputRef,
   value,
   handleSliderChange,
@@ -49,5 +49,3 @@ function SliderInput({
     </div>
   );
 }
-
-export default SliderInput;

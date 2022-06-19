@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-function ClearBlock({ handleClick, reverse, children }) {
+export default function ClearBlock({ handleClick, reverse, children }) {
   return (
     <div
       className={classNames(
@@ -37,5 +37,3 @@ function ClearBlock({ handleClick, reverse, children }) {
     </div>
   );
 }
-
-export default ClearBlock;

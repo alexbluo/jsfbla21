@@ -8,8 +8,7 @@ import Dropdown from "./Dropdown";
 
 const categories = ["region", "city", "category", "amenities"];
 
-// TODO: make open one at a time
-function Accordion() {
+export default function Accordion() {
   const checkedFilters = useSelector((state) => state.filters);
 
   const { data, error, isLoading, isError } = useQuery(
@@ -58,5 +57,3 @@ function Accordion() {
     </div>
   );
 }
-
-export default Accordion;

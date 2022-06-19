@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import NavBarLink from "./NavBarLink";
 
-function NavBar() {
+export default React.memo(() => {
   const [blur, setBlur] = useState(false);
   const [lastY, setLastY] = useState(window.scrollY);
 
@@ -38,6 +38,4 @@ function NavBar() {
       </ul>
     </nav>
   );
-}
-
-export default React.memo(NavBar);
+});

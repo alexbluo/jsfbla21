@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { add, remove } from "../redux/filtersSlice";
 
-function Checkbox({ category, filter, checked }) {
+export default React.memo(({ category, filter, checked }) => {
   const dispatch = useDispatch();
 
   // trigger redux action (add/remove filter), which causes preview list component to refetch
@@ -27,6 +27,4 @@ function Checkbox({ category, filter, checked }) {
       </span>
     </li>
   );
-}
-
-export default React.memo(Checkbox);
+});

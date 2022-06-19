@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-function DetailSection({ header, order, children }) {
+export default function DetailSection({ header, order, children }) {
   return (
     <section
       className={classNames(
@@ -14,5 +14,3 @@ function DetailSection({ header, order, children }) {
     </section>
   );
 }
-
-export default DetailSection;

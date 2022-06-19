@@ -15,7 +15,7 @@ import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
-function Map({ center, isDefaultCenter }) {
+export default function Map({ center, isDefaultCenter }) {
   const { mapSearchInput } = useSelector((state) => state.search);
   // in km, not passed to query
   const [sliderValue, setSliderValue] = useState(10);
@@ -133,7 +133,7 @@ function Map({ center, isDefaultCenter }) {
           </GoogleMap>
         )}
       </div>
-      
+
       {/* map inputs and selected marker info */}
       <div className="aspect-square bg-red p-8 xl:w-1/2">
         {/* slider, searchbar, show center and show all buttons */}
@@ -207,5 +207,3 @@ function Map({ center, isDefaultCenter }) {
     </div>
   );
 }
-
-export default Map;

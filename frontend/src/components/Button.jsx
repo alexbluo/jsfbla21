@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-function Button({ handleClick, inverted, children }) {
+export default function Button({ handleClick, inverted, children }) {
   return (
     <button
       className={classNames(
@@ -14,5 +14,3 @@ function Button({ handleClick, inverted, children }) {
     </button>
   );
 }
-
-export default Button;
