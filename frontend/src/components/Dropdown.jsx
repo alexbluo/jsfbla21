@@ -2,19 +2,19 @@ import { useState } from "react";
 import classNames from "classnames";
 
 export default function Dropdown({ header, children }) {
-  const [isOpened, setIsOpened] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
       <button
         className="flex min-h-[3.5rem] w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
-        onClick={() => setIsOpened(!isOpened)}
+        onClick={() => setOpen(!open)}
       >
         <h2 className="font-raleway text-lg font-semibold">{header}</h2>
         <svg
           className={classNames(
             "h-6 w-6 shrink-0 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
-            { "-rotate-180": isOpened }
+            { "-rotate-180": open }
           )}
           viewBox="0 0 16 16"
         >
@@ -24,8 +24,8 @@ export default function Dropdown({ header, children }) {
       <ul
         className={classNames(
           "mx-4 overflow-y-auto font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
-          { "max-h-0": !isOpened },
-          { "my-2 max-h-48": isOpened }
+          { "max-h-0": !open },
+          { "my-2 max-h-48": open }
         )}
       >
         {children}
