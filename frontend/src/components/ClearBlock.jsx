@@ -1,29 +1,14 @@
-import classNames from "classnames";
-
-export default function ClearBlock({ handleClick, reverse, children }) {
+export default function ClearBlock({ handleClick, children }) {
   return (
-    <div
-      className={classNames(
-        "flex h-16 max-w-full gap-1 rounded-md border-4 bg-black xl:w-full",
-        { "flex-row-reverse": reverse }
-      )}
-    >
+    <div className="flex h-16 w-full max-w-full gap-1 rounded-md border-4 bg-black sm:w-auto xl:w-full">
       <div
-        className={classNames(
-          "flex items-center justify-center bg-gold px-4 font-raleway text-lg xl:w-1/2",
-          { "rounded-r": reverse },
-          { "rounded-l": !reverse }
-        )}
+        className="flex w-1/2 items-center justify-center rounded-l bg-gold px-4 font-raleway text-lg sm:w-auto xl:w-1/2"
         type="text"
       >
         <span className="truncate">{children}</span>
       </div>
       <button
-        className={classNames(
-          "group h-full text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75 xl:w-1/2",
-          { "rounded-l": reverse },
-          { "rounded-r": !reverse }
-        )}
+        className="group aspect-square h-full w-1/2 rounded-r text-gold duration-150 ease-in-out hover:bg-gold focus:outline focus:outline-offset-4 focus:outline-gold/50 active:brightness-75 sm:w-auto xl:w-1/2"
         onClick={handleClick}
       >
         <svg

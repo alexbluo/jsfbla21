@@ -15,16 +15,14 @@ export default React.memo(({ category, filter, checked }) => {
   };
 
   return (
-    <li>
-      <span className="flex w-full items-center truncate text-lg">
-        <input
-          className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
-          type="checkbox"
-          onChange={(e) => handleCheck(e)}
-          checked={checked}
-        />
-        {filter}
-      </span>
+    <li className="flex w-full items-center truncate text-lg">
+      <input
+        className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
+        type="checkbox"
+        onChange={(e) => handleCheck(e)}
+        checked={checked}
+      />
+      <span>{filter}</span>
     </li>
   );
 });

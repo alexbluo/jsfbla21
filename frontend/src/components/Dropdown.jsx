@@ -7,13 +7,13 @@ export default function Dropdown({ header, children }) {
   return (
     <div>
       <button
-        className="flex h-14 w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
+        className="flex min-h-[3.5rem] w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
         onClick={() => setIsOpened(!isOpened)}
       >
         <h2 className="font-raleway text-lg font-semibold">{header}</h2>
         <svg
           className={classNames(
-            "h-6 w-6 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
+            "h-6 w-6 shrink-0 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
             { "-rotate-180": isOpened }
           )}
           viewBox="0 0 16 16"
