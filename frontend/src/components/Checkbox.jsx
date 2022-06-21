@@ -19,7 +19,7 @@ export default React.memo(({ category, filter, checked }) => {
       <input
         className="mr-1 h-4 w-4 flex-shrink-0 cursor-pointer appearance-none rounded-sm border-2 bg-black transition-colors checked:bg-gold"
         type="checkbox"
-        onChange={(e) => handleCheck(e)}
+        onChange={handleCheck}
         checked={checked}
       />
       <span>{filter}</span>

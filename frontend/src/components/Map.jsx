@@ -140,30 +140,32 @@ export default function Map({ center, isDefaultCenter }) {
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />
           {!isDefaultCenter && (
-            <SliderInput
-              inputRef={inputRef}
-              value={sliderValue.toString()}
-              handleSliderChange={(value) => setSliderValue(value)}
-              handleSliderAfterChange={(value) => setSearchRadius(value * 1000)}
-              handleInputChange={handleInputChange}
-            />
-          )}
-          {!isDefaultCenter && (
-            <div className="flex w-full shrink-0 flex-col gap-1 sm:flex-row">
-              <Button handleClick={() => setSelectedMarker("recenter")}>
-                Show Center
-              </Button>
-              <Button
-                handleClick={() =>
-                  setSearchRadius((prev) =>
-                    // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
-                    prev === 20000 * 1000 ? sliderValue * 1000 : 20000 * 1000
-                  )
+            <>
+              <SliderInput
+                inputRef={inputRef}
+                value={sliderValue.toString()}
+                handleSliderChange={(value) => setSliderValue(value)}
+                handleSliderAfterChange={(value) =>
+                  setSearchRadius(value * 1000)
                 }
-              >
-                Show {searchRadius === 20000 * 1000 ? "Specified" : "All"}
-              </Button>
-            </div>
+                handleInputChange={handleInputChange}
+              />
+              <div className="flex w-full shrink-0 flex-col gap-1 sm:flex-row">
+                <Button handleClick={() => setSelectedMarker("recenter")}>
+                  Show Center
+                </Button>
+                <Button
+                  handleClick={() =>
+                    setSearchRadius((prev) =>
+                      // half the circumference of the Earth in meters, actually the best and simplect implementation since it still allows for search bar queries
+                      prev === 20000 * 1000 ? sliderValue * 1000 : 20000 * 1000
+                    )
+                  }
+                >
+                  Show {searchRadius === 20000 * 1000 ? "Specified" : "All"}
+                </Button>
+              </div>
+            </>
           )}
           {/* info about whichever marker is selected */}
           {selectedMarker &&
