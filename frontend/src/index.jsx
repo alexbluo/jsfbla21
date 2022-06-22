@@ -8,7 +8,6 @@ import AttractionsPage from "./pages/AttractionsPage";
 import DetailsPage from "./pages/DetailsPage";
 import Error404Page from "./pages/Error404Page";
 import HelpPage from "./pages/HelpPage";
-import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
 import store from "./redux/store";
 import "./index.css";
@@ -28,9 +27,8 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
           <Route element={<Layout />}>
-            <Route path="/attractions" element={<AttractionsPage />} />
+            <Route path="/" element={<AttractionsPage />} />
             <Route path="/attractions/:id" element={<DetailsPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/help" element={<HelpPage />} />

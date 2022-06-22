@@ -32,7 +32,7 @@ export default React.memo(() => {
       )}
     >
       <ul className="mr-4 flex h-full skew-x-[60deg] border-x-gold">
-        <NavBarLink to="/attractions">Attractions</NavBarLink>
+        <NavBarLink to="/">Attractions</NavBarLink>
         <NavBarLink to="/map">Map</NavBarLink>
         <NavBarLink to="/help">Help</NavBarLink>
       </ul>
