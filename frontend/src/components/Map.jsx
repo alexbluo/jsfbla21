@@ -15,6 +15,7 @@ import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
+// TODO: scientifically surgically remove favicon, query, then query max dist to debug chrome
 export default function Map({ center, isDefaultCenter }) {
   const { mapSearchInput } = useSelector((state) => state.search);
   // in km, not passed to query
@@ -76,7 +77,7 @@ export default function Map({ center, isDefaultCenter }) {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex w-full flex-col xl:flex-row">
+    <div className="flex w-full flex-col font-roboto xl:flex-row">
       <div className="aspect-square xl:w-1/2">
         {isLoaded && (
           <GoogleMap

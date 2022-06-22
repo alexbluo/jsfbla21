@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classNames from "classnames";
 
+// TODO: typography, import all font weights
 export default function Dropdown({ header, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +24,7 @@ export default function Dropdown({ header, children }) {
       </button>
       <ul
         className={classNames(
-          "mx-4 overflow-y-auto font-raleway text-base text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
+          "mx-4 overflow-y-auto font-poppins font-thin text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpen },
           { "my-2 max-h-48": isOpen }
         )}

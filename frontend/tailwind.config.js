@@ -1,5 +1,6 @@
 const colors = require("tailwindcss/colors");
 
+// TODO: add default theme for fonts
 module.exports = {
   mode: "jit",
   content: [
@@ -21,33 +22,7 @@ module.exports = {
         roboto: ["Roboto", "Poppins"],
         poppins: ["Poppins", "Roboto"],
         montserrat: ["Montserrat", "Raleway"],
-        raleway: ["Raleway", "Monteserrat"],
-      },
-      animation: {
-        "fade-in-down": "fade-in-down cubic-bezier(0.16, 1, 0.3, 1) 2s",
-        "fade-in-up": "fade-in-up cubic-bezier(0.16, 1, 0.3, 1) 2s",
-      },
-    },
-    keyframes: {
-      "fade-in-down": {
-        "0%": {
-          opacity: "0",
-          transform: "translateY(-200%)",
-        },
-        "100%": {
-          opacity: "0.9",
-          transform: "translateY(0%)",
-        },
-      },
-      "fade-in-up": {
-        "0%": {
-          opacity: "0",
-          transform: "translateY(200%)",
-        },
-        "100%": {
-          opacity: "1",
-          transform: "translateY(0%)",
-        },
+        raleway: ["Raleway", "Montserrat"],
       },
     },
   },
