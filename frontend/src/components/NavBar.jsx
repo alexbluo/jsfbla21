@@ -26,7 +26,7 @@ export default React.memo(() => {
   return (
     <nav
       className={classNames(
-        "fixed top-0 left-0 z-10 flex h-16 w-screen justify-end border-b border-gold bg-black font-raleway font-semibold duration-200 ease-out sm:justify-between",
+        "fixed top-0 left-0 z-10 flex h-16 w-screen justify-end border-b border-gold bg-black font-montserrat font-medium duration-200 ease-out sm:justify-between",
         {
           "border-opacity-60 bg-opacity-60 backdrop-blur backdrop-filter": blur,
         }

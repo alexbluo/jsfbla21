@@ -77,7 +77,7 @@ export default function Map({ center, isDefaultCenter }) {
 
   if (isError) return <span>Error: {error.message}</span>;
   return (
-    <div className="flex w-full flex-col font-roboto xl:flex-row">
+    <div className="flex w-full flex-col xl:flex-row">
       <div className="aspect-square xl:w-1/2">
         {isLoaded && (
           <GoogleMap
@@ -173,7 +173,7 @@ export default function Map({ center, isDefaultCenter }) {
             selectedMarker !== center &&
             selectedMarker !== "recenter" && (
               <section className="flex grow flex-col rounded-md border border-white p-8 xl:overflow-y-auto">
-                <h2 className="flex items-center border-b font-raleway text-2xl font-semibold text-white">
+                <h2 className="flex items-center border-b font-montserrat text-2xl font-semibold text-white">
                   {selectedMarker === center
                     ? center.name
                     : selectedMarker.attraction_name}

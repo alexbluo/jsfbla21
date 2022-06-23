@@ -1,6 +1,7 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
-// TODO: add default theme for fonts
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
   content: [
@@ -19,10 +20,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        roboto: ["Roboto", "Poppins"],
-        poppins: ["Poppins", "Roboto"],
-        montserrat: ["Montserrat", "Raleway"],
-        raleway: ["Raleway", "Montserrat"],
+        poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
+        montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },
     },
   },

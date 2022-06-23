@@ -31,7 +31,7 @@ export default function SearchBar({ type }) {
     >
       <input
         className={classNames(
-          "w-full pl-4 font-raleway text-lg outline-none",
+          "w-full pl-4 font-poppins text-lg outline-none",
           { "rounded-l bg-gold": type === "filter" },
           { "rounded-l-md bg-red text-white": type === "map" }
         )}

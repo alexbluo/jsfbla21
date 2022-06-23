@@ -2,7 +2,7 @@ export default function ClearBlock({ handleClick, children }) {
   return (
     <div className="flex h-16 w-full max-w-full gap-1 rounded-md border-4 bg-black sm:w-auto xl:w-full">
       <div
-        className="flex w-1/2 items-center justify-center rounded-l bg-gold px-4 font-raleway text-lg sm:w-auto xl:w-1/2"
+        className="flex w-1/2 items-center justify-center rounded-l bg-gold px-4 font-montserrat text-lg sm:w-auto xl:w-1/2"
         type="text"
       >
         <span className="truncate">{children}</span>

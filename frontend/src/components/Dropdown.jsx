@@ -11,7 +11,7 @@ export default function Dropdown({ header, children }) {
         className="flex min-h-[3.5rem] w-full cursor-pointer select-none items-center justify-between rounded bg-gold px-4"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h2 className="font-raleway text-lg font-semibold">{header}</h2>
+        <h2 className="font-montserrat text-lg font-medium">{header}</h2>
         <svg
           className={classNames(
             "h-6 w-6 shrink-0 transition-transform duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
@@ -24,7 +24,7 @@ export default function Dropdown({ header, children }) {
       </button>
       <ul
         className={classNames(
-          "mx-4 overflow-y-auto font-poppins font-thin text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
+          "mx-4 overflow-y-auto font-poppins font-light text-gold duration-500 ease-[cubic-bezier(.84,-0.08,.16,1.08)]",
           { "max-h-0": !isOpen },
           { "my-2 max-h-48": isOpen }
         )}
