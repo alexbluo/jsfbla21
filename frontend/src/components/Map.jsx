@@ -15,7 +15,6 @@ import Button from "./Button";
 import SearchBar from "./SearchBar";
 import SliderInput from "./SliderInput";
 
-// TODO: scientifically surgically remove favicon, query, then query max dist to debug chrome
 export default function Map({ center, isDefaultCenter }) {
   const { mapSearchInput } = useSelector((state) => state.search);
   // in km, not passed to query

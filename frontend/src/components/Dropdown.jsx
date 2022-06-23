@@ -1,7 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-// TODO: typography, import all font weights
 export default function Dropdown({ header, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
