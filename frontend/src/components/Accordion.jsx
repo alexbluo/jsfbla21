@@ -15,7 +15,7 @@ export default function Accordion() {
     ["filters"],
     async () => {
       let results = {};
-      
+
       // fetch the filters for each category and aggregate the results into an object
       for (const category of categories) {
         // res in the shape of { category: [filters] }

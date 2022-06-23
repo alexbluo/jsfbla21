@@ -93,4 +93,3 @@ The following commands use the [MongoDB Database Tools](https://www.mongodb.com/
 - [Crab](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8w7q8o0y3a9w7_seafood-graphic-royalty-free-sad-huge-sad-crab%2F&psig=AOvVaw2jx0wHz9fOfhmNjyJzsKxc&ust=1651669215591000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjBjbmxw_cCFQAAAAAdAAAAABAD)
 - [Data Source](https://www.visitmaryland.org/things-to-do/attractions)
 - [Image for... no image](https://depositphotos.com/vector-images/no-image-available.html)
-- [MD Flag GIF](https://giphy.com/gifs/flag-state-baltimore-l0MrFpI94esUsTbIA)

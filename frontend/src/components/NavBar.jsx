@@ -34,7 +34,7 @@ export default React.memo(() => {
     >
       <header className="hidden sm:block">
         <NavLink to="/">
-          <h1 className=" h-full w-fit skew-x-[60deg] bg-gold px-12 text-xl">
+          <h1 className="h-full w-fit skew-x-[60deg] bg-gold px-12 text-xl">
             <span className="flex h-full -skew-x-[60deg] items-center text-center text-2xl">
               Maryland Attractions
             </span>
