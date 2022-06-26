@@ -70,7 +70,7 @@ export default function HelpPage() {
             >
               here
             </a>
-            &nbsp;using Puppeteer.
+            &nbsp;using Puppeteer. No copyright laws were violated, as permission was granted from the creators.
           </article>
         </Dropdown>
         <Dropdown header="Where can I find the source code?">
