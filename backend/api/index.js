@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
-const attractionsRouter = require("./routes/attractions");
-const filtersRouter = require("./routes/filters");
+const attractionsRouter = require("../routes/attractions");
+const filtersRouter = require("../routes/filters");
 
 const app = express();
 

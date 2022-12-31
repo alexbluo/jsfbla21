@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
