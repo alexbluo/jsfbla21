@@ -36,7 +36,7 @@ export default React.memo(() => {
         <NavLink to="/">
           <h1 className="h-full w-fit skew-x-[60deg] bg-gold px-12 text-xl">
             <span className="flex h-full -skew-x-[60deg] items-center text-center text-2xl">
-              Maryland Attractions
+              MDAttractions
             </span>
           </h1>
         </NavLink>
