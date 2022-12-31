@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const attractionsRouter = require("./routes/attractions");
@@ -10,11 +9,6 @@ app.use(logger("dev"));
 
 app.use("/api/attractions", attractionsRouter);
 app.use("/api/filters", filtersRouter);
-
-// catch all other requests
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`LISTENING ON PORT ${port}`));
