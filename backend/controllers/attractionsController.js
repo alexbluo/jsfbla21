@@ -159,3 +159,37 @@ exports.getByID = (req, res) => {
     res.status(200).json(data);
   });
 };
+
+// atlas search index:
+// name text
+// {
+//   "mappings": {
+//     "dynamic": false,
+//     "fields": {
+//       "address": {
+//         "type": "string"
+//       },
+//       "attraction_name": {
+//         "type": "string"
+//       },
+//       "categories": {
+//         "type": "string"
+//       },
+//       "city": {
+//         "type": "string"
+//       },
+//       "description": {
+//         "type": "string"
+//       },
+//       "location": {
+//         "type": "geo"
+//       },
+//       "region": {
+//         "type": "string"
+//       },
+//       "zip": {
+//         "type": "string"
+//       }
+//     }
+//   }
+// }
