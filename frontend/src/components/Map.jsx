@@ -77,7 +77,7 @@ export default function Map({ center, isDefaultCenter }) {
   if (isError) return <span>Error: {error.message}</span>;
   return (
     <div className="flex w-full flex-col xl:flex-row">
-      <div className="aspect-square xl:w-1/2">
+      <div className="aspect-square w-full">
         {isLoaded && (
           <GoogleMap
             mapContainerStyle={{ width: "100%", height: "100%" }}
@@ -135,7 +135,7 @@ export default function Map({ center, isDefaultCenter }) {
       </div>
 
       {/* map inputs and selected marker info */}
-      <div className="aspect-square bg-red p-8 xl:w-1/2">
+      <div className="w-full bg-red p-8 sm:aspect-square">
         {/* slider, searchbar, show center and show all buttons */}
         <div className="flex h-full flex-col gap-1">
           <SearchBar type="map" />

@@ -11,3 +11,5 @@ app.use("/api/attractions", attractionsRouter);
 app.use("/api/filters", filtersRouter);
 
 module.exports = app;
+
+// app.listen(5000)
